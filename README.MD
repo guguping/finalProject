@@ -89,3 +89,9 @@ Outstagram은 인천일보아카데미 탈주직전이조의 파이널 프로젝
 
 
 <br><br/>
+## sql
+```sql
+create user user_outstagram@localhost identified by '1234';
+create database db_outstagarm;
+grant all privileges on db_outstagarm.* to user_outstagram@localhost;
+```

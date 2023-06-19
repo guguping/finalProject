@@ -6,8 +6,8 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/db_github?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: user_github
+    url: jdbc:mysql://localhost:3306/db_outstagarm?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: user_outstagram
     password: 1234
 
   # thymeleaf ?? ??
