@@ -1,4 +1,3 @@
----
 Outstagram ( SNS )
 ===
 * * *
@@ -76,9 +75,6 @@ Outstagram은 인천일보아카데미 탈주직전이조의 파이널 프로젝
 - chat API
   <br><br/>
 
-
----
-
 <br><br/>
 ## 📸 Site Screenshot
 ![main](/src/main/resources/static/images/indexImages/OutstagarmMain.png)
@@ -86,7 +82,6 @@ Outstagram은 인천일보아카데미 탈주직전이조의 파이널 프로젝
 - 이호섭 : https://github.com/hi-sooyeon
 - 최민호 : https://github.com/joohyun93326
 - 이은수 : https://github.com/Zagg2732
-
 
 <br><br/>
 ## sql

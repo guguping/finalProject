@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>가입하기 • Instagram</title>
+    <link data-default-icon="https://static.cdninstagram.com/rsrc.php/yv/r/BTPhT6yIYfq.ico" rel="shortcut icon"
+          type="image/x-icon" href="https://static.cdninstagram.com/rsrc.php/yv/r/BTPhT6yIYfq.ico">
+    <link rel="stylesheet" href="../css/memberSave.css">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body>
+<section class="save-section">
+    <main class="save-section-main">
+        <div class="save-section-main-inner">
+            <div class="_ab1y">
+                <div class="_ab21">
+                    <div class="save-main-logo">
+                        <div class="save-main-logo-box">
+                            <i class="save-main-logo-item"></i>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+
+                        <!--회원가입 form 시작입니다-->
+                        <form class="memberSaveForm">
+                            <h2 class="memberSaveForm-tag">친구들의 사진과 동영상을 보려면 가입하세요.</h2>
+                            <div class="memberSaveForm-loginForm">
+
+                                <!--api 로그인 사용 버튼-->
+                                <button type="button" class="loginForm-api-btn">
+                                    <span><img src="../images/indexImages/KakaoLogo.png" class="KakaoLogo"></span>
+                                    Kakao으로 로그인
+                                </button>
+                            </div>
+                            <div style="margin: 10px 40px 18px;">
+                                <div style="display: flex;flex-direction: row;">
+                                    <div class="borderLine"></div>
+                                    <div class="borderLine-text">또는</div>
+                                    <div class="borderLine"></div>
+                                </div>
+                            </div>
+
+                            <!--여기서 부터 saveForm input 태그 입니다-->
+                            <div style="margin: 0 40px 6px;">
+                                <div class="memberSaveForm-input-box" id="inputBoxEmail">
+                                    <label class="_aa48">
+                                        <span class="memberSaveForm-input-tag" id="email-input-tag">휴대폰 번호 또는 이메일 주소</span>
+                                        <input type="text" class="memberSaveForm-input" id="memberSaveForm-input1">
+                                    </label>
+                                    <div class="input-value-check-img">
+                                        <span class="input-value-check-img-item1"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="margin: 0 40px 6px;">
+                                <div class="memberSaveForm-input-box" id="inputBoxName">
+                                    <label class="_aa48">
+                                        <span class="memberSaveForm-input-tag" id="name-input-tag">성명</span>
+                                        <input type="text" class="memberSaveForm-input" id="memberSaveForm-input2">
+                                    </label>
+                                    <div class="input-value-check-img">
+                                        <span class="input-value-check-img-item"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="margin: 0 40px 6px;">
+                                <div class="memberSaveForm-input-box" id="inputBoxNick">
+                                    <label class="_aa48">
+                                        <span class="memberSaveForm-input-tag" id="nickName-input-tag">사용자 이름</span>
+                                        <input type="text" class="memberSaveForm-input" id="memberSaveForm-input3">
+                                    </label>
+                                    <div class="input-value-check-img">
+                                        <span class="input-value-check-img-item1"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="margin: 0 40px 6px;">
+                                <div class="memberSaveForm-input-box" id="inputBoxPass">
+                                    <label class="_aa48">
+                                        <span class="memberSaveForm-input-tag" id="pass-input-tag">비밀번호</span>
+                                        <input type="password" class="memberSaveForm-input" id="memberSaveForm-input4">
+                                    </label>
+                                    <div class="input-value-check-img">
+                                        <span class="input-value-check-img-item"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="tip-tull">
+                                <span class="tip-tull-inner">
+                                    저희 서비스를 이용하는 사람이 회원님의 연락처 정보를 Instagram에 업로드했을 수도 있습니다.
+                                    <a class="goging-tip-tull-site" href="https://www.facebook.com/help/instagram/261704639352628">더 알아보기</a>
+                                </span>
+                            </p>
+                            <div>
+                                <div class="memberSaveForm-submit-btn-box">
+                                    <button class="memberSaveForm-submit-btn" disabled="" type="submit">가입</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="_ab21">
+                    <p class="_ab25">
+                        계정이 있으신가요?
+                        <a href="/" class="goging-login-form">로그인</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+</section>
+<script>
+    const memberEmailTag = document.getElementById('email-input-tag');
+    const inputElementEmail = document.getElementById('memberSaveForm-input1');
+    const inputBoxEmail = document.getElementById('inputBoxEmail');
+
+    const memberNameTag = document.getElementById('name-input-tag');
+    const inputElementName = document.getElementById('memberSaveForm-input2');
+    const inputBoxName =document.getElementById('inputBoxName');
+
+    const memberNickNameTag = document.getElementById('nickName-input-tag');
+    const inputElementNick = document.getElementById('memberSaveForm-input3');
+    const inputBoxNick = document.getElementById('inputBoxNick');
+
+    const memberPassTag = document.getElementById('pass-input-tag');
+    const inputElementPass = document.getElementById('memberSaveForm-input4');
+    const inputBoxPass = document.getElementById('inputBoxPass');
+
+    inputElementEmail.addEventListener('input', function () {
+        if (inputElementEmail.value !== '') {
+            memberEmailTag.classList.add('plug');
+            inputElementEmail.classList.add('input-plug');
+        } else {
+            memberEmailTag.classList.remove('plug');
+            inputElementEmail.classList.remove('input-plug');
+        }
+    });
+    inputElementName.addEventListener('input', function () {
+        if (inputElementName.value !== '') {
+            memberNameTag.classList.add('plug');
+            inputElementName.classList.add('input-plug');
+        } else {
+            memberNameTag.classList.remove('plug');
+            inputElementName.classList.remove('input-plug');
+        }
+    });
+    inputElementNick.addEventListener('input', function () {
+        if (inputElementNick.value !== '') {
+            memberNickNameTag.classList.add('plug');
+            inputElementNick.classList.add('input-plug');
+        } else {
+            memberNickNameTag.classList.remove('plug');
+            inputElementNick.classList.remove('input-plug');
+        }
+    });
+    inputElementPass.addEventListener('input', function () {
+        if (inputElementPass.value !== '') {
+            memberPassTag.classList.add('plug');
+            inputElementPass.classList.add('input-plug');
+        } else {
+            memberPassTag.classList.remove('plug');
+            inputElementPass.classList.remove('input-plug');
+        }
+    })
+    inputElementEmail.addEventListener('focus', function () {
+        inputBoxEmail.classList.add('input-box-plug');
+    });
+    inputElementPass.addEventListener('focus', function () {
+        inputBoxPass.classList.add('input-box-plug');
+    });
+    inputElementName.addEventListener('focus', function () {
+        inputBoxName.classList.add('input-box-plug');
+    });
+    inputElementNick.addEventListener('focus', function () {
+        inputBoxNick.classList.add('input-box-plug');
+    });
+    inputElementEmail.addEventListener('blur', function () {
+        inputBoxEmail.classList.remove('input-box-plug');
+    });
+
+    inputElementPass.addEventListener('blur', function () {
+        inputBoxPass.classList.remove('input-box-plug');
+    });
+    inputElementName.addEventListener('blur', function () {
+        inputBoxName.classList.remove('input-box-plug');
+    });
+
+    inputElementNick.addEventListener('blur', function () {
+        inputBoxNick.classList.remove('input-box-plug');
+    });
+</script>
+</body>
+</html>
