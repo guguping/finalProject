@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Instagram</title>
+    <link data-default-icon="https://static.cdninstagram.com/rsrc.php/yv/r/BTPhT6yIYfq.ico" rel="shortcut icon"
+          type="image/x-icon" href="https://static.cdninstagram.com/rsrc.php/yv/r/BTPhT6yIYfq.ico">
+    <link rel="stylesheet" href="../css/index.css">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body class="index-body">
+<section class="index-section">
+    <main class="index-main">
+        <article class="index-main-inner">
+            <div class="index-main-inner-block1">
+                <div class="main-block1-inner" id="main-block1-inner">
+                    <img src="../images/indexImages/screenshot1.png" class="show block1-inner-item">
+                    <img src="../images/indexImages/screenshot2.png" class="show block1-inner-item3">
+                    <img src="../images/indexImages/screenshot3.png" class="show block1-inner-item3">
+                    <img src="../images/indexImages/screenshot4.png" class="show block1-inner-item3">
+                </div>
+            </div>
+
+            <!--여기서 부터 로그인 form 시작합니다-->
+            <div class="index-main-inner-block2">
+                <div class="main-block2-inner">
+                    <div class="block2-inner-logo">
+                        <div class="logo-button-style">
+                            <i class="index-logo"></i>
+                        </div>
+                    </div>
+                    <div class="block2-inner-formBox">
+
+                        <!--로그인 form-->
+                        <form class="memberLoginForm">
+                            <div class="memberLoginForm-box">
+                                <div class="inputBox">
+                                    <div class="inputBox-inner" id="inputBox-inner-email">
+                                        <label class="input-item-email">
+                                            <span class="input-item-email-tag" id="input-item-email-tag">전화번호, 사용자 이름 또는 이메일</span>
+
+                                            <!--유저 email-->
+                                            <input type="text" class="input-item-email-main" id="input-item-email-main"
+                                                   minlength="1">
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="inputBox">
+                                    <div class="inputBox-inner" id="inputBox-inner-password">
+                                        <label class="input-item-pass">
+                                            <span class="input-item-pass-tag" id="input-item-pass-tag">비밀번호</span>
+
+                                            <!--유저 pass-->
+                                            <input type="password" class="input-item-pass-main"
+                                                   id="input-item-pass-main" minlength="5">
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="loginForm-Btn-box">
+                                    <button class="loginForm-Btn" type="submit" id="loginForm-Btn" disabled>
+                                        <div class="loginForm-Btn-text">로그인</div>
+                                    </button>
+                                </div>
+                                <div class="loginChoice-box">
+                                    <div class="loginChoice-box-tag">
+                                        <div class="loginChoice-tag-item1"></div>
+                                        <div class="loginChoice-tag-item2">또는</div>
+                                        <div class="loginChoice-tag-item1"></div>
+                                    </div>
+                                </div>
+                                <div class="loginChoice-menu-one">
+                                    <button class="loginChoice-menu-one-item">
+                                        <span><img src="../images/indexImages/KakaoLogo.png" class="KakaoLogo"></span>
+                                        <span style="color: #385185;">Kakao으로 로그인</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!--비밀번호 찾기 form-->
+                            <a href="#" class="find-password">비밀번호를 잊으셨나요?</a>
+                        </form>
+                    </div>
+                </div>
+                <!--회원 가입 form-->
+                <div class="signUp-box">
+                    <span class="signUp-box-inner">
+                        <p class="signUp-box-inner-text">계정이 없으신가요? <a href="#"
+                                                                       class="signUp-goging"><span
+                                class="signUp-goging-text">가입하기</span></a>
+                        </p>
+                    </span>
+                </div>
+            </div>
+        </article>
+    </main>
+    <footer class="main-footer">
+        <div class="main-footer-inner">
+            <div class="main-footer-inner-box1">
+                <div class="main-footer-box-inner">
+                    <div class="main-footer-item">
+                        <a href="https://about.meta.com/" class="footer-item-style" target="_blank">
+                            <span class="footer-item-text">Meta</span>
+                        </a>
+                    </div>
+                    <div class="main-footer-item">
+                        <a href="https://about.instagram.com/" class="footer-item-style" target="_blank">
+                            <span class="footer-item-text">소개</span>
+                        </a>
+                    </div>
+                    <div class="main-footer-item">
+                        <a href="https://about.instagram.com/blog/" class="footer-item-style" target="_blank">
+                            <span class="footer-item-text">블로그</span>
+                        </a>
+                    </div>
+                    <div class="main-footer-item">
+                        <a href="/about/jobs/" class="footer-item-style" target="_blank">
+                            <span class="footer-item-text">채용 정보</span>
+                        </a>
+                    </div>
+                    <div class="main-footer-item">
+                        <a href="https://help.instagram.com/" class="footer-item-style" target="_blank">
+                            <span class="footer-item-text">도움말</span>
+                        </a>
+                    </div>
+                    <div class="main-footer-item">
+                        <a href="https://developers.facebook.com/docs/instagram" class="footer-item-style"
+                           target="_blank">
+                            <span class="footer-item-text">API</span>
+                        </a>
+                    </div>
+                    <div class="main-footer-item">
+                        <a href="/legal/privacy/" class="footer-item-style" target="_blank">
+                            <span class="footer-item-text">개인정보처리방침</span>
+                        </a>
+                    </div>
+                    <div class="main-footer-item">
+                        <a href="/legal/terms/" class="footer-item-style" target="_blank">
+                            <span class="footer-item-text">약관</span>
+                        </a>
+                    </div>
+                    <div class="main-footer-item">
+                        <a href="/directory/profiles/" class="footer-item-style" target="_blank">
+                            <span class="footer-item-text">인기 계정</span>
+                        </a>
+                    </div>
+                    <div class="main-footer-item">
+                        <a href="/explore/locations/" class="footer-item-style" target="_blank">
+                            <span class="footer-item-text">위치</span>
+                        </a>
+                    </div>
+                    <div class="main-footer-item">
+                        <a href="/web/lite/" class="footer-item-style" target="_blank">
+                            <span class="footer-item-text">Instagram Lite</span>
+                        </a>
+                    </div>
+                    <div class="main-footer-item">
+                        <a href="https://www.facebook.com/help/instagram/261704639352628" class="footer-item-style"
+                           target="_blank">
+                            <span class="footer-item-text">연락처 업로드 & 비사용자</span>
+                        </a>
+                    </div>
+                    <div class="main-footer-item">
+                        <a href="https://about.meta.com/technologies/meta-verified/" class="footer-item-style"
+                           target="_blank">
+                            <span class="footer-item-text">Meta Verified</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-end-bye">
+                <div class="Copyright-time-box">
+                    <span class="Copyright-time-box-inner">
+                        한국어
+                    </span>
+                </div>
+                <div class="Copyright-time-box">
+                    <span class="Copyright-time-box-inner">
+                        © 2023 Instagram from Meta
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+</section>
+</body>
+<script>
+    // 슬라이드 쇼에 사용된 함수
+    $(document).ready(function () {
+        const slides = $(".show");
+        let currentSlide = 0;
+
+        function showSlide() {
+            slides.removeClass("block1-inner-item3");
+            slides.removeClass("block1-inner-item2");
+            slides.removeClass("block1-inner-item");
+
+            slides.eq(currentSlide).addClass("block1-inner-item2");
+
+            const nextSlide = (currentSlide + 1) % slides.length;
+            slides.eq(nextSlide).removeClass("block1-inner-item2");
+            slides.eq(nextSlide).addClass("block1-inner-item");
+
+            slides.not(slides.eq(currentSlide)).not(slides.eq(nextSlide)).addClass("block1-inner-item3");
+
+            currentSlide = nextSlide;
+        }
+
+        setInterval(showSlide, 5000); // 5초마다 슬라이드 변경
+    });
+
+    // email input / pass input 스타일 변경에 사용된 함수
+    const inputElementEmail = document.getElementById('input-item-email-main');
+    const inputElementPass = document.getElementById('input-item-pass-main');
+    const inputTagEmail = document.getElementById('input-item-email-tag');
+    const inputTagPass = document.getElementById('input-item-pass-tag')
+    const inputBoxEmail = document.getElementById('inputBox-inner-email');
+    const inputBoxPassword = document.getElementById('inputBox-inner-password');
+
+    inputElementEmail.addEventListener('input', function () {
+        if (inputElementEmail.value !== '') {
+            inputTagEmail.classList.add('input-item-email-tag-plug');
+            inputElementEmail.classList.add('input-item-email-main-plug');
+        } else {
+            inputTagEmail.classList.remove('input-item-email-tag-plug');
+            inputElementEmail.classList.remove('input-item-email-main-plug');
+        }
+    });
+    inputElementPass.addEventListener('input', function () {
+        if (inputElementPass.value !== '') {
+            inputTagPass.classList.add('input-item-pass-tag-plug');
+            inputElementPass.classList.add('input-item-pass-main-plug');
+        } else {
+            inputTagPass.classList.remove('input-item-pass-tag-plug');
+            inputElementPass.classList.remove('input-item-pass-main-plug');
+        }
+    })
+    inputElementEmail.addEventListener('focus', function () {
+        inputBoxEmail.classList.remove('inputBox-inner');
+        inputBoxEmail.classList.add('inputBox-inner-plug');
+    });
+    inputElementPass.addEventListener('focus', function () {
+        inputBoxPassword.classList.remove('inputBox-inner');
+        inputBoxPassword.classList.add('inputBox-inner-plug');
+    });
+
+    inputElementEmail.addEventListener('blur', function () {
+        inputBoxEmail.classList.remove('inputBox-inner-plug');
+        inputBoxEmail.classList.add('inputBox-inner');
+    });
+
+    inputElementPass.addEventListener('blur', function () {
+        inputBoxPassword.classList.remove('inputBox-inner-plug');
+        inputBoxPassword.classList.add('inputBox-inner');
+    });
+
+    inputElementEmail.addEventListener("input", checkInputs);
+    inputElementPass.addEventListener("input", checkInputs);
+
+    function checkInputs() {
+        const minLength1 = parseInt(inputElementEmail.getAttribute("minlength"));
+        const minLength2 = parseInt(inputElementPass.getAttribute("minlength"));
+        const loginFormBtn = document.getElementById('loginForm-Btn');
+
+        if (inputElementEmail.value.length < minLength1 || inputElementPass.value.length < minLength2) {
+            loginFormBtn.disabled = true;
+        } else {
+            loginFormBtn.disabled = false;
+        }
+    }
+</script>
+</html>

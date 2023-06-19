@@ -1,0 +1,39 @@
+# server port ?? ??
+server:
+  port: 8085
+
+# data base ?? ??
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db_github?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: user_github
+    password: 1234
+
+  # thymeleaf ?? ??
+  thymeleaf:
+    cache: false
+
+  # file size
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+  # spring data jpa ??
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+
+# db query log ?? ??
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: trace
+        type:
+          descriptor:
+            sql:
+              BasicBinder: trace
