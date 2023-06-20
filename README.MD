@@ -71,7 +71,7 @@ Outstagram은 인천일보아카데미 탈주직전이조의 파이널 프로젝
 ### ✔️ Open API
 - Google Login API
 - Kakao Login API
-- Kakao Map API
+- 이메일인증 API 
 - chat API
   <br><br/>
 
