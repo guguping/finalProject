@@ -79,9 +79,9 @@ Outstagram은 인천일보아카데미 탈주직전이조의 파이널 프로젝
 ## 📸 Site Screenshot
 ![main](/src/main/resources/static/images/indexImages/OutstagarmMain.png)
 ## 🧑🏻‍💻 Team Member
-- 이호섭 : https://github.com/hi-sooyeon
-- 최민호 : https://github.com/joohyun93326
-- 이은수 : https://github.com/Zagg2732
+- 이호섭 : https://github.com/guguping
+- 최민호 : https://github.com/cash-luv
+- 이은수 : https://github.com/De-vita
 
 <br><br/>
 ## sql
