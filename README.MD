@@ -82,7 +82,7 @@ Outstagram은 인천일보아카데미 탈주직전이조의 파이널 프로젝
 - 이호섭 : https://github.com/guguping
 - 최민호 : https://github.com/cash-luv
 - 이은수 : https://github.com/De-vita
-
+- 정지윤 : https://github.com/juni1015
 <br><br/>
 ## sql
 ```sql
