@@ -3,15 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>가입하기 • Instagram</title>
-    <link data-default-icon="https://static.cdninstagram.com/rsrc.php/yv/r/BTPhT6yIYfq.ico" rel="shortcut icon"
-          type="image/x-icon" href="https://static.cdninstagram.com/rsrc.php/yv/r/BTPhT6yIYfq.ico">
+    <th:block th:replace="component/config :: config"></th:block>
     <link rel="stylesheet" href="../css/memberSave.css">
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 </head>
 <body>
 <section class="save-section">
     <main class="save-section-main">
         <div class="save-section-main-inner">
+            <div class="index-main-inner-block1">
+                <div class="main-block1-inner" id="main-block1-inner">
+                    <img src="../images/indexImages/screenshot1.png" class="show block1-inner-item">
+                    <img src="../images/indexImages/screenshot2.png" class="show block1-inner-item3">
+                    <img src="../images/indexImages/screenshot3.png" class="show block1-inner-item3">
+                    <img src="../images/indexImages/screenshot4.png" class="show block1-inner-item3">
+                </div>
+            </div>
+
             <div class="_ab1y">
                 <div class="_ab21">
                     <div class="save-main-logo">
@@ -44,8 +51,8 @@
                             <div style="margin: 0 40px 6px;">
                                 <div class="memberSaveForm-input-box" id="inputBoxEmail">
                                     <label class="_aa48">
-                                        <span class="memberSaveForm-input-tag" id="email-input-tag">휴대폰 번호 또는 이메일 주소</span>
-                                        <input type="text" class="memberSaveForm-input" id="memberSaveForm-input1">
+                                        <span class="memberSaveForm-input-tag" id="email-input-tag">이메일 주소</span>
+                                        <input type="text" class="memberSaveForm-input" id="memberSaveForm-input1" minlength="1">
                                     </label>
                                     <div class="input-value-check-img">
                                         <span class="input-value-check-img-item1"></span>
@@ -56,7 +63,7 @@
                                 <div class="memberSaveForm-input-box" id="inputBoxName">
                                     <label class="_aa48">
                                         <span class="memberSaveForm-input-tag" id="name-input-tag">성명</span>
-                                        <input type="text" class="memberSaveForm-input" id="memberSaveForm-input2">
+                                        <input type="text" class="memberSaveForm-input" id="memberSaveForm-input2" minlength="2">
                                     </label>
                                     <div class="input-value-check-img">
                                         <span class="input-value-check-img-item"></span>
@@ -67,7 +74,7 @@
                                 <div class="memberSaveForm-input-box" id="inputBoxNick">
                                     <label class="_aa48">
                                         <span class="memberSaveForm-input-tag" id="nickName-input-tag">사용자 이름</span>
-                                        <input type="text" class="memberSaveForm-input" id="memberSaveForm-input3">
+                                        <input type="text" class="memberSaveForm-input" id="memberSaveForm-input3" minlength="2">
                                     </label>
                                     <div class="input-value-check-img">
                                         <span class="input-value-check-img-item1"></span>
@@ -78,7 +85,7 @@
                                 <div class="memberSaveForm-input-box" id="inputBoxPass">
                                     <label class="_aa48">
                                         <span class="memberSaveForm-input-tag" id="pass-input-tag">비밀번호</span>
-                                        <input type="password" class="memberSaveForm-input" id="memberSaveForm-input4">
+                                        <input type="password" class="memberSaveForm-input" id="memberSaveForm-input4" minlength="5">
                                     </label>
                                     <div class="input-value-check-img">
                                         <span class="input-value-check-img-item"></span>
@@ -93,7 +100,7 @@
                             </p>
                             <div>
                                 <div class="memberSaveForm-submit-btn-box">
-                                    <button class="memberSaveForm-submit-btn" disabled="" type="submit">가입</button>
+                                    <button class="memberSaveForm-submit-btn" id="memberSaveForm-submit-btn" disabled type="submit">가입</button>
                                 </div>
                             </div>
                         </form>
@@ -109,7 +116,31 @@
         </div>
     </main>
 </section>
+<div th:replace="component/component :: footer"></div>
 <script>
+    $(document).ready(function () {
+        const slides = $(".show");
+        let currentSlide = 0;
+
+        function showSlide() {
+            slides.removeClass("block1-inner-item3");
+            slides.removeClass("block1-inner-item2");
+            slides.removeClass("block1-inner-item");
+
+            slides.eq(currentSlide).addClass("block1-inner-item2");
+
+            const nextSlide = (currentSlide + 1) % slides.length;
+            slides.eq(nextSlide).removeClass("block1-inner-item2");
+            slides.eq(nextSlide).addClass("block1-inner-item");
+
+            slides.not(slides.eq(currentSlide)).not(slides.eq(nextSlide)).addClass("block1-inner-item3");
+
+            currentSlide = nextSlide;
+        }
+
+        setInterval(showSlide, 5000); // 5초마다 슬라이드 변경
+    });
+
     const memberEmailTag = document.getElementById('email-input-tag');
     const inputElementEmail = document.getElementById('memberSaveForm-input1');
     const inputBoxEmail = document.getElementById('inputBoxEmail');
@@ -188,6 +219,23 @@
     inputElementNick.addEventListener('blur', function () {
         inputBoxNick.classList.remove('input-box-plug');
     });
+
+    inputElementEmail.addEventListener("input", checkInputs);
+    inputElementPass.addEventListener("input", checkInputs);
+
+    function checkInputs() {
+        const minLength1 = parseInt(inputElementEmail.getAttribute("minlength"));
+        const minLength2 = parseInt(inputElementPass.getAttribute("minlength"));
+        const minLength3 = parseInt(inputElementName.getAttribute("minlength"));
+        const minLength4 = parseInt(inputElementNick.getAttribute("minlength"));
+        const loginFormBtn = document.getElementById('memberSaveForm-submit-btn');
+
+        if (inputElementEmail.value.length < minLength1 || inputElementPass.value.length < minLength2 || inputElementName.value.length < minLength3 || inputElementNick.value.length < minLength4) {
+            loginFormBtn.disabled = true;
+        } else {
+            loginFormBtn.disabled = false;
+        }
+    }
 </script>
 </body>
 </html>

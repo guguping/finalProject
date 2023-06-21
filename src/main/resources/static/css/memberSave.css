@@ -21,7 +21,7 @@
 }
 .save-section-main-inner {
     min-height: 100%;
-    margin-bottom: 44px;
+    /*margin-bottom: 44px;*/
     justify-content: center;
     background-color: transparent;
     min-width: 0;

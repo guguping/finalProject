@@ -1,0 +1,255 @@
+.main-footer-inner {
+    overflow: visible;
+    align-content: stretch;
+    border-radius: 0;
+    background-color: transparent;
+    flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    margin-bottom: 52px;
+    flex-shrink: 0;
+    align-items: stretch;
+    overflow-x: visible;
+    align-self: auto;
+    justify-content: flex-start;
+    position: relative;
+    flex-grow: 0;
+}
+.main-footer-inner-box1 {
+    overflow: visible;
+    margin-top: 24px;
+    align-content: stretch;
+    border-radius: 0;
+    background-color: transparent;
+    flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    flex-shrink: 0;
+    align-items: stretch;
+    overflow-x: visible;
+    align-self: auto;
+    justify-content: flex-start;
+    position: relative;
+    flex-grow: 0;
+}
+.main-footer-box-inner {
+    overflow: visible;
+    align-content: stretch;
+    border-radius: 0;
+    justify-content: center;
+    background-color: transparent;
+    box-sizing: border-box;
+    display: flex;
+    flex-shrink: 0;
+    align-items: stretch;
+    flex-direction: row;
+    overflow-x: visible;
+    align-self: auto;
+    position: relative;
+    flex-grow: 0;
+    flex-wrap: wrap;
+}
+
+.main-footer-item {
+    overflow: visible;
+    align-content: stretch;
+    margin-bottom: 12px;
+    border-radius: 0;
+    background-color: transparent;
+    flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    flex-shrink: 0;
+    align-items: stretch;
+    overflow-x: visible;
+    align-self: auto;
+    justify-content: flex-start;
+    position: relative;
+    margin-left: 8px;
+    margin-right: 8px;
+    flex-grow: 0;
+}
+.footer-item-style {
+    color: rgb(0,55,107);
+    text-decoration: none;
+}
+.footer-item-text {
+    line-height: var(--base-line-clamp-line-height);
+    --base-line-clamp-line-height: 16px;
+    overflow: visible;
+    font-weight: 400;
+    min-width: 0;
+    margin: 0!important;
+    word-wrap: break-word;
+    color: rgb(115,115,115);
+    position: relative;
+    display: block;
+    white-space: pre-line;
+    font-size: 12px;
+    max-width: 100%;
+    word-break: break-word;
+    unicode-bidi: isolate;
+}
+
+.footer-end-bye {
+    overflow-y: visible;
+    align-content: stretch;
+    margin: 12px 0;
+    border-bottom-left-radius: 0;
+    justify-content: center;
+    background-color: transparent;
+    box-sizing: border-box;
+    display: flex;
+    border-bottom-right-radius: 0;
+    flex-shrink: 0;
+    align-items: stretch;
+    flex-direction: row;
+    overflow-x: visible;
+    align-self: auto;
+    position: relative;
+    flex-grow: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.Copyright-time-box {
+    overflow-y: visible;
+    align-content: stretch;
+    border-bottom-left-radius: 0;
+    background-color: transparent;
+    flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    border-bottom-right-radius: 0;
+    flex-shrink: 0;
+    align-items: stretch;
+    overflow-x: visible;
+    align-self: auto;
+    justify-content: flex-start;
+    position: relative;
+    margin-left: 16px;
+    flex-grow: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.Copyright-time-box-inner {
+    line-height: 1px;
+    overflow-y: visible;
+    font-weight: 400;
+    min-width: 0;
+    margin-bottom: 0!important;
+    margin-right: 0!important;
+    word-wrap: break-word;
+    color: rgb(115,115,115);
+    overflow-x: visible;
+    position: relative;
+    display: block;
+    white-space: pre-line;
+    font-size: 12px;
+    max-width: 100%;
+    margin-left: 0!important;
+    word-break: break-word;
+    margin-top: 0!important;
+    unicode-bidi: isolate;
+}
+.Copyright-time-box-inner:before {
+    line-height: 16px;
+    --base-line-clamp-line-height: 16px;
+    font-weight: 400;
+    word-wrap: break-word;
+    color: rgb(115,115,115);
+    white-space: pre-line;
+    font-size: 12px;
+    word-break: break-word;
+}
+.Copyright-time-box-inner:after {
+    display: block;
+    margin-bottom: -3px;
+    content: "";
+    height: 0;
+}
+
+.index-main-inner-block1 {
+    background-size: 468.32px 634.15px;
+    height: 581.15px;
+    margin-bottom: 12px;
+    background-image: url(../images/indexImages/home-phones.png);
+    align-self: center;
+    background-position: -46px 0;
+    flex-basis: 380.32px;
+    margin-right: 32px;
+}
+@media (max-width: 875px) {
+    .index-main-inner-block1 {
+        display: none;
+    }
+}
+.main-block1-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 27px 0 0 113px;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+}
+.block1-inner-item {
+    width: 250px;
+    height: 538.84px;
+    visibility: visible;
+    padding: 0;
+    font-size: 100%;
+    z-index: 2;
+    margin: 0;
+    border: 0;
+    transition-duration: 1.5s;
+    transition-timing-function: ease-in;
+    opacity: 1;
+    transition-property: opacity;
+    left: 0;
+    top: 0;
+    position: absolute;
+    vertical-align: baseline;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+.block1-inner-item2 {
+    width: 250px;
+    height: 538.84px;
+    visibility: visible;
+    padding: 0;
+    font-size: 100%;
+    opacity: 0;
+    margin: 0;
+    border: 0;
+    transition-duration: 1.5s;
+    transition-timing-function: ease-in-out;
+    transition-property: opacity;
+    position: absolute;
+    left: 0;
+    top: 0;
+    vertical-align: baseline;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+
+.block1-inner-item3 {
+    width: 250px;
+    height: 538.84px;
+    visibility: hidden;
+    padding: 0;
+    font-size: 100%;
+    opacity: 0;
+    margin: 0;
+    border: 0;
+    left: 0;
+    top: 0;
+    position: absolute;
+    vertical-align: baseline;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
