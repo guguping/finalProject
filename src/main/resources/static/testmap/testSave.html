@@ -89,7 +89,8 @@
                                                         <div class="layout-guide-btn-box">
                                                             <div class="layout-guide-btn-box-inner">
                                                                 <a href="https://help.instagram.com/155833707900388"
-                                                                   class="layout-guide-btn-text" target="_blank">더 알아보기</a>
+                                                                   class="layout-guide-btn-text" target="_blank">더
+                                                                    알아보기</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -238,7 +239,8 @@
                                             <span style="height: 44px;">
                                                 <span class="_aav3">
                                                     <span class="memberSaveForm-birth-select-img"></span>
-                                                    <select class="memberSaveForm-birth-select" title="월:">
+                                                    <select class="memberSaveForm-birth-select" id="memberBirth-MM"
+                                                            title="월:">
                                                         <option title="1월" value="1">1월</option>
                                                         <option title="1월" value="1">1월</option>
                                                         <option title="2월" value="2">2월</option>
@@ -256,7 +258,8 @@
                                                 </span>
                                                 <span class="_aav3">
                                                     <span class="memberSaveForm-birth-select-img"></span>
-                                                    <select class="memberSaveForm-birth-select" title="일:">
+                                                    <select class="memberSaveForm-birth-select" id="memberBirth-DD"
+                                                            title="일:">
                                                         <option title="1" value="1">1</option>
                                                         <option title="2" value="2">2</option>
                                                         <option title="3" value="3">3</option>
@@ -291,7 +294,8 @@
                                                 </span>
                                                 <span class="_aav3">
                                                     <span class="memberSaveForm-birth-select-img"></span>
-                                                    <select class="memberSaveForm-birth-select" title="연도:">
+                                                    <select class="memberSaveForm-birth-select" id="memberBirth-YY"
+                                                            title="연도:">
                                                         <option title="2023" value="2023">2023</option>
                                                         <option title="2022" value="2022">2022</option>
                                                         <option title="2021" value="2021">2021</option>
@@ -414,7 +418,9 @@
                                     </div>
                                 </div>
                                 <div class="memberSaveForm-birth-checkBox">
-                                    <button type="button" class="memberSaveForm-birth-checkBtn" disabled>다음</button>
+                                    <button type="button" class="memberSaveForm-birth-checkBtn" id="nextBtn" disabled>
+                                        다음
+                                    </button>
                                 </div>
                                 <div class="memberSaveForm-back-btn-box">
                                     <button type="button" class="memberSaveForm-back-btn"
@@ -577,6 +583,29 @@
     const inputElementPass = document.getElementById('memberSaveForm-input4');
     const inputBoxPass = document.getElementById('inputBoxPass');
 
+    const selectElementYY = document.getElementById('memberBirth-YY');
+    const selectElementMM = document.getElementById('memberBirth-MM');
+    const selectElementDD = document.getElementById('memberBirth-DD');
+
+    selectElementYY.addEventListener('mousedown', function () {
+        selectElementYY.style.borderColor = "red";
+    });
+    selectElementYY.addEventListener('mouseup', function () {
+        selectElementYY.style.borderColor = "rgb(219, 219, 219)";
+    });
+    selectElementMM.addEventListener('mousedown', function () {
+        selectElementMM.style.borderColor = "red";
+    });
+    selectElementMM.addEventListener('mouseup', function () {
+        selectElementMM.style.borderColor = "rgb(219, 219, 219)";
+    });
+    selectElementDD.addEventListener('mousedown', function () {
+        selectElementDD.style.borderColor = "red";
+    });
+    selectElementDD.addEventListener('mouseup', function () {
+        selectElementDD.style.borderColor = "rgb(219, 219, 219)";
+    });
+
     inputElementEmail.addEventListener('input', function () {
         if (inputElementEmail.value !== '') {
             memberEmailTag.classList.add('plug');
@@ -684,6 +713,19 @@
     const birthGuide_off = () => {
         const birthGuide = document.getElementById('memberSave-birth-guide');
         birthGuide.style.display = "none";
+    }
+    const memberBirthYY = document.getElementById('memberBirth-YY');
+    memberBirthYY.addEventListener('change', checkSelect);
+
+    function checkSelect() {
+        let selectResult = parseInt(memberBirthYY.value);
+        const nextBtn = document.getElementById('nextBtn');
+
+        if (selectResult > 2018) {
+            nextBtn.disabled = true;
+        } else {
+            nextBtn.disabled = false;
+        }
     }
 </script>
 </html>
