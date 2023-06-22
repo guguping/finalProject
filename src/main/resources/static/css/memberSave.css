@@ -456,7 +456,7 @@
 }
 
 .save-main2-logo-item {
-    background-image: url(/static/images/ZWR9C7_JdnP.png);
+    background-image: url(../images/ZWR9C7_JdnP.png);
     background-repeat: no-repeat;
     background-position: 0 0;
     height: 96px;
@@ -637,7 +637,7 @@
 }
 
 .memberSaveForm-birth-select-img {
-    background-image: url(/static/images/TJztmXpWTmS.png);
+    background-image: url(../images/TJztmXpWTmS.png);
     pointer-events: none;
     position: absolute;
     right: 7px;
@@ -1048,7 +1048,7 @@
     flex-grow: 0;
 }
 .layout-contents-img {
-    background-image: url(/static/images/ZWR9C7_JdnP.png);
+    background-image: url(../images/ZWR9C7_JdnP.png);
     display: block;
     background-repeat: no-repeat;
     background-position: 0 0;
@@ -1223,4 +1223,271 @@
     display: block;
     content: "";
     height: 0;
+}
+.memberSaveForm-emailAuth {
+    max-width: 350px;
+    padding: 8px 28px 8px 28px;
+    overflow: visible;
+    align-content: stretch;
+    background-color: transparent;
+    flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    justify-content: flex-start;
+    position: relative;
+    flex-grow: 0;
+    border-radius: 0;
+}
+.memberSaveForm-emailAuth-logo {
+    background-image: url(../images/ZWR9C7_JdnP.png);
+    display: block;
+    background-repeat: no-repeat;
+    background-position: -440px 0;
+    height: 72px;
+    width: 92px;
+}
+.memberSaveForm-emailAuth-title-box {
+    margin: 0 0 8px;
+    overflow: visible;
+    align-content: stretch;
+    background-color: transparent;
+    flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    border-radius: 0;
+    flex-shrink: 0;
+    align-items: stretch;
+    overflow-x: visible;
+    align-self: auto;
+    justify-content: flex-start;
+    position: relative;
+    flex-grow: 0;
+}
+.memberSaveForm-emailAuth-title {
+    line-height: 17px;
+    font-size: 14px;
+    overflow: visible;
+    min-width: 0;
+    margin: 0!important;
+    color: rgb(0,0,0);
+    text-align: center;
+    word-wrap: break-word;
+    font-weight: 600;
+    position: relative;
+    display: block;
+    white-space: pre-line;
+    max-width: 100%;
+}
+.memberSaveForm-emailAuth-title:before {
+    margin-top: -3px;
+    display: block;
+    content: "";
+    height: 0;
+}
+.memberSaveForm-emailAuth-title:after {
+    display: block;
+    margin-bottom: -4px;
+    content: "";
+    height: 0;
+}
+.memberSaveForm-emailAuth-tag-box {
+    margin: 16px 0 16px;
+    overflow: visible;
+    align-content: stretch;
+    background-color: transparent;
+    flex-direction: column;
+    box-sizing: border-box;
+    border-radius: 0;
+    flex-shrink: 0;
+    display: inline-block;
+    align-items: stretch;
+    overflow-x: visible;
+    align-self: auto;
+    justify-content: flex-start;
+    position: relative;
+    flex-grow: 0;
+}
+.memberSaveForm-emailAuth-tag-text {
+    line-height: 18px;
+    font-size: 14px;
+    overflow: visible;
+    font-weight: 400;
+    min-width: 0;
+    margin: 0!important;
+    color: rgb(0,0,0);
+    text-align: center;
+    word-wrap: break-word;
+    position: relative;
+    display: block;
+    max-width: 100%;
+    word-break: break-word;
+}
+.memberSaveForm-emailAuth-tag-text:before {
+    margin-top: -3px;
+    display: block;
+    content: "";
+    height: 0;
+}
+.memberSaveForm-emailAuth-reAuth {
+    font-weight: 600;
+    height: auto;
+    display: inline;
+    border-bottom: 0 solid rgba(0, 0, 0.4);
+    border-top-left-radius: 2px;
+    border-left: 0;
+    text-overflow: ellipsis;
+    justify-content: center;
+    appearance: none;
+    background-color: transparent;
+    touch-action: manipulation;
+    min-width: 0;
+    flex-basis: auto;
+    margin: 0;
+    box-sizing: border-box;
+    border-top-width: 0;
+    user-select: none;
+    align-items: center;
+    padding: 0;
+    min-height: 0;
+    flex-shrink: 0;
+    border-left-color: rgba(0, 0, 0.4);
+    text-align: center;
+    cursor: pointer;
+    color: rgb(0,149,246);
+}
+
+.memberSaveForm-emailAuth-item-box {
+    width: 100%;
+    overflow: visible;
+    background-color: transparent;
+    flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    border-radius: 0;
+    flex-shrink: 0;
+    align-items: stretch;
+    overflow-x: visible;
+    align-self: auto;
+    justify-content: flex-start;
+    position: relative;
+    flex-grow: 0;
+}
+.memberSaveForm-emailAuth-reAuth:hover {
+    color: unset;
+}
+.memberSaveForm-emailAuth-item-box-inner {
+    max-width: 350px;
+    overflow: visible;
+    border-radius: 0;
+    margin: 8px 0 8px 0;
+    background-color: transparent;
+    flex-direction: column;
+    padding: 0 40px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    overflow-x: visible;
+    justify-content: flex-start;
+    position: relative;
+}
+.memberSaveForm-emailAuth-item {
+    width: 100%;
+    overflow: visible;
+    background-color: transparent;
+    flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    border-radius: 0;
+    flex-shrink: 0;
+    align-items: stretch;
+    overflow-x: visible;
+    align-self: auto;
+    justify-content: flex-start;
+    position: relative;
+    flex-grow: 0;
+}
+.memberSaveForm-emailAuth-item1 {
+    width: 100%;
+    margin-top: 16px;
+    overflow: visible;
+    align-content: stretch;
+    background-color: transparent;
+    flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    border-radius: 0;
+    flex-shrink: 0;
+    align-items: stretch;
+    overflow-x: visible;
+    align-self: auto;
+    justify-content: flex-start;
+    position: relative;
+    flex-grow: 0;
+}
+.memberSaveForm-emailAuth-input {
+    background: rgb(250,250,250);
+    border: 1px solid rgb(219,219,219);
+    border-radius: 6px;
+    color: rgb(0,0,0);
+    flex-grow: 1;
+    font-size: 14px;
+    line-height: 30px;
+    margin: 0;
+    overflow: visible;
+    padding: 4px 12px;
+    text-align: left;
+    outline: none!important;
+}
+.memberSaveForm-emailAuth-btn[disabled] {
+    background-color: rgba(0, 149, 246);
+    opacity: .7;
+    pointer-events: none;
+}
+
+.memberSaveForm-emailAuth-btn:not([disabled]):hover {
+    background-color: rgb(24, 119, 242);
+}
+
+.memberSaveForm-emailAuth-btn:not([disabled]) {
+    background-color: rgba(0, 149, 246);
+    opacity: 1;
+}
+
+.memberSaveForm-emailAuth-btn {
+    border: none;
+    border-radius: 8px;
+    color: rgb(255, 255, 255);
+    position: relative;
+    text-align: center;
+    -webkit-appearance: none;
+    background: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 7px 16px !important;
+    pointer-events: auto;
+    text-overflow: ellipsis;
+    text-transform: inherit;
+    -webkit-user-select: none;
+    width: auto;
+}
+.memberSaveForm-emailAuth-reAuth-box {
+    margin-top: 16px;
+    overflow: visible;
+    border-radius: 0;
+    background-color: transparent;
+    flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    flex-shrink: 0;
+    align-items: stretch;
+    overflow-x: visible;
+    align-self: auto;
+    justify-content: flex-start;
+    position: relative;
+    flex-grow: 0;
 }
