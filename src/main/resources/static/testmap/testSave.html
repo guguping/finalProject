@@ -418,7 +418,8 @@
                                     </div>
                                 </div>
                                 <div class="memberSaveForm-birth-checkBox">
-                                    <button type="button" class="memberSaveForm-birth-checkBtn" id="nextBtn" disabled>
+                                    <button type="button" class="memberSaveForm-birth-checkBtn" id="nextBtn" disabled
+                                            onclick="memberSaveForm_menu3Open()">
                                         다음
                                     </button>
                                 </div>
@@ -428,6 +429,39 @@
                                     </button>
                                 </div>
                             </div>
+
+                            <!--이메일 인증을 받는 input 위치-->
+                            <div class="memberSaveForm-emailAuth" id="memberSaveForm-menu3" style="display: none;">
+                                <span aria-label="이메일 확인" class="memberSaveForm-emailAuth-logo"></span>
+                                <div class="memberSaveForm-emailAuth-title-box">
+                                    <span class="memberSaveForm-emailAuth-title">
+                                        인증 코드 입력
+                                    </span>
+                                </div>
+                                <div class="memberSaveForm-emailAuth-tag-box">
+                                    <span class="memberSaveForm-emailAuth-tag-text">
+                                        qkfhandur@naver.com 주소로 전송된 인증 코드를 입력하세요.
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="memberSaveForm-emailAuth-item-box" id="memberSaveFrom-input-box"
+                                 style="display: none;">
+
+                                <div class="memberSaveForm-emailAuth-item-box-inner">
+                                    <div class="memberSaveForm-emailAuth-item">
+                                        <input type="text" placeholder="인증 코드" class="memberSaveForm-emailAuth-input">
+                                    </div>
+                                    <div class="memberSaveForm-emailAuth-item1">
+                                        <button class="memberSaveForm-emailAuth-btn" disabled="" type="submit">다음
+                                        </button>
+                                    </div>
+                                    <div class="memberSaveForm-emailAuth-reAuth-box">
+                                        <div class="memberSaveForm-emailAuth-reAuth" role="button">코드 재전송</div>
+                                    </div>
+                                </div>
+
+                            </div>
+
                         </form>
                     </div>
                 </div>
@@ -542,6 +576,11 @@
         </div>
     </div>
 </footer>
+<!--<div class="_acb4">-->
+<!--    <div class="_acba _abmn">-->
+<!--        <div class="_abmo"><p class="_abmp">죄송합니다. 현재 인증 코드를 보내는 중 문제가 발생했습니다. 나중에 다시 시도해주세요.</p></div>-->
+<!--    </div>-->
+<!--</div>-->
 </body>
 <script>
     $(document).ready(function () {
@@ -704,6 +743,18 @@
             memberSaveFormMenu1.style.display = "flex";
             memberSaveLogo1.style.display = "flex";
             marginTag.style.marginBottom = "20px";
+        }
+    }
+    const memberSaveForm_menu3Open = () => {
+        const memberSaveFormMenu2 = document.getElementById('memberSaveForm-menu2');
+        const memberSaveFormMenu3 = document.getElementById('memberSaveForm-menu3');
+        const memberSaveLogo2 = document.getElementById('save-main-logo2');
+        const memberSaveAuth = document.getElementById('memberSaveFrom-input-box');
+        if (memberSaveFormMenu2.style.display == "flex") {
+            memberSaveFormMenu2.style.display = "none";
+            memberSaveLogo2.style.display = "none";
+            memberSaveFormMenu3.style.display = "flex";
+            memberSaveAuth.style.display = "flex";
         }
     }
     const birthGuide_on = () => {
