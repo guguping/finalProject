@@ -19,10 +19,10 @@ public class BaseEntity {
 //    생성 시간을 관리하는 컬럼
     @CreationTimestamp
     @Column(updatable = false)
-    LocalDateTime createdAt;
+    private LocalDateTime createdAt;
     
 //    업데이트 시간을 관리하는 컬럼
     @CreationTimestamp
     @Column(insertable = false)
-    LocalDateTime updateAt;
+    private LocalDateTime updateAt;
 }

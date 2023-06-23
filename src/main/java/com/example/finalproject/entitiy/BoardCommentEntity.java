@@ -11,17 +11,17 @@ import java.util.List;
 @Table(name = "boardComment_table")
 @Getter
 @Setter
-public class BoardCommentEntity {
+public class BoardCommentEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @Column(length = 100,nullable = false)
-    String commentContents;
+    private String commentContents;
     
 //    댓글 수정 여부
     @Column
-    int commentUpdate;
+    private int commentUpdate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")

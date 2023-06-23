@@ -9,10 +9,10 @@ import javax.persistence.*;
 @Table(name = "memberFollow_table")
 @Getter
 @Setter
-public class MemberFollowEntity {
+public class MemberFollowEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
     
 //    팔로우를 하는 사람의 번호
     @ManyToOne(fetch = FetchType.LAZY)
