@@ -1,0 +1,59 @@
+.boardMainForm-body {
+    background: rgb(255,255,255);
+    color: rgb(0,0,0);
+    font-size: 14px;
+    line-height: 18px;
+    margin: 0;
+    overflow-y: visible;
+}
+.boardMainForm-start {
+    z-index: auto;
+    position: relative;
+}
+.boardMainForm-start-inner {
+    box-sizing: border-box;
+    position: relative;
+    z-index: 0;
+}
+.boardMainForm-flex-box {
+    flex-direction: column;
+    display: flex;
+    position: relative;
+    z-index: 0;
+}
+.boardMainForm-flex-box-inner {
+    flex-direction: column;
+    display: flex;
+    position: relative;
+}
+.boardMainForm-min-height {
+    top: 0px;
+    flex-direction: column;
+    min-height: calc(100vh);
+    display: flex;
+    position: relative;
+}
+.boardMainForm-min-height-inner {
+    flex-direction: column;
+    display: flex;
+    min-height: inherit;
+    position: relative;
+    z-index: 0;
+    margin-bottom: calc(-100vh);
+}
+.boardMainForm-column-box {
+    height: 100%;
+    overflow: visible;
+    background-color: rgb(245,245,245);
+    box-sizing: border-box;
+    display: flex;
+    flex-shrink: 0;
+    position: static;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-direction: row;
+    overflow-x: visible;
+    align-self: auto;
+    flex-grow: 0;
+    border-radius: 0;
+}
