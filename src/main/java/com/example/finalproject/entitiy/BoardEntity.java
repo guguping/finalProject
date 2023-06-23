@@ -11,21 +11,21 @@ import java.util.List;
 @Table(name = "board_table")
 @Getter
 @Setter
-public class BoardEntity {
+public class BoardEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @Column(length = 500)
-    String boardContents;
+    private String boardContents;
     
 //    게시글 공개 여부 디폴트 1 = 공개
     @Column
-    int boardBlind;
+    private int boardBlind;
 
 //    게시글 수정 여부 디폴트 0 = 비수정
     @Column
-    int boardUpdate;
+    private int boardUpdate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")

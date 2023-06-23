@@ -11,13 +11,13 @@ import java.util.List;
 @Table(name = "board_story_table")
 @Getter
 @Setter
-public class BoardStoryEntity {
+public class BoardStoryEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @Column(length = 100,nullable = false)
-    String storyFileName;
+    private String storyFileName;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")

@@ -10,10 +10,10 @@ import javax.persistence.*;
 @Table(name = "board_reels_bookmark_table")
 @Getter
 @Setter
-public class BoardReelsBookmarkEntity {
+public class BoardReelsBookmarkEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reels_id")

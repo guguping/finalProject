@@ -11,16 +11,16 @@ import java.util.List;
 @Table(name = "board_reels_table")
 @Getter
 @Setter
-public class BoardReelsEntity {
+public class BoardReelsEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @Column(length = 200,nullable = false)
-    String reelsFile;
+    private String reelsFile;
 
     @Column(length = 100)
-    String reelsContents;
+    private String reelsContents;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")

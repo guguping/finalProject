@@ -9,10 +9,10 @@ import javax.persistence.*;
 @Table(name = "board_comment_like_table")
 @Getter
 @Setter
-public class BoardCommentLikeEntity {
+public class BoardCommentLikeEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "comment_id")

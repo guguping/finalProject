@@ -11,13 +11,16 @@ import java.util.List;
 @Table(name = "board_reels_comment_table")
 @Getter
 @Setter
-public class BoardReelsCommentEntity {
+public class BoardReelsCommentEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @Column(length = 255,nullable = false)
-    String commentContents;
+    private String commentContents;
+
+    @Column
+    private int commentUpdate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reels_id")

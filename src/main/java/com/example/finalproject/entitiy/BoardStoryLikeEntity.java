@@ -9,10 +9,10 @@ import javax.persistence.*;
 @Table(name = "board_story_like_table")
 @Getter
 @Setter
-public class BoardStoryLikeEntity {
+public class BoardStoryLikeEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "story_id")

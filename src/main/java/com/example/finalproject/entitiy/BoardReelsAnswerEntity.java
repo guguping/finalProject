@@ -9,13 +9,13 @@ import javax.persistence.*;
 @Table(name = "board_reelsAnswer_table")
 @Getter
 @Setter
-public class BoardReelsAnswerEntity {
+public class BoardReelsAnswerEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @Column(length = 255,nullable = false)
-    String answerContents;
+    private String answerContents;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reelsComment_id")
