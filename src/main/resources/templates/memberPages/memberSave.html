@@ -415,6 +415,8 @@
                                     </div>
                                 </div>
                                 <div class="memberSaveForm-birth-checkBox">
+
+                                    <!--인증 메일 보내기 기능 추가해야함-->
                                     <button type="button" class="memberSaveForm-birth-checkBtn" id="nextBtn" disabled
                                             onclick="memberSaveForm_menu3Open()">
                                         다음
@@ -444,14 +446,20 @@
                             <div class="memberSaveForm-emailAuth-item-box" id="memberSaveFrom-input-box"
                                  style="display: none;">
 
+                                <!--minlength js. 추가해야함 6자리-->
                                 <div class="memberSaveForm-emailAuth-item-box-inner">
                                     <div class="memberSaveForm-emailAuth-item">
-                                        <input type="text" placeholder="인증 코드" class="memberSaveForm-emailAuth-input">
+                                        <input type="text" placeholder="인증 코드" class="memberSaveForm-emailAuth-input"
+                                               minlength="6">
                                     </div>
+
+                                    <!--처리 완료 후 index로 이동-->
                                     <div class="memberSaveForm-emailAuth-item1">
                                         <button class="memberSaveForm-emailAuth-btn" disabled="" type="submit">다음
                                         </button>
                                     </div>
+
+                                    <!--인증 메일 발송 재활용-->
                                     <div class="memberSaveForm-emailAuth-reAuth-box">
                                         <div class="memberSaveForm-emailAuth-reAuth" role="button">코드 재전송</div>
                                     </div>
