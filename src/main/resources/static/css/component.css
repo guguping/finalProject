@@ -319,6 +319,7 @@
     box-sizing: border-box;
     display: flex;
     height: 100dvh;
+    width: 335px;
     align-items: flex-start;
 }
 
