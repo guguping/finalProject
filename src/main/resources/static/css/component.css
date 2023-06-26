@@ -707,7 +707,22 @@ svg:not(:root) {
     outline: none;
     color: rgb(0, 55, 107);
 }
-
+.boardMain-nav-list-board-save-link {
+    display: inline;
+    padding: 0;
+    background-color: transparent;
+    touch-action: manipulation;
+    margin: 0;
+    border: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    text-align: inherit;
+    list-style: none;
+    text-decoration: none;
+    outline: none;
+    color: rgb(0, 55, 107);
+}
 .boardMain-nav-list-reels-link:-webkit-any-link {
     color: -webkit-link;
     cursor: pointer;
