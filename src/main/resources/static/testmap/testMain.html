@@ -1083,7 +1083,7 @@
                                                                                         <div class="board-save-form-main-img-box">
                                                                                             <div class="board-save-form-main-img-box-inner">
                                                                                                 <div class="board-save-form-main-img-inner">
-                                                                                                    <div class="board-save-form-main-img">
+                                                                                                    <div class="board-save-form-main-img" id="board-save-form-main-img">
                                                                                                         <svg aria-label="이미지나 동영상과 같은 미디어를 나타내는 아이콘"
                                                                                                              class="board-save-form-svg"
                                                                                                              color="rgb(0, 0, 0)"
@@ -1105,9 +1105,9 @@
                                                                                                                   fill="currentColor"></path>
                                                                                                         </svg>
                                                                                                         <div class="tkwlsrhkehddudtkd">
-                                                                                    <span class="tkwlsrhkehddudtkd-text">
-                                                                                        사진과 동영상을 여기에 끌어다 놓으세요
-                                                                                    </span>
+                                                                                                            <span class="tkwlsrhkehddudtkd-text">
+                                                                                                                사진과 동영상을 여기에 끌어다 놓으세요
+                                                                                                            </span>
                                                                                                         </div>
                                                                                                         <div class="tkwlsrhkehddudtkd-btn-box">
                                                                                                             <div class="tkwlsrhkehddudtkd-btn-box-inner">
@@ -1264,5 +1264,27 @@
         boardSaveLayout.style.display = "none";
     }
 
+
+    function readImages(input) {
+        if (input.files && input.files.length > 0) {
+            const previewImageContainer = document.getElementById("board-save-form-main-img");
+            previewImageContainer.innerHTML = "";
+            for (let i = 0; i < input.files.length; i++) {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    const previewImage = document.createElement("img");
+                    previewImage.src = e.target.result;
+                    previewImageContainer.appendChild(previewImage);
+
+                }
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
+    }
+
+    const memberFile = document.getElementById("img-input-");
+    memberFile.addEventListener("change", e => {
+        readImages(e.target);
+    });
 </script>
 </html>
