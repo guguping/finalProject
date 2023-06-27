@@ -1,5 +1,6 @@
 package com.example.finalproject.entitiy;
 
+import com.example.finalproject.dto.BoardDTO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -43,4 +44,10 @@ public class BoardEntity extends BaseEntity {
 
     @OneToMany(mappedBy = "boardEntity",cascade = CascadeType.REMOVE,orphanRemoval = true,fetch = FetchType.LAZY)
     private List<BoardBookmarkEntity> boardBookmarkEntityList = new ArrayList<>();
+
+    public static BoardEntity toSaveEntity(BoardDTO boardDTO) {
+        BoardEntity boardEntity = new BoardEntity();
+        boardEntity.setBoardContents(boardDTO.getBoardContents());
+        return boardEntity;
+    }
 }
