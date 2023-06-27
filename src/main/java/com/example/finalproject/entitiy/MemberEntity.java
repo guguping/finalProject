@@ -1,5 +1,6 @@
 package com.example.finalproject.entitiy;
 
+import com.example.finalproject.dto.MemberDTO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -48,6 +49,10 @@ public class MemberEntity extends BaseEntity {
 //    릴스 업로드 유무
     @Column()
     private int reelsAttached;
+
+//    public static MemberEntity toEntity(MemberDTO memberDTO) {
+//        MemberEntity memberEntity = new MemberEntity();
+//    }
 
     @OneToMany(mappedBy = "memberEntity", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<BoardEntity> boardEntityList = new ArrayList<>();
