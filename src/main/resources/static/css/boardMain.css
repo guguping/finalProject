@@ -45,11 +45,11 @@
     min-height: inherit;
     position: relative;
     z-index: 0;
-    margin-bottom: calc(-130vh);
+    margin-bottom: -116vh;
 }
 @media (min-width: 1264px) and (max-width: 1919px) {
     .boardMainForm-min-height-inner {
-        margin-bottom: calc(-130vh);
+        margin-bottom: calc(-116vh);
     }
 }
 .boardMainForm-column-box {
