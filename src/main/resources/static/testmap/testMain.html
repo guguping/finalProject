@@ -1262,6 +1262,7 @@
         const boardSave = document.getElementById('boardSave-btn');
         boardSave.click();
     }
+
     const saveFormOn = () => {
         const boardSaveLayout = document.getElementById('boardSave-layout');
         boardSaveLayout.style.display = "block";
@@ -1269,6 +1270,7 @@
     const saveFormOff = () => {
         const boardSaveLayout = document.getElementById('boardSave-layout');
         const previewImageContainer = document.getElementById("board-save-form-main-img");
+        const inputFile = document.getElementById('img-input-');
         const result = "<svg aria-label=\"이미지나 동영상과 같은 미디어를 나타내는 아이콘\"\n" +
             "                                                                                                             class=\"board-save-form-svg\"\n" +
             "                                                                                                             color=\"rgb(0, 0, 0)\"\n" +
@@ -1307,10 +1309,9 @@
             "                                                                                                        </div>"
         previewImageContainer.innerHTML = "";
         previewImageContainer.innerHTML = result;
+        inputFile.value = '';
         boardSaveLayout.style.display = "none";
     }
-
-
     function readImages(input) {
         if (input.files && input.files.length > 0) {
             const previewImageContainer = document.getElementById("board-save-form-main-img");
@@ -1333,6 +1334,7 @@
     const memberFile = document.getElementById("img-input-");
     memberFile.addEventListener("change", e => {
         readImages(e.target);
+
     });
 </script>
 </html>
