@@ -30,7 +30,7 @@
                     <div class="block2-inner-formBox">
 
                         <!--로그인 form-->
-                        <form class="memberLoginForm">
+                        <form action="/member/login" method="post" class="memberLoginForm">
                             <div class="memberLoginForm-box">
                                 <div class="inputBox">
                                     <div class="inputBox-inner" id="inputBox-inner-email">
@@ -39,7 +39,7 @@
 
                                             <!--유저 email-->
                                             <input type="text" class="input-item-email-main" id="input-item-email-main"
-                                                   minlength="1">
+                                                   minlength="1" name="memberEmail">
                                         </label>
                                     </div>
                                 </div>
@@ -50,11 +50,12 @@
 
                                             <!--유저 pass-->
                                             <input type="password" class="input-item-pass-main"
-                                                   id="input-item-pass-main" minlength="5">
+                                                   id="input-item-pass-main" minlength="5" name="memberPassword">
                                         </label>
                                     </div>
                                 </div>
                                 <div class="loginForm-Btn-box">
+                                    <span th:text="${loginFalse}"></span>
                                     <button class="loginForm-Btn" type="submit" id="loginForm-Btn" disabled>
                                         <div class="loginForm-Btn-text">로그인</div>
                                     </button>

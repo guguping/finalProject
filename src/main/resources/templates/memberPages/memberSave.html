@@ -121,7 +121,7 @@
                     <div id="marginTag" style="margin-bottom: 20px;">
 
                         <!--회원가입 form 시작입니다-->
-                        <form class="memberSaveForm">
+                        <form class="memberSaveForm" method="post" action="/member/save" onsubmit="return signup_check()">
                             <div id="memberSaveForm-menu1" style="display: flex;flex-direction: column;">
                                 <h2 class="memberSaveForm-tag">친구들의 사진과 동영상을 보려면 가입하세요.</h2>
                                 <div class="memberSaveForm-loginForm">
@@ -146,7 +146,7 @@
                                         <label class="_aa48">
                                             <span class="memberSaveForm-input-tag" id="email-input-tag">이메일 주소</span>
                                             <input type="text" class="memberSaveForm-input" id="memberSaveForm-input1"
-                                                   minlength="1">
+                                                   minlength="1" name="memberEmail">
                                         </label>
                                         <div class="input-value-check-img">
                                             <span class="input-value-check-img-item1"></span>
@@ -158,7 +158,7 @@
                                         <label class="_aa48">
                                             <span class="memberSaveForm-input-tag" id="name-input-tag">성명</span>
                                             <input type="text" class="memberSaveForm-input" id="memberSaveForm-input2"
-                                                   minlength="2">
+                                                   minlength="2" name="memberName" >
                                         </label>
                                         <div class="input-value-check-img">
                                             <span class="input-value-check-img-item"></span>
@@ -170,7 +170,7 @@
                                         <label class="_aa48">
                                             <span class="memberSaveForm-input-tag" id="nickName-input-tag">사용자 이름</span>
                                             <input type="text" class="memberSaveForm-input" id="memberSaveForm-input3"
-                                                   minlength="2">
+                                                   minlength="2" name="memberNickName" >
                                         </label>
                                         <div class="input-value-check-img">
                                             <span class="input-value-check-img-item1"></span>
@@ -183,7 +183,8 @@
                                             <span class="memberSaveForm-input-tag" id="pass-input-tag">비밀번호</span>
                                             <input type="password" class="memberSaveForm-input"
                                                    id="memberSaveForm-input4"
-                                                   minlength="5">
+                                                   minlength="5"
+                                                   name="memberPassword">
                                         </label>
                                         <div class="input-value-check-img">
                                             <span class="input-value-check-img-item"></span>
@@ -237,7 +238,7 @@
                                                 <span class="_aav3">
                                                     <span class="memberSaveForm-birth-select-img"></span>
                                                     <select class="memberSaveForm-birth-select" id="memberBirth-MM"
-                                                            title="월:">
+                                                            title="월:" name="memberBirthM">
                                                         <option title="1월" value="1">1월</option>
                                                         <option title="1월" value="1">1월</option>
                                                         <option title="2월" value="2">2월</option>
@@ -256,7 +257,7 @@
                                                 <span class="_aav3">
                                                     <span class="memberSaveForm-birth-select-img"></span>
                                                     <select class="memberSaveForm-birth-select" id="memberBirth-DD"
-                                                            title="일:">
+                                                            title="일:" name="memberBirthD">
                                                         <option title="1" value="1">1</option>
                                                         <option title="2" value="2">2</option>
                                                         <option title="3" value="3">3</option>
@@ -292,7 +293,7 @@
                                                 <span class="_aav3">
                                                     <span class="memberSaveForm-birth-select-img"></span>
                                                     <select class="memberSaveForm-birth-select" id="memberBirth-YY"
-                                                            title="연도:">
+                                                            title="연도:" name="memberBirthY">
                                                         <option title="2023" value="2023">2023</option>
                                                         <option title="2022" value="2022">2022</option>
                                                         <option title="2021" value="2021">2021</option>
@@ -438,8 +439,8 @@
                                     </span>
                                 </div>
                                 <div class="memberSaveForm-emailAuth-tag-box">
-                                    <span class="memberSaveForm-emailAuth-tag-text">
-                                        qkfhandur@naver.com 주소로 전송된 인증 코드를 입력하세요.
+                                    <span class="memberSaveForm-emailAuth-tag-text" id="memberSaverForm-emailForAuth">
+
                                     </span>
                                 </div>
                             </div>
@@ -450,7 +451,7 @@
                                 <div class="memberSaveForm-emailAuth-item-box-inner">
                                     <div class="memberSaveForm-emailAuth-item">
                                         <input type="text" placeholder="인증 코드" class="memberSaveForm-emailAuth-input"
-                                               minlength="6">
+                                               minlength="6" id="emailAuth-input" oninput="checkInputLength()">
                                     </div>
 
                                     <!--처리 완료 후 index로 이동-->
@@ -462,6 +463,9 @@
                                     <!--인증 메일 발송 재활용-->
                                     <div class="memberSaveForm-emailAuth-reAuth-box">
                                         <div class="memberSaveForm-emailAuth-reAuth" role="button">코드 재전송</div>
+                                    </div>
+                                    <div>
+                                        <div id="emailAuth-warn"></div>
                                     </div>
                                 </div>
 
@@ -531,6 +535,8 @@
     const selectElementYY = document.getElementById('memberBirth-YY');
     const selectElementMM = document.getElementById('memberBirth-MM');
     const selectElementDD = document.getElementById('memberBirth-DD');
+
+    const emailForAuth = document.getElementById("memberSaverForm-emailForAuth");
 
     selectElementYY.addEventListener('mousedown', function () {
         selectElementYY.style.borderColor = "red";
@@ -684,5 +690,63 @@
             nextBtn.disabled = false;
         }
     }
+
+    function updateEmailForAuth() {
+        const email = inputElementEmail.value;
+        emailForAuth.textContent = `${email} 주소로 전송된 인증 코드를 입력하세요.`;
+    }
+
+    inputElementEmail.addEventListener('input', updateEmailForAuth);
+
+    function checkInputLength() {
+        const inputCode = $('.memberSaveForm-emailAuth-input').val();
+        const submitButton = $('.memberSaveForm-emailAuth-btn');
+
+        if (inputCode.length >= 6) {
+            submitButton.prop('disabled', false);
+        } else {
+            submitButton.prop('disabled', true);
+        }
+    }
+
+    // const email_check = () => {
+    //     inputElementEmail
+    // }
+
+    let code;
+
+    $('#nextBtn').click(function() {
+        const authEmail = $('#memberSaveForm-input1').val();
+        console.log("이메일 확인용: " + authEmail);
+
+        axios.get('/member/mailAuth', {
+            params: {
+                email: authEmail
+            }
+        }).then(function(response) {
+            console.log(response.data);
+            code = response.data;
+            alert("인증번호가 전송되었습니다");
+        }).catch(function(error) {
+            console.log(error);
+        });
+    });
+
+    // 인증번호 비교
+    // blur -> focus가 벗어나는 경우 발생
+    $('#emailAuth-input').blur(function () {
+        const inputCode = $(this).val();
+        const $resultMsg = $('#emailAuth-warn');
+
+        if(parseInt(inputCode) === parseInt(code)){
+            $resultMsg.html('인증번호가 일치합니다.');
+            $resultMsg.css('color','green');
+        }else{
+            $resultMsg.html('코드가 유효하지 않습니다. 새 코드를 요청하세요.');
+            $resultMsg.css('color','red');
+        }
+    });
+
+
 </script>
 </html>

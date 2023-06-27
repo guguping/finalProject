@@ -9,6 +9,17 @@ spring:
     url: jdbc:mysql://localhost:3306/db_outstagarm?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: user_outstagram
     password: 1234
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: fluer7123@gmail.com
+    password: eoljzrvjllyjomwe
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
   # thymeleaf ?? ??
   thymeleaf:
@@ -37,3 +48,6 @@ logging:
           descriptor:
             sql:
               BasicBinder: trace
+
+
+
