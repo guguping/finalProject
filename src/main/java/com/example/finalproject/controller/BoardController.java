@@ -50,7 +50,9 @@ public class BoardController {
     }
 
     @PostMapping("/board/save")
-    public String save(@ModelAttribute BoardDTO boardDTO) throws IOException{
+    public String save(@ModelAttribute BoardDTO boardDTO, HttpSession session) throws IOException{
+        Long loginId = (Long) session.getAttribute("memberId");
+        boardDTO.setMemberId(loginId);
         boardService.save(boardDTO);
         return "redirect:/board/main";
     }
