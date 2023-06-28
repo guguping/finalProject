@@ -45,9 +45,12 @@ public class BoardEntity extends BaseEntity {
     @OneToMany(mappedBy = "boardEntity",cascade = CascadeType.REMOVE,orphanRemoval = true,fetch = FetchType.LAZY)
     private List<BoardBookmarkEntity> boardBookmarkEntityList = new ArrayList<>();
 
-    public static BoardEntity toSaveEntity(BoardDTO boardDTO) {
+    public static BoardEntity toSaveEntity(BoardDTO boardDTO, MemberEntity memberEntity) {
         BoardEntity boardEntity = new BoardEntity();
+        boardEntity.setMemberEntity(memberEntity);
         boardEntity.setBoardContents(boardDTO.getBoardContents());
+        boardEntity.setBoardBlind(1);
+        boardEntity.setBoardUpdate(0);
         return boardEntity;
     }
 }
