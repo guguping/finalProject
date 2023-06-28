@@ -1927,3 +1927,175 @@ dlalwlfkqslek:after {
     font-size: 14px;
     line-height: 18px;
 }
+.previewImaPagingBox {
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    z-index: 3;
+}
+.previewImaPagingItem-left {
+    align-items: stretch;
+    border: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    font: inherit;
+    font-size: 100%;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.previewImaPagingItem-left-size {
+    margin: 8px;
+    background: rgba(26, 26, 26, .8);
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+    cursor: pointer;
+    opacity: 1;
+    position: relative;
+    transition-duration: .2s;
+    transition-property: opacity;
+    z-index: 3;
+}
+.previewImaPagingItem-left-btn {
+    border: 0;
+    color: rgb(0,149,246);
+    display: inline-block;
+    padding: 0!important;
+    position: relative;
+    text-align: center;
+    -webkit-appearance: none;
+    background: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    pointer-events: auto;
+    text-overflow: ellipsis;
+    text-transform: inherit;
+    -webkit-user-select: none;
+    width: auto;
+}
+.previewImaPaging-left-img-box {
+    padding: 8px;
+    overflow-y: visible;
+    border-radius: 0;
+    justify-content: center;
+    background-color: transparent;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    overflow-x: visible;
+    position: relative;
+}
+.previewImaPagingItem-left-img {
+    display: block;
+    position: relative;
+}
+.previewImaPagingItem-right {
+    align-items: stretch;
+    border: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    font: inherit;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    right: 0;
+    vertical-align: baseline;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.previewImaPagingItem-right-size {
+    background: rgba(26, 26, 26, .8);
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+    cursor: pointer;
+    opacity: 1;
+    position: relative;
+    transition-duration: .2s;
+    transition-property: opacity;
+    z-index: 3;
+    margin: 8px;
+}
+.previewImaPagingItem-right-btn {
+    border: 0;
+    color: rgb(0,149,246);
+    display: inline-block;
+    padding: 0!important;
+    position: relative;
+    text-align: center;
+    -webkit-appearance: none;
+    background: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-weight: 600;
+    pointer-events: auto;
+    text-overflow: ellipsis;
+    text-transform: inherit;
+    -webkit-user-select: none;
+    width: auto;
+}
+.previewImaPaging-right-img-box {
+    padding: 8px;
+    overflow-y: visible;
+    justify-content: center;
+    background-color: transparent;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    border-radius: 0;
+    flex-direction: row;
+    overflow-x: visible;
+    position: relative;
+}
+.previewImaPagingItem-right-img {
+    display: block;
+    position: relative;
+}
+.previewImgPagingItem-num {
+    align-items: stretch;
+    border: 0;
+    bottom: 29px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    font: inherit;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    vertical-align: baseline;
+}
+.previewImgPagingItem-num-item-box {
+    flex-direction: row;
+    display: flex;
+}
+.previewImgPagingItem-num-item-on {
+    background: rgb(168,168,168);
+    margin-right: 4px;
+    border-radius: 50%;
+    height: 6px;
+    transition: all .2s ease-in-out;
+    width: 6px;
+}
+.previewImgPagingItem-num-item-off {
+    background: rgb(0,149,246);
+    margin-right: 4px;
+    border-radius: 50%;
+    height: 6px;
+    width: 6px;
+    transition: all .2s ease-in-out;
+}
