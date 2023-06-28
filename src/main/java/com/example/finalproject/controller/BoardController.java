@@ -1,6 +1,7 @@
 package com.example.finalproject.controller;
 
 import com.example.finalproject.dto.BoardDTO;
+import com.example.finalproject.dto.LikeDTO;
 import com.example.finalproject.dto.MemberDTO;
 import com.example.finalproject.dto.MemberFollowDTO;
 import com.example.finalproject.entitiy.MemberEntity;
@@ -25,16 +26,16 @@ import java.util.List;
 public class BoardController {
     private final BoardService boardService;
     private final MemberSerivce memberSerivce;
-    private final MemberFollowRepository memberFollowRepository;
-
     private final MemberFollowService memberFollowService;
 
     @GetMapping("/board/main")
     public String boardMain(Model model,HttpSession session) {
         List<BoardDTO> boardDTOList = boardService.findAll();
         Long loginId = (Long) session.getAttribute("memberId");
+        MemberDTO memberDTO = memberSerivce.findById(loginId);
         List<MemberFollowDTO> memberFollowDTOList = memberFollowService.findFollow(loginId);
-        model.addAttribute("boardList", boardDTOList);
+        model.addAttribute("boardDTOList", boardDTOList);
+        model.addAttribute("memberDTO",memberDTO);
         model.addAttribute("memberFollowList", memberFollowDTOList);
         return "boardPages/boardMain";
     }
