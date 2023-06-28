@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Instagram</title>
@@ -233,7 +233,7 @@
                                                                             <div>
                                                                                 <div class="boardMain-main-list-form-inner">
 
-                                                                                    <!--게시글 시작-->
+                                                                                    <th:block th:each="board${boardList}"> <!--게시글 시작-->
                                                                                     <article
                                                                                             class="boardMain-main-list-item-box">
                                                                                         <div class="boardMain-main-list-item-inner">
@@ -241,7 +241,6 @@
                                                                                             <!--게시글 작성자-->
                                                                                             <div class="boardMain-main-item-writer-box">
                                                                                                 <div class="boardMain-main-item-writer-inner">
-
                                                                                                     <!--게시글 프로필 , 이름 , 시간-->
                                                                                                     <header class="boardMain-main-item-writer">
                                                                                                         <!--게시글 프로필-->
@@ -254,10 +253,12 @@
                                                                                                                             <img src="../images/에1리프로필.jpg"
                                                                                                                                  class="boardMain-item-profile">
                                                                                                                         </a>
+
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
+
                                                                                                         <!--게시글 작성자 이름 , 시간-->
                                                                                                         <div class="boardMain-main-item-writer-time">
                                                                                                             <div style="max-width: 100%;display: flex;">
@@ -599,6 +600,7 @@
                                                                                             </div>
                                                                                         </div>
                                                                                     </article>
+                                                                                    </th:block>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -851,6 +853,7 @@
     const boardSave = () => {
         const boardSave = document.getElementById('boardSave-btn');
         boardSave.click();
+        location.href = "/board/main";
     }
     const saveFormOn = () => {
         const boardSaveLayout = document.getElementById('boardSave-layout');

@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -27,4 +28,21 @@ public class MemberSerivce {
             return null;
         }
     }
+
+    public MemberDTO findById(Long memberId) {
+        MemberEntity memberEntity = memberRepository.findById(memberId).orElseThrow(() -> new NoSuchElementException());// -> 익명함수 처리 (함수의 이름이 없는 함수)
+        return MemberDTO.toDTO(memberEntity);
+//        Optional<MemberEntity> memberEntityOptional = memberRepository.findById(id);
+//        if (memberEntityOptional.isPresent()) {
+//            // optional 객체에서 꺼내기
+//            MemberEntity memberEntity = memberEntityOptional.get();
+//            // BookEntity -> BookDTO 변환
+//            MemberDTO memberDTO = MemberDTO.toDTO(memberEntity);
+//            return memberDTO;
+//        } else {
+//            return null;
+//        }
+
+    }
+
 }
