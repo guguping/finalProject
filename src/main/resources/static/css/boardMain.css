@@ -95,18 +95,13 @@
     flex-grow: 1;
     order: 4;
 }
-
 .boardMain-main-section2 {
     display: flex;
     flex-flow: row nowrap;
-    max-width: calc(420px + 64px + 319px);
-    padding-top: 4px;
+    max-width: 630px;
     align-items: stretch;
     border: 0;
     box-sizing: border-box;
-    flex-direction: column;
-    flex-grow: 1;
-    flex-shrink: 0;
     font: inherit;
     font-size: 100%;
     margin: 0 auto;
@@ -2098,4 +2093,359 @@ dlalwlfkqslek:after {
     height: 6px;
     width: 6px;
     transition: all .2s ease-in-out;
+}
+.boardMain-main-section2-box2 {
+    left: 1079px;
+    position: sticky;
+    height: 100vh;
+    margin-bottom: 30px;
+    padding: 30px 0 0 0;
+    top: 0;
+    flex-shrink: 0;
+    max-width: 319px;
+    right: 0;
+    width: 100%;
+}
+.boardMain-main-section2-box2-inner {
+    height: 66px;
+    margin-bottom: 10px;
+    margin-top: 16px;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.boardMain-main-section2-size {
+    width: 100%;
+    margin-right: 4px;
+    overflow-y: visible;
+    border-radius: 0;
+    background-color: transparent;
+    flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    flex-shrink: 0;
+    position: static;
+    align-items: stretch;
+    overflow-x: visible;
+    align-self: auto;
+    justify-content: flex-start;
+    flex-grow: 0;
+}
+.boardMain-main-unset {
+    border-radius: unset;
+    width: 100%;
+    display: block;
+    max-width: 100%;
+}
+.boardMain-overflow-box {
+    overflow-y: visible;
+    background-color: transparent;
+    flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    border-radius: 0;
+    position: static;
+    align-items: stretch;
+    overflow-x: visible;
+    justify-content: flex-start;
+    padding: 0;
+}
+.boardMain-contents-center {
+    justify-content: center;
+    min-width: 0;
+    flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    align-items: stretch;
+    position: relative;
+    z-index: 0;
+    flex-grow: 1;
+}
+.boardMain-flex-wrap {
+    flex-wrap: nowrap;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    justify-content: space-between;
+    flex-direction: row;
+    position: relative;
+    z-index: 0;
+}
+.boardMain-user-info-img {
+    min-width: 0;
+    flex-direction: column;
+    align-self: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 0;
+    max-width: 100%;
+}
+.user-info-img-padding {
+    overflow-y: visible;
+    margin-right: 12px;
+    border-radius: 0;
+    background-color: transparent;
+    flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    flex-shrink: 0;
+    position: static;
+    align-items: stretch;
+    overflow-x: visible;
+    align-self: auto;
+    justify-content: flex-start;
+    flex-grow: 0;
+}
+.user-info-img-gkrltlfgek {
+    width: 50px;
+    align-self: center;
+    display: block;
+    flex: none;
+    position: relative;
+}
+.user-info-img {
+    padding: 0;
+    font-size: 100%;
+    width: 100%;
+    margin: 0;
+    height: 100%;
+    vertical-align: baseline;
+    border: 0;
+}
+.user-info-going-img {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    position: relative;
+    z-index: 0;
+    cursor: pointer;
+    outline-style: none;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    list-style: none;
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    height: 56px;
+    width: 56px;
+    min-width: 0;
+    min-height: 0;
+    background-color: rgb(250, 250, 250);
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.4);
+    border-width: 0;
+    border-radius: 50%;
+    padding: 0;
+    margin: 0;
+}
+.boardMain-user-info-profile {
+    flex-shrink: 1;
+    min-width: 0;
+    flex-basis: auto;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    position: relative;
+    z-index: 0;
+    flex-grow: 1;
+    flex-wrap: wrap;
+}
+.boardMain-user-info-profile-min {
+    min-width: 0;
+    flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 0;
+    flex-grow: 1;
+    max-width: 100%;
+}
+.boardMain-user-info-profile-over {
+    overflow-y: visible;
+    border-radius: 0;
+    background-color: transparent;
+    min-width: 0;
+    flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    min-height: 0;
+    position: static;
+    overflow-x: visible;
+    align-self: auto;
+    justify-content: flex-start;
+    flex-grow: 1;
+    align-items: flex-start;
+}
+.boardMain-user-info-profile-email {
+    line-height: 18px;
+    font-size: 14px;
+    overflow-y: visible;
+    min-width: 0;
+    color: rgb(0,0,0);
+    margin: 0!important;
+    word-wrap: break-word;
+    font-weight: 600;
+    overflow-x: visible;
+    position: relative;
+    display: block;
+    max-width: 100%;
+    word-break: break-word;
+}
+.boardMain-user-info-profile-email:before {
+    display: block;
+    content: "";
+    height: 0;
+}
+.boardMain-user-info-profile-email:after {
+    display: block;
+    content: "";
+    height: 0;
+}
+.boardMain-user-info-profile-max {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    display: block;
+    max-width: 100%;
+    overflow-y: hidden;
+}
+.boardMain-user-info-profile-flex {
+    overflow-y: visible;
+    border-radius: 0;
+    background-color: transparent;
+    min-width: 0;
+    box-sizing: border-box;
+    display: flex;
+    min-height: 0;
+    position: static;
+    align-items: stretch;
+    flex-direction: row;
+    overflow-x: visible;
+    justify-content: flex-start;
+    margin-left: 12px;
+}
+.user-info-going-email {
+    text-decoration: none;
+    color: rgb(0,0,0);
+    font-weight: 600;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    display: inline;
+    padding: 0;
+    background-color: transparent;
+    touch-action: manipulation;
+    border-left: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    text-align: inherit;
+    margin: 0;
+    list-style: none;
+    outline: none;
+    border-bottom: 0;
+    border-top: 0;
+}
+.boardMain-middle-footer {
+    text-transform: uppercase;
+    color: rgb(199,199,199);
+    font-size: 12px;
+    font-weight: 400;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+.boardMain-middle-footer-yy {
+    line-height: 16px;
+    overflow-y: visible;
+    font-weight: 400;
+    min-width: 0;
+    color: rgb(199,199,199);
+    margin: 0!important;
+    word-wrap: break-word;
+    overflow-x: visible;
+    position: relative;
+    display: block;
+    font-size: 12px;
+    max-width: 100%;
+    word-break: break-word;
+}
+.boardMain-middle-footer-yy:before {
+    display: block;
+    content: "";
+    height: 0;
+}
+.boardMain-middle-footer-yy:after {
+    display: block;
+    content: "";
+    height: 0;
+}
+.boardMain-middle-footer-nav {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+.boardMain-middle-footer-text-box {
+    list-style-type: none;
+    border: 0;
+    flex-grow: 1;
+    font: inherit;
+    font-size: 100%;
+    margin: 0 0 3px 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+.boardMain-middle-footer-text {
+    color: rgb(199,199,199);
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: none;
+    display: inline-flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+.eocndgkwk {
+    color: rgb(199,199,199);
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+.eocndgkwk-text {
+    line-height: 16px;
+    overflow-y: visible;
+    font-weight: 400;
+    min-width: 0;
+    color: rgb(199,199,199);
+    margin: 0!important;
+    word-wrap: break-word;
+    overflow-x: visible;
+    position: relative;
+    display: block;
+    font-size: 12px;
+    max-width: 100%;
+    word-break: break-word;
+}
+.eocndgkwk-text:before {
+    display: block;
+    content: "";
+    height: 0;
+}
+.eocndgkwk-text:after {
+    display: block;
+    content: "";
+    height: 0;
+}
+.boardMain-middle-footer-text:after {
+    content: '\00B7';
+    margin: 0 0.25em 0 0.25em;
 }
