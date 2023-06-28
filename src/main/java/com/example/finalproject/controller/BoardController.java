@@ -30,6 +30,7 @@ public class BoardController {
 
     @GetMapping("/board/main")
     public String boardMain(Model model,HttpSession session) {
+        BoardDTO boardDTO = new BoardDTO();
         List<BoardDTO> boardDTOList = boardService.findAll();
         Long loginId = (Long) session.getAttribute("memberId");
         MemberDTO memberDTO = memberSerivce.findById(loginId);
@@ -37,6 +38,14 @@ public class BoardController {
         model.addAttribute("boardDTOList", boardDTOList);
         model.addAttribute("memberDTO",memberDTO);
         model.addAttribute("memberFollowList", memberFollowDTOList);
+        Long board = boardDTO.getMemberId();
+        if (board.equals(loginId)) {
+            // 작성자와 로그인한 사용자가 같은 경우, ... 메뉴 버튼을 보여줌
+            model.addAttribute("isAuthor", true);
+        } else {
+            // 작성자와 로그인한 사용자가 다른 경우, ... 메뉴 버튼을 보여주지 않음
+            model.addAttribute("isAuthor", false);
+        }
         return "boardPages/boardMain";
     }
 
