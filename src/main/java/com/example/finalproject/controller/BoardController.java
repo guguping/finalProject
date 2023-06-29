@@ -39,13 +39,13 @@ public class BoardController {
         model.addAttribute("memberDTO",memberDTO);
         model.addAttribute("memberFollowList", memberFollowDTOList);
         Long board = boardDTO.getMemberId();
-        if (board.equals(loginId)) {
-            // 작성자와 로그인한 사용자가 같은 경우, ... 메뉴 버튼을 보여줌
-            model.addAttribute("isAuthor", true);
-        } else {
-            // 작성자와 로그인한 사용자가 다른 경우, ... 메뉴 버튼을 보여주지 않음
-            model.addAttribute("isAuthor", false);
-        }
+//        if (board.equals(loginId)) {
+//            // 작성자와 로그인한 사용자가 같은 경우, ... 메뉴 버튼을 보여줌
+//            model.addAttribute("isAuthor", true);
+//        } else {
+//            // 작성자와 로그인한 사용자가 다른 경우, ... 메뉴 버튼을 보여주지 않음
+//            model.addAttribute("isAuthor", false);
+//        }
         return "boardPages/boardMain";
     }
 
@@ -57,4 +57,8 @@ public class BoardController {
         return "redirect:/board/main";
     }
 
+    @GetMapping("/member/myPage")
+    public String memberMayPages() {
+        return "memberPages/myPage";
+    }
 }

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>가입하기 • Instagram</title>
+    <th:block th:replace="component/config :: config"></th:block>
+    <link rel="stylesheet" href="../css/memberSave.css">
+</head>
+<body>
+<div th:replace="component/component :: nav"></div>
+<h2>세션입니다.</h2>
+</body>
+<script>
+        const homeImg = document.querySelector('.boardMain-nav-list-home-img');
+        const homeLogoImg = document.querySelector('.boardMain-nav-list-home-logo-img');
+        const searchImg = document.querySelector('.boardMain-nav-list-search-box-size');
+        const searchLogoImg = document.querySelector('.boardMain-nav-list-search-img');
+        const reelsImg = document.querySelector('.boardMain-nav-list-reels-box-size');
+        const reelsLogoImg = document.querySelector('.boardMain-nav-list-reels-img');
+        const directImg = document.querySelector('.boardMain-nav-list-Direct-box-size');
+        const directLogoImg = document.querySelector('.boardMain-nav-list-Direct-img');
+        const newBoardImg = document.querySelector('.boardMain-nav-list-newBoard-box-size');
+        const newBoardLogoImg = document.querySelector('.boardMain-nav-list-newBoard-img');
+        const profileImg = document.querySelector('.boardMain-nav-list-profile-box-size');
+        const profileLogoImg = document.querySelector('.boardMain-nav-list-profile-img');
+        const plusImg = document.querySelector('.boardMain-nav-list-plus-list-box-size');
+        const plusLogoImg = document.querySelector('.boardMain-nav-list-plus-img');
+        homeImg.addEventListener('mouseover', function () {
+        homeImg.style.backgroundColor = 'rgba(219, 219, 219, 0.5)';
+        homeImg.style.borderRadius = '10px';
+        homeLogoImg.style.transform = 'scale(1.05)';
+    });
+
+        homeImg.addEventListener('mouseout', function () {
+        homeImg.style.backgroundColor = '';
+        homeImg.style.borderRadius = '';
+        homeLogoImg.style.transform = '';
+    });
+
+        searchImg.addEventListener('mouseover', function () {
+        searchImg.style.backgroundColor = 'rgba(219, 219, 219, 0.5)';
+        searchImg.style.borderRadius = '10px';
+        searchLogoImg.style.transform = 'scale(1.05)';
+    });
+
+        searchImg.addEventListener('mouseout', function () {
+        searchImg.style.backgroundColor = '';
+        searchImg.style.borderRadius = '';
+        searchLogoImg.style.transform = '';
+    });
+        reelsImg.addEventListener('mouseover', function () {
+        reelsImg.style.backgroundColor = 'rgba(219, 219, 219, 0.5)';
+        reelsImg.style.borderRadius = '10px';
+        reelsLogoImg.style.transform = 'scale(1.05)';
+    });
+
+        reelsImg.addEventListener('mouseout', function () {
+        reelsImg.style.backgroundColor = '';
+        reelsImg.style.borderRadius = '';
+        reelsLogoImg.style.transform = '';
+    });
+        directImg.addEventListener('mouseover', function () {
+        directImg.style.backgroundColor = 'rgba(219, 219, 219, 0.5)';
+        directImg.style.borderRadius = '10px';
+        directLogoImg.style.transform = 'scale(1.05)';
+    });
+
+        directImg.addEventListener('mouseout', function () {
+        directImg.style.backgroundColor = '';
+        directImg.style.borderRadius = '';
+        directLogoImg.style.transform = '';
+    });
+        newBoardImg.addEventListener('mouseover', function () {
+        newBoardImg.style.backgroundColor = 'rgba(219, 219, 219, 0.5)';
+        newBoardImg.style.borderRadius = '10px';
+        newBoardLogoImg.style.transform = 'scale(1.05)';
+    });
+
+        newBoardImg.addEventListener('mouseout', function () {
+        newBoardImg.style.backgroundColor = '';
+        newBoardImg.style.borderRadius = '';
+        newBoardLogoImg.style.transform = '';
+    });
+        profileImg.addEventListener('mouseover', function () {
+        profileImg.style.backgroundColor = 'rgba(219, 219, 219, 0.5)';
+        profileImg.style.borderRadius = '10px';
+        profileLogoImg.style.transform = 'scale(1.05)';
+    });
+
+        profileImg.addEventListener('mouseout', function () {
+        profileImg.style.backgroundColor = '';
+        profileImg.style.borderRadius = '';
+        profileLogoImg.style.transform = '';
+    });
+        plusImg.addEventListener('mouseover', function () {
+        plusImg.style.backgroundColor = 'rgba(219, 219, 219, 0.5)';
+        plusImg.style.borderRadius = '10px';
+        plusLogoImg.style.transform = 'scale(1.05)';
+    });
+
+        plusImg.addEventListener('mouseout', function () {
+        plusImg.style.backgroundColor = '';
+        plusImg.style.borderRadius = '';
+        plusLogoImg.style.transform = '';
+    });
+</script>
+</html>
