@@ -29,23 +29,24 @@ public class BoardDTO {
     private List<MultipartFile> boardFile;
     private List<BoardDTO> followedMemberPosts;
 
+    private List<String> storedFileName;
+
 
     public static BoardDTO toDTO(BoardEntity boardEntity) {
         BoardDTO boardDTO = new BoardDTO();
         boardDTO.setId(boardEntity.getId());
         boardDTO.setMemberId(boardEntity.getMemberEntity().getId());
         boardDTO.setBoardContents(boardEntity.getBoardContents());
+        boardDTO.setBoardBlind(boardEntity.getBoardBlind());
         boardDTO.setCreatedAt(UtilClass.dateFormat(boardEntity.getCreatedAt()));
+        boardDTO.setBoardUpdate(boardEntity.getBoardUpdate());
 
-        // 파일 여부에 따른 코드 추가
-        // 파일 이름을 담을 리스트 객체 선언
-//        List<String> storedFileNameList = new ArrayList<>();
-        // 첨부파일에 각각 접근
-//        for (BoardFileEntity boardFileEntity : boardEntity.getBoardFileEntityList()) {
-//            storedFileNameList.add(boardFileEntity.getStoredFileName());
-//        }
-//        boardDTO.setStoredFileName(storedFileNameList);
-
+        // 파일 조회
+        List<String> storedFileNameList = new ArrayList<>();
+        for (BoardFileEntity boardFileEntity : boardEntity.getBoardFileEntityList()) {
+            storedFileNameList.add(boardFileEntity.getStoredFileName());
+        }
+        boardDTO.setStoredFileName(storedFileNameList);
 
         return boardDTO;
     }

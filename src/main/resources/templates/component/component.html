@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>component</title>
@@ -323,14 +323,14 @@
                                                                         <div style="position: relative;">
 
                                                                             <!--마이페이지 이동-->
-                                                                            <a href="/member/myPage"
+                                                                            <a th:href="@{/member/myPage/{memberId}(memberId=${session.memberId})}"
                                                                                class="boardMain-nav-list-reels-link">
                                                                                 <div class="boardMain-nav-list-profile-box-size">
                                                                                     <div>
                                                                                         <div class="boardMain-nav-list-profile-img-box">
                                                                                             <div class="boardMain-nav-list-profile-img">
                                                                                                 <img class="boardMain-nav-list-member-img"
-                                                                                                     src="../images/test프로필.jpg">
+                                                                                                     th:src="@{/images/test프로필.jpg}">
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>

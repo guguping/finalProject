@@ -49,7 +49,7 @@ public class BoardController {
 ////            boardDTOList.addAll(followedMemberPosts);
 ////        }
 
-//        model.addAttribute("boardFileList",boardFileDTOList);
+        model.addAttribute("boardFileList",boardFileDTOList);
         model.addAttribute("memberDTOList",memberDTOList);
         model.addAttribute("boardDTOList", boardDTOList);
         model.addAttribute("memberDTO",memberDTO);

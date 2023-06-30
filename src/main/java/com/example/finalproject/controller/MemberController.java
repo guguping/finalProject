@@ -1,6 +1,9 @@
 package com.example.finalproject.controller;
 
+import com.example.finalproject.dto.BoardDTO;
+import com.example.finalproject.dto.BoardFileDTO;
 import com.example.finalproject.dto.MemberDTO;
+import com.example.finalproject.serivce.BoardService;
 import com.example.finalproject.serivce.MailSendService;
 import com.example.finalproject.serivce.MemberSerivce;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -16,6 +20,7 @@ import javax.servlet.http.HttpSession;
 public class MemberController {
     private final MemberSerivce memberSerivce;
     private final MailSendService mailSendService;
+    private final BoardService boardService;
 
     @GetMapping("/save")
     public String saveForm() {
@@ -52,8 +57,17 @@ public class MemberController {
         }
     }
 
-    @GetMapping("/member/myPage")
-    public String memberMayPages() {
+    @GetMapping("/myPage/{id}")
+    public String memberMyPages(@PathVariable Long id, Model model) {
+        // 해당 피드의 멤버 정보 가져오기
+        MemberDTO memberDTO = memberSerivce.findById(id);
+        // 해당 피드의 멤버가 작성한 board 정보 가져오기
+        List<BoardDTO> boardDTOList = boardService.findByMemberId(id);
+        List<BoardFileDTO> boardFileDTOList = boardService.findAllFile();
+
+        model.addAttribute("memberDTO", memberDTO);
+        model.addAttribute("boardDTOList", boardDTOList);
+        model.addAttribute("boardFileDTOList", boardFileDTOList);
         return "memberPages/myPage";
     }
 
