@@ -1,6 +1,8 @@
 package com.example.finalproject.serivce;
 
 import com.example.finalproject.dto.BoardDTO;
+import com.example.finalproject.dto.BoardFileDTO;
+import com.example.finalproject.dto.MemberDTO;
 import com.example.finalproject.entitiy.BoardEntity;
 import com.example.finalproject.entitiy.BoardFileEntity;
 import com.example.finalproject.entitiy.MemberEntity;
@@ -17,6 +19,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -59,5 +62,22 @@ public class BoardService {
         });
         return boardDTOList;
     }
+
+    @Transactional
+    public List<BoardFileDTO> findAllFile() {
+        List<BoardFileEntity> boardFileEntityList = boardFileRepository.findAll();
+        List<BoardFileDTO> boardFileDTOList = new ArrayList<>();
+        boardFileEntityList.forEach(boardFileEntity -> {
+            boardFileDTOList.add(BoardFileDTO.toDTO(boardFileEntity));
+        });
+        return boardFileDTOList;
+    }
+
+    public BoardDTO findByMemberId(Long memberId) {
+     BoardEntity boardEntity = boardRepository.findById(memberId).orElseThrow(() -> new NoSuchElementException());
+        return BoardDTO.toDTO(boardEntity);
+    }
+
+
 }
 

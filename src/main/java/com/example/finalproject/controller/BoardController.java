@@ -1,9 +1,6 @@
 package com.example.finalproject.controller;
 
-import com.example.finalproject.dto.BoardDTO;
-import com.example.finalproject.dto.LikeDTO;
-import com.example.finalproject.dto.MemberDTO;
-import com.example.finalproject.dto.MemberFollowDTO;
+import com.example.finalproject.dto.*;
 import com.example.finalproject.entitiy.MemberEntity;
 import com.example.finalproject.repository.MemberFollowRepository;
 import com.example.finalproject.serivce.BoardService;
@@ -19,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.lang.reflect.Member;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -30,14 +28,13 @@ public class BoardController {
 
     @GetMapping("/board/main")
     public String boardMain(Model model,HttpSession session) {
-        BoardDTO boardDTO = new BoardDTO();
-        List<BoardDTO> boardDTOList = boardService.findAll();
         Long loginId = (Long) session.getAttribute("memberId");
         MemberDTO memberDTO = memberSerivce.findById(loginId);
-        List<MemberFollowDTO> memberFollowDTOList = memberFollowService.findFollow(loginId);
-        model.addAttribute("boardDTOList", boardDTOList);
-        model.addAttribute("memberDTO",memberDTO);
-        model.addAttribute("memberFollowList", memberFollowDTOList);
+//        List<memberDTO> memberDTOList = memberSerivce.f
+//        List<MemberFollowDTO> memberFollowDTOList = memberFollowService.findFollow(loginId);
+        List<BoardDTO> boardDTOList = boardService.findAll();
+        List<BoardFileDTO> boardFileDTOList = boardService.findAllFile();
+        BoardDTO boardDTO = new BoardDTO();
         Long board = boardDTO.getMemberId();
 //        if (board.equals(loginId)) {
 //            // 작성자와 로그인한 사용자가 같은 경우, ... 메뉴 버튼을 보여줌
@@ -46,6 +43,16 @@ public class BoardController {
 //            // 작성자와 로그인한 사용자가 다른 경우, ... 메뉴 버튼을 보여주지 않음
 //            model.addAttribute("isAuthor", false);
 //        }
+//        for (MemberFollowDTO memberFollowDTO : memberFollowDTOList) {
+//            Long followedMemberId = memberFollowDTO.getFollowingId();
+//            List<BoardDTO> followedMemberPosts = boardService.findByMemberId(followedMemberId);
+//            boardDTOList.addAll(followedMemberPosts);
+//        }
+
+        model.addAttribute("boardFileList",boardFileDTOList);
+        model.addAttribute("boardDTOList", boardDTOList);
+        model.addAttribute("memberDTO",memberDTO);
+//        model.addAttribute("memberFollowList", memberFollowDTOList);
         return "boardPages/boardMain";
     }
 

@@ -1,5 +1,6 @@
 package com.example.finalproject.serivce;
 
+import com.example.finalproject.dto.BoardDTO;
 import com.example.finalproject.dto.MemberFollowDTO;
 import com.example.finalproject.entitiy.MemberEntity;
 import com.example.finalproject.entitiy.MemberFollowEntity;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class MemberFollowService {
     private final MemberFollowRepository memberFollowRepository;
+    private final BoardService boardService;
 
     public  List<MemberFollowDTO> findFollow(Long followerId) {
         MemberEntity follower = new MemberEntity();
@@ -26,6 +28,8 @@ public class MemberFollowService {
                     memberFollowDTO.setId(follow.getFollowingMemberEntity().getId());
                     memberFollowDTO.setFollowerId(follow.getFollowingMemberEntity().getId());
                     memberFollowDTO.setFollowingId(follow.getFollowingMemberEntity().getId());
+
+
                     return memberFollowDTO;
                 })
                 .collect(Collectors.toList());
