@@ -43,7 +43,7 @@ public class MemberController {
         if (loginMemberDTO != null) {
             session.setAttribute("memberId",loginMemberDTO.getId());
             System.out.println("LTQKF");
-            return "boardPages/boardMain";
+            return "redirect:/board/main";
         } else {
             String loginFalse = "아이디 비밀번호를 확인해주세요";
             model.addAttribute("loginFalse",loginFalse);
