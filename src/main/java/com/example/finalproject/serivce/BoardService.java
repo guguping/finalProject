@@ -52,7 +52,7 @@ public class BoardService {
 
     @Transactional
     public List<BoardDTO> findAll() {
-        List<BoardEntity> boardEntityList = boardRepository.findAll();
+        List<BoardEntity> boardEntityList = boardRepository.findAllByOrderByIdDesc();
         List<BoardDTO> boardDTOList = new ArrayList<>();
 //        for (BoardEntity boardEntity: boardEntityList) {
 //            boardDTOList.add(BoardDTO.toDTO(boardEntity));
