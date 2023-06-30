@@ -64,8 +64,4 @@ public class BoardController {
         return "redirect:/board/main";
     }
 
-    @GetMapping("/member/myPage")
-    public String memberMayPages() {
-        return "memberPages/myPage";
-    }
 }

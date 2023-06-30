@@ -1,5 +1,6 @@
 package com.example.finalproject.serivce;
 
+import com.example.finalproject.dto.BoardFileDTO;
 import com.example.finalproject.dto.MemberDTO;
 import com.example.finalproject.entitiy.MemberEntity;
 import com.example.finalproject.repository.MemberRepository;
@@ -11,6 +12,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -52,6 +55,15 @@ public class MemberSerivce {
 //            return null;
 //        }
 
+    }
+
+    public List<MemberDTO> findAll() {
+        List<MemberEntity> memberEntityList = memberRepository.findAll();
+        List<MemberDTO> memberDTOList = new ArrayList<>();
+        memberEntityList.forEach(memberEntity -> {
+            memberDTOList.add(MemberDTO.toDTO(memberEntity));
+        });
+        return memberDTOList;
     }
 
 }

@@ -52,4 +52,9 @@ public class MemberController {
         }
     }
 
+    @GetMapping("/member/myPage")
+    public String memberMayPages() {
+        return "memberPages/myPage";
+    }
+
 }
