@@ -212,3 +212,104 @@
     color: rgb(255, 255, 255);
     fill: rgb(255, 255, 255);
 }
+.board-img-on-event {
+    display: flex;
+    background: rgba(0, 0, 0, 0.3);
+    bottom: 0;
+    flex-direction: column;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.board-img-on-event:hover {
+    opacity: 1;
+}
+.board-img-on-event-ul {
+    list-style: none;
+    align-items: center;
+    border: 0;
+    display: flex;
+    font: inherit;
+    font-size: 100%;
+    height: 100%;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    width: 100%;
+}
+.board-img-on-event-li {
+    border: 0;
+    display: inline-flex;
+    flex-direction: row-reverse;
+    font: inherit;
+    font-size: 100%;
+    margin: 0 30px 0 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+.board-img-on-event-li2 {
+    border: 0;
+    display: inline-flex;
+    flex-direction: row-reverse;
+    font: inherit;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+.board-img-on-event-li-text-box {
+    line-height: 25px;
+    overflow-y: visible;
+    font-size: 16px;
+    min-width: 0;
+    color: rgb(255,255,255);
+    margin: 0!important;
+    font-weight: 700;
+    word-wrap: break-word;
+    overflow-x: visible;
+    position: relative;
+    display: block;
+    max-width: 100%;
+    word-break: break-word;
+}
+.board-img-on-event-li-text-box:before {
+    display: block;
+    content: "";
+    height: 0;
+}
+.board-img-on-event-li-text-box:after {
+    display: block;
+    content: "";
+    height: 0;
+}
+.board-img-on-event-li-logo-like {
+    background-image: url(../images/TJztmXpWTmS.png);
+    background-repeat: no-repeat;
+    background-position: -340px -333px;
+    height: 19px;
+    width: 19px;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    margin: 2px 7px 0 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+.board-img-on-event-li-logo-comment {
+    background-image: url(../images/TJztmXpWTmS.png);
+    background-repeat: no-repeat;
+    background-position: -382px -333px;
+    height: 19px;
+    width: 19px;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    margin: 2px 7px 0 0;
+    padding: 0;
+    vertical-align: baseline;
+}
