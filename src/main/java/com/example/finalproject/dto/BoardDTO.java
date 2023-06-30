@@ -33,6 +33,7 @@ public class BoardDTO {
     public static BoardDTO toDTO(BoardEntity boardEntity) {
         BoardDTO boardDTO = new BoardDTO();
         boardDTO.setId(boardEntity.getId());
+        boardDTO.setMemberId(boardEntity.getMemberEntity().getId());
         boardDTO.setBoardContents(boardEntity.getBoardContents());
         boardDTO.setCreatedAt(UtilClass.dateFormat(boardEntity.getCreatedAt()));
 

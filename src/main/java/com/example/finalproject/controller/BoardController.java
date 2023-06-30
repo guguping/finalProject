@@ -30,29 +30,30 @@ public class BoardController {
     public String boardMain(Model model,HttpSession session) {
         Long loginId = (Long) session.getAttribute("memberId");
         MemberDTO memberDTO = memberSerivce.findById(loginId);
-//        List<memberDTO> memberDTOList = memberSerivce.f
-//        List<MemberFollowDTO> memberFollowDTOList = memberFollowService.findFollow(loginId);
+        List<MemberFollowDTO> memberFollowDTOList = memberFollowService.findFollow(loginId);
         List<BoardDTO> boardDTOList = boardService.findAll();
         List<BoardFileDTO> boardFileDTOList = boardService.findAllFile();
+        List<MemberDTO> memberDTOList = memberSerivce.findAll();
         BoardDTO boardDTO = new BoardDTO();
-        Long board = boardDTO.getMemberId();
-//        if (board.equals(loginId)) {
-//            // 작성자와 로그인한 사용자가 같은 경우, ... 메뉴 버튼을 보여줌
-//            model.addAttribute("isAuthor", true);
-//        } else {
-//            // 작성자와 로그인한 사용자가 다른 경우, ... 메뉴 버튼을 보여주지 않음
-//            model.addAttribute("isAuthor", false);
-//        }
-//        for (MemberFollowDTO memberFollowDTO : memberFollowDTOList) {
-//            Long followedMemberId = memberFollowDTO.getFollowingId();
-//            List<BoardDTO> followedMemberPosts = boardService.findByMemberId(followedMemberId);
-//            boardDTOList.addAll(followedMemberPosts);
-//        }
+//        Long memberId = boardDTO.getMemberId();
+////        if (memberId.equals(loginId)) {
+////            // 작성자와 로그인한 사용자가 같은 경우, ... 메뉴 버튼을 보여줌
+////            model.addAttribute("isAuthor", true);
+////        } else {
+////            // 작성자와 로그인한 사용자가 다른 경우, ... 메뉴 버튼을 보여주지 않음
+////            model.addAttribute("isAuthor", false);
+////        }
+////        for (MemberFollowDTO memberFollowDTO : memberFollowDTOList) {
+////            Long followedMemberId = memberFollowDTO.getFollowingId();
+////            List<BoardDTO> followedMemberPosts = boardService.findByMemberId(followedMemberId);
+////            boardDTOList.addAll(followedMemberPosts);
+////        }
 
-        model.addAttribute("boardFileList",boardFileDTOList);
+//        model.addAttribute("boardFileList",boardFileDTOList);
+        model.addAttribute("memberDTOList",memberDTOList);
         model.addAttribute("boardDTOList", boardDTOList);
         model.addAttribute("memberDTO",memberDTO);
-//        model.addAttribute("memberFollowList", memberFollowDTOList);
+        model.addAttribute("memberFollowList", memberFollowDTOList);
         return "boardPages/boardMain";
     }
 

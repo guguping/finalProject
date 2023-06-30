@@ -262,26 +262,28 @@
                                                                                                             <div class="boardMain-main-item-writer-time">
                                                                                                                 <div style="max-width: 100%;display: flex;">
                                                                                                                     <!--게시글 작성자 이름 -->
-                                                                                                                    <th:block
-                                                                                                                            th:each="memberDTO:${memberDTO}"></th:block>
+
                                                                                                                     <div style="display: flex;">
                                                                                                                         <div class="main-item-writer">
                                                                                                                             <div class="main-item-writer1">
                                                                                                                             <span class="main-item-writer2">
                                                                                                                                 <div style="display: inline">
                                                                                                                                     <div style="display: inline">
-                                                                                                                                           <th:block
-                                                                                                                                                   th:if="${boardDTO.getMemberId() == memberDTO.getId()}">
+                                                                                                                                        <th:block
+                                                                                                                                                th:each="memberDTO:${memberDTOList}">
+                                                                                                                                           <th:block th:if="${boardDTO.getMemberId() == memberDTO.getId()}">
                                                                                                                                         <a th:text="${memberDTO.memberNickName}"
-                                                                                                                                           href="#"
                                                                                                                                            class="main-item-writer3"></a>
+                                                                                                                                                    <th:block th:break></th:block>
                                                                                                                                            </th:block>
+                                                                                                                                        </th:block>
                                                                                                                                     </div>
                                                                                                                                 </div>
                                                                                                                             </span>
                                                                                                                             </div>
                                                                                                                         </div>
                                                                                                                     </div>
+
                                                                                                                     <!--게시글 작성 시간 -->
                                                                                                                     <div class="boardMain-main-board-time-box">
                                                                                                                         <div style="top: 1px;position: relative;">
@@ -522,7 +524,7 @@
                                                                                                                                    class="board-contents-writer">
                                                                                                                                 <span class="djelRKwlemfdjrk">
 
-                                                                                                                                    <!--게시글 작성자-->
+                                                                                                                                    <!--게시글 contents 작성자-->
                                                                                                                                     <div class="wkrtjdwkdlqfur">hyeri_0609</div>
                                                                                                                                 </span>
                                                                                                                                 </a>
@@ -621,6 +623,7 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
+
                                                                 </th:block>
                                                             </div>
 
@@ -662,7 +665,7 @@
 
                                                                                                                 <!--유저 프로필 사용자 이메일-->
                                                                                                                 <a href="#"
-                                                                                                                   class="user-info-going-email">guping__</a>
+                                                                                                                   class="user-info-going-email" th:text="${memberDTO.memberEmail}"></a>
 
                                                                                                             </div>
                                                                                                         </span>
@@ -673,7 +676,7 @@
 
                                                                                                                 <!--유저 프로필 사용자 닉네임-->
                                                                                                                 <a href="#"
-                                                                                                                   class="user-info-going-email">호섭 이</a>
+                                                                                                                   class="user-info-going-email" th:text="${memberDTO.memberNickName}"></a>
 
 
                                                                                                             </div>
@@ -753,7 +756,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div>
+                                <div style="position: absolute;top: 0;width: 100%;">
                                     <div id="boardSave-layout" style="display: none;">
                                         <div style="z-index: 3;position: relative;">
                                             <div style="box-sizing: border-box;position: relative;z-index: 0;">
