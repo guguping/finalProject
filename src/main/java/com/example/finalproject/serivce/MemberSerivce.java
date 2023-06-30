@@ -4,6 +4,10 @@ import com.example.finalproject.dto.MemberDTO;
 import com.example.finalproject.entitiy.MemberEntity;
 import com.example.finalproject.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,10 +17,15 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class MemberSerivce {
+
     private final MemberRepository memberRepository;
 
-    public void save(MemberDTO memberDTO) {
-
+    public Long save(MemberDTO memberDTO) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        memberDTO.setMemberPassword(encoder.encode(memberDTO.getMemberPassword()));
+        System.out.println(memberDTO.getMemberPassword());
+        MemberEntity memberEntity = MemberEntity.toEntity(memberDTO);
+        return memberRepository.save(memberEntity).getId();
     }
 
     public MemberDTO findByMemberEmailAndMemberPassword(MemberDTO memberDTO) {

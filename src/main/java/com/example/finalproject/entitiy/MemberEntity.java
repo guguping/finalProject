@@ -5,8 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = "member_table")
@@ -20,7 +19,7 @@ public class MemberEntity extends BaseEntity {
     @Column(length = 30,unique = true)
     private String memberEmail;
 
-    @Column(length = 30,nullable = false)
+    @Column(length = 500,nullable = false)
     private String memberPassword;
 
     @Column(length = 20,nullable = false)
@@ -50,9 +49,20 @@ public class MemberEntity extends BaseEntity {
     @Column()
     private int reelsAttached;
 
-//    public static MemberEntity toEntity(MemberDTO memberDTO) {
-//        MemberEntity memberEntity = new MemberEntity();
-//    }
+    public static MemberEntity toEntity(MemberDTO memberDTO) {
+        MemberEntity memberEntity = new MemberEntity();
+        memberEntity.setMemberEmail(memberDTO.getMemberEmail());
+        memberEntity.setMemberPassword(memberDTO.getMemberPassword());
+        memberEntity.setMemberName(memberDTO.getMemberName());
+        memberEntity.setMemberBirth(memberDTO.getMemberBirth());
+        memberEntity.setMemberMobile(memberDTO.getMemberMobile());
+        memberEntity.setMemberNickName(memberDTO.getMemberNickName());
+        memberEntity.setMemberGender(memberDTO.getMemberGender());
+        memberEntity.setMemberText(memberDTO.getMemberText());
+        memberEntity.setMemberProfile(memberDTO.getMemberProfile());
+        memberEntity.setReelsAttached(memberDTO.getReelsAttached());
+        return memberEntity;
+    }
 
     @OneToMany(mappedBy = "memberEntity", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<BoardEntity> boardEntityList = new ArrayList<>();
