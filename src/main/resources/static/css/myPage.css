@@ -86,7 +86,7 @@
     width: calc(100% - 40px);
     flex-grow: 1;
     margin: 0 auto 0;
-    max-width: 935px;
+    max-width: 939px;
 }
 
 .myPages-box-board-list {
@@ -120,11 +120,13 @@
     flex-shrink: 0;
     position: relative;
     margin-bottom: 4px;
+    flex-wrap: wrap;
 }
 
 .myPage-board-item-box {
     flex: 1 0 0%;
     margin-right: 4px;
+    margin-top: 4px;
     display: block;
     position: relative;
     width: 100%;
