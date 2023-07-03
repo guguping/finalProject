@@ -437,8 +437,102 @@
                                             <section class="body-main-2">
                                                 <main class="body-user-box">
                                                     <div class="myPages-box">
-                                                        <header></header>
-                                                        <div></div>
+                                                        <header class="myPage-main-header">
+                                                            <div class="myPage-user-main-img">
+                                                                <div class="myPage-user-main-img-">
+                                                                    <div class="_aadm">
+                                                                        <button class="_aadn" title="프로필 사진 바꾸기"
+                                                                                type="button"
+                                                                                onclick="userImgChangeOn()">
+                                                                            <img src="../images/test프로필.jpg"
+                                                                                 class="myPage-main-img">
+                                                                        </button>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <section></section>
+                                                        </header>
+
+                                                        <div class="myPage-nav-form-xmf">
+                                                            <a href="#" class="myPage-list-tap-1">
+                                                                <div class="myPage-list-tap-2">
+                                                                    <svg aria-label="" class="_ab6-"
+                                                                         color="rgb(0, 0, 0)" fill="rgb(0, 0, 0)"
+                                                                         height="12" role="img" viewBox="0 0 24 24"
+                                                                         width="12">
+                                                                        <rect fill="none" height="18"
+                                                                              stroke="currentColor"
+                                                                              stroke-linecap="round"
+                                                                              stroke-linejoin="round" stroke-width="2"
+                                                                              width="18" x="3" y="3"></rect>
+                                                                        <line fill="none" stroke="currentColor"
+                                                                              stroke-linecap="round"
+                                                                              stroke-linejoin="round" stroke-width="2"
+                                                                              x1="9.015" x2="9.015" y1="3"
+                                                                              y2="21"></line>
+                                                                        <line fill="none" stroke="currentColor"
+                                                                              stroke-linecap="round"
+                                                                              stroke-linejoin="round" stroke-width="2"
+                                                                              x1="14.985" x2="14.985" y1="3"
+                                                                              y2="21"></line>
+                                                                        <line fill="none" stroke="currentColor"
+                                                                              stroke-linecap="round"
+                                                                              stroke-linejoin="round" stroke-width="2"
+                                                                              x1="21" x2="3" y1="9.015"
+                                                                              y2="9.015"></line>
+                                                                        <line fill="none" stroke="currentColor"
+                                                                              stroke-linecap="round"
+                                                                              stroke-linejoin="round" stroke-width="2"
+                                                                              x1="21" x2="3" y1="14.985"
+                                                                              y2="14.985"></line>
+                                                                    </svg>
+                                                                    <span class="myPage-list-tap-3">게시물</span>
+                                                                </div>
+                                                            </a>
+                                                            <a href="#" class="myPage-list-tap-1-1">
+                                                                <div class="myPage-list-tap-2">
+                                                                    <svg aria-label="" class="_ab6-"
+                                                                         color="rgb(115, 115, 115)"
+                                                                         fill="rgb(115, 115, 115)" height="12"
+                                                                         role="img" viewBox="0 0 24 24" width="12">
+                                                                        <polygon fill="none"
+                                                                                 points="20 21 12 13.44 4 21 4 3 20 3 20 21"
+                                                                                 stroke="currentColor"
+                                                                                 stroke-linecap="round"
+                                                                                 stroke-linejoin="round"
+                                                                                 stroke-width="2"></polygon>
+                                                                    </svg>
+                                                                    <span class="myPage-list-tap-3-1">저장됨</span>
+                                                                </div>
+                                                            </a>
+                                                            <a href="#" class="myPage-list-tap-1-1"
+                                                               style="margin-right: 0;">
+                                                                <div class="myPage-list-tap-2">
+                                                                    <svg aria-label="" class="_ab6-"
+                                                                         color="rgb(115, 115, 115)"
+                                                                         fill="rgb(115, 115, 115)" height="12"
+                                                                         role="img" viewBox="0 0 24 24" width="12">
+                                                                        <path d="M10.201 3.797 12 1.997l1.799 1.8a1.59 1.59 0 0 0 1.124.465h5.259A1.818 1.818 0 0 1 22 6.08v14.104a1.818 1.818 0 0 1-1.818 1.818H3.818A1.818 1.818 0 0 1 2 20.184V6.08a1.818 1.818 0 0 1 1.818-1.818h5.26a1.59 1.59 0 0 0 1.123-.465Z"
+                                                                              fill="none" stroke="currentColor"
+                                                                              stroke-linecap="round"
+                                                                              stroke-linejoin="round"
+                                                                              stroke-width="2"></path>
+                                                                        <path d="M18.598 22.002V21.4a3.949 3.949 0 0 0-3.948-3.949H9.495A3.949 3.949 0 0 0 5.546 21.4v.603"
+                                                                              fill="none" stroke="currentColor"
+                                                                              stroke-linecap="round"
+                                                                              stroke-linejoin="round"
+                                                                              stroke-width="2"></path>
+                                                                        <circle cx="12.072" cy="11.075" fill="none"
+                                                                                r="3.556" stroke="currentColor"
+                                                                                stroke-linecap="round"
+                                                                                stroke-linejoin="round"
+                                                                                stroke-width="2"></circle>
+                                                                    </svg>
+                                                                    <span class="myPage-list-tap-3-1">태그됨</span>
+                                                                </div>
+                                                            </a>
+                                                        </div>
 
                                                         <div class="myPages-box-board-list">
                                                             <article style="flex-grow: 1;">
@@ -1454,10 +1548,71 @@
                 </div>
 
             </div>
+            <div id="user-img-Change-display" style="position: absolute;width: 100%;top: 0px;display: none;">
+                <div>
+                    <div class="vmfhvlftkwlsqusrud">
+                        <div class="vmfhvlftkwlsqusrud1">
+                            <div class="vmfhvlftkwlsqusrud2">
+                                <div class="dlrjsanjsep"></div>
+                                <div class="gkftndlTek">
+                                    <div class="xmfdmfaksemfdjTek">
+                                        <div class="wkdlwptlwkrdldi">
+                                            <div class="myPage-user-ch-img-box">
+                                                <div class="myPage-user-ch-img-box-margin">
+                                                    <div class="myPage-user-cj-img-qhsans">
+                                                        <div style="display: flex;flex-direction: column;height: 100%;max-width: 100%;">
+                                                            <div class="_a9-v">
+                                                                <div class="_a9-y">
+                                                                    <span class="whdgkqtjsanf">프로필 사진 바꾸기</span>
+                                                                </div>
+                                                                <div class="_a9-z">
+                                                                    <button class="tkwlsdjqfhem" tabindex="0" onclick="userImgChangeBtn()">사진 업로드
+                                                                    </button>
+                                                                    <button class="guswotkwlstkrwp" tabindex="0">현재 사진 삭제
+                                                                    </button>
+                                                                    <button class="cnlth" tabindex="0" onclick="userImgChangeOff()">취소</button>
 
+                                                                    <!--이미지 변경 form 태그-->
+                                                                    <form action="123" method="get" style="margin: 0;padding: 0;">
+                                                                        <input accept="image/jpeg,image/png"
+                                                                               class="_ac69" type="file" id="userImgInput">
+                                                                        <button type="submit" style="display: none;"
+                                                                                id="myPageImgSubmit"></button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 </body>
 <script src="../script/componentJs.js"></script>
+<script>
+    const userImgChange = document.getElementById('user-img-Change-display');
+    const myPageImgSubmit = document.getElementById('myPageImgSubmit');
+    let userImgInput = document.getElementById('userImgInput');
+    const userImgChangeOn = () => {
+        userImgChange.style.display = "block";
+    }
+    const userImgChangeOff = () => {
+        userImgChange.style.display = "none";
+    }
+    const userImgChangeBtn = () => {
+        userImgInput.click();
+    }
+    userImgInput.addEventListener("change", e => {
+        myPageImgSubmit.click();
+    });
+</script>
 </html>
