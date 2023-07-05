@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <title>비밀번호 재설정 • Instagram</title>
+  <th:block th:replace="component/config :: config"></th:block>
+  <link rel="stylesheet" href="../css/memberRest.css">
+</head>
+<body class="memberPassRest">
+<div>
+  <div>
+    <div>
+      <div class="tl-back-ground-1">
+        <div class="tl-back-ground-2">
+          <div class="tl-back-ground-3">
+            <div class="tl-back-ground-4">
+              <div class="tl-back-ground-5">
+                <section class="tl-back-ground-6">
+
+                  <main class="memberPassRest-main">
+                    <div class="memberPassRest-header">
+                      <div class="memberPassRest-logo-1">
+                        <div class="logo-box-1">
+                          <div class="logo-box-inner-1">
+                            <a href="/" class="logo-box-index-link">
+                              <div class="logo-link-inner">
+                                <div class="memberPassRest-logo-">
+                                  <img src="../images/indexImages/outtest.png" style="height: 51px;width: 150px;">
+                                </div>
+                              </div>
+                            </a>
+                          </div>
+                        </div>
+                        <div class="logo-box-1-1">
+                          <div class="Rhcoddl">
+                            <div></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="memberPassRest-main-form">
+                      <div class="form-body">
+                        <div class="form-body-1">
+                          <div class="form-body-box">
+                            <div class="form-body-box-1">
+                              <div class="memberPassRest-form-logo">
+                                <span class="memberPassRest-form-logo-1"></span>
+                              </div>
+                              <div class="memberPassRest-form-q-m">
+                                <span class="memberPassRest-form-q-m1">로그인에 문제가 있나요?</span>
+                              </div>
+                              <div class="memberPassRest-form-q-m">
+                                <span class="memberPassRest-form-q-s1">이메일 주소, 전화번호 또는 사용자 이름을 입력하시면 계정에 다시 액세스할 수 있는 링크를 보내드립니다.</span>
+                              </div>
+                              <div class="memberPassRest-form-q-m">
+
+                                <!--사용자에게 비밀번호를 받는 폼태그-->
+                                <form action="/" method="get">
+                                  <label class="memberPassRest-input-label">
+                                    <input class="memberPassRest-input" id="memberPassRest-input" spellcheck="true" type="text" value="" name="cppEmailOrUsername">
+                                    <span class="_adrs" id="_adrs">이메일, 전화번호, 사용자 이름</span>
+                                  </label>
+                                  <label class="memberPassRest-input-label2" id="memberPassRest-input-label2" style="display: none;">
+                                    <input class="memberPassRest-input" id="memberPassRest-input1" dir="" spellcheck="true" type="text" value="" name="cppEmailOrUsername">
+                                    <span class="_adrs" id="_adrs1">인증 번호</span>
+                                  </label>
+                                  <button type="submit" id="email-check-submit-btn" style="display: none;"></button>
+                                </form>
+                              </div>
+                              <div class="memberPassRest-form-q-m">
+                                <div class="memberPassRest-nbtn" id="memberPassRest-nbtn">
+                                  <span class="xbyyjgo" id="xbyyjgo">로그인 링크 보내기</span>
+                                </div>
+                                <div class="memberPassRest-nbtn-" id="memberPassRest-nbtn-" style="display: none;" onclick="showEamilCheckBox()">로그인 링크 보내기</div>
+                                <div class="memberPassRest-nbtn-" id="memberPassRest-nbtn--" style="display: none;">인증하기</div>
+                                <a href="/accounts/account_recovery/?username=" class="memberPassRest-q" target="_blank">비밀번호를 재설정할 수 없나요?</a>
+                              </div>
+                              <div class="memberPassRest-form-q-a">
+                                <div class="memberPassRest-form-q-a1">
+                                  <div class="memberPassRest-form-q-a1-line"></div>
+                                  <div class="memberPassRest-form-q-a1-txt">또는</div>
+                                  <div class="memberPassRest-form-q-a1-line"></div>
+                                </div>
+                              </div>
+                              <div class="memberPassRest-form-q-m">
+                                <a href="/save" class="memberPassRest-memberSave-going">새 계정 만들기</a>
+                              </div>
+                              <div class="memberPassRest-toBack" id="memberPassRest-toBack">
+                                <div class="memberPassRest-toBack1">
+                                  <a href="/" class="memberPassRest-to-index">로그인으로 돌아가기</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </main>
+
+                  <div th:replace="component/component :: footer"></div>
+
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+<script>
+  const passRestResult = document.getElementById('memberPassRest-input');
+  const adrs = document.getElementById('_adrs');
+  const adrs1 = document.getElementById('_adrs1');
+  const xbyyjgo = document.getElementById('xbyyjgo');
+  const memberPassRestbtnOff = document.getElementById('memberPassRest-nbtn');
+  const memberPassRestbtnOn = document.getElementById('memberPassRest-nbtn-');
+  const memberEmailInput = document.getElementById('memberPassRest-input1');
+  const memberEmailCheck = document.getElementById('memberPassRest-input-label2');
+  const bottomMargin = document.getElementById('memberPassRest-toBack');
+  const emailCheckBtn = document.getElementById('memberPassRest-nbtn--');
+  const emailCheckNoneBtn = document.getElementById('email-check-submit-btn');
+
+  passRestResult.addEventListener('input', function () {
+    if (passRestResult.value !== '') {
+      adrs.style.transform = "scale(.714) translateY(-16px)";
+      memberPassRestbtnOn.style.display = "flex";
+      memberPassRestbtnOff.style.display = "none";
+    } else {
+      adrs.style.transform = "";
+      memberPassRestbtnOn.style.display = "none";
+      memberPassRestbtnOff.style.display = "flex";
+      xbyyjgo.style.opacity = "";
+    }
+  })
+
+  const showEamilCheckBox = () => {
+    memberEmailCheck.style.display = "flex";
+    bottomMargin.style.marginTop = "13px";
+    memberPassRestbtnOn.style.display = "none";
+    emailCheckBtn.style.display = "flex";
+    passRestResult.disabled = true;
+  }
+
+  memberEmailInput.addEventListener('input', function () {
+    if (memberEmailInput.value !== '') {
+      adrs1.style.transform = "scale(.714) translateY(-16px)";
+    } else {
+      adrs1.style.transform = "";
+    }
+  })
+  emailCheckBtn.addEventListener('click', function () {
+    emailCheckNoneBtn.click();
+  })
+</script>
+</html>
