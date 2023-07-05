@@ -337,6 +337,24 @@
     font-weight: 600;
     vertical-align: middle;
 }
+.memberPassRest-input-label2 {
+    margin-top: 15px;
+    align-items: center;
+    border: 1px solid rgb(219,219,219);
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 8px;
+    position: relative;
+    background: rgb(250,250,250);
+    outline: none!important;
+    color: rgb(0,0,0);
+    font-size: 12px;
+    cursor: default;
+    font-weight: 600;
+    vertical-align: middle;
+}
+
 .memberPassRest-input {
     border: 0;
     width: 100%;
@@ -393,7 +411,7 @@
     outline: none;
     border: 0;
 }
-.memberPassRest-btn {
+.memberPassRest-nbtn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -419,4 +437,206 @@
 }
 .xbyyjgo {
     opacity: .5;
+}
+
+.memberPassRest-nbtn- {
+    font-weight: 600;
+    border-left-width: 0;
+    text-overflow: ellipsis;
+    justify-content: center;
+    appearance: none;
+    border-color:  rgb(255,255,255);
+    border-radius: 8px;
+    touch-action: manipulation;
+    padding: 0 16px 0 16px;
+    min-width: 0;
+    flex-basis: auto;
+    border-right-style: none;
+    border-right-width: 0;
+    box-sizing: border-box;
+    color: rgb(255,255,255);
+    border-top-width: 0;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    min-height: 0;
+    flex-shrink: 0;
+    text-align: center;
+    cursor: pointer;
+    background-color: rgb(0,149,246);
+    border-bottom-style: none;
+    border-bottom-width: 0;
+    flex-direction: row;
+    position: relative;
+    margin: 0;
+    z-index: 0;
+    -webkit-tap-highlight-color: transparent;
+    font-size: .875rem;
+    border-top-style: none;
+    line-height: 18PX;
+    border-left-style: none;
+    width: auto;
+    height: 32px;
+    list-style: none;
+    text-decoration: none;
+    outline: none;
+}
+.memberPassRest-nbtn-:hover {
+    background-color: #1877F2;
+}
+.memberPassRest-form-q-a {
+    margin: 16px 44px 16px 44px;
+    overflow-y: visible;
+    border-radius: 0;
+    background-color: transparent;
+    flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    flex-shrink: 0;
+    align-items: stretch;
+    overflow-x: visible;
+    align-self: auto;
+    justify-content: flex-start;
+    position: relative;
+    flex-grow: 0;
+}
+.memberPassRest-form-q-a1 {
+    display: flex;
+    flex-direction: row;
+}
+.memberPassRest-form-q-a1-line {
+    top: 0.45em;
+    flex-shrink: 1;
+    height: 1px;
+    position: relative;
+    flex-grow: 1;
+    background-color: rgb(219,219,219);
+}
+.memberPassRest-form-q-a1-txt {
+    text-transform: uppercase;
+    margin: 0 18px 0 18px;
+    padding: 0;
+    flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    flex-shrink: 0;
+    font-weight: 600;
+    color: rgb(115,115,115);
+    align-items: stretch;
+    font-size: .8125rem;
+    position: relative;
+    line-height: 1.1538;
+    flex-grow: 0;
+    border: 0;
+    vertical-align: baseline;
+}
+.memberPassRest-memberSave-going {
+    text-decoration: none;
+    font-weight: 600;
+    height: auto;
+    display: inline;
+    color: rgb(38,38,38);
+    border-color:  rgba(0,0,0,0.4);
+    text-overflow: ellipsis;
+    padding: 0;
+    appearance: none;
+    background-color: transparent;
+    touch-action: manipulation;
+    min-width: 0;
+    flex-basis: auto;
+    box-sizing: border-box;
+    user-select: none;
+    min-height: 0;
+    flex-shrink: 0;
+    text-align: center;
+    cursor: pointer;
+    border-style: none;
+    border-width: 0;
+    position: relative;
+    z-index: 0;
+    -webkit-tap-highlight-color: transparent;
+    font-size: .875rem;
+    line-height: 18px;
+    width: auto;
+    border-radius: 2px;
+    margin: 0;
+    list-style: none;
+    outline: none;
+}
+.memberPassRest-memberSave-going:hover {
+    color: rgb(146,146,146);
+}
+
+.memberPassRest-toBack {
+    margin-top: 68px;
+    overflow-y: visible;
+    border-radius: 0;
+    background-color: transparent;
+    flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    flex-shrink: 0;
+    position: static;
+    align-items: stretch;
+    overflow-x: visible;
+    align-self: auto;
+    justify-content: flex-start;
+    flex-grow: 0;
+}
+
+.memberPassRest-toBack1 {
+    height: 44px;
+    border: 1px solid rgb(219,219,219);
+    overflow-y: visible;
+    border-radius: 0;
+    background-color: rgb(250,250,250);
+    flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    flex-shrink: 0;
+    align-items: stretch;
+    overflow-x: visible;
+    align-self: auto;
+    position: relative;
+    justify-content: space-around;
+    flex-grow: 0;
+}
+.memberPassRest-to-index {
+    font-weight: 600;
+    height: auto;
+    display: inline;
+    color: rgb(38,38,38);
+    border-color: rgba(0,0,0,0.4);
+    border-left-width: 0;
+    text-overflow: ellipsis;
+    appearance: none;
+    background-color: transparent;
+    touch-action: manipulation;
+    min-width: 0;
+    flex-basis: auto;
+    border-style: none;
+    border-right-width: 0;
+    box-sizing: border-box;
+    border-top-width: 0;
+    user-select: none;
+    padding: 0;
+    min-height: 0;
+    flex-shrink: 0;
+    text-align: center;
+    cursor: pointer;
+    border-bottom-width: 0;
+    position: relative;
+    z-index: 0;
+    -webkit-tap-highlight-color: transparent;
+    font-size: .875rem;
+    line-height: 18px;
+    border-radius: 2px;
+    width: auto;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+    outline: none;
+}
+.memberPassRest-to-index:hover {
+    color: rgb(146,146,146);
 }
