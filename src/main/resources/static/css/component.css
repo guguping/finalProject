@@ -1246,9 +1246,9 @@ svg:not(:root) {
     box-sizing: border-box;
     display: flex;
     position: relative;
-    width: 340px;
+    width: 330px;
     border-left: 1px solid rgb(219,219,219);
-    height: 751px;
+    height: 719px;
 }
 .board-save-contents-input-box- {
     border-radius: 0;

@@ -3,6 +3,7 @@ package com.example.finalproject.serivce;
 import com.example.finalproject.dto.BoardDTO;
 import com.example.finalproject.dto.BoardFileDTO;
 import com.example.finalproject.dto.MemberDTO;
+import com.example.finalproject.dto.MemberFollowDTO;
 import com.example.finalproject.entitiy.BoardEntity;
 import com.example.finalproject.entitiy.BoardFileEntity;
 import com.example.finalproject.entitiy.MemberEntity;
@@ -84,7 +85,5 @@ public class BoardService {
         System.out.println("boardDTOList = " + boardDTOList);
         return boardDTOList;
     }
-
-
 }
 
