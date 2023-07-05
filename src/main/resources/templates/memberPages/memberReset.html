@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
   <title>비밀번호 재설정 • Instagram</title>
   <th:block th:replace="component/config :: config"></th:block>
-  <link rel="stylesheet" href="../css/memberRest.css">
+  <link rel="stylesheet" href="../css/memberReset.css">
 </head>
 <body class="memberPassRest">
 <div>
@@ -55,7 +55,7 @@
                               <div class="memberPassRest-form-q-m">
 
                                 <!--사용자에게 비밀번호를 받는 폼태그-->
-                                <form action="/" method="get">
+                                <form action="/member/findPw" method="get">
                                   <label class="memberPassRest-input-label">
                                     <input class="memberPassRest-input" id="memberPassRest-input" spellcheck="true" type="text" value="" name="cppEmailOrUsername">
                                     <span class="_adrs" id="_adrs">이메일, 전화번호, 사용자 이름</span>

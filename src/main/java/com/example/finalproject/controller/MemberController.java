@@ -71,4 +71,14 @@ public class MemberController {
         return "memberPages/myPage";
     }
 
+    @GetMapping("/findPwAuth")
+    public String findPwAuthForm() {
+        return "memberPages/memberReset";
+    }
+
+    @GetMapping("/findPw")
+    public String findPwForm() {
+        return "memberPages/passwordUpdate";
+    }
+
 }
