@@ -274,3 +274,98 @@ const image_check = () => {
         return true;
     }
 }
+var boardMainContainers = document.querySelectorAll(".boardMain-main-board-img-box"); // 게시물 컨테이너들 선택
+
+// 각 게시물 컨테이너에 대해 이미지 페이징 초기화
+boardMainContainers.forEach(function(boardMainContainer) {
+    var imageContainer = boardMainContainer.querySelector("#imageContainer"); // 이미지 컨테이너 선택
+    var imageElements; // 이미지 요소들
+    var currentPage = 1; // 초기 페이지 값
+    var imagesPerPage = 1; // 한 페이지에 표시할 이미지 개수
+
+    // 이미지 페이징을 초기화하는 함수
+    function initImagePaging() {
+        // 이미지 요소들 가져오기
+        imageElements = imageContainer.querySelectorAll("img");
+
+        // 첫 페이지 이미지 표시
+        showPage(currentPage);
+
+        // 이전 버튼 클릭 시 이벤트 처리
+        var previousButton = boardMainContainer.querySelector(".boardMain-board-paging-left");
+        previousButton.addEventListener("click", goToPreviousPage);
+
+        // 다음 버튼 클릭 시 이벤트 처리
+        var nextButton = boardMainContainer.querySelector(".boardMain-board-paging-right");
+        nextButton.addEventListener("click", goToNextPage);
+    }
+
+    // 페이지 번호에 따라 이미지를 보여주는 함수
+    function showPage(pageNumber) {
+        var startIndex = (pageNumber - 1) * imagesPerPage;
+        var endIndex = startIndex + imagesPerPage;
+
+        for (var i = 0; i < imageElements.length; i++) {
+            if (i >= startIndex && i < endIndex) {
+                imageElements[i].style.display = "block"; // 이미지 보이기
+            } else {
+                imageElements[i].style.display = "none"; // 이미지 숨기기
+            }
+        }
+
+        // 페이지 번호 업데이트
+        updatePageNumbers(pageNumber);
+    }
+
+    // 이전 페이지로 이동하는 함수
+    function goToPreviousPage() {
+        if (currentPage > 1) {
+            currentPage--;
+            showPage(currentPage);
+        }
+    }
+
+    // 다음 페이지로 이동하는 함수
+    function goToNextPage() {
+        if (currentPage < Math.ceil(imageElements.length / imagesPerPage)) {
+            currentPage++;
+            showPage(currentPage);
+        }
+    }
+
+    // 페이지 번호 업데이트 함수
+    function updatePageNumbers(currentPage) {
+        var pagingNumContainer = boardMainContainer.querySelector(".boardMain-board-paging-num");
+        var pagingNumElements = pagingNumContainer.getElementsByClassName("boardMain-board-paging-num-on");
+
+        // 기존 페이지 번호 제거
+        while (pagingNumElements.length > 0) {
+            pagingNumElements[0].remove();
+        }
+
+        // 새로운 페이지 번호 추가
+        for (var i = 1; i <= Math.ceil(imageElements.length / imagesPerPage); i++) {
+            var pageNumElement = document.createElement("div");
+            pageNumElement.classList.add("boardMain-board-paging-num-on");
+            pageNumElement.innerText = i;
+            pagingNumContainer.appendChild(pageNumElement);
+
+            // 현재 페이지 표시
+            if (i === currentPage) {
+                pageNumElement.classList.add("active");
+            }
+
+            // 페이지 번호 클릭 시 해당 페이지로 이동
+            pageNumElement.addEventListener("click", function () {
+                var pageNum = parseInt(this.innerText);
+                showPage(pageNum);
+            });
+        }
+    }
+
+    // 페이지 로드 시 이미지 페이징 초기화
+    window.addEventListener("load", initImagePaging);
+});
+
+
+
