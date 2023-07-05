@@ -85,5 +85,23 @@ public class BoardService {
         System.out.println("boardDTOList = " + boardDTOList);
         return boardDTOList;
     }
+
+    @Transactional
+    public BoardDTO findById(Long id) {
+        BoardEntity boardEntity = boardRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
+        BoardDTO boardDTO = BoardDTO.toDTO(boardEntity);
+        return boardDTO;
+    }
+
+    @Transactional
+    public List<BoardFileDTO> findBoardFile(Long id) {
+        BoardEntity boardEntity = boardRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
+        List<BoardFileEntity> boardFileEntityList = boardFileRepository.findByBoardEntity(boardEntity);
+        List<BoardFileDTO> boardFileDTOList = new ArrayList<>();
+        boardFileEntityList.forEach(boardFileEntity -> {
+            boardFileDTOList.add(BoardFileDTO.toDTO(boardFileEntity));
+        });
+        return boardFileDTOList;
+    }
 }
 
