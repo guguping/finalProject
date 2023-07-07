@@ -1679,6 +1679,9 @@ dlalwlfkqslek:after {
     -webkit-user-select: none;
     vertical-align: middle;
 }
+._a9--:active {
+    background-color: rgb(229,229,229);
+}
 ._a9- {
     color: rgb(0,0,0);
     background-color: transparent;
@@ -1695,6 +1698,9 @@ dlalwlfkqslek:after {
     text-align: center;
     -webkit-user-select: none;
     vertical-align: middle;
+}
+._a9-:active {
+    background-color: rgb(229,229,229);
 }
 ._a9_1 {
     border-bottom-left-radius: 12px;
@@ -1714,4 +1720,7 @@ dlalwlfkqslek:after {
     text-align: center;
     -webkit-user-select: none;
     vertical-align: middle;
+}
+._a9_1:active {
+    background-color: rgb(229,229,229);
 }
