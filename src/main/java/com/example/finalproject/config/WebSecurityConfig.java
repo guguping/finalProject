@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @RequiredArgsConstructor
 @EnableWebSecurity
@@ -31,23 +32,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                .csrf().disable()
                  .authorizeRequests()
 //                  .antMatchers("/", "/member/save", "/member/mailAuth", "/member/login").permitAll()
-//                  .antMatchers("/board/**", "/media/**", "/member/update", "/member/delete").access("hasRole('ROLE_USER')")
+//                  .antMatchers("/board/**", "/media/**", "/member/update", "/member/delete").access("hasRole('ROLE_MEMBER')")
                   .anyRequest().permitAll()
                 .and()
                   .formLogin()
                    .loginPage("/")
+//                .loginProcessingUrl("/member/login")
                    .defaultSuccessUrl("/board/main")
                    .usernameParameter("memberEmail")
                    .passwordParameter("memberPassword")
                 .and()
                  .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
                   .logoutSuccessUrl("/")
                    .invalidateHttpSession(true);
     }
 
 
 
-//    @Bean
+//   @Bean
 //    public PasswordEncoder passwordEncoder() {
 //        return new BCryptPasswordEncoder();
 //    }

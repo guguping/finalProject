@@ -7,6 +7,7 @@ import com.example.finalproject.serivce.BoardService;
 import com.example.finalproject.serivce.MailSendService;
 import com.example.finalproject.serivce.MemberSerivce;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

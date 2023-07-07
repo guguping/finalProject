@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +25,16 @@ public class AxiosController {
     private final AxiosService axiosService;
     private final BoardService boardService;
     private final MemberSerivce memberSerivce;
+
+    @PostMapping("/member/{inputEmail}/dup-check")
+    public ResponseEntity<Boolean> mailCheck(@PathVariable String inputEmail) {
+        return ResponseEntity.ok(memberSerivce.mailCheck(inputEmail));
+    }
+
+    @PostMapping("/member/{inputNickname}/dupl-check")
+    public ResponseEntity<Boolean> nicknameCheck(@PathVariable String inputNickname) {
+        return ResponseEntity.ok(memberSerivce.nicknameCheck(inputNickname));
+    }
 
     @GetMapping("/board/{id}")
     public ResponseEntity findById(@PathVariable Long id) throws Exception {

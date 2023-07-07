@@ -1,9 +1,11 @@
 package com.example.finalproject.serivce;
 
+import com.example.finalproject.domain.Role;
 import com.example.finalproject.dto.BoardFileDTO;
 import com.example.finalproject.dto.MemberDTO;
 import com.example.finalproject.entitiy.MemberEntity;
 import com.example.finalproject.repository.MemberRepository;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -27,9 +29,17 @@ public class MemberSerivce {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         memberDTO.setMemberPassword(encoder.encode(memberDTO.getMemberPassword()));
         System.out.println(memberDTO.getMemberPassword());
+        memberDTO.setRole(Role.ROLE_MEMBER);
         MemberEntity memberEntity = MemberEntity.toEntity(memberDTO);
         return memberRepository.save(memberEntity).getId();
     }
+
+//    @Override
+//    public UserDetails loadUserByUsername(String memberEmail) throws UsernameNotFoundException {
+//        Optional<MemberEntity> optionalMemberEntity = memberRepository.findByMemberEmail(memberEmail);
+//        MemberEntity memberEntity = optionalMemberEntity.get();
+//
+//    }
 
     public MemberDTO findByMemberEmailAndMemberPassword(MemberDTO memberDTO) {
         Optional<MemberEntity> memberEntityOptional = memberRepository.findByMemberEmailAndMemberPassword(memberDTO.getMemberEmail(), memberDTO.getMemberPassword());
@@ -66,4 +76,12 @@ public class MemberSerivce {
         return memberDTOList;
     }
 
+
+    public boolean mailCheck(String memberEmail) {
+        return memberRepository.existsByMemberEmail(memberEmail);
+    }
+
+    public boolean nicknameCheck(String memberNickname) {
+        return memberRepository.existsByMemberNickName(memberNickname);
+    }
 }

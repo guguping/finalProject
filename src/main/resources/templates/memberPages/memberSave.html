@@ -149,7 +149,7 @@
                                                    minlength="1" name="memberEmail">
                                         </label>
                                         <div class="input-value-check-img">
-                                            <span class="input-value-check-img-item1"></span>
+                                            <span id="email-check-icon"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -161,7 +161,7 @@
                                                    minlength="2" name="memberName" >
                                         </label>
                                         <div class="input-value-check-img">
-                                            <span class="input-value-check-img-item"></span>
+                                            <span id="name-check-icon"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -173,7 +173,10 @@
                                                    minlength="2" name="memberNickName" >
                                         </label>
                                         <div class="input-value-check-img">
-                                            <span class="input-value-check-img-item1"></span>
+                                            <span id="nickname-check-icon"></span>
+                                        </div>
+                                        <div>
+                                            <span id="generate-nickname"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -187,8 +190,9 @@
                                                    name="memberPassword">
                                         </label>
                                         <div class="input-value-check-img">
-                                            <span class="input-value-check-img-item"></span>
+                                            <span id="password-check-icon"></span>
                                         </div>
+                                        <div><span id="input-type-change"></span></div>
                                     </div>
                                 </div>
                                 <p class="tip-tull">
@@ -638,6 +642,9 @@
     }
 
     const memberSaveForm_menu2Open = () => {
+        // if (!isValidForm()) {
+        //     return;
+        // }
         const memberSaveFormMenu1 = document.getElementById('memberSaveForm-menu1');
         const memberSaveFormMenu2 = document.getElementById('memberSaveForm-menu2');
         const memberSaveLogo1 = document.getElementById('save-main-logo1');
@@ -709,9 +716,6 @@
         }
     }
 
-    // const email_check = () => {
-    //     inputElementEmail
-    // }
 
     let code;
 
@@ -746,6 +750,164 @@
             $resultMsg.css('color','red');
         }
     });
+
+    // 이메일 유효성 검사
+    // $('#memberSaveForm-input1').blur(function () {
+    //     const inputEmail = $(this).val();
+    //     const emailCheckIcon = $('#email-check-icon');
+    //     const exp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    //
+    //     if (inputEmail === '' || !exp.test(inputEmail)) {
+    //         emailCheckIcon.removeClass();
+    //         emailCheckIcon.addClass('input-value-check-img-item');
+    //         return false;
+    //     }
+    //
+    //     axios({
+    //         method: "post",
+    //         url: `/member/${inputEmail}/dup-check`,
+    //         data: {
+    //             memberEmail: inputEmail
+    //         }
+    //     }).then(res => {
+    //         if (res.data === true) {
+    //             emailCheckIcon.removeClass();
+    //             emailCheckIcon.addClass('input-value-check-img-item');
+    //         } else {
+    //             emailCheckIcon.removeClass();
+    //             emailCheckIcon.addClass('input-value-check-img-item1');
+    //         }
+    //     }).catch(err => {
+    //         emailCheckIcon.addClass('input-value-check-img-item1');
+    //     });
+    //
+    // })
+
+    const emailBlurHandler = function() {
+        const inputEmail = $(this).val();
+        const emailCheckIcon = $('#email-check-icon');
+        const exp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        if (inputEmail === '' || !exp.test(inputEmail)) {
+            emailCheckIcon.removeClass();
+            emailCheckIcon.addClass('input-value-check-img-item');
+            return false;
+        }
+
+        axios({
+            method: "post",
+            url: `/member/${inputEmail}/dup-check`,
+            data: {
+                memberEmail: inputEmail
+            }
+        }).then(res => {
+            if (res.data === true) {
+                emailCheckIcon.removeClass();
+                emailCheckIcon.addClass('input-value-check-img-item');
+            } else {
+                emailCheckIcon.removeClass();
+                emailCheckIcon.addClass('input-value-check-img-item1');
+            }
+        }).catch(err => {
+            emailCheckIcon.addClass('input-value-check-img-item1');
+        });
+    }
+
+    $('#memberSaveForm-input1').blur(emailBlurHandler);
+
+
+    // 이름 유효성 검사
+    $('#memberSaveForm-input2').blur(function () {
+        const inputName = $(this).val();
+        const nameCheckIcon = $('#name-check-icon');
+        const exp = /^([A-Za-z\s.'-]{4,}|[가-힣]{2,4})$/;
+
+        if (inputName === '' || !exp.test(inputName)) {
+            nameCheckIcon.removeClass();
+            nameCheckIcon.addClass('input-value-check-img-item');
+            return false;
+        } else {
+            nameCheckIcon.removeClass();
+            nameCheckIcon.addClass('input-value-check-img-item1');
+        }
+
+    })
+
+    // 사용자 이름 유효성 검사
+    $('#memberSaveForm-input3').blur(function () {
+        const inputNickname = $(this).val();
+        const nicknameCheckIcon = $('#nickname-check-icon');
+        const exp = /^(?!.*[._])[\w.]{4,20}$/;
+
+        if (inputNickname === '' || !exp.test(inputNickname)) {
+            nicknameCheckIcon.removeClass();
+            nicknameCheckIcon.addClass('input-value-check-img-item');
+            return false;
+        }
+        axios({
+            method: "post",
+            url: `/member/${inputNickname}/dupl-check`,
+            data: {
+                memberNickName : inputNickname
+            }
+        }).then(res => {
+            if (res.data === true) {
+                nicknameCheckIcon.removeClass();
+                nicknameCheckIcon.addClass('input-value-check-img-item');
+            } else {
+                nicknameCheckIcon.removeClass();
+                nicknameCheckIcon.addClass('input-value-check-img-item1');
+            }
+        }).catch(err => {
+            nicknameCheckIcon.addClass('input-value-check-img-item1');
+        });
+    })
+
+    // 비밀번호 유효성 검사
+    $('#memberSaveForm-input4').blur(function () {
+        const inputPassword = $(this).val();
+        const passwordCheckIcon = $('#password-check-icon');
+        const exp = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[!$@%])[a-zA-Z\d!$@%]{6,15}$/;
+
+        if (inputPassword === '' || !exp.test(inputPassword)) {
+            passwordCheckIcon.removeClass();
+            passwordCheckIcon.addClass('input-value-check-img-item');
+        } else {
+            passwordCheckIcon.removeClass();
+            passwordCheckIcon.addClass('input-value-check-img-item1');
+        }
+    })
+
+   // 비밀번호 표시
+    const passwordInput = document.getElementById('memberSaveForm-input4');
+    const inputTypeChange = document.getElementById('input-type-change');
+
+    inputTypeChange.addEventListener('click', function() {
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            inputTypeChange.innerText = '숨기기';
+        } else {
+            passwordInput.type = 'password';
+            inputTypeChange.innerText = '비밀번호 표시';
+        }
+    });
+
+    passwordInput.addEventListener('input', function() {
+        if (passwordInput.value.length > 0) {
+            inputTypeChange.innerText = '비밀번호 표시';
+            inputTypeChange.style.cursor = "pointer";
+            inputTypeChange.style.paddingRight = "8px";
+            inputTypeChange.style.fontWeight = "600";
+        } else {
+            inputTypeChange.innerText = '';
+            inputTypeChange.style.paddingRight = "0";
+            inputTypeChange.style.fontWeight = "normal";
+        }
+    });
+
+    // function isValidForm() {
+    //     const isEmailValid =
+    // }
 
 
 </script>

@@ -1,5 +1,6 @@
 package com.example.finalproject.dto;
 
+import com.example.finalproject.domain.Role;
 import com.example.finalproject.entitiy.MemberEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +25,8 @@ public class MemberDTO {
     private int reelsAttached = 0;
     private String memberProfile;
 
+    private Role role;
+
     public static MemberDTO toDTO(MemberEntity memberEntity) {
         MemberDTO memberDTO = new MemberDTO();
         memberDTO.setId(memberEntity.getId());
@@ -37,6 +40,7 @@ public class MemberDTO {
         memberDTO.setMemberText(memberEntity.getMemberText());
         memberDTO.setReelsAttached(memberEntity.getReelsAttached());
         memberDTO.setMemberProfile(memberEntity.getMemberProfile());
+        memberDTO.setRole(Role.ROLE_MEMBER);
         return memberDTO;
     }
 
