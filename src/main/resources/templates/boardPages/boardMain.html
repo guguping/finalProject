@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/boardMain.css">
     <link rel="stylesheet" href="../css/component.css">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body class="boardMainForm-body">
 <section>
@@ -229,8 +230,8 @@
 <!--                                                                    <th:block-->
 <!--                                                                            th:each="memberFollowDTO :${memberFollowList}">-->
 
-                                                                        <th:block
-                                                                                th:if="${session.memberId == boardDTO.getMemberId() or (session.memberId == boardDTO.getFollowerId() and boardDTO.getMemberId() == boardDTO.getFollowingId())}">
+<!--                                                                        <th:block-->
+<!--                                                                                th:if="${session.memberId == boardDTO.getMemberId() or (session.memberId == boardDTO.getFollowerId() and boardDTO.getMemberId() == boardDTO.getFollowingId())}">-->
                                                                             <!--board 게시글 list -->
                                                                             <div class="boardMain-main-list-box">
                                                                                 <div class="boardMain-main-list-inner">
@@ -305,7 +306,7 @@
                                                                                                                 </header>
                                                                                                                 <!--게시글 수정, 삭제-->
                                                                                                                 <div style="padding: 0;margin-right: -8px;">
-                                                                                                                    <button class="boardMain-main-board-plus-btn">
+                                                                                                                    <button class="boardMain-main-board-plus-btn"  th:if="${session.memberId == boardDTO.memberId}">
                                                                                                                         <div style="align-items: center;display: flex;justify-content: center;">
                                                                                                                             <div class="boardMain-main-board-plus-btn-img-box">
                                                                                                                                 <svg aria-label="옵션 더 보기"
@@ -627,11 +628,11 @@
                                                                                                                         <textarea
                                                                                                                                 class="comment-textarea"
                                                                                                                                 style="border: none;"
-                                                                                                                                placeholder="댓글 달기..."></textarea>
+                                                                                                                                placeholder="댓글 달기..."
+                                                                                                                                name="commentContents"
+                                                                                                                                id="commentContents"></textarea>
                                                                                                                                     <div style="margin: 0 8px 0 8px;">
-                                                                                                                                        <div class="comment-textarea-btn">
-                                                                                                                                            게시
-                                                                                                                                        </div>
+                                                                                                                                        <div class="comment-textarea-btn" th:onclick="comment_write([[${boardDTO.id}]],[[${session.memberId}]])">게시</div>
                                                                                                                                     </div>
                                                                                                                                 </div>
                                                                                                                             </form>
@@ -648,8 +649,8 @@
                                                                                 </div>
                                                                             </div>
 
-                                                                        <th:block th:break></th:block>
-                                                                    </th:block>
+<!--                                                                        <th:block th:break></th:block>-->
+<!--                                                                    </th:block>-->
                                                                 </th:block>
                                                             </div>
 
@@ -1067,5 +1068,8 @@
 </section>
 </body>
 
+<script th:inline="javascript">
+
+</script>
 <script type="text/javascript" th:src="@{/script/componentJs.js}"></script>
 </html>

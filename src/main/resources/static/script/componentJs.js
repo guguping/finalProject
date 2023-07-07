@@ -366,6 +366,49 @@ boardMainContainers.forEach(function(boardMainContainer) {
     // 페이지 로드 시 이미지 페이징 초기화
     window.addEventListener("load", initImagePaging);
 });
+// const comment_list = (commentList) => {
+//     console.log("댓글 목록 함수", commentList);
+//     const resultArea = document.querySelector("#comment-list");
+//     let output = "        <table class=\"table\">\n" +
+//         "            <tr>\n" +
+//         "                <th>id</th>\n" +
+//         "                <th>writer</th>\n" +
+//         "                <th>contents</th>\n" +
+//         "                <th>date</th>\n" +
+//         "            </tr>";
+//     for (let i in commentList) {
+//         output += "<tr>\n" +
+//             "                <td>" + commentList[i].id + "</td>\n" +
+//             "                <td>" + commentList[i].commentWriter + "</td>\n" +
+//             "                <td>" + commentList[i].commentContents + "</td>\n" +
+//             "                <td>" + commentList[i].createdAt + "</td>\n" +
+//             "            </tr>";
+//     }
+//     output += "</table>";
+//     resultArea.innerHTML = output;
+// }
+
+const comment_write = (boardId,memberId) => {
+    const contents = document.querySelector("#commentContents").value;
+    // const boardId = [[${boardDTO.id}]];
+    // const memberId = "${session.memberId}";
+    axios({
+        method: "post",
+        url: "/comment/save",
+        data: {
+            commentContents: contents,
+            boardId: boardId,
+            memberId: memberId
+        }
+    }).then(res => {
+        console.log("res", res);
+        // console.log("댓글 목록", res.data);
+        // document.querySelector("#comment-contents").value = "";
+        // comment_list(res.data);
+    }).catch(err => {
+        console.log("err", err);
+    });
+}
 
 
 

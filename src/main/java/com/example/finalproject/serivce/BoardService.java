@@ -52,8 +52,14 @@ public class BoardService {
     }
 
     @Transactional
-    public List<BoardDTO> findAll() {
-        List<BoardEntity> boardEntityList = boardRepository.findAllByOrderByIdDesc();
+    public List<BoardDTO> findAll(Long loginId) {
+        List<BoardEntity> boardEntityList = boardRepository.findAllByFollowerIdOrMemberId(loginId);
+        
+        for (BoardEntity boardEntity: boardEntityList
+             ) {
+            System.out.println("boardEntity = " + boardEntity);
+        }
+
         List<BoardDTO> boardDTOList = new ArrayList<>();
 //        for (BoardEntity boardEntity: boardEntityList) {
 //            boardDTOList.add(BoardDTO.toDTO(boardEntity));
