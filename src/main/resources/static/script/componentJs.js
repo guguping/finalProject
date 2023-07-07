@@ -16,6 +16,47 @@ const prevButton = document.getElementById('prevButton');
 const nextButton = document.getElementById('nextButton');
 const pageNumberContainer = document.getElementById('previewImgPagingItem-num-item-box');
 
+const navLogoutBtn = document.getElementById('nav-logout-btn-');
+const navLogoutBtnHover = document.getElementById('nav-logout-btn-hover-box');
+const darkModG = document.getElementById('dakrModG');
+const darkModGHover = document.getElementById('darkModG-Hover');
+const plusNavDisplay = document.getElementById('plusNavDisplay');
+const plusNavDisplayMain = document.getElementById('plusNavDisplay-main');
+
+const plusBoardOpModal = document.getElementById('plus-modal-board-');
+const plusBoardOpModalBtn = document.getElementById('board-modal-on-off');
+
+
+document.addEventListener("click", function (event) {
+    if (plusNavDisplayMain.style.display === "block" && event.target !== plusNavDisplay && !plusNavDisplay.contains(event.target)) {
+        plusNavDisplayMain.style.display = "none";
+    }
+});
+
+plusNavDisplay.addEventListener("click", function () {
+    if (plusNavDisplayMain.style.display === "none") {
+        plusNavDisplayMain.style.display = "block";
+    } else {
+        plusNavDisplayMain.style.display = "none";
+    }
+});
+
+darkModG.addEventListener("mouseover", function () {
+    darkModGHover.style.opacity = "1";
+})
+
+darkModG.addEventListener("mouseout", function () {
+    darkModGHover.style.opacity = "0";
+})
+
+navLogoutBtn.addEventListener("mouseover", function () {
+    navLogoutBtnHover.style.opacity = "1";
+})
+
+navLogoutBtn.addEventListener("mouseout", function () {
+    navLogoutBtnHover.style.opacity = "0";
+})
+
 homeImg.addEventListener('mouseover', function () {
     homeImg.style.backgroundColor = 'rgba(219, 219, 219, 0.5)';
     homeImg.style.borderRadius = '10px';
