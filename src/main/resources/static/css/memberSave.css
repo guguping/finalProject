@@ -1491,3 +1491,52 @@
     position: relative;
     flex-grow: 0;
 }
+.nickName-Random-b {
+    overflow-y: visible;
+    border-radius: 0;
+    background-color: transparent;
+    flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    flex-shrink: 0;
+    align-items: stretch;
+    overflow-x: visible;
+    align-self: auto;
+    justify-content: flex-start;
+    position: relative;
+    margin-left: 8px;
+    flex-grow: 0;
+}
+.Random-btn {
+    border: 0;
+    color: rgb(0,149,246);
+    display: inline-block;
+    padding: 0!important;
+    position: relative;
+    text-align: center;
+    -webkit-appearance: none;
+    background: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    pointer-events: auto;
+    text-overflow: ellipsis;
+    text-transform: inherit;
+    -webkit-user-select: none;
+    width: auto;
+    line-height: 18px;
+    margin: 0;
+}
+.Random-btn-txt {
+    white-space: nowrap;
+    background-image: url(../images/sprite_core.png);
+    background-repeat: no-repeat;
+    text-indent: 110%;
+    background-position: -273px -333px;
+    overflow-x: hidden;
+    display: block;
+    width: 21px;
+    height: 22px;
+    overflow-y: hidden;
+}

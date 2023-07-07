@@ -374,7 +374,8 @@
 
                                                                     <!-- 더보기 display on/off -->
                                                                     <a href="#"
-                                                                       class="boardMain-nav-list-plus-list-link">
+                                                                       class="boardMain-nav-list-plus-list-link"
+                                                                       id="plusNavDisplay">
                                                                         <div class="boardMain-nav-list-plus-list-box-size">
                                                                             <div>
                                                                                  <div class="boardMain-nav-list-plus-img-box">
@@ -700,7 +701,7 @@
                                                                                                         </div>
                                                                                                     </header>
                                                                                                     <!--게시글 수정, 삭제-->
-                                                                                                    <div style="padding: 0;margin-right: -8px;">
+                                                                                                    <div style="padding: 0;margin-right: -8px;" id="board-modal-on-off">
                                                                                                         <button class="boardMain-main-board-plus-btn">
                                                                                                             <div style="align-items: center;display: flex;justify-content: center;">
                                                                                                                 <div class="boardMain-main-board-plus-btn-img-box">
@@ -1378,7 +1379,10 @@
 
                                                                                                                         <!--게시글 저장 내용 작성 공간-->
                                                                                                                         <div class="board-save-contents-t">
-                                                                                                                            <textarea class="board-save-input-style" name="boardContents" placeholder="문구 입력..."></textarea>
+                                                                                                                            <textarea
+                                                                                                                                    class="board-save-input-style"
+                                                                                                                                    name="boardContents"
+                                                                                                                                    placeholder="문구 입력..."></textarea>
                                                                                                                         </div>
 
                                                                                                                     </div>
@@ -1411,6 +1415,128 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- 나브 하단 모달 시작-->
+                            <div>
+                                <div class="plus-modal-1" id="plusNavDisplay-main" style="display: none;">
+                                    <div class="plus-modal-2">
+                                        <div>
+                                            <div class="plus-modal-3">
+                                                <div class="plus-modal-4">
+                                                    <div class="plus-modal-main-size-1">
+                                                        <div class="plus-modal-main-size-2">
+                                                            <div class="plus-modal-main-size-3">
+                                                                <div class="plus-modal-main-size-4">
+                                                                    <div class="plus-modal-inner-size-1">
+
+                                                                        <!--모드 전환 시작-->
+                                                                        <div id="dakrModG">
+                                                                            <div class="darkmod-b">
+                                                                                <div class="darkmod-b1">
+                                                                                    <div class="darkmod-b2">
+                                                                                        <div class="darkmod-b3">
+                                                                                            <div class="darkmod-cion-">
+                                                                                                <div class="darkmod-cion-1">
+                                                                                                    <svg aria-label="테마 아이콘"
+                                                                                                         class="darkmod-cion"
+                                                                                                         color="rgb(0, 0, 0)"
+                                                                                                         fill="rgb(0, 0, 0)"
+                                                                                                         height="18"
+                                                                                                         role="img"
+                                                                                                         viewBox="0 0 24 24"
+                                                                                                         width="18">
+                                                                                                        <title>테마
+                                                                                                            아이콘</title>
+                                                                                                        <path d="M12.00018,4.5a1,1,0,0,0,1-1V2a1,1,0,0,0-2,0V3.5A1.00005,1.00005,0,0,0,12.00018,4.5ZM5.28241,6.69678A.99989.99989,0,1,0,6.69647,5.28271l-1.06054-1.061A.99989.99989,0,0,0,4.22186,5.63574ZM4.50018,12a1,1,0,0,0-1-1h-1.5a1,1,0,0,0,0,2h1.5A1,1,0,0,0,4.50018,12Zm.78223,5.30322-1.06055,1.061a.99989.99989,0,1,0,1.41407,1.41406l1.06054-1.061a.99989.99989,0,0,0-1.41406-1.41407ZM12.00018,19.5a1.00005,1.00005,0,0,0-1,1V22a1,1,0,0,0,2,0V20.5A1,1,0,0,0,12.00018,19.5Zm6.71729-2.19678a.99989.99989,0,0,0-1.41406,1.41407l1.06054,1.061A.99989.99989,0,0,0,19.778,18.36426ZM22.00018,11h-1.5a1,1,0,0,0,0,2h1.5a1,1,0,0,0,0-2ZM18.01044,6.98975a.996.996,0,0,0,.707-.293l1.06055-1.061A.99989.99989,0,0,0,18.364,4.22168l-1.06054,1.061a1,1,0,0,0,.707,1.707ZM12.00018,6a6,6,0,1,0,6,6A6.00657,6.00657,0,0,0,12.00018,6Zm0,10a4,4,0,1,1,4-4A4.00458,4.00458,0,0,1,12.00018,16Z"></path>
+                                                                                                    </svg>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="darkmod-txt-">
+                                                                                                <div class="darkmod-txt-1">
+                                                                                                    <div class="darkmod-txt-2">
+                                                                                                        <span class="darkmod-txt">
+                                                                                                            <span class="darkmod-tx">모드 전환</span>
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="nav-darkmod-hover-box"
+                                                                                     id="darkModG-Hover"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="list-margin"></div>
+
+                                                                        <!--로그아웃 시작-->
+                                                                        <div class="nav-logout-btn-"
+                                                                             id="nav-logout-btn-">
+                                                                            <div class="nav-logout-btn-1">
+                                                                                <div class="nav-logout-btn-2">
+                                                                                    <div class="nav-logout-btn-3">
+                                                                                        <div class="nav-logout-btn-4">
+                                                                                            <div class="nav-logout-btn-5">
+                                                                                                <div class="nav-logout-btn-6">
+                                                                                                    <div class="nav-logout-btn-7">
+                                                                                                        <span class="nav-logout-btn-txt-">
+                                                                                                            <span class="nav-logout-btn-txt">
+                                                                                                                로그아웃
+                                                                                                            </span>
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="nav-logout-btn-hover-box"
+                                                                                 id="nav-logout-btn-hover-box"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--게시글 옵션 시작-->
+            <div style="position: absolute;top: 0;width: 100%">
+                <div class="plus-modal-board-" id="plus-modal-board-" style="display:none;">
+                    <div class="plus-modal-board-1">
+                        <div class="plus-modal-board-2">
+                            <div class="plus-modal-board-bg"></div>
+                            <div class="plus-modal-board-3">
+                                <div class="plus-modal-board-main-">
+                                    <div class="plus-modal-board-main-1">
+                                        <div class="plus-modal-board-main-2">
+                                            <div class="plus-modal-board-main-3">
+                                                <div class="plus-modal-board-inner-">
+                                                    <div class="plus-modal-board-inner-1">
+                                                        <div class="plus-modal-board-inner-2">
+                                                            <div class="plus-modal-board-inner-3">
+                                                                <button type="button" class="_a9--">삭제</button>
+                                                                <button type="button" class="_a9-">수정</button>
+                                                                <button type="button" class="_a9_1">취소</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1437,6 +1563,58 @@
     const prevButton = document.getElementById('prevButton');
     const nextButton = document.getElementById('nextButton');
     const pageNumberContainer = document.getElementById('previewImgPagingItem-num-item-box');
+
+    const navLogoutBtn = document.getElementById('nav-logout-btn-');
+    const navLogoutBtnHover = document.getElementById('nav-logout-btn-hover-box');
+    const darkModG = document.getElementById('dakrModG');
+    const darkModGHover = document.getElementById('darkModG-Hover');
+    const plusNavDisplay = document.getElementById('plusNavDisplay');
+    const plusNavDisplayMain = document.getElementById('plusNavDisplay-main');
+
+    const plusBoardOpModal = document.getElementById('plus-modal-board-');
+    const plusBoardOpModalBtn = document.getElementById('board-modal-on-off');
+
+
+    document.addEventListener("click", function (event) {
+
+        if (plusNavDisplayMain.style.display === "block" && event.target !== plusNavDisplay && !plusNavDisplay.contains(event.target)) {
+            plusNavDisplayMain.style.display = "none";
+        } else if (plusBoardOpModal.style.display === "block" && event.target !== plusBoardOpModalBtn && !plusBoardOpModalBtn.contains(event.target)){
+            plusBoardOpModal.style.display = "none";
+        }
+    });
+
+    plusBoardOpModalBtn.addEventListener("click" , function () {
+        if (plusBoardOpModal.style.display === "none") {
+            plusBoardOpModal.style.display = "block";
+        } else {
+            plusBoardOpModal.style.display = "none";
+        }
+    })
+
+    plusNavDisplay.addEventListener("click", function () {
+        if (plusNavDisplayMain.style.display === "none") {
+            plusNavDisplayMain.style.display = "block";
+        } else {
+            plusNavDisplayMain.style.display = "none";
+        }
+    });
+
+    darkModG.addEventListener("mouseover", function () {
+        darkModGHover.style.opacity = "1";
+    })
+
+    darkModG.addEventListener("mouseout", function () {
+        darkModGHover.style.opacity = "0";
+    })
+
+    navLogoutBtn.addEventListener("mouseover", function () {
+        navLogoutBtnHover.style.opacity = "1";
+    })
+
+    navLogoutBtn.addEventListener("mouseout", function () {
+        navLogoutBtnHover.style.opacity = "0";
+    })
 
     homeImg.addEventListener('mouseover', function () {
         homeImg.style.backgroundColor = 'rgba(219, 219, 219, 0.5)';

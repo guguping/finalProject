@@ -99,4 +99,7 @@ public class MemberEntity extends BaseEntity {
 
     @OneToMany(mappedBy = "memberEntity",cascade = CascadeType.REMOVE,orphanRemoval = true,fetch = FetchType.LAZY)
     private List<BoardReelsAnswerEntity> boardReelsAnswerEntityList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "memberEntity",cascade = CascadeType.REMOVE,orphanRemoval = true,fetch = FetchType.LAZY)
+    private List<BoardCommentEntity> boardCommentEntityList = new ArrayList<>();
 }

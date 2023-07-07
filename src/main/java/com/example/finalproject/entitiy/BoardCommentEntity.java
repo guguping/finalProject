@@ -1,5 +1,6 @@
 package com.example.finalproject.entitiy;
 
+import com.example.finalproject.dto.BoardCommentDTO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,9 +28,22 @@ public class BoardCommentEntity extends BaseEntity {
     @JoinColumn(name = "board_id")
     private BoardEntity boardEntity;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private MemberEntity memberEntity;
+
     @OneToMany(mappedBy = "boardCommentEntity", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<BoardAnswerEntity> boardAnswerEntityArrayList = new ArrayList<>();
 
     @OneToMany(mappedBy = "boardCommentEntity", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<BoardCommentLikeEntity> boardCommentLikeEntityList = new ArrayList<>();
+
+    public static BoardCommentEntity toSaveEntity(BoardEntity boardEntity,MemberEntity memberEntity, BoardCommentDTO boardCommentDTO) {
+        BoardCommentEntity boardCommentEntity = new BoardCommentEntity();
+        boardCommentEntity.setCommentContents(boardCommentDTO.getCommentContents());
+        boardCommentEntity.setMemberEntity(memberEntity);
+        boardCommentEntity.setBoardEntity(boardEntity);
+        return boardCommentEntity;
+    }
+
 }
