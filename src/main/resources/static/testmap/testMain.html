@@ -374,7 +374,8 @@
 
                                                                     <!-- 더보기 display on/off -->
                                                                     <a href="#"
-                                                                       class="boardMain-nav-list-plus-list-link" id="plusNavDisplay">
+                                                                       class="boardMain-nav-list-plus-list-link"
+                                                                       id="plusNavDisplay">
                                                                         <div class="boardMain-nav-list-plus-list-box-size">
                                                                             <div>
                                                                                  <div class="boardMain-nav-list-plus-img-box">
@@ -700,7 +701,7 @@
                                                                                                         </div>
                                                                                                     </header>
                                                                                                     <!--게시글 수정, 삭제-->
-                                                                                                    <div style="padding: 0;margin-right: -8px;">
+                                                                                                    <div style="padding: 0;margin-right: -8px;" id="board-modal-on-off">
                                                                                                         <button class="boardMain-main-board-plus-btn">
                                                                                                             <div style="align-items: center;display: flex;justify-content: center;">
                                                                                                                 <div class="boardMain-main-board-plus-btn-img-box">
@@ -1462,13 +1463,15 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
-                                                                                <div class="nav-darkmod-hover-box" id="darkModG-Hover"></div>
+                                                                                <div class="nav-darkmod-hover-box"
+                                                                                     id="darkModG-Hover"></div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="list-margin"></div>
 
                                                                         <!--로그아웃 시작-->
-                                                                        <div class="nav-logout-btn-" id="nav-logout-btn-">
+                                                                        <div class="nav-logout-btn-"
+                                                                             id="nav-logout-btn-">
                                                                             <div class="nav-logout-btn-1">
                                                                                 <div class="nav-logout-btn-2">
                                                                                     <div class="nav-logout-btn-3">
@@ -1488,10 +1491,43 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="nav-logout-btn-hover-box" id="nav-logout-btn-hover-box"></div>
+                                                                            <div class="nav-logout-btn-hover-box"
+                                                                                 id="nav-logout-btn-hover-box"></div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--게시글 옵션 시작-->
+            <div style="position: absolute;top: 0;width: 100%">
+                <div class="plus-modal-board-" id="plus-modal-board-" style="display:none;">
+                    <div class="plus-modal-board-1">
+                        <div class="plus-modal-board-2">
+                            <div class="plus-modal-board-bg"></div>
+                            <div class="plus-modal-board-3">
+                                <div class="plus-modal-board-main-">
+                                    <div class="plus-modal-board-main-1">
+                                        <div class="plus-modal-board-main-2">
+                                            <div class="plus-modal-board-main-3">
+                                                <div class="plus-modal-board-inner-">
+                                                    <div class="plus-modal-board-inner-1">
+                                                        <div class="plus-modal-board-inner-2">
+                                                            <div class="plus-modal-board-inner-3">
+                                                                <button type="button" class="_a9--">삭제</button>
+                                                                <button type="button" class="_a9-">수정</button>
+                                                                <button type="button" class="_a9_1">취소</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1535,27 +1571,48 @@
     const plusNavDisplay = document.getElementById('plusNavDisplay');
     const plusNavDisplayMain = document.getElementById('plusNavDisplay-main');
 
-    plusNavDisplay.addEventListener("click" , function () {
-        if(plusNavDisplayMain.style.display == "none") {
+    const plusBoardOpModal = document.getElementById('plus-modal-board-');
+    const plusBoardOpModalBtn = document.getElementById('board-modal-on-off');
+
+
+    document.addEventListener("click", function (event) {
+
+        if (plusNavDisplayMain.style.display === "block" && event.target !== plusNavDisplay && !plusNavDisplay.contains(event.target)) {
+            plusNavDisplayMain.style.display = "none";
+        } else if (plusBoardOpModal.style.display === "block" && event.target !== plusBoardOpModalBtn && !plusBoardOpModalBtn.contains(event.target)){
+            plusBoardOpModal.style.display = "none";
+        }
+    });
+
+    plusBoardOpModalBtn.addEventListener("click" , function () {
+        if (plusBoardOpModal.style.display === "none") {
+            plusBoardOpModal.style.display = "block";
+        } else {
+            plusBoardOpModal.style.display = "none";
+        }
+    })
+
+    plusNavDisplay.addEventListener("click", function () {
+        if (plusNavDisplayMain.style.display === "none") {
             plusNavDisplayMain.style.display = "block";
         } else {
             plusNavDisplayMain.style.display = "none";
         }
-    })
+    });
 
-    darkModG.addEventListener("mouseover" , function () {
+    darkModG.addEventListener("mouseover", function () {
         darkModGHover.style.opacity = "1";
     })
 
-    darkModG.addEventListener("mouseout" , function () {
+    darkModG.addEventListener("mouseout", function () {
         darkModGHover.style.opacity = "0";
     })
 
-    navLogoutBtn.addEventListener("mouseover" , function () {
+    navLogoutBtn.addEventListener("mouseover", function () {
         navLogoutBtnHover.style.opacity = "1";
     })
 
-    navLogoutBtn.addEventListener("mouseout" , function () {
+    navLogoutBtn.addEventListener("mouseout", function () {
         navLogoutBtnHover.style.opacity = "0";
     })
 
