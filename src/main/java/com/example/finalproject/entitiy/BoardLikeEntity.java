@@ -21,4 +21,11 @@ public class BoardLikeEntity extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")
     private BoardEntity boardEntity;
+
+    public static BoardLikeEntity toSaveEntity(BoardEntity boardEntity, MemberEntity memberEntity) {
+        BoardLikeEntity boardLikeEntity = new BoardLikeEntity();
+        boardLikeEntity.setBoardEntity(boardEntity);
+        boardLikeEntity.setMemberEntity(memberEntity);
+        return boardLikeEntity;
+    }
 }

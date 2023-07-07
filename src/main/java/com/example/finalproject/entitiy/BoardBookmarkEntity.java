@@ -15,6 +15,17 @@ public class BoardBookmarkEntity extends BaseEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private MemberEntity memberEntity;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")
     private BoardEntity boardEntity;
+
+    public static BoardBookmarkEntity toSaveEntity(BoardEntity boardEntity, MemberEntity memberEntity) {
+        BoardBookmarkEntity boardBookmarkEntity = new BoardBookmarkEntity();
+        boardBookmarkEntity.setBoardEntity(boardEntity);
+        boardBookmarkEntity.setMemberEntity(memberEntity);
+        return boardBookmarkEntity;
+    }
 }
