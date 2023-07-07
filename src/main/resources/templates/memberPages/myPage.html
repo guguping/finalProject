@@ -711,6 +711,7 @@
     const resultArea = document.getElementById("detail-box");
     let i = 0;
     let fileSize = 1;
+    const boardKind = 1;
 
     const userImgChangeOn = () => {
         userImgChange.style.display = "block";
@@ -728,23 +729,16 @@
     const board_detail = (id) => {
         axios({
             method: "get",
-            url: "/board/"+id
+            url: "/board/"+id+"?boardKind="+boardKind
         }).then(res => {
             const board = res.data;
             const boardDTO = board.boardDTO;
             const memberDTO = board.memberDTO;
-            const boardFileList = board.BoardFileList;
+            const boardFileList = board.boardFileList;
             const storedFileName = boardFileList[i].storedFileName;
+            const boardLike = board.boardLike;  //boolean
+            const boardBookmark = board.boardBookmark;  //boolean
             fileSize = boardFileList.length;
-            console.log("res.data = " + res.data);
-            console.log("board = " + board);
-            console.log("boardDTO = " + boardDTO);
-            console.log("boardFileList" + boardFileList);
-            console.log("boardDTO.id = " + boardDTO.id);
-            console.log("memberDTO.nickname" + memberDTO.memberNickName);
-            console.log(storedFileName);
-            console.log("filesize = " + fileSize);
-            console.log("i = " + i);
 
             let output = "<div class=\"myPage-board-detail-b1\">\n" +
                 "                        <div class=\"myPage-board-detail-b2\">\n" +
@@ -965,6 +959,8 @@
                 "                                                                                                    <span>\n" +
                 "                                                                                                        <svg aria-label=\"좋아요\"\n" +
                 "                                                                                                             class=\"detail-board-like\"\n" +
+                "                                                                                                             id=\"board-like\"\n" +
+                "                                                                                                             onclick=\"board_like(" + boardDTO.id + ")\"\n" +
                 "                                                                                                             color=\"rgb(38, 38, 38)\"\n" +
                 "                                                                                                             fill=\"rgb(38, 38, 38)\"\n" +
                 "                                                                                                             height=\"24\"\n" +
@@ -976,6 +972,8 @@
                 "                                                                                                        </svg>\n" +
                 "                                                                                                        <svg aria-label=\"좋아요 취소\"\n" +
                 "                                                                                                             class=\"detail-board-like\"\n" +
+                "                                                                                                             id=\"board-unLike\"\n" +
+                "                                                                                                             onclick=\"board_unLike(" + boardDTO.id + ")\"\n" +
                 "                                                                                                             color=\"rgb(255, 48, 64)\"\n" +
                 "                                                                                                             fill=\"rgb(255, 48, 64)\"\n" +
                 "                                                                                                             height=\"24\"\n" +
@@ -1018,6 +1016,8 @@
                 "                                                                                                    <span>\n" +
                 "                                                                                                        <svg aria-label=\"저장\"\n" +
                 "                                                                                                             class=\"detail-board-book-mark\"\n" +
+                "                                                                                                             id=\"board-bookmark\"\n" +
+                "                                                                                                             onclick=\"board_bookmark(" + boardDTO.id + ")\"\n" +
                 "                                                                                                             color=\"rgb(0, 0, 0)\"\n" +
                 "                                                                                                             fill=\"rgb(0, 0, 0)\"\n" +
                 "                                                                                                             height=\"24\"\n" +
@@ -1035,6 +1035,8 @@
                 "                                                                                                        </svg>\n" +
                 "                                                                                                        <svg aria-label=\"삭제\"\n" +
                 "                                                                                                             class=\"detail-board-book-mark\"\n" +
+                "                                                                                                             id=\"board-unBookmark\"\n" +
+                "                                                                                                             onclick=\"board_unBookmark(" + boardDTO.id + ")\"\n" +
                 "                                                                                                             color=\"rgb(0, 0, 0)\"\n" +
                 "                                                                                                             fill=\"rgb(0, 0, 0)\"\n" +
                 "                                                                                                             height=\"24\"\n" +
@@ -1170,18 +1172,75 @@
             resultArea.style.display = "";
             resultArea.innerHTML = output;
 
-            const detailNextBtn = document.getElementById("detail-next-btn");
             if (fileSize == 1) {
-                detailNextBtn.style.display = "none";
+                nextBtn_controller("off");
+                backBtn_controller("off");
+            } else if (fileSize == (i+1)) {
+                nextBtn_controller("off");
+                backBtn_controller("on");
+            } else if (fileSize > (i+1) && i != 0) {
+                backBtn_controller("on");
+            } else if (i == 0) {
+                backBtn_controller("off");
+            }
+
+            if (boardLike) {
+                board_like_controller("unLike");
+            } else {
+                board_like_controller("like");
+            }
+
+            if (boardBookmark) {
+                board_bookmark_controller("unBookmark");
+            } else {
+                board_bookmark_controller("bookmark");
             }
         }).catch(err => {
-            alert("수정 실패");
+            alert("detail 실패");
         });
     }
-    // const detailOff = document.getElementById('myPage-board-detail-btn');
-    // detailOff.addEventListener("click", e => {
-    //     resultArea.style.display = "none";
-    // });
+
+    const board_like = (id) => {
+        axios({
+            method: "post",
+            url: "/board/like/"+id+"?boardKind="+boardKind
+        }).then(res => {
+            board_like_controller("unLike");
+        }).catch(err => {
+            alert("like 실패");
+        });
+    }
+    const board_unLike = (id) => {
+        axios({
+            method: "post",
+            url: "/board/unLike/"+id+"?boardKind="+boardKind
+        }).then(res => {
+            board_like_controller("like");
+        }).catch(err => {
+            alert("unLike 실패");
+        });
+    }
+
+    const board_bookmark = (id) => {
+        axios({
+            method: "post",
+            url: "/board/bookmark/"+id+"?boardKind="+boardKind
+        }).then(res => {
+            board_bookmark_controller("unBookmark");
+        }).catch(err => {
+            alert("bookmark 실패");
+        });
+    }
+    const board_unBookmark = (id) => {
+        axios({
+            method: "post",
+            url: "/board/unBookmark/"+id+"?boardKind="+boardKind
+        }).then(res => {
+            board_bookmark_controller("bookmark");
+        }).catch(err => {
+            alert("unBookmark 실패");
+        });
+    }
 
     const detail_off = () => {
         i = 0;
@@ -1189,30 +1248,54 @@
     }
 
     const detail_file_next = (id) => {
-        // const detailNextBtn = document.getElementById("detail-next-btn");
         i += 1;
-        console.log("들 i = " + i);
-        if (fileSize == (i+1)) {
-            console.log("i+1 = " + (i+1));
-            nextBtn_controller();
-            // detailNextBtn.style.display = "none";
-            // detailNextBtn.classList.add("plus");
-        }
         board_detail(id);
     }
 
     const detail_file_back = (id) => {
-        const detailBackBtn = document.getElementById("detail-back-btn");
-        if (fileSize > 1) {
-            detailBackBtn.style.display = "";
-        }
         i -= 1;
         board_detail(id);
     }
 
-    const nextBtn_controller = () => {
+    const nextBtn_controller = (type) => {
         const detailNextBtn = document.getElementById("detail-next-btn");
-        detailNextBtn.style.display = "none";
+        if (type == "off") {
+            detailNextBtn.style.display = "none";
+        } else if (type == "on"){
+            detailNextBtn.style.display = "";
+        }
+    }
+    const backBtn_controller = (type) => {
+        const detailBackBtn = document.getElementById("detail-back-btn");
+        if (type == "off") {
+            detailBackBtn.style.display = "none";
+        } else if (type == "on"){
+            detailBackBtn.style.display = "";
+        }
+    }
+
+    const board_like_controller = (type) => {
+        const boardLikeBtn = document.getElementById("board-like");
+        const boardUnLikeBtn = document.getElementById("board-unLike");
+        if (type == "unLike") {
+            boardLikeBtn.style.display = "none";
+            boardUnLikeBtn.style.display = "";
+        } else {
+            boardLikeBtn.style.display = "";
+            boardUnLikeBtn.style.display = "none";
+        }
+    }
+
+    const board_bookmark_controller = (type) => {
+        const boardBookmarkBtn = document.getElementById("board-bookmark");
+        const boardUnBookmarkBtn = document.getElementById("board-unBookmark");
+        if (type == "unBookmark") {
+            boardBookmarkBtn.style.display = "none";
+            boardUnBookmarkBtn.style.display = "";
+        } else {
+            boardBookmarkBtn.style.display = "";
+            boardUnBookmarkBtn.style.display = "none";
+        }
     }
 </script>
 </html>

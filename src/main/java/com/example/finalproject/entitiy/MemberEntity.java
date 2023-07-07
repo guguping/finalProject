@@ -109,4 +109,6 @@ public class MemberEntity extends BaseEntity {
     @OneToMany(mappedBy = "memberEntity",cascade = CascadeType.REMOVE,orphanRemoval = true,fetch = FetchType.LAZY)
     private List<BoardCommentEntity> boardCommentEntityList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "memberEntity", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<BoardBookmarkEntity> boardBookmarkEntityList = new ArrayList<>();
 }
