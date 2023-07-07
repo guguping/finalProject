@@ -3,6 +3,7 @@ package com.example.finalproject.controller;
 import com.example.finalproject.dto.*;
 import com.example.finalproject.entitiy.MemberEntity;
 import com.example.finalproject.repository.MemberFollowRepository;
+import com.example.finalproject.serivce.BoardCommentService;
 import com.example.finalproject.serivce.BoardService;
 import com.example.finalproject.serivce.MemberFollowService;
 import com.example.finalproject.serivce.MemberSerivce;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
@@ -25,12 +27,15 @@ public class BoardController {
     private final MemberSerivce memberSerivce;
     private final MemberFollowService memberFollowService;
 
+    private final BoardCommentService boardCommentService;
+
     @GetMapping("/board/main")
-    public String boardMain(Model model,HttpSession session) {
+    public String boardMain(Model model, HttpSession session) {
+//        ,@PathVariable Long id
         Long loginId = (Long) session.getAttribute("memberId");
         MemberDTO memberDTO = memberSerivce.findById(loginId);
         List<MemberFollowDTO> memberFollowDTOList = memberFollowService.findAll();
-        List<BoardDTO> boardDTOList1 = boardService.findAll();
+        List<BoardDTO> boardDTOList = boardService.findAll(loginId);
         List<BoardFileDTO> boardFileDTOList = boardService.findAllFile();
         List<MemberDTO> memberDTOList = memberSerivce.findAll();
         BoardDTO boardDTO = new BoardDTO();
@@ -42,10 +47,9 @@ public class BoardController {
 ////            // 작성자와 로그인한 사용자가 다른 경우, ... 메뉴 버튼을 보여주지 않음
 ////            model.addAttribute("isAuthor", false);
 ////        }
-        List<Object> boardDTOList = new ArrayList<>();
-        boardDTOList.addAll(boardDTOList1);
-        boardDTOList.addAll(memberFollowDTOList);
+//        List<BoardCommentDTO> boardCommentDTOList = boardCommentService.findAll();
 
+//        model.addAttribute("boardCommentDTOList", boardCommentDTOList);
         model.addAttribute("boardFileList",boardFileDTOList);
         model.addAttribute("memberDTOList",memberDTOList);
         model.addAttribute("boardDTOList", boardDTOList);
