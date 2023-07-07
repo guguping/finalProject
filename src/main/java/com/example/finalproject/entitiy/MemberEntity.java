@@ -1,5 +1,6 @@
 package com.example.finalproject.entitiy;
 
+import com.example.finalproject.domain.Role;
 import com.example.finalproject.dto.MemberDTO;
 import lombok.Getter;
 import lombok.Setter;
@@ -49,6 +50,10 @@ public class MemberEntity extends BaseEntity {
     @Column()
     private int reelsAttached;
 
+    @Enumerated(EnumType.STRING)
+    @Column
+    private Role role;
+
     public static MemberEntity toEntity(MemberDTO memberDTO) {
         MemberEntity memberEntity = new MemberEntity();
         memberEntity.setMemberEmail(memberDTO.getMemberEmail());
@@ -61,6 +66,7 @@ public class MemberEntity extends BaseEntity {
         memberEntity.setMemberText(memberDTO.getMemberText());
         memberEntity.setMemberProfile(memberDTO.getMemberProfile());
         memberEntity.setReelsAttached(memberDTO.getReelsAttached());
+        memberEntity.setRole(Role.ROLE_MEMBER);
         return memberEntity;
     }
 
@@ -102,4 +108,5 @@ public class MemberEntity extends BaseEntity {
 
     @OneToMany(mappedBy = "memberEntity",cascade = CascadeType.REMOVE,orphanRemoval = true,fetch = FetchType.LAZY)
     private List<BoardCommentEntity> boardCommentEntityList = new ArrayList<>();
+
 }
