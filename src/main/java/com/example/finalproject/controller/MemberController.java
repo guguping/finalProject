@@ -58,6 +58,12 @@ public class MemberController {
         }
     }
 
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/";
+    }
+
     @GetMapping("/myPage/{id}")
     public String memberMyPages(@PathVariable Long id, Model model) {
         // 해당 피드의 멤버 정보 가져오기

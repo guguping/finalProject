@@ -346,7 +346,7 @@
                                                                 <!--로그아웃 시작-->
                                                                 <div class="nav-logout-btn-"
                                                                      id="nav-logout-btn-">
-                                                                    <div class="nav-logout-btn-1">
+                                                                    <div class="nav-logout-btn-1" onclick="member_logout()">
                                                                         <div class="nav-logout-btn-2">
                                                                             <div class="nav-logout-btn-3">
                                                                                 <div class="nav-logout-btn-4">
@@ -1296,6 +1296,10 @@
             boardBookmarkBtn.style.display = "";
             boardUnBookmarkBtn.style.display = "none";
         }
+    }
+
+    const member_logout = () => {
+        location.href = "/member/logout";
     }
 </script>
 </html>
