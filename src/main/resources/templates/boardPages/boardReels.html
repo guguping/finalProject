@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Instagram</title>
     <th:block th:replace="component/config :: config"></th:block>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/boardReels.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/boardReels.css}"/>
 </head>
 <body class="body-d">
 <div>
@@ -42,8 +42,10 @@
                                                                                     <div class="reels-v-img-element-3">
 
                                                                                         <!--동영상 넣는 곳-->
-                                                                                        <video class="reels-v-v-" id="reels-v-v-"
-                                                                                               autoplay muted loop playsinline
+                                                                                        <video class="reels-v-v-"
+                                                                                               id="reels-v-v-"
+                                                                                               autoplay muted loop
+                                                                                               playsinline
                                                                                                preload="none"
                                                                                                src="../images/reels/2.mp4"
                                                                                                style="display: block;"></video>
@@ -54,13 +56,15 @@
                                                                                                     <div class="reels-v-v-element-1">
                                                                                                         <div class="reels-v-v-element-2">
                                                                                                             <div class="reels-v-v-element-3">
-                                                                                                                <div class="reels-element-box" id="reels-element-box">
+                                                                                                                <div class="reels-element-box"
+                                                                                                                     id="reels-element-box">
                                                                                                                     <div class="reels-element-box-">
                                                                                                                         <div class="reels-element-margin">
 
                                                                                                                             <!--영상 사운드 요소-->
                                                                                                                             <svg aria-label="오디오 소리 꺼짐"
-                                                                                                                                 class="sound-element" id="sound-on"
+                                                                                                                                 class="sound-element"
+                                                                                                                                 id="sound-on"
                                                                                                                                  color="rgb(255, 255, 255)"
                                                                                                                                  fill="rgb(255, 255, 255)"
                                                                                                                                  height="12"
@@ -75,8 +79,20 @@
                                                                                                                                       d="M1.5 13.3c-.8 0-1.5.7-1.5 1.5v18.4c0 .8.7 1.5 1.5 1.5h8.7l12.9 12.9c.9.9 2.5.3 2.5-1v-9.8c0-.4-.2-.8-.4-1.1l-22-22c-.3-.3-.7-.4-1.1-.4h-.6zm46.8 31.4-5.5-5.5C44.9 36.6 48 31.4 48 24c0-11.4-7.2-17.4-7.2-17.4-.6-.6-1.6-.6-2.2 0L37.2 8c-.6.6-.6 1.6 0 2.2 0 0 5.7 5 5.7 13.8 0 5.4-2.1 9.3-3.8 11.6L35.5 32c1.1-1.7 2.3-4.4 2.3-8 0-6.8-4.1-10.3-4.1-10.3-.6-.6-1.6-.6-2.2 0l-1.4 1.4c-.6.6-.6 1.6 0 2.2 0 0 2.6 2 2.6 6.7 0 1.8-.4 3.2-.9 4.3L25.5 22V1.4c0-1.3-1.6-1.9-2.5-1L13.5 10 3.3-.3c-.6-.6-1.5-.6-2.1 0L-.2 1.1c-.6.6-.6 1.5 0 2.1L4 7.6l26.8 26.8 13.9 13.9c.6.6 1.5.6 2.1 0l1.4-1.4c.7-.6.7-1.6.1-2.2z"
                                                                                                                                       fill-rule="evenodd"></path>
                                                                                                                             </svg>
-                                                                                                                            <svg aria-label="오디오를 재생 중입니다" style="display: none;" id="sound-off" class="sound-element" color="rgb(255, 255, 255)" fill="rgb(255, 255, 255)" height="12" role="img" viewBox="0 0 24 24" width="12">
-                                                                                                                                <title>오디오를 재생 중입니다</title>
+                                                                                                                            <svg aria-label="오디오를 재생 중입니다"
+                                                                                                                                 style="display: none;"
+                                                                                                                                 id="sound-off"
+                                                                                                                                 class="sound-element"
+                                                                                                                                 color="rgb(255, 255, 255)"
+                                                                                                                                 fill="rgb(255, 255, 255)"
+                                                                                                                                 height="12"
+                                                                                                                                 role="img"
+                                                                                                                                 viewBox="0 0 24 24"
+                                                                                                                                 width="12">
+                                                                                                                                <title>
+                                                                                                                                    오디오를
+                                                                                                                                    재생
+                                                                                                                                    중입니다</title>
                                                                                                                                 <path d="M16.636 7.028a1.5 1.5 0 10-2.395 1.807 5.365 5.365 0 011.103 3.17 5.378 5.378 0 01-1.105 3.176 1.5 1.5 0 102.395 1.806 8.396 8.396 0 001.71-4.981 8.39 8.39 0 00-1.708-4.978zm3.73-2.332A1.5 1.5 0 1018.04 6.59 8.823 8.823 0 0120 12.007a8.798 8.798 0 01-1.96 5.415 1.5 1.5 0 002.326 1.894 11.672 11.672 0 002.635-7.31 11.682 11.682 0 00-2.635-7.31zm-8.963-3.613a1.001 1.001 0 00-1.082.187L5.265 6H2a1 1 0 00-1 1v10.003a1 1 0 001 1h3.265l5.01 4.682.02.021a1 1 0 001.704-.814L12.005 2a1 1 0 00-.602-.917z"></path>
                                                                                                                             </svg>
                                                                                                                         </div>
@@ -84,7 +100,8 @@
                                                                                                                 </div>
                                                                                                             </div>
 
-                                                                                                            <div class="reels-v-v-element-4" id="reels-v-v-element-4">
+                                                                                                            <div class="reels-v-v-element-4"
+                                                                                                                 id="reels-v-v-element-4">
                                                                                                                 <div class="reels-user-info">
                                                                                                                     <div class="reels-user-info-">
                                                                                                                         <a href="#"
@@ -127,7 +144,9 @@
                                                                                                             </div>
                                                                                                         </div>
 
-                                                                                                        <div class="reels-v-p-element-" id="reels-v-p-element-" style="opacity: 0;">
+                                                                                                        <div class="reels-v-p-element-"
+                                                                                                             id="reels-v-p-element-"
+                                                                                                             style="opacity: 0;">
                                                                                                             <div class="reels-v-p-element-1">
                                                                                                                 <div class="reels-v-p-element-2">
 
@@ -281,9 +300,571 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!--릴스 댓글 시작구간-->
+                        <div>
+                            <div class="reels-s-c-mo">
+                                <div class="reels-s-c-mo-">
+                                    <div>
+                                        <div class="reels-s-c-mo-1">
+                                            <div class="reels-s-c-mo-2">
+                                                <div class="reels-s-c-mo-3">
+                                                    <div class="reels-s-c-mo-4">
+                                                        <div class="reels-s-c-mo-tag">
+                                                            <div class="reels-s-c-mo-tag-off">
+                                                                <div class="reels-s-c-mo-tag-off-">
+                                                                    <div class="reels-s-c-mo-tag-off-1">
+
+                                                                        <!--릴스 코멘트 닫기 버튼-->
+                                                                        <svg aria-label="닫기"
+                                                                             class="reels-s-c-mo-off-logo"
+                                                                             color="rgb(0, 0, 0)" fill="rgb(0, 0, 0)"
+                                                                             height="16" role="img" viewBox="0 0 24 24"
+                                                                             width="16">
+                                                                            <title>닫기</title>
+                                                                            <line fill="none" stroke="currentColor"
+                                                                                  stroke-linecap="round"
+                                                                                  stroke-linejoin="round"
+                                                                                  stroke-width="2" x1="21" x2="3" y1="3"
+                                                                                  y2="21"></line>
+                                                                            <line fill="none" stroke="currentColor"
+                                                                                  stroke-linecap="round"
+                                                                                  stroke-linejoin="round"
+                                                                                  stroke-width="2" x1="21" x2="3"
+                                                                                  y1="21" y2="3"></line>
+                                                                        </svg>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="reels-s-c-mo-title">
+                                                                <span class="reels-s-c-mo-title-">댓글</span>
+                                                            </div>
+                                                            <div class="reels-s-c-mo-title-s"></div>
+                                                        </div>
+
+                                                        <div class="reels-s-c-l">
+                                                            <div class="reels-s-c-l-">
+                                                                <div>
+                                                                    <div class="reels-s-c-l-1">
+                                                                        <div class="reels-s-c-l-m">
+                                                                            <div>
+                                                                                <div class="reels-s-c-l-m-">
+                                                                                    <div class="reels-s-c-l-m-">
+                                                                                        <a href="#"
+                                                                                           class="reels-c-member-pro">
+
+                                                                                            <!--릴스 댓글 사용자 프로필이미지-->
+                                                                                            <img src="../images/test프로필.jpg"
+                                                                                                 class="reels-c-member-pro1">
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="reels-s-c-l-c">
+                                                                            <div class="reels-s-c-l-c-">
+                                                                                <div>
+                                                                                    <div class="reels-s-c-l-c-1">
+                                                                                        <div class="reels-s-c-l-c-2">
+                                                                                            <span class="reels-s-c-l-c-3">
+                                                                                                <div class="reels-s-c-l-c-4">
+                                                                                                    <div class="reels-s-c-l-c-4">
+                                                                                                        <a href="#"
+                                                                                                           class="reels-s-c-l-c-5">
+                                                                                                            <span class="reels-s-c-l-c-6">
+
+                                                                                                                <!--릴스 코멘트 작성자 닉네임-->
+                                                                                                                <div class="reels-comment-user-nick">choi_s_y06</div>
+                                                                                                            </span>
+                                                                                                        </a>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </span>&nbsp;
+                                                                                            <span class="reels-c-time-box">
+                                                                                                <a href="#"
+                                                                                                   class="reels-c-time-box-">
+
+                                                                                                    <!--릴스 코멘트 게시글 작성 시간-->
+                                                                                                    <time class="reels-c-time-box-ing"
+                                                                                                          datetime="2023-06-30T11:23:59.000Z"
+                                                                                                          title="6월 30, 2023">1주</time>
+                                                                                                </a>
+                                                                                            </span>
+                                                                                        </div>
+
+                                                                                        <div class="reels-s-c-c-m">
+
+                                                                                            <!--릴스 코멘트 댓글 내용-->
+                                                                                            <span class="reels-s-c-c-m-">여자도 헬창인데??</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="reels-s-c-like">
+                                                                                <span class="reels-s-c-like-">
+                                                                                    <div class="reels-s-c-like-1">
+                                                                                        <div class="reels-s-c-like-2">
+                                                                                            <div class="reels-s-c-like-3">
+                                                                                                <div class="reels-s-c-like-4">
+                                                                                                    <span>
+
+                                                                                                        <!--릴스 댓글 좋아요 버튼-->
+                                                                                                        <!--                                                                                                        <svg aria-label="좋아요"-->
+                                                                                                        <!--                                                                                                             class="reels-comment-user-like"-->
+                                                                                                        <!--                                                                                                             color="rgb(142, 142, 142)"-->
+                                                                                                        <!--                                                                                                             fill="rgb(142, 142, 142)"-->
+                                                                                                        <!--                                                                                                             height="16"-->
+                                                                                                        <!--                                                                                                             role="img"-->
+                                                                                                        <!--                                                                                                             viewBox="0 0 24 24"-->
+                                                                                                        <!--                                                                                                             width="16">-->
+                                                                                                        <!--                                                                                                            <title>좋아요</title>-->
+                                                                                                        <!--                                                                                                            <path d="M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 0 1 4.708-5.218 4.21 4.21 0 0 1 3.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 0 1 3.679-1.938m0-2a6.04 6.04 0 0 0-4.797 2.127 6.052 6.052 0 0 0-4.787-2.127A6.985 6.985 0 0 0 .5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 0 0 3.518 3.018 2 2 0 0 0 2.174 0 45.263 45.263 0 0 0 3.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 0 0-6.708-7.218Z"></path>-->
+                                                                                                        <!--                                                                                                        </svg>-->
+                                                                                                        <svg aria-label="좋아요 취소"
+                                                                                                             class="reels-comment-user-like"
+                                                                                                             color="rgb(255, 48, 64)"
+                                                                                                             fill="rgb(255, 48, 64)"
+                                                                                                             height="16"
+                                                                                                             role="img"
+                                                                                                             viewBox="0 0 48 48"
+                                                                                                             width="16">
+                                                                                                            <title>좋아요 취소</title>
+                                                                                                            <path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path>
+                                                                                                        </svg>
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </span>
+                                                                                <div class="reels-s-c-like-c">
+                                                                                    <span class="reels-s-c-like-c-">
+
+                                                                                        <!--릴스 댓글 좋아요 갯수-->
+                                                                                        <span>5248</span>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="reels-s-c-form">
+                                                            <div class="reels-s-c-form-">
+                                                                <div class="reels-s-c-form-1">
+                                                                    <div class="reels-s-c-form-2">
+                                                                        <div class="reels-s-c-form-3">
+                                                                            <div class="reels-s-c-form-m-p">
+                                                                                <span class="reels-s-c-form-m-p-">
+
+                                                                                    <!--릴스 댓글 작성칸 프로필 사진-->
+                                                                                    <img crossorigin="reels-s-c-form-member-profile" src="../images/test프로필.jpg" width="32">
+                                                                                </span>
+                                                                            </div>
+
+                                                                            <div class="reels-s-c-form-input-">
+
+                                                                                <!--릴스 댓글 작성 공간-->
+                                                                                <input class="reels-s-c-form-input" placeholder="댓글 달기...">
+                                                                            </div>
+
+                                                                            <div class="reels-s-c-form-sub">
+                                                                                <div class="reels-s-c-form-sub-">
+
+                                                                                    <!--릴스 댓글 등록 버튼-->
+                                                                                    <div class="reels-s-c-form-sub-1">게시</div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="dusrufrhfl">
+                                                    <div class="dusrufrhfl-"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!--나브 하단-->
+                <div>
+                    <div class="plus-modal-1" id="plusNavDisplay-main" style="display: none;">
+                        <div class="plus-modal-2">
+                            <div>
+                                <div class="plus-modal-3">
+                                    <div class="plus-modal-4">
+                                        <div class="plus-modal-main-size-1">
+                                            <div class="plus-modal-main-size-2">
+                                                <div class="plus-modal-main-size-3">
+                                                    <div class="plus-modal-main-size-4">
+                                                        <div class="plus-modal-inner-size-1">
+
+                                                            <!--모드 전환 시작-->
+                                                            <div id="dakrModG">
+                                                                <div class="darkmod-b">
+                                                                    <div class="darkmod-b1">
+                                                                        <div class="darkmod-b2">
+                                                                            <div class="darkmod-b3">
+                                                                                <div class="darkmod-cion-">
+                                                                                    <div class="darkmod-cion-1">
+                                                                                        <svg aria-label="테마 아이콘"
+                                                                                             class="darkmod-cion"
+                                                                                             color="rgb(0, 0, 0)"
+                                                                                             fill="rgb(0, 0, 0)"
+                                                                                             height="18"
+                                                                                             role="img"
+                                                                                             viewBox="0 0 24 24"
+                                                                                             width="18">
+                                                                                            <title>테마
+                                                                                                아이콘</title>
+                                                                                            <path d="M12.00018,4.5a1,1,0,0,0,1-1V2a1,1,0,0,0-2,0V3.5A1.00005,1.00005,0,0,0,12.00018,4.5ZM5.28241,6.69678A.99989.99989,0,1,0,6.69647,5.28271l-1.06054-1.061A.99989.99989,0,0,0,4.22186,5.63574ZM4.50018,12a1,1,0,0,0-1-1h-1.5a1,1,0,0,0,0,2h1.5A1,1,0,0,0,4.50018,12Zm.78223,5.30322-1.06055,1.061a.99989.99989,0,1,0,1.41407,1.41406l1.06054-1.061a.99989.99989,0,0,0-1.41406-1.41407ZM12.00018,19.5a1.00005,1.00005,0,0,0-1,1V22a1,1,0,0,0,2,0V20.5A1,1,0,0,0,12.00018,19.5Zm6.71729-2.19678a.99989.99989,0,0,0-1.41406,1.41407l1.06054,1.061A.99989.99989,0,0,0,19.778,18.36426ZM22.00018,11h-1.5a1,1,0,0,0,0,2h1.5a1,1,0,0,0,0-2ZM18.01044,6.98975a.996.996,0,0,0,.707-.293l1.06055-1.061A.99989.99989,0,0,0,18.364,4.22168l-1.06054,1.061a1,1,0,0,0,.707,1.707ZM12.00018,6a6,6,0,1,0,6,6A6.00657,6.00657,0,0,0,12.00018,6Zm0,10a4,4,0,1,1,4-4A4.00458,4.00458,0,0,1,12.00018,16Z"></path>
+                                                                                        </svg>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="darkmod-txt-">
+                                                                                    <div class="darkmod-txt-1">
+                                                                                        <div class="darkmod-txt-2">
+                                                                                                        <span class="darkmod-txt">
+                                                                                                            <span class="darkmod-tx">모드 전환</span>
+                                                                                                        </span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="nav-darkmod-hover-box"
+                                                                         id="darkModG-Hover"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="list-margin"></div>
+
+                                                            <!--로그아웃 시작-->
+                                                            <div class="nav-logout-btn-"
+                                                                 id="nav-logout-btn-">
+                                                                <div class="nav-logout-btn-1" onclick="member_logout()">
+                                                                    <div class="nav-logout-btn-2">
+                                                                        <div class="nav-logout-btn-3">
+                                                                            <div class="nav-logout-btn-4">
+                                                                                <div class="nav-logout-btn-5">
+                                                                                    <div class="nav-logout-btn-6">
+                                                                                        <div class="nav-logout-btn-7">
+                                                                                                        <span class="nav-logout-btn-txt-">
+                                                                                                            <span class="nav-logout-btn-txt">
+                                                                                                                로그아웃
+                                                                                                            </span>
+                                                                                                        </span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="nav-logout-btn-hover-box"
+                                                                     id="nav-logout-btn-hover-box"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div style="position: absolute;width: 100%;top: 0px;">
+                <div id="boardSave-layout" style="display: none;">
+                    <div style="z-index: 3;position: relative;">
+                        <div style="box-sizing: border-box;position: relative;z-index: 0;">
+                            <div style="min-height: 100vh;flex-direction: column;display: flex;position: relative;">
+                                <div class="board-save-form-layout-back"></div>
+                                <div class="board-save-form-layout-off">
+                                    <div class="board-save-form-layout-off-padding"
+                                         onclick="saveFormOff()">
+                                        <div style="justify-content: center;flex-direction: column;display: flex;align-items: center;">
+                                            <svg aria-label="닫기" class="tpdlqmvhaekerl"
+                                                 color="rgb(255, 255, 255)"
+                                                 fill="rgb(255, 255, 255)" height="18" role="img"
+                                                 viewBox="0 0 24 24"
+                                                 width="18">
+                                                <title>닫기</title>
+                                                <polyline fill="none"
+                                                          points="20.643 3.357 12 12 3.353 20.647"
+                                                          stroke="currentColor"
+                                                          stroke-linecap="round"
+                                                          stroke-linejoin="round"
+                                                          stroke-width="3"></polyline>
+                                                <line fill="none" stroke="currentColor"
+                                                      stroke-linecap="round"
+                                                      stroke-linejoin="round" stroke-width="3"
+                                                      x1="20.649"
+                                                      x2="3.354"
+                                                      y1="20.649" y2="3.354"></line>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="board-save-form-inherit">
+                                    <div class="board-save-form-1">
+                                        <div class="board-save-form-lr">
+                                            <div class="board-save-form-box">
+                                                <div class="board-save-form-box-padding">
+                                                    <div></div>
+                                                    <div class="board-save-form-box-inner">
+                                                        <div style="display: flex;flex-direction: column;height: 100%;max-width: 100%;">
+                                                            <div style="max-height: 898px;max-width: 1195px;min-height: 391px;min-width: 688px;width: 1048px;">
+                                                                <div class="djelRKwlrkskqhwk">
+                                                                    <div class="board-save-form-top-box">
+                                                                        <div style="flex-direction: column;display: flex;align-items: stretch;">
+                                                                            <div class="_ac76">
+                                                                                <div class="dlrjsEhanjsepmm">
+                                                                                    <h1 class="dlrjsEhanjsepmm-text-box">
+                                                                                        <div class="_ac7a">
+                                                                                            새 게시물
+                                                                                            만들기
+                                                                                        </div>
+                                                                                    </h1>
+                                                                                </div>
+                                                                                <div class="anjswlahfmfdhlsWhr"></div>
+                                                                                <div class="anjswlahfmfdhfmsWHr">
+                                                                                    <div class="anjswlahfmfdhfmsWHr-margin">
+                                                                                        <div class="anjswlahfmfdhfmsWHr-btn"
+                                                                                             onclick="boardSave()">
+                                                                                            공유하기
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="board-save-form-main-img-box">
+                                                                        <div class="board-save-form-main-img-box-inner">
+                                                                            <div class="board-save-form-main-img-inner">
+
+                                                                                <!-- 이미지 프리뷰 페이징 시작-->
+                                                                                <span class="previewImaPagingBox"
+                                                                                      id="previewImaPagingBox"
+                                                                                      style="display: none;">
+                                                                                                        <div class="previewImaPagingItem-left">
+                                                                                                            <div class="previewImaPagingItem-left-size">
+
+                                                                                                                <!--이미지 프리뷰 페이징 왼쪽 버튼-->
+                                                                                                                <button type="button"
+                                                                                                                        class="previewImaPagingItem-left-btn"
+                                                                                                                        id="prevButton"
+                                                                                                                        style="display: none;">
+                                                                                                                    <div class="previewImaPaging-left-img-box">
+                                                                                                                        <svg aria-label="왼쪽 방향 아이콘"
+                                                                                                                             class="previewImaPagingItem-left-img"
+                                                                                                                             color="rgb(255, 255, 255)"
+                                                                                                                             fill="rgb(255, 255, 255)"
+                                                                                                                             height="16"
+                                                                                                                             role="img"
+                                                                                                                             viewBox="0 0 24 24"
+                                                                                                                             width="16">
+                                                                                                                            <polyline
+                                                                                                                                    fill="none"
+                                                                                                                                    points="16.502 3 7.498 12 16.502 21"
+                                                                                                                                    stroke="currentColor"
+                                                                                                                                    stroke-linecap="round"
+                                                                                                                                    stroke-linejoin="round"
+                                                                                                                                    stroke-width="2"></polyline>
+                                                                                                                        </svg>
+                                                                                                                    </div>
+                                                                                                                </button>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                    <!--이미지 프리뷰 페이징 오른쪽 버튼-->
+                                                                                                        <div class="previewImaPagingItem-right">
+                                                                                                            <div class="previewImaPagingItem-right-size">
+                                                                                                                <button type="button"
+                                                                                                                        class="previewImaPagingItem-right-btn"
+                                                                                                                        id="nextButton">
+                                                                                                                    <div class="previewImaPaging-right-img-box">
+                                                                                                                        <svg aria-label="오른쪽 방향 아이콘"
+                                                                                                                             class="previewImaPagingItem-right-img"
+                                                                                                                             color="rgb(255, 255, 255)"
+                                                                                                                             fill="rgb(255, 255, 255)"
+                                                                                                                             height="16"
+                                                                                                                             role="img"
+                                                                                                                             viewBox="0 0 24 24"
+                                                                                                                             width="16">
+                                                                                                                            <polyline
+                                                                                                                                    fill="none"
+                                                                                                                                    points="8 3 17.004 12 8 21"
+                                                                                                                                    stroke="currentColor"
+                                                                                                                                    stroke-linecap="round"
+                                                                                                                                    stroke-linejoin="round"
+                                                                                                                                    stroke-width="2"></polyline>
+                                                                                                                        </svg>
+                                                                                                                    </div>
+                                                                                                                </button>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                    <!--이미지 프리뷰 페이징 페이지 넘버-->
+                                                                                                        <div class="previewImgPagingItem-num">
+                                                                                                            <div class="previewImgPagingItem-num-item-box"
+                                                                                                                 id="previewImgPagingItem-num-item-box">
+                                                                                                                <!--<div class="previewImgPagingItem-num-item-on"></div>-->
+                                                                                                                <!--<div class="previewImgPagingItem-num-item-off"></div>-->
+                                                                                                                <!--<div class="previewImgPagingItem-num-item-on"></div>-->
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </span>
+
+                                                                                <div class="board-save-form-main-img"
+                                                                                     id="board-save-form-main-img">
+                                                                                    <svg aria-label="이미지나 동영상과 같은 미디어를 나타내는 아이콘"
+                                                                                         class="board-save-form-svg"
+                                                                                         color="rgb(0, 0, 0)"
+                                                                                         fill="rgb(0, 0, 0)"
+                                                                                         height="77"
+                                                                                         role="img"
+                                                                                         viewBox="0 0 97.6 77.3"
+                                                                                         width="96">
+                                                                                        <title>이미지나
+                                                                                            동영상과 같은
+                                                                                            미디어를
+                                                                                            나타내는
+                                                                                            아이콘</title>
+                                                                                        <path d="M16.3 24h.3c2.8-.2 4.9-2.6 4.8-5.4-.2-2.8-2.6-4.9-5.4-4.8s-4.9 2.6-4.8 5.4c.1 2.7 2.4 4.8 5.1 4.8zm-2.4-7.2c.5-.6 1.3-1 2.1-1h.2c1.7 0 3.1 1.4 3.1 3.1 0 1.7-1.4 3.1-3.1 3.1-1.7 0-3.1-1.4-3.1-3.1 0-.8.3-1.5.8-2.1z"
+                                                                                              fill="currentColor"></path>
+                                                                                        <path d="M84.7 18.4 58 16.9l-.2-3c-.3-5.7-5.2-10.1-11-9.8L12.9 6c-5.7.3-10.1 5.3-9.8 11L5 51v.8c.7 5.2 5.1 9.1 10.3 9.1h.6l21.7-1.2v.6c-.3 5.7 4 10.7 9.8 11l34 2h.6c5.5 0 10.1-4.3 10.4-9.8l2-34c.4-5.8-4-10.7-9.7-11.1zM7.2 10.8C8.7 9.1 10.8 8.1 13 8l34-1.9c4.6-.3 8.6 3.3 8.9 7.9l.2 2.8-5.3-.3c-5.7-.3-10.7 4-11 9.8l-.6 9.5-9.5 10.7c-.2.3-.6.4-1 .5-.4 0-.7-.1-1-.4l-7.8-7c-1.4-1.3-3.5-1.1-4.8.3L7 49 5.2 17c-.2-2.3.6-4.5 2-6.2zm8.7 48c-4.3.2-8.1-2.8-8.8-7.1l9.4-10.5c.2-.3.6-.4 1-.5.4 0 .7.1 1 .4l7.8 7c.7.6 1.6.9 2.5.9.9 0 1.7-.5 2.3-1.1l7.8-8.8-1.1 18.6-21.9 1.1zm76.5-29.5-2 34c-.3 4.6-4.3 8.2-8.9 7.9l-34-2c-4.6-.3-8.2-4.3-7.9-8.9l2-34c.3-4.4 3.9-7.9 8.4-7.9h.5l34 2c4.7.3 8.2 4.3 7.9 8.9z"
+                                                                                              fill="currentColor"></path>
+                                                                                        <path d="M78.2 41.6 61.3 30.5c-2.1-1.4-4.9-.8-6.2 1.3-.4.7-.7 1.4-.7 2.2l-1.2 20.1c-.1 2.5 1.7 4.6 4.2 4.8h.3c.7 0 1.4-.2 2-.5l18-9c2.2-1.1 3.1-3.8 2-6-.4-.7-.9-1.3-1.5-1.8zm-1.4 6-18 9c-.4.2-.8.3-1.3.3-.4 0-.9-.2-1.2-.4-.7-.5-1.2-1.3-1.1-2.2l1.2-20.1c.1-.9.6-1.7 1.4-2.1.8-.4 1.7-.3 2.5.1L77 43.3c1.2.8 1.5 2.3.7 3.4-.2.4-.5.7-.9.9z"
+                                                                                              fill="currentColor"></path>
+                                                                                    </svg>
+                                                                                    <div class="tkwlsrhkehddudtkd">
+                                                                                                            <span class="tkwlsrhkehddudtkd-text">
+                                                                                                                사진과 동영상을 여기에 끌어다 놓으세요
+                                                                                                            </span>
+                                                                                    </div>
+                                                                                    <div class="tkwlsrhkehddudtkd-btn-box">
+                                                                                        <div class="tkwlsrhkehddudtkd-btn-box-inner">
+                                                                                            <button class="img-upload-btn"
+                                                                                                    id="img-upload-btn"
+                                                                                                    type="button"
+                                                                                                    onclick="fileUpload()">
+                                                                                                컴퓨터에서
+                                                                                                선택
+                                                                                            </button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <form enctype="multipart/form-data"
+                                                                                  method="post"
+                                                                                  action="/board/save"
+                                                                                  onsubmit="return image_check()"
+                                                                                  style="margin: 0;padding: 0;">
+                                                                                <input accept="image/jpeg,image/png,image/heic,image/heif,video/mp4,video/quicktime"
+                                                                                       class="img-input-"
+                                                                                       name="boardFile"
+                                                                                       id="img-input-"
+                                                                                       multiple
+                                                                                       type="file">
+
+                                                                                <div class="board-save-contents-input-box">
+                                                                                    <div class="board-save-contents-input-box-">
+                                                                                        <div class="board-save-contents-input-box-inner">
+                                                                                            <div class="_ac2p">
+                                                                                                <div class="board-save-contents-input-user-img-box">
+                                                                                                    <div class="_ac2q">
+                                                                                                        <div class="save-input-user-box-inner-size">
+                                                                                                            <div class="save-input-user-img-line">
+                                                                                                                <div class="wlsWKtjssjasp">
+                                                                                                                    <div class="dlrjseocpdhorlfdjdiehl">
+                                                                                                                        <div class="emrkwkdlalwl">
+                                                                                                                            <div class="emrkwkdlalwlakwls">
+                                                                                                                             <span class="emeldjENfgdjTek">
+
+                                                                                                                             <!--게시글 저장공간 사용자 프로필 사진-->
+                                                                                                                                <img th:src="@{/images/test프로필.jpg}"
+                                                                                                                                     class="board-save-contents-input-img">
+
+                                                                                                                             </span>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                        <div class="tkdydwkdmldlfma">
+                                                                                                                            <div class="gkrltlfgekwjdakffh">
+                                                                                                                                <div class="rhwlrksnsdkvdlek">
+                                                                                                                                <span class="sorkaksemstmvosdldi">
+
+                                                                                                                                    <!--게시글 저장공간 사용자 닉네임-->
+                                                                                                                                    <span class="board-save-contents-input-nick">guping__</span>
+
+                                                                                                                                </span>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="board-save-contents-text-box">
+
+                                                                                                    <!--게시글 저장 내용 작성 공간-->
+                                                                                                    <div class="board-save-contents-t">
+                                                                                                        <textarea
+                                                                                                                class="board-save-input-style"
+                                                                                                                name="boardContents"
+                                                                                                                placeholder="문구 입력..."></textarea>
+                                                                                                    </div>
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <button type="submit"
+                                                                                        style="display: none;"
+                                                                                        id="boardSave-btn">
+                                                                                    저장용
+                                                                                </button>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
@@ -297,7 +878,7 @@
     const soundOn = document.getElementById('sound-on');
     const soundOff = document.getElementById('sound-off');
 
-    myVidPlay.addEventListener('click', function() {
+    myVidPlay.addEventListener('click', function () {
         if (myVid.paused) {
             myVidPlayBtn.style.opacity = '0';
             myVidPlayBtn.style.transitionDuration = '.3s';
@@ -314,14 +895,14 @@
             myVid.pause();
         }
     });
-    myVidPlayBtn.addEventListener('click' , function () {
+    myVidPlayBtn.addEventListener('click', function () {
         if (myVid.paused) {
             myVidPlayBtn.style.display = 'none';
             myVid.play();
         }
     })
 
-    soundBox.addEventListener('click' , function () {
+    soundBox.addEventListener('click', function () {
         if (myVid.muted == false) {
             soundOn.style.display = 'block';
             soundOff.style.display = 'none';
