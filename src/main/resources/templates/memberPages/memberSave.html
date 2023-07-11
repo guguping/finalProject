@@ -212,6 +212,7 @@
                                         </button>
                                     </div>
                                 </div>
+                                <span id="sign-up-valid-result" style="text-align: center"></span>
                             </div>
 
                             <!--멤버 생일을 입력받는 공간의 display-->
@@ -468,7 +469,7 @@
 
                                     <!--인증 메일 발송 재활용-->
                                     <div class="memberSaveForm-emailAuth-reAuth-box">
-                                        <div class="memberSaveForm-emailAuth-reAuth" role="button">코드 재전송</div>
+                                        <div class="memberSaveForm-emailAuth-reAuth" role="button" id="resendBtn">코드 재전송</div>
                                     </div>
                                     <div>
                                         <div id="emailAuth-warn"></div>
@@ -644,9 +645,10 @@
     }
 
     const memberSaveForm_menu2Open = () => {
-        // if (!isValidForm()) {
-        //     return;
-        // }
+        console.log("확인용" + isValidForm());
+        if (!isValidForm()) {
+            return;
+        }
         const memberSaveFormMenu1 = document.getElementById('memberSaveForm-menu1');
         const memberSaveFormMenu2 = document.getElementById('memberSaveForm-menu2');
         const memberSaveLogo1 = document.getElementById('save-main-logo1');
@@ -721,7 +723,24 @@
 
     let code;
 
-    $('#nextBtn').click(function() {
+    // $('#nextBtn').click(function() {
+    //     const authEmail = $('#memberSaveForm-input1').val();
+    //     console.log("이메일 확인용: " + authEmail);
+    //
+    //     axios.get('/member/mailAuth', {
+    //         params: {
+    //             email: authEmail
+    //         }
+    //     }).then(function(response) {
+    //         console.log(response.data);
+    //         code = response.data;
+    //         alert("인증번호가 전송되었습니다");
+    //     }).catch(function(error) {
+    //         console.log(error);
+    //     });
+    // });
+
+    function sendEmailAuthCode() {
         const authEmail = $('#memberSaveForm-input1').val();
         console.log("이메일 확인용: " + authEmail);
 
@@ -732,11 +751,17 @@
         }).then(function(response) {
             console.log(response.data);
             code = response.data;
-            alert("인증번호가 전송되었습니다");
+            // alert("인증번호가 전송되었습니다");
         }).catch(function(error) {
             console.log(error);
         });
-    });
+    }
+
+    $('#nextBtn').click(sendEmailAuthCode);
+    $('#resendBtn').click(sendEmailAuthCode);
+
+
+    let isCodeValid = false;
 
     // 인증번호 비교
     // blur -> focus가 벗어나는 경우 발생
@@ -745,142 +770,139 @@
         const $resultMsg = $('#emailAuth-warn');
 
         if(parseInt(inputCode) === parseInt(code)){
-            $resultMsg.html('인증번호가 일치합니다.');
-            $resultMsg.css('color','green');
+            // $resultMsg.html('인증번호가 일치합니다.');
+            // $resultMsg.css('color','green');
+            $resultMsg.html('');
+            isCodeValid = true;
         }else{
             $resultMsg.html('코드가 유효하지 않습니다. 새 코드를 요청하세요.');
             $resultMsg.css('color','red');
+            isCodeValid = false;
         }
     });
 
     // 이메일 유효성 검사
-    // $('#memberSaveForm-input1').blur(function () {
-    //     const inputEmail = $(this).val();
-    //     const emailCheckIcon = $('#email-check-icon');
-    //     const exp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    //
-    //     if (inputEmail === '' || !exp.test(inputEmail)) {
-    //         emailCheckIcon.removeClass();
-    //         emailCheckIcon.addClass('input-value-check-img-item');
-    //         return false;
-    //     }
-    //
-    //     axios({
-    //         method: "post",
-    //         url: `/member/${inputEmail}/dup-check`,
-    //         data: {
-    //             memberEmail: inputEmail
-    //         }
-    //     }).then(res => {
-    //         if (res.data === true) {
-    //             emailCheckIcon.removeClass();
-    //             emailCheckIcon.addClass('input-value-check-img-item');
-    //         } else {
-    //             emailCheckIcon.removeClass();
-    //             emailCheckIcon.addClass('input-value-check-img-item1');
-    //         }
-    //     }).catch(err => {
-    //         emailCheckIcon.addClass('input-value-check-img-item1');
-    //     });
-    //
-    // })
-
-    const emailBlurHandler = function() {
-        const inputEmail = $(this).val();
+    function emailBlurHandler() {
+        const inputEmail = $('#memberSaveForm-input1').val();
         const emailCheckIcon = $('#email-check-icon');
         const exp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        let pass = false;
 
-        if (inputEmail === '' || !exp.test(inputEmail)) {
-            emailCheckIcon.removeClass();
-            emailCheckIcon.addClass('input-value-check-img-item');
-            return false;
-        }
-
-        axios({
-            method: "post",
-            url: `/member/${inputEmail}/dup-check`,
-            data: {
-                memberEmail: inputEmail
-            }
-        }).then(res => {
-            if (res.data === true) {
+        $.ajax({
+            method: "POST",
+            url: `/member/email-check/${inputEmail}`,
+            data: JSON.stringify({ memberEmail: inputEmail }),
+            contentType: "application/json",
+            async: false,
+            success: function(res) {
+                console.log("이메일" + res);
+                if (res === true) {
+                    emailCheckIcon.removeClass();
+                    emailCheckIcon.addClass('input-value-check-img-item1');
+                    pass = true;
+                } else {
+                    emailCheckIcon.removeClass();
+                    emailCheckIcon.addClass('input-value-check-img-item');
+                    pass = false;
+                }
+            },
+            error: function(err) {
                 emailCheckIcon.removeClass();
                 emailCheckIcon.addClass('input-value-check-img-item');
-            } else {
-                emailCheckIcon.removeClass();
-                emailCheckIcon.addClass('input-value-check-img-item1');
+                pass = false;
             }
-        }).catch(err => {
-            emailCheckIcon.addClass('input-value-check-img-item1');
         });
+
+        return pass;
     }
 
     $('#memberSaveForm-input1').blur(emailBlurHandler);
 
 
     // 이름 유효성 검사
-    $('#memberSaveForm-input2').blur(function () {
-        const inputName = $(this).val();
+    const nameBlurHandler = function () {
+        const inputName = $('#memberSaveForm-input2').val();
         const nameCheckIcon = $('#name-check-icon');
         const exp = /^([A-Za-z\s.'-]{4,}|[가-힣]{2,4})$/;
 
-        if (inputName === '' || !exp.test(inputName)) {
+        if (inputName === '') {
+            nameCheckIcon.removeClass();
+            nameCheckIcon.addClass('input-value-check-img-item');
+            return false;
+        } else if (!exp.test(inputName)){
             nameCheckIcon.removeClass();
             nameCheckIcon.addClass('input-value-check-img-item');
             return false;
         } else {
             nameCheckIcon.removeClass();
             nameCheckIcon.addClass('input-value-check-img-item1');
+            return true;
         }
+    }
 
-    })
+    $('#memberSaveForm-input2').blur(nameBlurHandler);
 
     // 사용자 이름 유효성 검사
-    $('#memberSaveForm-input3').blur(function () {
-        const inputNickname = $(this).val();
+    function nicknameBlurHandler() {
+        const inputNickname = $('#memberSaveForm-input3').val();
         const nicknameCheckIcon = $('#nickname-check-icon');
         const exp = /^(?!.*[._])[\w.]{4,20}$/;
+        let pass = false;
 
-        if (inputNickname === '' || !exp.test(inputNickname)) {
-            nicknameCheckIcon.removeClass();
-            nicknameCheckIcon.addClass('input-value-check-img-item');
-            return false;
-        }
-        axios({
-            method: "post",
-            url: `/member/${inputNickname}/dupl-check`,
-            data: {
-                memberNickName : inputNickname
-            }
-        }).then(res => {
-            if (res.data === true) {
+        $.ajax({
+            method: "POST",
+            url: `/member/nickname-check/${inputNickname}`,
+            data: JSON.stringify({ memberNickName: inputNickname }),
+            contentType: "application/json",
+            async: false,
+            success: function(res) {
+                console.log("닉네임" + res);
+                if (res === true) {
+                    nicknameCheckIcon.removeClass();
+                    nicknameCheckIcon.addClass('input-value-check-img-item1');
+                    pass = true;
+                } else {
+                    nicknameCheckIcon.removeClass();
+                    nicknameCheckIcon.addClass('input-value-check-img-item');
+                    pass = false;
+                }
+            },
+            error: function(err) {
                 nicknameCheckIcon.removeClass();
                 nicknameCheckIcon.addClass('input-value-check-img-item');
-            } else {
-                nicknameCheckIcon.removeClass();
-                nicknameCheckIcon.addClass('input-value-check-img-item1');
+                pass = false;
             }
-        }).catch(err => {
-            nicknameCheckIcon.addClass('input-value-check-img-item1');
         });
-    })
+
+        return pass;
+    }
+
+    $('#memberSaveForm-input3').blur(nicknameBlurHandler);
 
     // 비밀번호 유효성 검사
-    $('#memberSaveForm-input4').blur(function () {
-        const inputPassword = $(this).val();
+    const passwordBlurHandler = function () {
+        const inputPassword = $('#memberSaveForm-input4').val();
         const passwordCheckIcon = $('#password-check-icon');
         const exp = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[!$@%])[a-zA-Z\d!$@%]{6,15}$/;
 
-        if (inputPassword === '' || !exp.test(inputPassword)) {
+        if (inputPassword === '') {
             passwordCheckIcon.removeClass();
             passwordCheckIcon.addClass('input-value-check-img-item');
+            return false;
+        } else if (!exp.test(inputPassword)) {
+            passwordCheckIcon.removeClass();
+            passwordCheckIcon.addClass('input-value-check-img-item');
+            return false;
         } else {
             passwordCheckIcon.removeClass();
             passwordCheckIcon.addClass('input-value-check-img-item1');
+            return true;
         }
-    })
+    }
 
-   // 비밀번호 표시
+    $('#memberSaveForm-input4').blur(passwordBlurHandler);
+
+    // 비밀번호 표시
     const passwordInput = document.getElementById('memberSaveForm-input4');
     const inputTypeChange = document.getElementById('input-type-change');
 
@@ -907,9 +929,52 @@
         }
     });
 
-    // function isValidForm() {
-    //     const isEmailValid =
-    // }
+    function isValidForm() {
+        const isEmailValid = emailBlurHandler();
+        const isNameValid = nameBlurHandler();
+        const isNicknameValid = nicknameBlurHandler();
+        const isPasswordValid = passwordBlurHandler();
+        let validResult = document.getElementById("sign-up-valid-result");
+
+        console.log("mail" + isEmailValid);
+        console.log("name" + isNameValid);
+        console.log("nick" + isNicknameValid);
+        console.log("pass" + isPasswordValid);
+
+        if (!isEmailValid) {
+            validResult.innerText = "Enter a valid email address";
+            validResult.style.color = "red";
+        } else if (!isNameValid) {
+            validResult.innerText = "Enter a valid name";
+            validResult.style.color = "red";
+        } else if (!isNicknameValid) {
+            validResult.innerText = "Enter a valid user name";
+            validResult.style.color = "red";
+        } else if (!isPasswordValid) {
+            validResult.innerText = "Enter a valid password";
+            validResult.style.color = "red";
+        }
+
+        if (
+            isEmailValid &&
+            isNameValid &&
+            isNicknameValid &&
+            isPasswordValid
+        ) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    function signup_check() {
+        if (isCodeValid) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 
 </script>

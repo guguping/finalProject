@@ -24,14 +24,36 @@ public class AxiosController {
     private final LikeServie likeServie;
     private final BookmarkService bookmarkService;
 
-    @PostMapping("/member/{inputEmail}/dup-check")
+    @PostMapping("/member/email-check/{inputEmail}")
     public ResponseEntity<Boolean> mailCheck(@PathVariable String inputEmail) {
-        return ResponseEntity.ok(memberSerivce.mailCheck(inputEmail));
+        System.out.println(inputEmail);
+        boolean isEmailExist = memberSerivce.mailCheck(inputEmail);
+        System.out.println(isEmailExist);
+        if (inputEmail.length() == 0) {
+            return ResponseEntity.ok(false);
+        } else if (!inputEmail.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+            return ResponseEntity.ok(false);
+        } else if (isEmailExist) {
+            return ResponseEntity.ok(false);
+        } else {
+            return ResponseEntity.ok(true);
+        }
+//        return ResponseEntity.ok(memberSerivce.mailCheck(inputEmail));
     }
 
-    @PostMapping("/member/{inputNickname}/dupl-check")
+    @PostMapping("/member/nickname-check/{inputNickname}")
     public ResponseEntity<Boolean> nicknameCheck(@PathVariable String inputNickname) {
-        return ResponseEntity.ok(memberSerivce.nicknameCheck(inputNickname));
+        boolean isNickNameExist = memberSerivce.nicknameCheck(inputNickname);
+        if (inputNickname.length() == 0) {
+            return ResponseEntity.ok(false);
+        } else if (!inputNickname.matches("^(?!.*[._])[\\w.]{4,20}$")) {
+            return ResponseEntity.ok(false);
+        } else if (isNickNameExist) {
+            return ResponseEntity.ok(false);
+        } else {
+            return ResponseEntity.ok(true);
+        }
+//        return ResponseEntity.ok(memberSerivce.nicknameCheck(inputNickname));
     }
 
     @GetMapping("/board/{id}")
