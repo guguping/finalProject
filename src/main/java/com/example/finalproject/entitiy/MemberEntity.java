@@ -4,6 +4,9 @@ import com.example.finalproject.domain.Role;
 import com.example.finalproject.dto.MemberDTO;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.*;
@@ -12,7 +15,7 @@ import java.util.*;
 @Table(name = "member_table")
 @Getter
 @Setter
-public class MemberEntity extends BaseEntity {
+public class MemberEntity extends BaseEntity implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -111,4 +114,41 @@ public class MemberEntity extends BaseEntity {
 
     @OneToMany(mappedBy = "memberEntity", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<BoardBookmarkEntity> boardBookmarkEntityList = new ArrayList<>();
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.singleton(new SimpleGrantedAuthority(Role.ROLE_MEMBER.name()));
+    }
+
+    @Override
+    public String getPassword() {
+        return memberPassword;
+    }
+
+
+    @Override
+    public String getUsername() {
+        return memberEmail;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
 }
