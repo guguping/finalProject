@@ -31,6 +31,9 @@ public class BoardDTO {
 
     private List<String> storedFileName;
 
+    private int boardLikeCount;
+    private int boardCommentCount;
+
 
     public static BoardDTO toDTO(BoardEntity boardEntity) {
         BoardDTO boardDTO = new BoardDTO();
@@ -40,6 +43,27 @@ public class BoardDTO {
         boardDTO.setBoardBlind(boardEntity.getBoardBlind());
         boardDTO.setCreatedAt(UtilClass.dateFormat(boardEntity.getCreatedAt()));
         boardDTO.setBoardUpdate(boardEntity.getBoardUpdate());
+
+        // 파일 조회
+        List<String> storedFileNameList = new ArrayList<>();
+        for (BoardFileEntity boardFileEntity : boardEntity.getBoardFileEntityList()) {
+            storedFileNameList.add(boardFileEntity.getStoredFileName());
+        }
+        boardDTO.setStoredFileName(storedFileNameList);
+
+        return boardDTO;
+    }
+
+    public static BoardDTO toMyPageDTO(BoardEntity boardEntity, int likeCount, int commentCount) {
+        BoardDTO boardDTO = new BoardDTO();
+        boardDTO.setId(boardEntity.getId());
+        boardDTO.setMemberId(boardEntity.getMemberEntity().getId());
+        boardDTO.setBoardContents(boardEntity.getBoardContents());
+        boardDTO.setBoardBlind(boardEntity.getBoardBlind());
+        boardDTO.setCreatedAt(UtilClass.dateFormat(boardEntity.getCreatedAt()));
+        boardDTO.setBoardUpdate(boardEntity.getBoardUpdate());
+        boardDTO.setBoardLikeCount(likeCount);
+        boardDTO.setBoardCommentCount(commentCount);
 
         // 파일 조회
         List<String> storedFileNameList = new ArrayList<>();

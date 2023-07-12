@@ -31,7 +31,7 @@
                                                                         <button class="_aadn" title="프로필 사진 바꾸기"
                                                                                 type="button"
                                                                                 onclick="userImgChangeOn()">
-                                                                            <img th:src="@{/images/test프로필.jpg}"
+                                                                            <img th:src="@{|/upload/${memberDTO.memberProfile}}"
                                                                                  class="myPage-main-img">
                                                                         </button>
 
@@ -43,7 +43,7 @@
                                                                     <a href="#" class="myPage-member-nickName">
 
                                                                         <!--myPage 상단 유저 닉네임-->
-                                                                        <h2 class="member-nickName-te">guping__</h2>
+                                                                        <h2 class="member-nickName-te" th:text="${memberDTO.memberNickName}"></h2>
 
                                                                     </a>
                                                                     <div class="myPage-user-profile-edit">
@@ -95,7 +95,7 @@
                                                                         <span class="_ac2a">
 
                                                                             <!--회원이 작성한 게시글 갯수-->
-                                                                            <span>54</span>
+                                                                            <span th:text="${#lists.size(boardDTOList)}"></span>
                                                                         </span>
                                                                     </li>
                                                                     <li class="myPage-member-count-tap-1">
@@ -103,7 +103,7 @@
                                                                             팔로워
 
                                                                             <!--회원 팔로워 갯수-->
-                                                                            <span class="_ac2a" title="45"><span>45</span></span>
+                                                                            <span class="_ac2a" title="45"><span th:text="${memberFollowerCount}"></span></span>
                                                                         </a>
                                                                     </li>
                                                                     <li class="myPage-member-count-tap-1">
@@ -111,17 +111,16 @@
                                                                             팔로우
 
                                                                             <!--회원 팔로우 갯수-->
-                                                                            <span class="_ac2a"><span>52</span></span>
+                                                                            <span class="_ac2a"><span th:text="${memberFollowingCount}"></span></span>
                                                                         </a>
                                                                     </li>
                                                                 </ul>
                                                                 <div class="myPage-member-memberTxt">
                                                                     <div class="myPage-member-memberTxt-top">
-                                                                        <span class="myPage-member-memberTxt-top-1">
-                                                                            호섭 이
+                                                                        <span class="myPage-member-memberTxt-top-1" th:text="${memberDTO.memberName}">
                                                                         </span>
                                                                     </div>
-                                                                    <h1 class="myPage-top-memberTxt-2" dir="auto">내머리속</h1>
+                                                                    <h1 class="myPage-top-memberTxt-2" dir="auto" th:text="${memberDTO.memberText}"></h1>
                                                                 </div>
                                                             </section>
                                                         </header>
@@ -247,7 +246,7 @@
                                                                                                     <span class="board-img-on-event-li-text-box">
 
                                                                                                         <!--게시글 하트 갯수-->
-                                                                                                        <span>21</span>
+                                                                                                        <span th:text="${boardDTO.boardLikeCount}"></span>
 
                                                                                                     </span>
 
@@ -260,7 +259,7 @@
                                                                                                     <span class="board-img-on-event-li-text-box">
 
                                                                                                         <!--게시글 댓글 갯수-->
-                                                                                                        <span>0</span>
+                                                                                                        <span th:text="${boardDTO.boardCommentCount}"></span>
 
                                                                                                     </span>
                                                                                                         <span class="board-img-on-event-li-logo-comment"></span>
@@ -868,9 +867,9 @@
                 "\n" +
                 "                                                                            <!--하단의 페이징 넘버-->\n" +
                 "                                                                            <div class=\"detail-img-bottom-num-box\">\n" +
-                "                                                                                <div class=\"detail-img-bottom-num-on\"></div>\n" +
-                "                                                                                <div class=\"detail-img-bottom-num-off\"></div>\n" +
-                "                                                                                <div class=\"detail-img-bottom-num-on\"></div>\n" +
+                // "                                                                                <div class=\"detail-img-bottom-num-on\"></div>\n" +
+                // "                                                                                <div class=\"detail-img-bottom-num-off\"></div>\n" +
+                // "                                                                                <div class=\"detail-img-bottom-num-on\"></div>\n" +
                 "                                                                            </div>\n" +
                 "\n" +
                 "                                                                        </div>\n" +
@@ -894,7 +893,9 @@
                 "                                                                                                            <a href=\"#\"\n" +
                 "                                                                                                               class=\"user-myPage-link\">\n" +
                 "                                                                                                                <img \n" +
-                "                                                                                                                     class=\"user-myPage-link-img\">\n" +
+                "                                                                                                                     class=\"user-myPage-link-img\"\n" +
+                "                                                                                                                     src=\"/upload/" + memberDTO.memberProfile + "\"" +
+                "                                                                                                                     >\n" +
                 "                                                                                                            </a>\n" +
                 "\n" +
                 "                                                                                                        </div>\n" +
@@ -1086,7 +1087,7 @@
                 "\n" +
                 "                                                                                                                                    <!--게시글 상세 댓글을 단 사용자 myPage 이동 링크-->\n" +
                 "                                                                                                                                    <a href=\"#\"\n" +
-                "                                                                                                                                       class=\"comment-user-going\">" + memberDTO.memberNickName + "</a>\n" +
+                "                                                                                                                                       class=\"comment-user-going\"> 댓글 단 사람 닉네임(변경필)" + memberDTO.memberNickName + "</a>\n" +
                 "\n" +
                 "                                                                                                                                </div>\n" +
                 "                                                                                                                            </div>\n" +
@@ -1172,6 +1173,7 @@
             resultArea.style.display = "";
             resultArea.innerHTML = output;
 
+            // 사진 next, back 버튼 제어
             if (fileSize == 1) {
                 nextBtn_controller("off");
                 backBtn_controller("off");
@@ -1184,16 +1186,23 @@
                 backBtn_controller("off");
             }
 
+            // 좋아요 버튼 제어
             if (boardLike) {
                 board_like_controller("unLike");
             } else {
                 board_like_controller("like");
             }
 
+            // 북마크 버튼 제어
             if (boardBookmark) {
                 board_bookmark_controller("unBookmark");
             } else {
                 board_bookmark_controller("bookmark");
+            }
+
+            // 사진 페이징 표기 제어
+            if (fileSize > 1) {
+                board_img_paging_controller(i);
             }
         }).catch(err => {
             alert("detail 실패");
@@ -1301,5 +1310,26 @@
     const member_logout = () => {
         location.href = "/member/logout";
     }
+
+    const board_img_paging_controller = (imgPage) => {
+        for (let p = 0; p < fileSize; p++) {
+            // 부모 요소 선택
+            var parentElement = document.querySelector('.detail-img-bottom-num-box');
+
+            // 자식 요소 생성
+            var childElement = document.createElement('div');
+            childElement.className = 'detail-img-bottom-num-on';
+            var childElementOff = document.createElement('div');
+            childElementOff.className = 'detail-img-bottom-num-off';
+
+            // 자식 요소를 부모 요소의 하위로 추가
+            if (p == imgPage) {
+                parentElement.appendChild(childElementOff);
+            } else {
+                parentElement.appendChild(childElement);
+            }
+        }
+    }
+
 </script>
 </html>

@@ -9,4 +9,6 @@ import java.util.List;
 
 public interface BoardCommentRepository extends JpaRepository<BoardCommentEntity, Long> {
     List<BoardCommentEntity> findByBoardEntityOrderByIdDesc(BoardEntity boardEntity);
+
+    List<BoardCommentEntity> findByBoardEntity(BoardEntity boardEntity);
 }

@@ -3,8 +3,10 @@ package com.example.finalproject.controller;
 import com.example.finalproject.dto.BoardDTO;
 import com.example.finalproject.dto.BoardFileDTO;
 import com.example.finalproject.dto.MemberDTO;
+import com.example.finalproject.dto.MemberFollowDTO;
 import com.example.finalproject.serivce.BoardService;
 import com.example.finalproject.serivce.MailSendService;
+import com.example.finalproject.serivce.MemberFollowService;
 import com.example.finalproject.serivce.MemberSerivce;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +24,7 @@ public class MemberController {
     private final MemberSerivce memberSerivce;
     private final MailSendService mailSendService;
     private final BoardService boardService;
+    private final MemberFollowService memberFollowService;
 
     @GetMapping("/save")
     public String saveForm() {
@@ -70,11 +73,17 @@ public class MemberController {
         MemberDTO memberDTO = memberSerivce.findById(id);
         // 해당 피드의 멤버가 작성한 board 정보 가져오기
         List<BoardDTO> boardDTOList = boardService.findByMemberId(id);
-        List<BoardFileDTO> boardFileDTOList = boardService.findAllFile();
+        List<BoardFileDTO> boardFileDTOList = boardService.findAllFileOrderByDesc();
+        List<MemberFollowDTO> memberFollowerDTOList = memberFollowService.findByFollower(id);
+        List<MemberFollowDTO> memberFollowingDTOList = memberFollowService.findByFollowing(id);
+        int memberFollowerCount = memberFollowerDTOList.size();
+        int memberFollowingCount = memberFollowingDTOList.size();
 
         model.addAttribute("memberDTO", memberDTO);
         model.addAttribute("boardDTOList", boardDTOList);
         model.addAttribute("boardFileDTOList", boardFileDTOList);
+        model.addAttribute("memberFollowerCount", memberFollowerCount);
+        model.addAttribute("memberFollowingCount", memberFollowingCount);
         return "memberPages/myPage";
     }
 
