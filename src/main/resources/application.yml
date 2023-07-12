@@ -49,10 +49,6 @@ logging:
             sql:
               BasicBinder: trace
 
-security:
-  jwt:
-    header: Authorization
-    secret: ${JWT_SECRET_KEY:default-secret}
-    token-validity-in-seconds: 86400
+
 
 

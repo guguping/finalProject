@@ -30,7 +30,7 @@ public class MemberController {
 
     @PostMapping("/save")
     public String save(@ModelAttribute MemberDTO memberDTO) {
-        memberDTO.setMemberBirth(memberDTO.getMemberBirthM() + memberDTO.getMemberBirthD() + memberDTO.getMemberBirthY());
+        memberDTO.setMemberBirth(memberDTO.getMemberBirthY() + memberDTO.getMemberBirthM() + memberDTO.getMemberBirthD());
         memberSerivce.save(memberDTO);
         return "redirect:/";
     }
