@@ -6,5 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface BoardReelsRepository extends JpaRepository<BoardReelsEntity,Long> {
+public interface ReelsCommentRepository extends JpaRepository<BoardReelsCommentEntity,Long> {
+    List<BoardReelsCommentEntity> findByBoardReelsEntityOrderByIdDesc(BoardReelsEntity boardReelsEntity);
 }

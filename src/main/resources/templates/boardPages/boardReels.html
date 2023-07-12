@@ -230,7 +230,7 @@
 
                                                                         <div class="reels-v-s-m-l">
                                                                             <div class="reels-v-s-m-c">
-                                                                                <div class="reels-v-s-m-c-" th:onclick="reelsCommentOaF()">
+                                                                                <div class="reels-v-s-m-c-" th:onclick="reelsCommentOaF([[${reelsList.id}]],[[${reelsList.memberId}]])">
 
                                                                                     <!--릴스 댓글 버튼-->
                                                                                     <svg aria-label="댓글"
@@ -919,13 +919,25 @@
             myVid.muted = false;
         }
     }
-    const reelsCommentOaF = () => {
+    const reelsCommentOaF = (boardId, memberId) => {
         const commentBox = document.getElementById('reels-s-c-mo');
         if (commentBox.style.display === "none") {
             commentBox.style.display = "block";
         } else {
             commentBox.style.display = "none";
         }
+        axios({
+            method: "post",
+            url: "/Reels/comment",
+            data: {
+                id:boardId,
+                memberId:memberId
+            }
+        }).then(res => {
+            console.log("성공");
+        }).catch(err => {
+            console.log("실패");
+        })
     }
 </script>
 </html>
