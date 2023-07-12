@@ -12,4 +12,8 @@ import java.util.List;
 public interface MemberFollowRepository extends JpaRepository<MemberFollowEntity,Long> {
 //    List<MemberFollowEntity> findByFollowerId(Long memberId);
 
+    List<MemberFollowEntity> findByFollowerMemberEntity(MemberEntity memberEntity);
+
+    List<MemberFollowEntity> findByFollowingMemberEntity(MemberEntity memberEntity);
+
 }

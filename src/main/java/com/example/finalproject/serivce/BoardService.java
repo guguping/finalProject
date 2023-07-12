@@ -4,13 +4,10 @@ import com.example.finalproject.dto.BoardDTO;
 import com.example.finalproject.dto.BoardFileDTO;
 import com.example.finalproject.dto.MemberDTO;
 import com.example.finalproject.dto.MemberFollowDTO;
-import com.example.finalproject.entitiy.BoardEntity;
-import com.example.finalproject.entitiy.BoardFileEntity;
-import com.example.finalproject.entitiy.MemberEntity;
-import com.example.finalproject.repository.BoardFileRepository;
-import com.example.finalproject.repository.BoardRepository;
-import com.example.finalproject.repository.MemberRepository;
+import com.example.finalproject.entitiy.*;
+import com.example.finalproject.repository.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,6 +25,8 @@ public class BoardService {
     private final BoardRepository boardRepository;
     private final BoardFileRepository boardFileRepository;
     private final MemberRepository memberRepository;
+    private final BoardCommentRepository boardCommentRepository;
+    private final BoardLikeRepository boardLikeRepository;
 
     public Long save(BoardDTO boardDTO) throws IOException {
         // 로그인한 아이디의 memberDTO 가져오기
@@ -86,9 +85,12 @@ public class BoardService {
         List<BoardDTO> boardDTOList = new ArrayList<>();
         List<BoardEntity> boardEntityList = boardRepository.findByMemberEntityOrderByIdDesc(memberEntity);
         boardEntityList.forEach(boardEntity -> {
-            boardDTOList.add(BoardDTO.toDTO(boardEntity));
+            List<BoardLikeEntity> boardLikeEntityList = boardLikeRepository.findByBoardEntity(boardEntity);
+            int boardLikeCount = boardLikeEntityList.size();
+            List<BoardCommentEntity> boardCommentEntityList = boardCommentRepository.findByBoardEntity(boardEntity);
+            int boardCommentCount = boardCommentEntityList.size();
+            boardDTOList.add(BoardDTO.toMyPageDTO(boardEntity, boardLikeCount, boardCommentCount));
         });
-        System.out.println("boardDTOList = " + boardDTOList);
         return boardDTOList;
     }
 
@@ -103,6 +105,16 @@ public class BoardService {
     public List<BoardFileDTO> findBoardFile(Long id) {
         BoardEntity boardEntity = boardRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
         List<BoardFileEntity> boardFileEntityList = boardFileRepository.findByBoardEntity(boardEntity);
+        List<BoardFileDTO> boardFileDTOList = new ArrayList<>();
+        boardFileEntityList.forEach(boardFileEntity -> {
+            boardFileDTOList.add(BoardFileDTO.toDTO(boardFileEntity));
+        });
+        return boardFileDTOList;
+    }
+
+    @Transactional
+    public List<BoardFileDTO> findAllFileOrderByDesc() {
+        List<BoardFileEntity> boardFileEntityList = boardFileRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
         List<BoardFileDTO> boardFileDTOList = new ArrayList<>();
         boardFileEntityList.forEach(boardFileEntity -> {
             boardFileDTOList.add(BoardFileDTO.toDTO(boardFileEntity));
