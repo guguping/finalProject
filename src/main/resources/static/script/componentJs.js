@@ -240,7 +240,6 @@ function readImages(input) {
         }
 
 
-
         function showPage(pageNumber) {
             const images = previewImageContainer.getElementsByTagName('img');
             const startIndex = (pageNumber - 1) * itemsPerPage;
@@ -280,6 +279,7 @@ function readImages(input) {
                 }
             }
         }
+
         function goToPrevPage() {
             if (currentPage > 1) {
                 currentPage--;
@@ -318,7 +318,7 @@ const image_check = () => {
 var boardMainContainers = document.querySelectorAll(".boardMain-main-board-img-box"); // 게시물 컨테이너들 선택
 
 // 각 게시물 컨테이너에 대해 이미지 페이징 초기화
-boardMainContainers.forEach(function(boardMainContainer) {
+boardMainContainers.forEach(function (boardMainContainer) {
     var imageContainer = boardMainContainer.querySelector("#imageContainer"); // 이미지 컨테이너 선택
     var imageElements; // 이미지 요소들
     var currentPage = 1; // 초기 페이지 값
@@ -407,32 +407,42 @@ boardMainContainers.forEach(function(boardMainContainer) {
     // 페이지 로드 시 이미지 페이징 초기화
     window.addEventListener("load", initImagePaging);
 });
-// const comment_list = (commentList) => {
-//     console.log("댓글 목록 함수", commentList);
-//     const resultArea = document.querySelector("#comment-list");
-//     let output = "        <table class=\"table\">\n" +
-//         "            <tr>\n" +
-//         "                <th>id</th>\n" +
-//         "                <th>writer</th>\n" +
-//         "                <th>contents</th>\n" +
-//         "                <th>date</th>\n" +
-//         "            </tr>";
-//     for (let i in commentList) {
-//         output += "<tr>\n" +
-//             "                <td>" + commentList[i].id + "</td>\n" +
-//             "                <td>" + commentList[i].commentWriter + "</td>\n" +
-//             "                <td>" + commentList[i].commentContents + "</td>\n" +
-//             "                <td>" + commentList[i].createdAt + "</td>\n" +
-//             "            </tr>";
-//     }
-//     output += "</table>";
-//     resultArea.innerHTML = output;
-// }
 
-const comment_write = (boardId,memberId) => {
+
+const comment_list = (commentList, memberNickname) => {
+    console.log("댓글 목록 함수", commentList);
+    const resultArea = document.querySelector("#comment-list");
+    resultArea.innerHTML = '';
+
+    const latestComments = commentList.slice(0, 2);
+
+    for (let i in latestComments) {
+        const commentHtml = `
+            <div class="board-contents-comment-small1">
+                <div class="board-contents-comment-box">
+                    <div style="display: inline;">
+                        <div style="display: inline;">
+                            <a href="#" class="board-contents-writer">
+                                <span class="djelRKwlemfdjrk">
+                                    <div class="wkrtjdwkdlqfur">${memberNickname}</div>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    <span class="board-contents-margin"> </span>
+                    <span class="board-contents-text-contents">
+                        <span class="board-contents-text-contents-inner">${latestComments[i].commentContents}</span>
+                    </span>
+                </div>
+            </div>
+        `;
+        resultArea.innerHTML += commentHtml;
+    }
+};
+
+const comment_write = (boardId, memberId) => {
     const contents = document.querySelector("#commentContents").value;
-    // const boardId = [[${boardDTO.id}]];
-    // const memberId = "${session.memberId}";
+    console.log("contents = " + contents);
     axios({
         method: "post",
         url: "/comment/save",
@@ -442,14 +452,22 @@ const comment_write = (boardId,memberId) => {
             memberId: memberId
         }
     }).then(res => {
+        const boardMain = res.data;
+        const memberDTO = boardMain.memberDTO;
+        const commentList = boardMain.commentDTOList;
         console.log("res", res);
-        // console.log("댓글 목록", res.data);
-        // document.querySelector("#comment-contents").value = "";
-        // comment_list(res.data);
+        console.log("댓글 목록", res.data);
+        document.querySelector("#commentContents").value = "";
+
+        // 멤버 닉네임 설정
+        const memberNickname = memberDTO.memberNickName;
+
+        comment_list(commentList, memberNickname);
     }).catch(err => {
         console.log("err", err);
+        alert("실패");
     });
-}
+};
 
 
 

@@ -42,6 +42,21 @@ public class BoardCommentService {
         });
         return commentDTOList;
     }
+
+    public List<BoardCommentDTO> findAll() {
+
+        // 1. BoardEntity에서 댓글 목록 가져오기
+//        List<CommentEntity> commentEntityList = boardEntity.getCommentEntityList();
+        // 2. CommentRepository에서 가져오기
+        // select * from comment_table where board_id=?
+        List<BoardCommentEntity> commentEntityList = boardCommentRepository.findAll();
+
+        List<BoardCommentDTO> commentDTOList = new ArrayList<>();
+        commentEntityList.forEach(comment -> {
+            commentDTOList.add(BoardCommentDTO.toDTO(comment));
+        });
+        return commentDTOList;
+    }
 }
 
 

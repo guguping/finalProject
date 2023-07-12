@@ -24,6 +24,7 @@ public class BoardCommentDTO {
         boardCommentDTO.setId(boardCommentEntity.getId());
         boardCommentDTO.setCommentContents(boardCommentEntity.getCommentContents());
         boardCommentDTO.setBoardId(boardCommentEntity.getBoardEntity().getId());
+        boardCommentDTO.setMemberId(boardCommentEntity.getMemberEntity().getId());
         boardCommentDTO.setCreatedAt(UtilClass.dateFormat(boardCommentEntity.getCreatedAt()));
         return boardCommentDTO;
     }

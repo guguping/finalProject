@@ -227,50 +227,50 @@
                                                                     </div>
                                                                 </div>
                                                                 <th:block th:each="boardDTO:${boardDTOList}">
-<!--                                                                    <th:block-->
-<!--                                                                            th:each="memberFollowDTO :${memberFollowList}">-->
+                                                                    <!--                                                                    <th:block-->
+                                                                    <!--                                                                            th:each="memberFollowDTO :${memberFollowList}">-->
 
-<!--                                                                        <th:block-->
-<!--                                                                                th:if="${session.memberId == boardDTO.getMemberId() or (session.memberId == boardDTO.getFollowerId() and boardDTO.getMemberId() == boardDTO.getFollowingId())}">-->
-                                                                            <!--board 게시글 list -->
-                                                                            <div class="boardMain-main-list-box">
-                                                                                <div class="boardMain-main-list-inner">
-                                                                                    <div class="boardMain-main-list-form">
-                                                                                        <div>
-                                                                                            <div class="boardMain-main-list-form-inner">
-                                                                                                <!--게시글 시작-->
-                                                                                                <article
-                                                                                                        class="boardMain-main-list-item-box">
-                                                                                                    <div class="boardMain-main-list-item-inner">
+                                                                    <!--                                                                        <th:block-->
+                                                                    <!--                                                                                th:if="${session.memberId == boardDTO.getMemberId() or (session.memberId == boardDTO.getFollowerId() and boardDTO.getMemberId() == boardDTO.getFollowingId())}">-->
+                                                                    <!--board 게시글 list -->
+                                                                    <div class="boardMain-main-list-box">
+                                                                        <div class="boardMain-main-list-inner">
+                                                                            <div class="boardMain-main-list-form">
+                                                                                <div>
+                                                                                    <div class="boardMain-main-list-form-inner">
+                                                                                        <!--게시글 시작-->
+                                                                                        <article
+                                                                                                class="boardMain-main-list-item-box">
+                                                                                            <div class="boardMain-main-list-item-inner">
 
-                                                                                                        <!--게시글 작성자-->
-                                                                                                        <div class="boardMain-main-item-writer-box">
-                                                                                                            <div class="boardMain-main-item-writer-inner">
+                                                                                                <!--게시글 작성자-->
+                                                                                                <div class="boardMain-main-item-writer-box">
+                                                                                                    <div class="boardMain-main-item-writer-inner">
 
-                                                                                                                <!--게시글 프로필 , 이름 , 시간-->
-                                                                                                                <header class="boardMain-main-item-writer">
-                                                                                                                    <!--게시글 프로필-->
+                                                                                                        <!--게시글 프로필 , 이름 , 시간-->
+                                                                                                        <header class="boardMain-main-item-writer">
+                                                                                                            <!--게시글 프로필-->
+                                                                                                            <div>
+                                                                                                                <div>
                                                                                                                     <div>
-                                                                                                                        <div>
-                                                                                                                            <div>
-                                                                                                                                <div style="position: relative;">
-                                                                                                                                    <a href="#"
-                                                                                                                                       class="boardMain-main-item-profile">
-                                                                                                                                        <img src="../images/에1리프로필.jpg"
-                                                                                                                                             class="boardMain-item-profile">
-                                                                                                                                    </a>
-                                                                                                                                </div>
-                                                                                                                            </div>
+                                                                                                                        <div style="position: relative;">
+                                                                                                                            <a href="#"
+                                                                                                                               class="boardMain-main-item-profile">
+                                                                                                                                <img src="../images/에1리프로필.jpg"
+                                                                                                                                     class="boardMain-item-profile">
+                                                                                                                            </a>
                                                                                                                         </div>
                                                                                                                     </div>
-                                                                                                                    <!--게시글 작성자 이름 , 시간-->
-                                                                                                                    <div class="boardMain-main-item-writer-time">
-                                                                                                                        <div style="max-width: 100%;display: flex;">
-                                                                                                                            <!--게시글 작성자 이름 -->
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                            <!--게시글 작성자 이름 , 시간-->
+                                                                                                            <div class="boardMain-main-item-writer-time">
+                                                                                                                <div style="max-width: 100%;display: flex;">
+                                                                                                                    <!--게시글 작성자 이름 -->
 
-                                                                                                                            <div style="display: flex;">
-                                                                                                                                <div class="main-item-writer">
-                                                                                                                                    <div class="main-item-writer1">
+                                                                                                                    <div style="display: flex;">
+                                                                                                                        <div class="main-item-writer">
+                                                                                                                            <div class="main-item-writer1">
                                                                                                                             <span class="main-item-writer2">
                                                                                                                                 <div style="display: inline">
                                                                                                                                     <div style="display: inline">
@@ -287,132 +287,134 @@
                                                                                                                                     </div>
                                                                                                                                 </div>
                                                                                                                             </span>
-                                                                                                                                    </div>
-                                                                                                                                </div>
                                                                                                                             </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
 
-                                                                                                                            <!--게시글 작성 시간 -->
-                                                                                                                            <div class="boardMain-main-board-time-box">
-                                                                                                                                <div style="top: 1px;position: relative;">
+                                                                                                                    <!--게시글 작성 시간 -->
+                                                                                                                    <div class="boardMain-main-board-time-box">
+                                                                                                                        <div style="top: 1px;position: relative;">
                                                                                                                         <span class="boardMain-main-board-time-box-inner">
                                                                                                                             <span class="boardMain-main-board-time-item1">•</span>
                                                                                                                             <time datetime="2023-06-25T08:19:04.000Z"
                                                                                                                                   title="6월 25, 2023">1시간</time>
                                                                                                                         </span>
-                                                                                                                                </div>
-                                                                                                                            </div>
                                                                                                                         </div>
                                                                                                                     </div>
-                                                                                                                </header>
-                                                                                                                <!--게시글 수정, 삭제-->
-                                                                                                                <div style="padding: 0;margin-right: -8px;" id="board-modal-on-off">
-                                                                                                                    <button class="boardMain-main-board-plus-btn"  th:if="${session.memberId == boardDTO.memberId}">
-                                                                                                                        <div style="align-items: center;display: flex;justify-content: center;">
-                                                                                                                            <div class="boardMain-main-board-plus-btn-img-box">
-                                                                                                                                <svg aria-label="옵션 더 보기"
-                                                                                                                                     class="_ab6-"
-                                                                                                                                     color="rgb(0, 0, 0)"
-                                                                                                                                     fill="rgb(0, 0, 0)"
-                                                                                                                                     height="24"
-                                                                                                                                     role="img"
-                                                                                                                                     viewBox="0 0 24 24"
-                                                                                                                                     width="24">
-                                                                                                                                    <circle cx="12"
-                                                                                                                                            cy="12"
-                                                                                                                                            r="1.5"></circle>
-                                                                                                                                    <circle cx="6"
-                                                                                                                                            cy="12"
-                                                                                                                                            r="1.5"></circle>
-                                                                                                                                    <circle cx="18"
-                                                                                                                                            cy="12"
-                                                                                                                                            r="1.5"></circle>
-                                                                                                                                </svg>
-                                                                                                                            </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </header>
+                                                                                                        <!--게시글 수정, 삭제-->
+                                                                                                        <div style="padding: 0;margin-right: -8px;"
+                                                                                                             id="board-modal-on-off">
+                                                                                                            <button class="boardMain-main-board-plus-btn"
+                                                                                                                    th:if="${session.memberId == boardDTO.memberId}">
+                                                                                                                <div style="align-items: center;display: flex;justify-content: center;">
+                                                                                                                    <div class="boardMain-main-board-plus-btn-img-box">
+                                                                                                                        <svg aria-label="옵션 더 보기"
+                                                                                                                             class="_ab6-"
+                                                                                                                             color="rgb(0, 0, 0)"
+                                                                                                                             fill="rgb(0, 0, 0)"
+                                                                                                                             height="24"
+                                                                                                                             role="img"
+                                                                                                                             viewBox="0 0 24 24"
+                                                                                                                             width="24">
+                                                                                                                            <circle cx="12"
+                                                                                                                                    cy="12"
+                                                                                                                                    r="1.5"></circle>
+                                                                                                                            <circle cx="6"
+                                                                                                                                    cy="12"
+                                                                                                                                    r="1.5"></circle>
+                                                                                                                            <circle cx="18"
+                                                                                                                                    cy="12"
+                                                                                                                                    r="1.5"></circle>
+                                                                                                                        </svg>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </button>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                                <!--게시글 사진-->
+                                                                                                <!--  작업영역-->
+                                                                                                <div class="boardMain-main-board-img-box"
+                                                                                                     id="boardMain-main-board-img-box">
+                                                                                                    <div class="boardMain-main-board-img-box-inner">
+                                                                                                        <div style="display: block;position: relative;">
+                                                                                                            <div class="img-padding-size"></div>
+                                                                                                            <div class="boardMain-main-board-box">
+                                                                                                                <div class="_aao_">
+                                                                                                                    <div class="_aao_0">
+                                                                                                                        <div class="_aap1">
+                                                                                                                            <ul class="_acay">
+                                                                                                                                <li class="boardMain-main-board-item">
+                                                                                                                                    <div class="boardMain-main-board-item-inner">
+                                                                                                                                        <div class="main-board-item-inner">
+                                                                                                                                            <div>
+                                                                                                                                                <div class="_aato">
+                                                                                                                                                    <div class="_aagv">
+                                                                                                                                                        <th:block
+                                                                                                                                                                th:each="fileName:${boardFileList}">
+                                                                                                                                                            <th:block
+                                                                                                                                                                    th:if="${boardDTO.getId() == fileName.getBoardId()}">
+                                                                                                                                                                <div id="imageContainer">
+                                                                                                                                                                    <img th:src="@{|/upload/${fileName.getStoredFileName()}}"
+                                                                                                                                                                         alt="Board Photo"
+                                                                                                                                                                         style="width: 468px;height: 585px;">
+                                                                                                                                                                </div>
+                                                                                                                                                                <th:block
+                                                                                                                                                                        th:break></th:block>
+                                                                                                                                                            </th:block>
+                                                                                                                                                        </th:block>
+                                                                                                                                                    </div>
+                                                                                                                                                    <div class="_aagw"></div>
+                                                                                                                                                </div>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                </li>
+                                                                                                                            </ul>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                    <!--페이징 버튼 이전 -->
+                                                                                                                    <button class="boardMain-board-paging-left"
+                                                                                                                            tabindex="-1">
+                                                                                                                        <div class="_9zm0">
+
+                                                                                                                        </div>
+                                                                                                                    </button>
+                                                                                                                    <!--페이징 버튼 다음 -->
+                                                                                                                    <button class="boardMain-board-paging-right"
+                                                                                                                            tabindex="-1">
+                                                                                                                        <div class="_9zm2">
+
                                                                                                                         </div>
                                                                                                                     </button>
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
-
-                                                                                                        <!--게시글 사진-->
-                                                                                                        <!--  작업영역-->
-                                                                                                        <div class="boardMain-main-board-img-box"
-                                                                                                             id="boardMain-main-board-img-box">
-                                                                                                            <div class="boardMain-main-board-img-box-inner">
-                                                                                                                <div style="display: block;position: relative;">
-                                                                                                                    <div class="img-padding-size"></div>
-                                                                                                                    <div class="boardMain-main-board-box">
-                                                                                                                        <div class="_aao_">
-                                                                                                                            <div class="_aao_0">
-                                                                                                                                <div class="_aap1">
-                                                                                                                                    <ul class="_acay">
-                                                                                                                                        <li class="boardMain-main-board-item">
-                                                                                                                                            <div class="boardMain-main-board-item-inner">
-                                                                                                                                                <div class="main-board-item-inner">
-                                                                                                                                                    <div>
-                                                                                                                                                        <div class="_aato">
-                                                                                                                                                            <div class="_aagv">
-                                                                                                                                                                <th:block
-                                                                                                                                                                        th:each="fileName:${boardFileList}">
-                                                                                                                                                                    <th:block
-                                                                                                                                                                            th:if="${boardDTO.getId() == fileName.getBoardId()}">
-                                                                                                                                                                        <div id="imageContainer">
-                                                                                                                                                                            <img th:src="@{|/upload/${fileName.getStoredFileName()}}"
-                                                                                                                                                                                 alt="Board Photo"
-                                                                                                                                                                                 style="width: 468px;height: 585px;">
-                                                                                                                                                                        </div>
-                                                                                                                                                                        <th:block
-                                                                                                                                                                                th:break></th:block>
-                                                                                                                                                                    </th:block>
-                                                                                                                                                                </th:block>
-                                                                                                                                                            </div>
-                                                                                                                                                            <div class="_aagw"></div>
-                                                                                                                                                        </div>
-                                                                                                                                                    </div>
-                                                                                                                                                </div>
-                                                                                                                                            </div>
-                                                                                                                                        </li>
-                                                                                                                                    </ul>
-                                                                                                                                </div>
-                                                                                                                            </div>
-                                                                                                                            <!--페이징 버튼 이전 -->
-                                                                                                                            <button class="boardMain-board-paging-left"
-                                                                                                                                    tabindex="-1">
-                                                                                                                                <div class="_9zm0">
-
-                                                                                                                                </div>
-                                                                                                                            </button>
-                                                                                                                            <!--페이징 버튼 다음 -->
-                                                                                                                            <button class="boardMain-board-paging-right"
-                                                                                                                                    tabindex="-1">
-                                                                                                                                <div class="_9zm2">
-
-                                                                                                                                </div>
-                                                                                                                            </button>
-                                                                                                                        </div>
-                                                                                                                    </div>
-                                                                                                                </div>
-                                                                                                                <!--페이징 숫자 공간 -->
-                                                                                                                <div class="boardMain-board-paging-num">
-                                                                                                                    <!--페이징 현재 페이지 -->
-                                                                                                                    <div class="boardMain-board-paging-num-off"></div>
-                                                                                                                    <!--페이징 다음/이전 페이지 -->
-                                                                                                                    <div class="boardMain-board-paging-num-on"></div>
-                                                                                                                    <div class="boardMain-board-paging-num-on"></div>
-                                                                                                                </div>
-                                                                                                            </div>
+                                                                                                        <!--페이징 숫자 공간 -->
+                                                                                                        <div class="boardMain-board-paging-num">
+                                                                                                            <!--페이징 현재 페이지 -->
+                                                                                                            <div class="boardMain-board-paging-num-off"></div>
+                                                                                                            <!--페이징 다음/이전 페이지 -->
+                                                                                                            <div class="boardMain-board-paging-num-on"></div>
+                                                                                                            <div class="boardMain-board-paging-num-on"></div>
                                                                                                         </div>
+                                                                                                    </div>
+                                                                                                </div>
 
 
-                                                                                                        <!--게시글 내용-->
-                                                                                                        <div class="boardMain-main-board-contents-box">
-                                                                                                            <div class="boardMain-main-board-contents-box-inner">
-                                                                                                                <div class="board-contents-box">
-                                                                                                                    <!--좋아요 댓글 북마크 -->
-                                                                                                                    <section
-                                                                                                                            class="board-contents-box-item-box">
-                                                                                                                        <!-- 좋아요 -->
-                                                                                                                        <span style="display: inline-block;margin-left: -8px;">
+                                                                                                <!--게시글 내용-->
+                                                                                                <div class="boardMain-main-board-contents-box">
+                                                                                                    <div class="boardMain-main-board-contents-box-inner">
+                                                                                                        <div class="board-contents-box">
+                                                                                                            <!--좋아요 댓글 북마크 -->
+                                                                                                            <section
+                                                                                                                    class="board-contents-box-item-box">
+                                                                                                                <!-- 좋아요 -->
+                                                                                                                <span style="display: inline-block;margin-left: -8px;">
                                                                                                                 <button class="board-contents-like-btn">
                                                                                                                     <div class="like-btn-logo-form">
                                                                                                                         <span>
@@ -442,8 +444,8 @@
                                                                                                                     </div>
                                                                                                                 </button>
                                                                                                             </span>
-                                                                                                                        <!-- 댓글 -->
-                                                                                                                        <span style="display: inline-block;">
+                                                                                                                <!-- 댓글 -->
+                                                                                                                <span style="display: inline-block;">
                                                                                                                 <button class="board-contents-comment-btn">
                                                                                                                     <div class="comment-btn-logo-form">
                                                                                                                         <svg aria-label="댓글 달기"
@@ -463,8 +465,8 @@
                                                                                                                     </div>
                                                                                                                 </button>
                                                                                                             </span>
-                                                                                                                        <!-- 북마크 -->
-                                                                                                                        <span class="contents-bookMark">
+                                                                                                                <!-- 북마크 -->
+                                                                                                                <span class="contents-bookMark">
                                                                                                                 <div>
                                                                                                                     <div>
                                                                                                                         <button class="board-contents-bookMark-btn">
@@ -505,12 +507,12 @@
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                             </span>
-                                                                                                                    </section>
-                                                                                                                    <!--좋아요 count-->
-                                                                                                                    <section
-                                                                                                                            class="board-contents-like-count-box">
-                                                                                                                        <div class="board-contents-like-count">
-                                                                                                                            <div class="contents-like-count-box">
+                                                                                                            </section>
+                                                                                                            <!--좋아요 count-->
+                                                                                                            <section
+                                                                                                                    class="board-contents-like-count-box">
+                                                                                                                <div class="board-contents-like-count">
+                                                                                                                    <div class="contents-like-count-box">
                                                                                                                     <span class="like-count-box-size">
 
                                                                                                                         <!--좋아요 count 목록 이동-->
@@ -524,31 +526,42 @@
                                                                                                                             </span>
                                                                                                                         </a>
                                                                                                                     </span>
-                                                                                                                            </div>
-                                                                                                                        </div>
-                                                                                                                    </section>
-                                                                                                                    <!--게시글 contents-->
-                                                                                                                    <div class="board-contents-comment-small-list">
-                                                                                                                        <!--게시글 내용-->
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </section>
+                                                                                                            <!--게시글 contents-->
+                                                                                                            <div class="board-contents-comment-small-list">
+                                                                                                                <!--게시글 내용-->
 
-                                                                                                                        <div class="board-contents-text-box">
-                                                                                                                            <div class="board-contents-text">
-                                                                                                                                <div style="display: inline-block;">
-                                                                                                                                    <div style="display: inline;">
-                                                                                                                                        <a href="#"
-                                                                                                                                           class="board-contents-writer">
+                                                                                                                <div class="board-contents-text-box">
+                                                                                                                    <div class="board-contents-text">
+                                                                                                                        <div style="display: inline-block;">
+                                                                                                                            <div style="display: inline;">
+                                                                                                                                <a href="#"
+                                                                                                                                   class="board-contents-writer">
                                                                                                                                 <span class="djelRKwlemfdjrk">
 
                                                                                                                                     <!--게시글 contents 작성자-->
-                                                                                                                                    <div class="wkrtjdwkdlqfur">hyeri_0609</div>
-                                                                                                                                </span>
-                                                                                                                                        </a>
+                                                                                                                                    <div class="wkrtjdwkdlqfur">
+                                                                                                                                        <th:block
+                                                                                                                                                th:each="memberDTO:${memberDTOList}">
+                                                                                                                                           <th:block
+                                                                                                                                                   th:if="${boardDTO.getMemberId() == memberDTO.getId()}">
+                                                                                                                                        <a th:text="${memberDTO.memberNickName}"
+                                                                                                                                           class="main-item-writer3"></a>
+                                                                                                                                                    <th:block
+                                                                                                                                                            th:break></th:block>
+                                                                                                                                           </th:block>
+                                                                                                                                        </th:block>
                                                                                                                                     </div>
-                                                                                                                                </div>
-                                                                                                                                <div class="board-contents-margin">
-                                                                                                                                    &nbsp;
-                                                                                                                                </div>
-                                                                                                                                <span class="board-contents-text-contents">
+                                                                                                                                </span>
+                                                                                                                                </a>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                        <div class="board-contents-margin">
+                                                                                                                            &nbsp;
+                                                                                                                        </div>
+                                                                                                                        <span class="board-contents-text-contents">
 
                                                                                                                         <!--게시글 작성 내용-->
                                                                                                                              <th:block
@@ -563,94 +576,90 @@
                                                                                                                                         </th:block>
 
                                                                                                                     </span>
-                                                                                                                            </div>
-                                                                                                                        </div>
-                                                                                                                        <!--댓글 갯수-->
-                                                                                                                        <div class="board-contents-comment-small">
-                                                                                                                            <div class="board-contents-comment-open">
-                                                                                                                                <a href="#"
-                                                                                                                                   class="board-contents-detail">
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                                <!--댓글 갯수-->
+                                                                                                                <div class="board-contents-comment-small">
+                                                                                                                    <div class="board-contents-comment-open">
+                                                                                                                        <a href="#"
+                                                                                                                           class="board-contents-detail">
                                                                                                                         <span class="board-contents-comment-count">
                                                                                                                             댓글
                                                                                                                             <span>546</span>
                                                                                                                             개 모두 보기
                                                                                                                         </span>
-                                                                                                                                </a>
-                                                                                                                            </div>
-                                                                                                                        </div>
-
-                                                                                                                        <!--가장 최근 댓글-->
-                                                                                                                        <div class="board-contents-comment-small-list1">
-                                                                                                                            <div class="board-contents-comment-small1">
-                                                                                                                                <div class="board-contents-comment-box">
-                                                                                                                                    <div style="display: inline;">
-                                                                                                                                        <div style="display: inline;">
-                                                                                                                                            <a href="#"
-                                                                                                                                               class="board-contents-writer">
-                                                                                                                                    <span class="djelRKwlemfdjrk">
-                                                                                                                                        <div class="wkrtjdwkdlqfur">hyeri_0609</div>
-                                                                                                                                    </span>
-                                                                                                                                            </a>
-                                                                                                                                        </div>
-                                                                                                                                    </div>
-                                                                                                                                    <span class="board-contents-margin">&nbsp;</span>
-                                                                                                                                    <span class="board-contents-text-contents">
-                                                                                                                            <span class="board-contents-text-contents-inner">1424</span>
-                                                                                                                        </span>
-                                                                                                                                </div>
-                                                                                                                            </div>
-                                                                                                                            <div class="board-contents-comment-small1">
-                                                                                                                                <div class="board-contents-comment-box">
-                                                                                                                                    <div style="display: inline;">
-                                                                                                                                        <div style="display: inline;">
-                                                                                                                                            <a href="#"
-                                                                                                                                               class="board-contents-writer">
-                                                                                                                                    <span class="djelRKwlemfdjrk">
-                                                                                                                                        <div class="wkrtjdwkdlqfur">hyeri_0609</div>
-                                                                                                                                    </span>
-                                                                                                                                            </a>
-                                                                                                                                        </div>
-                                                                                                                                    </div>
-                                                                                                                                    <span class="board-contents-margin">&nbsp;</span>
-                                                                                                                                    <span class="board-contents-text-contents">
-                                                                                                                            <span class="board-contents-text-contents-inner">1424</span>
-                                                                                                                        </span>
-                                                                                                                                </div>
-                                                                                                                            </div>
-                                                                                                                        </div>
+                                                                                                                        </a>
                                                                                                                     </div>
-                                                                                                                    <!--댓글 달기-->
-                                                                                                                    <section
-                                                                                                                            class="comment-save-form">
-                                                                                                                        <div>
-                                                                                                                            <form class="comment-save-form-tag">
-                                                                                                                                <div class="comment-save-form-size">
+                                                                                                                </div>
+
+                                                                                                                <!--가장 최근 댓글-->
+
+                                                                                                                <div class="board-contents-comment-small-list1"
+                                                                                                                     id="comment-list">
+                                                                                                                    <div class="board-contents-comment-small1">
+                                                                                                                        <th:block
+                                                                                                                                th:each="commentList : ${boardCommentDTOList}">
+                                                                                                                            <th:block
+                                                                                                                                    th:if="${boardDTO.getId() == commentList.getBoardId() and commentList.memberId == boardDTO.memberId}">
+                                                                                                                                <div class="board-contents-comment-box">
+                                                                                                                                    <div style="display: inline;">
+                                                                                                                                        <div style="display: inline;">
+                                                                                                                                            <a href="#"
+                                                                                                                                               class="board-contents-writer">
+
+                                                                                                                                    <span class="djelRKwlemfdjrk">
+                                                                                                                                        <div class="wkrtjdwkdlqfur"
+                                                                                                                                             id="comment-nickname"
+                                                                                                                                             th:text="${commentList.getMemberId()}">
+                                                                                                                                        </div>
+                                                                                                                                    </span>
+
+                                                                                                                                            </a>
+
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                    <span class="board-contents-margin">&nbsp;</span>
+                                                                                                                                    <span class="board-contents-text-contents">
+                                                                                                                                            <span class="board-contents-text-contents-inner"
+                                                                                                                                                  th:text="${commentList.getCommentContents()}"></span>
+                                                                                                                                        </span>
+                                                                                                                                </div>
+                                                                                                                            </th:block>
+                                                                                                                        </th:block>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                                <!--댓글 달기-->
+                                                                                                                <section
+                                                                                                                        class="comment-save-form">
+                                                                                                                    <div>
+                                                                                                                        <form class="comment-save-form-tag">
+                                                                                                                            <div class="comment-save-form-size">
                                                                                                                         <textarea
                                                                                                                                 class="comment-textarea"
                                                                                                                                 style="border: none;"
                                                                                                                                 placeholder="댓글 달기..."
                                                                                                                                 name="commentContents"
                                                                                                                                 id="commentContents"></textarea>
-                                                                                                                                    <div style="margin: 0 8px 0 8px;">
-                                                                                                                                        <div class="comment-textarea-btn" th:onclick="comment_write([[${boardDTO.id}]],[[${session.memberId}]])">게시</div>
+                                                                                                                                <div style="margin: 0 8px 0 8px;">
+                                                                                                                                    <div class="comment-textarea-btn"
+                                                                                                                                         th:onclick="comment_write([[${boardDTO.id}]],[[${session.memberId}]])">
+                                                                                                                                        게시
                                                                                                                                     </div>
                                                                                                                                 </div>
-                                                                                                                            </form>
-                                                                                                                        </div>
-                                                                                                                    </section>
-                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                        </form>
+                                                                                                                    </div>
+                                                                                                                </section>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     </div>
-                                                                                                </article>
-                                                                                            </div>
-                                                                                        </div>
+                                                                                                </div>
+                                                                                        </article>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-
-<!--                                                                        <th:block th:break></th:block>-->
-<!--                                                                    </th:block>-->
+                                                                        </div>
+                                                                    </div>
                                                                 </th:block>
                                                             </div>
 
@@ -1198,12 +1207,12 @@
 <script>
     document.addEventListener("click", function (event) {
 
-        if (plusBoardOpModal.style.display === "block" && event.target !== plusBoardOpModalBtn && !plusBoardOpModalBtn.contains(event.target)){
+        if (plusBoardOpModal.style.display === "block" && event.target !== plusBoardOpModalBtn && !plusBoardOpModalBtn.contains(event.target)) {
             plusBoardOpModal.style.display = "none";
         }
     });
 
-    plusBoardOpModalBtn.addEventListener("click" , function () {
+    plusBoardOpModalBtn.addEventListener("click", function () {
         if (plusBoardOpModal.style.display === "none") {
             plusBoardOpModal.style.display = "block";
         } else {
