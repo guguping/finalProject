@@ -25,146 +25,154 @@
                                             <main class="reels-main-body-m">
                                                 <div class="reels-main-body-1">
 
-                                                    <div class="reels-main-">
-                                                        <div class="reels-main-1">
-                                                            <div class="reels-main-2">
-                                                                <div class="reels-main-3">
+                                                    <th:block th:if="${boardReelsList != null}">
+                                                        <th:block th:each="reelsList:${boardReelsList}">
+                                                            <div class="reels-main-">
+                                                                <div class="reels-main-1">
+                                                                    <div class="reels-main-2">
+                                                                        <div class="reels-main-3">
 
-                                                                    <!--동영상 썸네일-->
-                                                                    <img class="reels-v-img"
-                                                                         src="../images/reels/reels_test_sc.jpg">
+                                                                            <!--동영상 썸네일-->
+                                                                            <img class="reels-v-img"
+                                                                                 src="../images/reels/reels_test_sc.jpg">
 
 
-                                                                    <div class="reels-v-img-element">
-                                                                        <div class="reels-v-img-element-">
-                                                                            <div class="reels-v-img-element-1">
-                                                                                <div class="reels-v-img-element-2">
-                                                                                    <div class="reels-v-img-element-3">
+                                                                            <div class="reels-v-img-element">
+                                                                                <div class="reels-v-img-element-">
+                                                                                    <div class="reels-v-img-element-1">
+                                                                                        <div class="reels-v-img-element-2">
+                                                                                            <div class="reels-v-img-element-3">
 
-                                                                                        <!--동영상 넣는 곳-->
-                                                                                        <video class="reels-v-v-"
-                                                                                               id="reels-v-v-"
-                                                                                               autoplay muted loop
-                                                                                               playsinline
-                                                                                               preload="none"
-                                                                                               src="../images/reels/2.mp4"
-                                                                                               style="display: block;"></video>
+                                                                                                <!--동영상 넣는 곳-->
+                                                                                                <video th:src="@{|/upload/${reelsList.getReelsFile()}}"
+                                                                                                       class="reels-v-v-"
+                                                                                                       th:id="${reelsList.id}"
+                                                                                                       autoplay
+                                                                                                       muted
+                                                                                                       loop
+                                                                                                       playsinline
+                                                                                                       preload="none"
+                                                                                                       style="display: block;"
+                                                                                                       type="video/mp4"></video>
+                                                                                                <div>
+                                                                                                    <div class="reels-v-v-element">
+                                                                                                        <div class="reels-v-v-element-">
+                                                                                                            <div class="reels-v-v-element-1">
+                                                                                                                <div class="reels-v-v-element-2">
+                                                                                                                    <div class="reels-v-v-element-3">
+                                                                                                                        <div class="reels-element-box"
+                                                                                                                             th:id="'reels-element-box'+${reelsList.id}"
+                                                                                                                             th:onclick="soundOaF([[${reelsList.id}]])">
+                                                                                                                            <div class="reels-element-box-">
+                                                                                                                                <div class="reels-element-margin">
 
-                                                                                        <div>
-                                                                                            <div class="reels-v-v-element">
-                                                                                                <div class="reels-v-v-element-">
-                                                                                                    <div class="reels-v-v-element-1">
-                                                                                                        <div class="reels-v-v-element-2">
-                                                                                                            <div class="reels-v-v-element-3">
-                                                                                                                <div class="reels-element-box"
-                                                                                                                     id="reels-element-box">
-                                                                                                                    <div class="reels-element-box-">
-                                                                                                                        <div class="reels-element-margin">
-
-                                                                                                                            <!--영상 사운드 요소-->
-                                                                                                                            <svg aria-label="오디오 소리 꺼짐"
-                                                                                                                                 class="sound-element"
-                                                                                                                                 id="sound-on"
-                                                                                                                                 color="rgb(255, 255, 255)"
-                                                                                                                                 fill="rgb(255, 255, 255)"
-                                                                                                                                 height="12"
-                                                                                                                                 role="img"
-                                                                                                                                 viewBox="0 0 48 48"
-                                                                                                                                 width="12">
-                                                                                                                                <title>
-                                                                                                                                    오디오
-                                                                                                                                    소리
-                                                                                                                                    꺼짐</title>
-                                                                                                                                <path clip-rule="evenodd"
-                                                                                                                                      d="M1.5 13.3c-.8 0-1.5.7-1.5 1.5v18.4c0 .8.7 1.5 1.5 1.5h8.7l12.9 12.9c.9.9 2.5.3 2.5-1v-9.8c0-.4-.2-.8-.4-1.1l-22-22c-.3-.3-.7-.4-1.1-.4h-.6zm46.8 31.4-5.5-5.5C44.9 36.6 48 31.4 48 24c0-11.4-7.2-17.4-7.2-17.4-.6-.6-1.6-.6-2.2 0L37.2 8c-.6.6-.6 1.6 0 2.2 0 0 5.7 5 5.7 13.8 0 5.4-2.1 9.3-3.8 11.6L35.5 32c1.1-1.7 2.3-4.4 2.3-8 0-6.8-4.1-10.3-4.1-10.3-.6-.6-1.6-.6-2.2 0l-1.4 1.4c-.6.6-.6 1.6 0 2.2 0 0 2.6 2 2.6 6.7 0 1.8-.4 3.2-.9 4.3L25.5 22V1.4c0-1.3-1.6-1.9-2.5-1L13.5 10 3.3-.3c-.6-.6-1.5-.6-2.1 0L-.2 1.1c-.6.6-.6 1.5 0 2.1L4 7.6l26.8 26.8 13.9 13.9c.6.6 1.5.6 2.1 0l1.4-1.4c.7-.6.7-1.6.1-2.2z"
-                                                                                                                                      fill-rule="evenodd"></path>
-                                                                                                                            </svg>
-                                                                                                                            <svg aria-label="오디오를 재생 중입니다"
-                                                                                                                                 style="display: none;"
-                                                                                                                                 id="sound-off"
-                                                                                                                                 class="sound-element"
-                                                                                                                                 color="rgb(255, 255, 255)"
-                                                                                                                                 fill="rgb(255, 255, 255)"
-                                                                                                                                 height="12"
-                                                                                                                                 role="img"
-                                                                                                                                 viewBox="0 0 24 24"
-                                                                                                                                 width="12">
-                                                                                                                                <title>
-                                                                                                                                    오디오를
-                                                                                                                                    재생
-                                                                                                                                    중입니다</title>
-                                                                                                                                <path d="M16.636 7.028a1.5 1.5 0 10-2.395 1.807 5.365 5.365 0 011.103 3.17 5.378 5.378 0 01-1.105 3.176 1.5 1.5 0 102.395 1.806 8.396 8.396 0 001.71-4.981 8.39 8.39 0 00-1.708-4.978zm3.73-2.332A1.5 1.5 0 1018.04 6.59 8.823 8.823 0 0120 12.007a8.798 8.798 0 01-1.96 5.415 1.5 1.5 0 002.326 1.894 11.672 11.672 0 002.635-7.31 11.682 11.682 0 00-2.635-7.31zm-8.963-3.613a1.001 1.001 0 00-1.082.187L5.265 6H2a1 1 0 00-1 1v10.003a1 1 0 001 1h3.265l5.01 4.682.02.021a1 1 0 001.704-.814L12.005 2a1 1 0 00-.602-.917z"></path>
-                                                                                                                            </svg>
+                                                                                                                                    <!--영상 사운드 요소-->
+                                                                                                                                    <svg aria-label="오디오 소리 꺼짐"
+                                                                                                                                         class="sound-element"
+                                                                                                                                         th:id="'sound-on'+${reelsList.id}"
+                                                                                                                                         color="rgb(255, 255, 255)"
+                                                                                                                                         fill="rgb(255, 255, 255)"
+                                                                                                                                         height="12"
+                                                                                                                                         role="img"
+                                                                                                                                         viewBox="0 0 48 48"
+                                                                                                                                         width="12">
+                                                                                                                                        <title>
+                                                                                                                                            오디오
+                                                                                                                                            소리
+                                                                                                                                            꺼짐</title>
+                                                                                                                                        <path clip-rule="evenodd"
+                                                                                                                                              d="M1.5 13.3c-.8 0-1.5.7-1.5 1.5v18.4c0 .8.7 1.5 1.5 1.5h8.7l12.9 12.9c.9.9 2.5.3 2.5-1v-9.8c0-.4-.2-.8-.4-1.1l-22-22c-.3-.3-.7-.4-1.1-.4h-.6zm46.8 31.4-5.5-5.5C44.9 36.6 48 31.4 48 24c0-11.4-7.2-17.4-7.2-17.4-.6-.6-1.6-.6-2.2 0L37.2 8c-.6.6-.6 1.6 0 2.2 0 0 5.7 5 5.7 13.8 0 5.4-2.1 9.3-3.8 11.6L35.5 32c1.1-1.7 2.3-4.4 2.3-8 0-6.8-4.1-10.3-4.1-10.3-.6-.6-1.6-.6-2.2 0l-1.4 1.4c-.6.6-.6 1.6 0 2.2 0 0 2.6 2 2.6 6.7 0 1.8-.4 3.2-.9 4.3L25.5 22V1.4c0-1.3-1.6-1.9-2.5-1L13.5 10 3.3-.3c-.6-.6-1.5-.6-2.1 0L-.2 1.1c-.6.6-.6 1.5 0 2.1L4 7.6l26.8 26.8 13.9 13.9c.6.6 1.5.6 2.1 0l1.4-1.4c.7-.6.7-1.6.1-2.2z"
+                                                                                                                                              fill-rule="evenodd"></path>
+                                                                                                                                    </svg>
+                                                                                                                                    <svg aria-label="오디오를 재생 중입니다"
+                                                                                                                                         style="display: none;"
+                                                                                                                                         th:id="'sound-off'+${reelsList.id}"
+                                                                                                                                         class="sound-element"
+                                                                                                                                         color="rgb(255, 255, 255)"
+                                                                                                                                         fill="rgb(255, 255, 255)"
+                                                                                                                                         height="12"
+                                                                                                                                         role="img"
+                                                                                                                                         viewBox="0 0 24 24"
+                                                                                                                                         width="12">
+                                                                                                                                        <title>
+                                                                                                                                            오디오를
+                                                                                                                                            재생
+                                                                                                                                            중입니다</title>
+                                                                                                                                        <path d="M16.636 7.028a1.5 1.5 0 10-2.395 1.807 5.365 5.365 0 011.103 3.17 5.378 5.378 0 01-1.105 3.176 1.5 1.5 0 102.395 1.806 8.396 8.396 0 001.71-4.981 8.39 8.39 0 00-1.708-4.978zm3.73-2.332A1.5 1.5 0 1018.04 6.59 8.823 8.823 0 0120 12.007a8.798 8.798 0 01-1.96 5.415 1.5 1.5 0 002.326 1.894 11.672 11.672 0 002.635-7.31 11.682 11.682 0 00-2.635-7.31zm-8.963-3.613a1.001 1.001 0 00-1.082.187L5.265 6H2a1 1 0 00-1 1v10.003a1 1 0 001 1h3.265l5.01 4.682.02.021a1 1 0 001.704-.814L12.005 2a1 1 0 00-.602-.917z"></path>
+                                                                                                                                    </svg>
+                                                                                                                                </div>
+                                                                                                                            </div>
                                                                                                                         </div>
                                                                                                                     </div>
-                                                                                                                </div>
-                                                                                                            </div>
 
-                                                                                                            <div class="reels-v-v-element-4"
-                                                                                                                 id="reels-v-v-element-4">
-                                                                                                                <div class="reels-user-info">
-                                                                                                                    <div class="reels-user-info-">
-                                                                                                                        <a href="#"
-                                                                                                                           class="reels-made-user-link">
-                                                                                                                            <div class="reels-made-user-link-">
-                                                                                                                                <div class="reels-m-pr-">
-                                                                                                                                    <div>
+                                                                                                                    <div class="reels-v-v-element-4"
+                                                                                                                         id="reels-v-v-element-4" th:onclick="vidPaS([[${reelsList.id}]])">
+                                                                                                                        <div class="reels-user-info">
+                                                                                                                            <div class="reels-user-info-">
+                                                                                                                                <a href="#"
+                                                                                                                                   class="reels-made-user-link">
+                                                                                                                                    <div class="reels-made-user-link-">
+                                                                                                                                        <div class="reels-m-pr-">
+                                                                                                                                            <div>
                                                                                                                                         <span class="reels-m-pr-1">
 
                                                                                                                                             <!--릴스 게시자 프로필-->
                                                                                                                                             <img class="reels-m-pr"
                                                                                                                                                  src="../images/test프로필.jpg">
                                                                                                                                         </span>
-                                                                                                                                    </div>
-                                                                                                                                </div>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
 
-                                                                                                                                <!--릴스 게시자 닉네임-->
-                                                                                                                                <span class="reels-made-user-nick">guping__</span>
-                                                                                                                            </div>
-                                                                                                                        </a>
-                                                                                                                        <span class="flftmWLd">
+                                                                                                                                        <!--릴스 게시자 닉네임-->
+                                                                                                                                        <span class="reels-made-user-nick">guping__</span>
+                                                                                                                                    </div>
+                                                                                                                                </a>
+                                                                                                                                <span class="flftmWLd">
                                                                                                                             <span class="flftmWLd-">•</span>
                                                                                                                         </span>
 
-                                                                                                                        <!--릴스 게시자 팔로우 버튼-->
-                                                                                                                        <div class="reels-member-fol">
-                                                                                                                            팔로우
-                                                                                                                        </div>
-                                                                                                                    </div>
+                                                                                                                                <!--릴스 게시자 팔로우 버튼-->
+                                                                                                                                <div class="reels-member-fol">
+                                                                                                                                    팔로우
+                                                                                                                                </div>
+                                                                                                                            </div>
 
-                                                                                                                    <div class="reels-v-title">
-                                                                                                                        <div class="reels-v-title-">
-                                                                                                                            <div class="reels-v-title-1">
-                                                                                                                                <span class="reels-v-title-txt">5분만에 😇 저세상 가신 티비님 .. 실화냐 이거</span>
-                                                                                                                                <span class="reels-v-title-txt-plus">… 더 보기</span>
+                                                                                                                            <div class="reels-v-title">
+                                                                                                                                <div class="reels-v-title-">
+                                                                                                                                    <div class="reels-v-title-1">
+                                                                                                                                        <span class="reels-v-title-txt" th:text="${reelsList.getReelsContents()}"></span>
+                                                                                                                                        <span class="reels-v-title-txt-plus">… 더 보기</span>
+                                                                                                                                    </div>
+                                                                                                                                </div>
                                                                                                                             </div>
                                                                                                                         </div>
                                                                                                                     </div>
                                                                                                                 </div>
-                                                                                                            </div>
-                                                                                                        </div>
 
-                                                                                                        <div class="reels-v-p-element-"
-                                                                                                             id="reels-v-p-element-"
-                                                                                                             style="opacity: 0;">
-                                                                                                            <div class="reels-v-p-element-1">
-                                                                                                                <div class="reels-v-p-element-2">
+                                                                                                                <div class="reels-v-p-element-"
+                                                                                                                     th:id="'reels-v-p-element-'+${reelsList.id}"
+                                                                                                                     th:onclick="vidPaS([[${reelsList.id}]])"
+                                                                                                                     style="opacity: 0;">
+                                                                                                                    <div class="reels-v-p-element-1">
+                                                                                                                        <div class="reels-v-p-element-2">
 
-                                                                                                                    <!--릴스 재생 버튼 아이콘-->
-                                                                                                                    <svg aria-label="재생 버튼 아이콘"
-                                                                                                                         class="reels-v-p-e"
-                                                                                                                         color="rgb(255, 255, 255)"
-                                                                                                                         fill="rgb(255, 255, 255)"
-                                                                                                                         height="24"
-                                                                                                                         role="img"
-                                                                                                                         viewBox="0 0 24 24"
-                                                                                                                         width="24">
-                                                                                                                        <title>
-                                                                                                                            재생
-                                                                                                                            버튼
-                                                                                                                            아이콘</title>
-                                                                                                                        <path d="M5.888 22.5a3.46 3.46 0 0 1-1.721-.46l-.003-.002a3.451 3.451 0 0 1-1.72-2.982V4.943a3.445 3.445 0 0 1 5.163-2.987l12.226 7.059a3.444 3.444 0 0 1-.001 5.967l-12.22 7.056a3.462 3.462 0 0 1-1.724.462Z"></path>
-                                                                                                                    </svg>
+                                                                                                                            <!--릴스 재생 버튼 아이콘-->
+                                                                                                                            <svg aria-label="재생 버튼 아이콘"
+                                                                                                                                 class="reels-v-p-e"
+                                                                                                                                 color="rgb(255, 255, 255)"
+                                                                                                                                 fill="rgb(255, 255, 255)"
+                                                                                                                                 height="24"
+                                                                                                                                 role="img"
+                                                                                                                                 viewBox="0 0 24 24"
+                                                                                                                                 width="24">
+                                                                                                                                <title>
+                                                                                                                                    재생
+                                                                                                                                    버튼
+                                                                                                                                    아이콘</title>
+                                                                                                                                <path d="M5.888 22.5a3.46 3.46 0 0 1-1.721-.46l-.003-.002a3.451 3.451 0 0 1-1.72-2.982V4.943a3.445 3.445 0 0 1 5.163-2.987l12.226 7.059a3.444 3.444 0 0 1-.001 5.967l-12.22 7.056a3.462 3.462 0 0 1-1.724.462Z"></path>
+                                                                                                                            </svg>
+                                                                                                                        </div>
+                                                                                                                    </div>
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
@@ -177,10 +185,8 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="reels-v-s-m">
-                                                                <div class="reels-v-s-m-l">
+                                                                    <div class="reels-v-s-m">
+                                                                        <div class="reels-v-s-m-l">
                                                                     <span>
                                                                         <div class="reels-v-s-m-l-logo">
                                                                             <div class="reels-v-s-m-l-logo-">
@@ -211,87 +217,94 @@
                                                                             </div>
                                                                         </div>
                                                                     </span>
-                                                                    <div class="reels-v-s-m-l-txt">
-                                                                        <div class="reels-v-s-m-l-txt-">
-                                                                            <div class="reels-v-s-m-l-txt-1">
+                                                                            <div class="reels-v-s-m-l-txt">
+                                                                                <div class="reels-v-s-m-l-txt-">
+                                                                                    <div class="reels-v-s-m-l-txt-1">
                                                                                 <span class="reels-v-s-m-l-txt-2">
                                                                                     <span>32.8만</span>
                                                                                 </span>
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                </div>
 
-                                                                <div class="reels-v-s-m-l">
-                                                                    <div class="reels-v-s-m-c">
-                                                                        <div class="reels-v-s-m-c-">
+                                                                        <div class="reels-v-s-m-l">
+                                                                            <div class="reels-v-s-m-c">
+                                                                                <div class="reels-v-s-m-c-" th:onclick="reelsCommentOaF()">
 
-                                                                            <!--릴스 댓글 버튼-->
-                                                                            <svg aria-label="댓글"
-                                                                                 class="reels-v-s-m-c-logo"
-                                                                                 color="rgb(38, 38, 38)"
-                                                                                 fill="rgb(38, 38, 38)" height="24"
-                                                                                 role="img" viewBox="0 0 24 24"
-                                                                                 width="24">
-                                                                                <title>댓글</title>
-                                                                                <path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z"
-                                                                                      fill="none" stroke="currentColor"
-                                                                                      stroke-linejoin="round"
-                                                                                      stroke-width="2"></path>
-                                                                            </svg>
-                                                                            <div class="reels-v-s-m-c-txt">
-                                                                                <div class="reels-v-s-m-c-txt-">
+                                                                                    <!--릴스 댓글 버튼-->
+                                                                                    <svg aria-label="댓글"
+                                                                                         class="reels-v-s-m-c-logo"
+                                                                                         color="rgb(38, 38, 38)"
+                                                                                         fill="rgb(38, 38, 38)"
+                                                                                         height="24"
+                                                                                         role="img" viewBox="0 0 24 24"
+                                                                                         width="24">
+                                                                                        <title>댓글</title>
+                                                                                        <path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z"
+                                                                                              fill="none"
+                                                                                              stroke="currentColor"
+                                                                                              stroke-linejoin="round"
+                                                                                              stroke-width="2"></path>
+                                                                                    </svg>
+                                                                                    <div class="reels-v-s-m-c-txt">
+                                                                                        <div class="reels-v-s-m-c-txt-">
                                                                                     <span class="reels-v-s-m-c-txt-1">
 
                                                                                         <!--릴스 댓글 갯수-->
                                                                                         <span>1.4만</span>
                                                                                     </span>
+                                                                                        </div>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                </div>
 
-                                                                <div class="reels-v-s-b">
-                                                                    <div>
-                                                                        <div class="reels-v-s-m-b-">
-                                                                            <div class="reels-v-s-m-b-1">
-                                                                                <div class="reels-v-s-m-b-2">
-                                                                                    <svg aria-label="저장"
-                                                                                         class="reels-v-s-m-b-logo"
-                                                                                         color="rgb(0,0,0)"
-                                                                                         fill="rgb(0, 0, 0)" height="24"
-                                                                                         role="img" viewBox="0 0 24 24"
-                                                                                         width="24">
-                                                                                        <title>저장</title>
-                                                                                        <polygon fill="none"
-                                                                                                 points="20 21 12 13.44 4 21 4 3 20 3 20 21"
-                                                                                                 stroke="currentColor"
-                                                                                                 stroke-linecap="round"
-                                                                                                 stroke-linejoin="round"
-                                                                                                 stroke-width="2"></polygon>
-                                                                                    </svg>
+                                                                        <div class="reels-v-s-b">
+                                                                            <div>
+                                                                                <div class="reels-v-s-m-b-">
+                                                                                    <div class="reels-v-s-m-b-1">
+                                                                                        <div class="reels-v-s-m-b-2">
+                                                                                            <svg aria-label="저장"
+                                                                                                 class="reels-v-s-m-b-logo"
+                                                                                                 color="rgb(0,0,0)"
+                                                                                                 fill="rgb(0, 0, 0)"
+                                                                                                 height="24"
+                                                                                                 role="img"
+                                                                                                 viewBox="0 0 24 24"
+                                                                                                 width="24">
+                                                                                                <title>저장</title>
+                                                                                                <polygon fill="none"
+                                                                                                         points="20 21 12 13.44 4 21 4 3 20 3 20 21"
+                                                                                                         stroke="currentColor"
+                                                                                                         stroke-linecap="round"
+                                                                                                         stroke-linejoin="round"
+                                                                                                         stroke-width="2"></polygon>
+                                                                                            </svg>
 
-                                                                                    <svg aria-label="삭제"
-                                                                                         class="reels-v-s-m-l-logo-m"
-                                                                                         color="rgb(0, 0, 0)"
-                                                                                         fill="rgb(0, 0, 0)" height="24"
-                                                                                         role="img" viewBox="0 0 24 24"
-                                                                                         width="24">
-                                                                                        <title>삭제</title>
-                                                                                        <path d="M20 22a.999.999 0 0 1-.687-.273L12 14.815l-7.313 6.912A1 1 0 0 1 3 21V3a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1Z"></path>
-                                                                                    </svg>
+                                                                                            <svg aria-label="삭제"
+                                                                                                 class="reels-v-s-m-l-logo-m"
+                                                                                                 color="rgb(0, 0, 0)"
+                                                                                                 fill="rgb(0, 0, 0)"
+                                                                                                 height="24"
+                                                                                                 role="img"
+                                                                                                 viewBox="0 0 24 24"
+                                                                                                 width="24">
+                                                                                                <title>삭제</title>
+                                                                                                <path d="M20 22a.999.999 0 0 1-.687-.273L12 14.815l-7.313 6.912A1 1 0 0 1 3 21V3a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1Z"></path>
+                                                                                            </svg>
 
+                                                                                        </div>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="reels-v-b-p"></div>
+                                                            <div class="reels-v-b-p"></div>
+                                                        </th:block>
+                                                    </th:block>
                                                 </div>
                                             </main>
                                         </section>
@@ -303,7 +316,7 @@
 
                         <!--릴스 댓글 시작구간-->
                         <div>
-                            <div class="reels-s-c-mo">
+                            <div class="reels-s-c-mo" id="reels-s-c-mo" style="display: none;">
                                 <div class="reels-s-c-mo-">
                                     <div>
                                         <div class="reels-s-c-mo-1">
@@ -870,15 +883,10 @@
 </div>
 </body>
 <script type="text/javascript" th:src="@{/script/componentJs.js}"></script>
-<script>
-    const myVid = document.getElementById('reels-v-v-');
-    const myVidPlay = document.getElementById('reels-v-v-element-4');
-    const myVidPlayBtn = document.getElementById('reels-v-p-element-');
-    const soundBox = document.getElementById('reels-element-box');
-    const soundOn = document.getElementById('sound-on');
-    const soundOff = document.getElementById('sound-off');
-
-    myVidPlay.addEventListener('click', function () {
+<script th:inline="javascript">
+    const vidPaS = (reelsBoardId) => {
+        const myVid = document.getElementById(reelsBoardId);
+        const myVidPlayBtn = document.getElementById('reels-v-p-element-'+reelsBoardId);
         if (myVid.paused) {
             myVidPlayBtn.style.opacity = '0';
             myVidPlayBtn.style.transitionDuration = '.3s';
@@ -894,16 +902,14 @@
             myVidPlayBtn.style.transform = 'scale(1)';
             myVid.pause();
         }
-    });
-    myVidPlayBtn.addEventListener('click', function () {
-        if (myVid.paused) {
-            myVidPlayBtn.style.display = 'none';
-            myVid.play();
-        }
-    })
+    }
+    const soundOaF = (reelsBoardId) => {
+        const soundBox = document.getElementById('reels-element-box'+reelsBoardId);
+        const soundOn = document.getElementById('sound-on'+reelsBoardId);
+        const soundOff = document.getElementById('sound-off'+reelsBoardId);
+        const myVid = document.getElementById(reelsBoardId);
 
-    soundBox.addEventListener('click', function () {
-        if (myVid.muted == false) {
+        if (myVid.muted === false) {
             soundOn.style.display = 'block';
             soundOff.style.display = 'none';
             myVid.muted = true;
@@ -912,6 +918,14 @@
             soundOff.style.display = 'block';
             myVid.muted = false;
         }
-    })
+    }
+    const reelsCommentOaF = () => {
+        const commentBox = document.getElementById('reels-s-c-mo');
+        if (commentBox.style.display === "none") {
+            commentBox.style.display = "block";
+        } else {
+            commentBox.style.display = "none";
+        }
+    }
 </script>
 </html>
