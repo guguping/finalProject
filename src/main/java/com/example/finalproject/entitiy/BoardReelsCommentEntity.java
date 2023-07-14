@@ -29,4 +29,7 @@ public class BoardReelsCommentEntity extends BaseEntity {
 
     @OneToMany(mappedBy = "boardReelsCommentEntity", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<BoardReelsAnswerEntity> boardReelsAnswerEntityList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "boardReelsCommentEntity", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<BoardReelsCommentLikeEntity> boardReelsCommentLikeEntityList = new ArrayList<>();
 }

@@ -35,7 +35,7 @@ public class ReelsController {
     public ResponseEntity reelsComment(@RequestBody BoardReelsDTO boardReelsDTO,
                                        Model model, HttpSession httpSession) {
         System.out.println("boardReelsDTO = " + boardReelsDTO);
-        Map<String, Object> reelsCommentResponse = reelsService.findByBoardReelsEntityOrderByIdDesc(boardReelsDTO);
+        Map<String, Object> reelsCommentResponse = reelsService.findByBoardReelsEntityOrderByIdDesc(boardReelsDTO , (Long) httpSession.getAttribute("memberId"));
 
         return new ResponseEntity<>(reelsCommentResponse , HttpStatus.OK);
     }
