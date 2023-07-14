@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -34,7 +35,8 @@ public class ReelsController {
     public ResponseEntity reelsComment(@RequestBody BoardReelsDTO boardReelsDTO,
                                        Model model, HttpSession httpSession) {
         System.out.println("boardReelsDTO = " + boardReelsDTO);
-        List<BoardReelsCommentDTO> boardReelsCommentDTOList = reelsService.findByBoardReelsEntityOrderByIdDesc(boardReelsDTO);
-        return new ResponseEntity<>(HttpStatus.OK);
+        Map<String, Object> reelsCommentResponse = reelsService.findByBoardReelsEntityOrderByIdDesc(boardReelsDTO);
+
+        return new ResponseEntity<>(reelsCommentResponse , HttpStatus.OK);
     }
 }
