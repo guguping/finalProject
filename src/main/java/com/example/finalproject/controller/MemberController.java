@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -95,6 +96,21 @@ public class MemberController {
     @GetMapping("/findPw")
     public String findPwForm() {
         return "memberPages/passwordUpdate";
+    }
+
+    @PostMapping("/profileUpdate")
+    public String profileUpdate(@ModelAttribute MemberDTO memberDTO, HttpSession session) throws IOException {
+        Long loginId = (Long) session.getAttribute("memberId");
+        memberDTO.setId(loginId);
+        memberSerivce.profileUpdate(memberDTO);
+        return "redirect:/member/myPage/" + loginId;
+    }
+
+    @GetMapping("/profileDelete")
+    public String profileDelete(HttpSession session) {
+        Long loginId = (Long) session.getAttribute("memberId");
+        memberSerivce.profileDelete(loginId);
+        return "redirect:/member/myPage/" + loginId;
     }
 
 }

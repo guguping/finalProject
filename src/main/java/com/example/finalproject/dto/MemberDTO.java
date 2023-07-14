@@ -5,6 +5,7 @@ import com.example.finalproject.entitiy.MemberEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
 @NoArgsConstructor
@@ -24,6 +25,7 @@ public class MemberDTO {
     private String memberText;
     private int reelsAttached = 0;
     private String memberProfile;
+    private MultipartFile memberFile;
 
     private Role role;
 
