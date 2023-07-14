@@ -19,9 +19,6 @@ public class BoardReelsCommentEntity extends BaseEntity {
     @Column(length = 255,nullable = false)
     private String commentContents;
 
-    @Column
-    private int commentUpdate;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reels_id")
     private BoardReelsEntity boardReelsEntity;

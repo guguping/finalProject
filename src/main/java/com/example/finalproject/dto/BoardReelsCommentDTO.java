@@ -1,6 +1,7 @@
 package com.example.finalproject.dto;
 
 import com.example.finalproject.entitiy.BoardReelsCommentEntity;
+import com.example.finalproject.util.UtilClass;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,6 +24,8 @@ public class BoardReelsCommentDTO {
         boardReelsCommentDTO.setId(boardReelsCommentEntity.getId());
         boardReelsCommentDTO.setReelsId(boardReelsCommentEntity.getBoardReelsEntity().getId());
         boardReelsCommentDTO.setMemberId(boardReelsCommentEntity.getMemberEntity().getId());
+        boardReelsCommentDTO.setCommentContents(boardReelsCommentEntity.getCommentContents());
+        boardReelsCommentDTO.setCreatedAt(UtilClass.dateFormat(boardReelsCommentEntity.getCreatedAt()));
         return boardReelsCommentDTO;
     }
 }
