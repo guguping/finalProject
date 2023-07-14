@@ -14,6 +14,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -30,6 +32,8 @@ public class MemberSerivce {
         memberDTO.setMemberPassword(encoder.encode(memberDTO.getMemberPassword()));
         System.out.println(memberDTO.getMemberPassword());
         memberDTO.setRole(Role.ROLE_MEMBER);
+        String defaultImageFileName = "defaultImage.jpg";
+        memberDTO.setMemberProfile(defaultImageFileName);
         MemberEntity memberEntity = MemberEntity.toEntity(memberDTO);
         return memberRepository.save(memberEntity).getId();
     }
@@ -83,5 +87,53 @@ public class MemberSerivce {
 
     public boolean nicknameCheck(String memberNickname) {
         return memberRepository.existsByMemberNickName(memberNickname);
+    }
+
+    @Transactional
+    public void profileUpdate(MemberDTO memberDTO) throws IOException {
+        // 현재 profile 사진 파일 삭제
+        MemberEntity originalMemberEntity = memberRepository.findById(memberDTO.getId()).orElseThrow(() -> new NoSuchElementException());
+        MemberDTO originalMemberDTO = MemberDTO.toDTO(originalMemberEntity);
+        // 기본 이미지일 경우 삭제되지 않음
+        if (!originalMemberDTO.getMemberProfile().equals("defaultImage.jpg")) {
+            String deletePath = "C:\\project_img\\" + originalMemberDTO.getMemberProfile();
+            File file = new File(deletePath);
+            boolean deleted = file.delete();
+            if (deleted) {
+                System.out.println("파일 삭제 성공");
+            } else {
+                System.out.println("파일 삭제 실패");
+            }
+        }
+
+        // profile 사진 변경
+        String originalFileName = memberDTO.getMemberFile().getOriginalFilename();
+        String storedFileName = System.currentTimeMillis() + "_" + originalFileName;
+        String savePath = "C:\\project_img\\" + storedFileName;
+        memberDTO.getMemberFile().transferTo(new File(savePath));
+        memberDTO.setMemberProfile(storedFileName);
+
+        memberRepository.updateProfile(memberDTO.getId(), memberDTO.getMemberProfile());
+    }
+
+    @Transactional
+    public void profileDelete(Long loginId) {
+        MemberEntity originalMemberEntity = memberRepository.findById(loginId).orElseThrow(() -> new NoSuchElementException());
+        MemberDTO originalMemberDTO = MemberDTO.toDTO(originalMemberEntity);
+        // 기본 이미지일 경우 삭제되지 않음
+        if (!originalMemberDTO.getMemberProfile().equals("defaultImage.jpg")) {
+            String deletePath = "C:\\project_img\\" + originalMemberDTO.getMemberProfile();
+            File file = new File(deletePath);
+            boolean deleted = file.delete();
+            if (deleted) {
+                System.out.println("파일 삭제 성공");
+            } else {
+                System.out.println("파일 삭제 실패");
+            }
+        }
+
+        // 기본 이미지로 변경
+        String originalFileName = "defaultImage.jpg";
+        memberRepository.updateProfile(loginId, originalFileName);
     }
 }

@@ -668,14 +668,14 @@
                                                                 <div class="_a9-z">
                                                                     <button class="tkwlsdjqfhem" tabindex="0" onclick="userImgChangeBtn()">사진 업로드
                                                                     </button>
-                                                                    <button class="guswotkwlstkrwp" tabindex="0">현재 사진 삭제
+                                                                    <button class="guswotkwlstkrwp" tabindex="0" onclick="userImgDeleteBtn()">현재 사진 삭제
                                                                     </button>
                                                                     <button class="cnlth" tabindex="0" onclick="userImgChangeOff()">취소</button>
 
                                                                     <!--이미지 변경 form 태그-->
-                                                                    <form action="123" method="get" style="margin: 0;padding: 0;">
-                                                                        <input accept="image/jpeg,image/png"
-                                                                               class="_ac69" type="file" id="userImgInput">
+                                                                    <form action="/member/profileUpdate" method="post" style="margin: 0;padding: 0;" enctype="multipart/form-data">
+                                                                        <input accept="image/*"
+                                                                               class="_ac69" type="file" id="userImgInput" name="memberFile">
                                                                         <button type="submit" style="display: none;"
                                                                                 id="myPageImgSubmit"></button>
                                                                     </form>
@@ -724,6 +724,9 @@
     userImgInput.addEventListener("change", e => {
         myPageImgSubmit.click();
     });
+    const userImgDeleteBtn = () => {
+        location.href = "/member/profileDelete";
+    }
 
     const board_detail = (id) => {
         axios({
