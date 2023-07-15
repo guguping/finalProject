@@ -34,9 +34,15 @@ public class ReelsController {
     @PostMapping("/Reels/comment")
     public ResponseEntity reelsComment(@RequestBody BoardReelsDTO boardReelsDTO,
                                        Model model, HttpSession httpSession) {
-        System.out.println("boardReelsDTO = " + boardReelsDTO);
         Map<String, Object> reelsCommentResponse = reelsService.findByBoardReelsEntityOrderByIdDesc(boardReelsDTO , (Long) httpSession.getAttribute("memberId"));
 
         return new ResponseEntity<>(reelsCommentResponse , HttpStatus.OK);
+    }
+    @PostMapping("/Reels/commentSave")
+    public ResponseEntity reelsCommentSave(@RequestBody BoardReelsCommentDTO boardReelsCommentDTO,
+                                           HttpSession session) {
+        boardReelsCommentDTO.setMemberId((Long) session.getAttribute("memberId"));
+        reelsService.save(boardReelsCommentDTO);
+            return new ResponseEntity(HttpStatus.OK);
     }
 }

@@ -53,4 +53,11 @@ public class ReelsService {
         reelsCommentResponse.put("seeMemberDTO", seeMember);
         return reelsCommentResponse;
     }
+
+    public void save(BoardReelsCommentDTO boardReelsCommentDTO) {
+        BoardReelsEntity boardReelsEntity = boardReelsRepository.findById(boardReelsCommentDTO.getReelsId()).orElseThrow(() -> new NoSuchElementException());
+        MemberEntity memberEntity = memberRepository.findById(boardReelsCommentDTO.getMemberId()).orElseThrow(() -> new NoSuchElementException());
+        BoardReelsCommentEntity boardReelsCommentEntity = BoardReelsCommentEntity.toSaveEntity(boardReelsEntity,memberEntity, boardReelsCommentDTO);
+        reelsCommentRepository.save(boardReelsCommentEntity);
+    }
 }
