@@ -1,5 +1,6 @@
 package com.example.finalproject.entitiy;
 
+import com.example.finalproject.dto.BoardReelsCommentDTO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,4 +33,12 @@ public class BoardReelsCommentEntity extends BaseEntity {
 
     @OneToMany(mappedBy = "boardReelsCommentEntity", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<BoardReelsCommentLikeEntity> boardReelsCommentLikeEntityList = new ArrayList<>();
+
+    public static BoardReelsCommentEntity toSaveEntity(BoardReelsEntity boardReelsEntity, MemberEntity memberEntity, BoardReelsCommentDTO boardReelsCommentDTO) {
+        BoardReelsCommentEntity boardReelsCommentEntity = new BoardReelsCommentEntity();
+        boardReelsCommentEntity.setCommentContents(boardReelsCommentDTO.getCommentContents());
+        boardReelsCommentEntity.setMemberEntity(memberEntity);
+        boardReelsCommentEntity.setBoardReelsEntity(boardReelsEntity);
+        return boardReelsCommentEntity;
+    }
 }
