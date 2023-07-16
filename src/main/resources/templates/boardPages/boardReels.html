@@ -816,7 +816,63 @@
             commentInput.innerHTML = "<div></div>";
         }
     };
+    const commentLike = (i,commentId,memberId) => {
+        let commentLikeResult = document.getElementById('userLike'+i);
+        let output = ""
+        axios({
+            method: "post",
+            url: "/Reels/commentLike",
+            data: {
+                commentId: commentId,
+                memberId: memberId
+            }
+        }).then(res => {
+            output += '<svg aria-label="좋아요 취소"\n' +
+                'onclick="commentUnLike('+i + ', ' + res.data.id + ')"\n' +
+                'class="reels-comment-user-like"\n' +
+                'color="rgb(255, 48, 64)"\n' +
+                'fill="rgb(255, 48, 64)"\n' +
+                'height="16"\n' +
+                'role="img"\n' +
+                'viewBox="0 0 48 48"\n' +
+                'width="16">\n' +
+                '<title>좋아요 취소</title>\n' +
+                '<path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path>\n' +
+                '</svg>\n'
+            commentLikeResult.innerHTML = output;
+        }).catch(err => {
+            console.log("실패");
+        })
+    }
+    const commentUnLike = (i,commentId,memberId,commentLikeId) => {
+        let commentLikeResult = document.getElementById('userLike'+i);
+        let output = ""
+        axios({
+            method: "post",
+            url: "/Reels/commentUnLike",
+            data: {
+                id:commentLikeId
+            }
+        }).then(res => {
+            output += '<svg aria-label="좋아요"\n'+
+                'onclick="commentLike('+i + ', ' + commentId + ', ' + memberId +')"\n' +
+                'class="reels-comment-user-like"\n' +
+                'color="rgb(142, 142, 142)"\n' +
+                'fill="rgb(142, 142, 142)"\n' +
+                'height="16"\n' +
+                'role="img"\n' +
+                'viewBox="0 0 24 24"\n' +
+                'width="16">\n' +
+                '<title>좋아요</title>\n' +
+                '<path d="M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 0 1 4.708-5.218 4.21 4.21 0 0 1 3.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 0 1 3.679-1.938m0-2a6.04 6.04 0 0 0-4.797 2.127 6.052 6.052 0 0 0-4.787-2.127A6.985 6.985 0 0 0 .5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 0 0 3.518 3.018 2 2 0 0 0 2.174 0 45.263 45.263 0 0 0 3.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 0 0-6.708-7.218Z"></path>\n' +
+                '</svg>\n'
+            commentLikeResult.innerHTML = output;
+        }).catch(err => {
+            console.log("실패");
+        })
 
+    }
+    
     const getCommentList = (boardId, memberId) => {
             const commentResult = document.getElementById('commentAxios');
             const commentInput = document.getElementById('reels-s-c-form');
@@ -830,13 +886,14 @@
         }).then(res => {
             if (res.data.commentContentsList != null) {
                 let output = "";
+                let sum = 0;
                 for (let i = 0; i < res.data.commentContentsList.length; i++) {
                     output += '<div class="reels-s-c-l-1">\n' +
                         '                                                                        <div class="reels-s-c-l-m">\n' +
                         '                                                                            <div>\n' +
                         '                                                                                <div class="reels-s-c-l-m-">\n' +
                         '                                                                                    <div class="reels-s-c-l-m-">\n' +
-                        '                                                                                        <a href="#"\n' +
+                        '                                                                                        <a href="/member/myPage/'+res.data.commentMember[i].id+'"\n' +
                         '                                                                                           class="reels-c-member-pro">\n' +
                         '\n' +
                         '                                                                                            <!--릴스 댓글 사용자 프로필이미지-->\n' +
@@ -856,7 +913,7 @@
                         '                                                                                            <span class="reels-s-c-l-c-3">\n' +
                         '                                                                                                <div class="reels-s-c-l-c-4">\n' +
                         '                                                                                                    <div class="reels-s-c-l-c-4">\n' +
-                        '                                                                                                        <a href="#"\n' +
+                        '                                                                                                        <a href="/member/myPage/'+res.data.commentMember[i].id+'"\n' +
                         '                                                                                                           class="reels-s-c-l-c-5">\n' +
                         '                                                                                                            <span class="reels-s-c-l-c-6">\n' +
                         '\n' +
@@ -868,7 +925,7 @@
                         '                                                                                                </div>\n' +
                         '                                                                                            </span>&nbsp;\n' +
                         '                                                                                            <span class="reels-c-time-box">\n' +
-                        '                                                                                                <a href="#"\n' +
+                        '                                                                                                <a href="/member/myPage/'+res.data.commentMember[i].id+'"\n' +
                         '                                                                                                   class="reels-c-time-box-">\n' +
                         '\n' +
                         '                                                                                                    <!--릴스 코멘트 게시글 작성 시간-->\n' +
@@ -888,15 +945,16 @@
                         '                                                                                </div>\n' +
                         '                                                                            </div>\n' +
                         '\n'
-                    if (res.data.commentLikeList[i] == null || res.data.commentLikeList[i].memberId != res.data.seeMemberDTO[i].id) {
+                    if (res.data.commentLikeList[i] == null || res.data.commentLikeList[i].memberId != res.data.seeMemberDTO.id) {
                         output += '<div class="reels-s-c-like">\n' +
                             '                                                                                <span class="reels-s-c-like-">\n' +
                             '                                                                                    <div class="reels-s-c-like-1">\n' +
                             '                                                                                        <div class="reels-s-c-like-2">\n' +
                             '                                                                                            <div class="reels-s-c-like-3">\n' +
                             '                                                                                                <div class="reels-s-c-like-4">\n' +
-                            '                                                                                                    <span>\n' +
-                            '                                                                                                        <svg aria-label="좋아요"\n' +
+                            '                                                                                                    <span id="userLike' + i + '">\n' +
+                            '                                                                                                        <svg aria-label="좋아요"\n'+
+                            '                                                                                                             onclick="commentLike(' + i + ', ' + res.data.commentContentsList[i].id + ', ' + res.data.seeMemberDTO.id + ')"\n' +
                             '                                                                                                             class="reels-comment-user-like"\n' +
                             '                                                                                                             color="rgb(142, 142, 142)"\n' +
                             '                                                                                                             fill="rgb(142, 142, 142)"\n' +
@@ -920,9 +978,9 @@
                             '                                                                                        <div class="reels-s-c-like-2">\n' +
                             '                                                                                            <div class="reels-s-c-like-3">\n' +
                             '                                                                                                <div class="reels-s-c-like-4">\n' +
-                            '                                                                                                    <span>\n' +
-                            '                                                                                                        릴스 댓글 좋아요 버튼\n' +
+                            '                                                                                                    <span id="userLike' + i + '">\n' +
                             '                                                                                                        <svg aria-label="좋아요 취소"\n' +
+                            '                                                                                                             onclick="commentUnLike(' + i + ', ' + res.data.commentContentsList[i].id + ', ' + res.data.seeMemberDTO.id + ', ' + res.data.commentLikeList[i].id + ')"\n' +
                             '                                                                                                             class="reels-comment-user-like"\n' +
                             '                                                                                                             color="rgb(255, 48, 64)"\n' +
                             '                                                                                                             fill="rgb(255, 48, 64)"\n' +
@@ -939,13 +997,18 @@
                             '                                                                                        </div>\n' +
                             '                                                                                    </div>\n' +
                             '                                                                                </span>\n'
-                        output += '<div class="reels-s-c-like-c">\n' +
-                            '                                                                                    <span class="reels-s-c-like-c-">\n' +
-                            '\n' +
-                            '                                                                                        <!--릴스 댓글 좋아요 갯수-->\n' +
-                            '                                                                                        <span>' + res.data.commentLikeList.length + '</span>\n' +
-                            '                                                                                    </span>\n'
                     }
+                    output += '<div class="reels-s-c-like-c">\n'
+                    output += '<span class="reels-s-c-like-c-">\n'
+                        for (let j = 0; j < res.data.commentLikeList.length; j++) {
+                            if (res.data.commentLikeList[j] != null){
+                                if (res.data.commentLikeList[j].commentId === res.data.commentContentsList[i].id) {
+                                    sum++;
+                                }
+                            }
+                        }
+                    output += '<span>' + sum + '</span>\n';
+                    output += '</span>\n'
                     output += '</div>\n' +
                         '                                                                            </div>\n' +
                         '                                                                        </div>\n' +

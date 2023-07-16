@@ -60,4 +60,15 @@ public class ReelsService {
         BoardReelsCommentEntity boardReelsCommentEntity = BoardReelsCommentEntity.toSaveEntity(boardReelsEntity,memberEntity, boardReelsCommentDTO);
         reelsCommentRepository.save(boardReelsCommentEntity);
     }
+
+    public LikeDTO saveLike(LikeDTO likeDTO) {
+        BoardReelsCommentEntity boardReelsCommentEntity = reelsCommentRepository.findById(likeDTO.getCommentId()).orElseThrow(() -> new NoSuchElementException());
+        MemberEntity memberEntity = memberRepository.findById(likeDTO.getMemberId()).orElseThrow(() -> new NoSuchElementException());
+        BoardReelsCommentLikeEntity boardReelsCommentLikeEntity = BoardReelsCommentLikeEntity.toSaveEntity(boardReelsCommentEntity,memberEntity);
+        return LikeDTO.reelsCommentLikeToDTO(reelsCommentLikeRepository.save(boardReelsCommentLikeEntity));
+    }
+
+    public void deleteLike(LikeDTO likeDTO) {
+        reelsCommentLikeRepository.deleteById(likeDTO.getId());
+    }
 }

@@ -21,4 +21,11 @@ public class BoardReelsCommentLikeEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private MemberEntity memberEntity;
+
+    public static BoardReelsCommentLikeEntity toSaveEntity(BoardReelsCommentEntity boardReelsCommentEntity, MemberEntity memberEntity) {
+        BoardReelsCommentLikeEntity boardReelsCommentLikeEntity = new BoardReelsCommentLikeEntity();
+        boardReelsCommentLikeEntity.setMemberEntity(memberEntity);
+        boardReelsCommentLikeEntity.setBoardReelsCommentEntity(boardReelsCommentEntity);
+        return boardReelsCommentLikeEntity;
+    }
 }

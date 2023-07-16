@@ -2,6 +2,7 @@ package com.example.finalproject.controller;
 
 import com.example.finalproject.dto.BoardReelsCommentDTO;
 import com.example.finalproject.dto.BoardReelsDTO;
+import com.example.finalproject.dto.LikeDTO;
 import com.example.finalproject.serivce.ReelsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -44,5 +45,15 @@ public class ReelsController {
         boardReelsCommentDTO.setMemberId((Long) session.getAttribute("memberId"));
         reelsService.save(boardReelsCommentDTO);
             return new ResponseEntity(HttpStatus.OK);
+    }
+    @PostMapping("/Reels/commentLike")
+    public ResponseEntity reelsCommentLike(@RequestBody LikeDTO likeDTO) {
+        LikeDTO likeDTOResult = reelsService.saveLike(likeDTO);
+        return new ResponseEntity(likeDTOResult, HttpStatus.OK);
+    }
+    @PostMapping("/Reels/commentUnLike")
+    public ResponseEntity reelsCommnetUnLike(@RequestBody LikeDTO likeDTO) {
+        reelsService.deleteLike(likeDTO);
+        return new ResponseEntity(HttpStatus.OK);
     }
 }
