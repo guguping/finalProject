@@ -3,10 +3,7 @@ package com.example.finalproject.controller;
 import com.example.finalproject.dto.*;
 import com.example.finalproject.entitiy.MemberEntity;
 import com.example.finalproject.repository.MemberFollowRepository;
-import com.example.finalproject.serivce.BoardCommentService;
-import com.example.finalproject.serivce.BoardService;
-import com.example.finalproject.serivce.MemberFollowService;
-import com.example.finalproject.serivce.MemberSerivce;
+import com.example.finalproject.serivce.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +24,9 @@ public class BoardController {
     private final MemberFollowService memberFollowService;
 
     private final BoardCommentService boardCommentService;
+
+    private final LikeServie likeServie;
+    private final BookmarkService bookmarkService;
 
     @GetMapping("/board/main")
     public String boardMain(Model model, HttpSession session) {
@@ -67,6 +67,23 @@ public class BoardController {
     public ResponseEntity delete(@PathVariable Long id) {
         boardService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/boardDetail/{id}")
+    public ResponseEntity findById(@PathVariable Long id, @RequestParam("boardKind") int boardKind, HttpSession session) throws Exception {
+        Long loginId = (Long) session.getAttribute("memberId");
+        BoardDTO boardDTO = boardService.findById(id);
+        MemberDTO memberDTO = memberSerivce.findById(boardDTO.getMemberId());
+        boolean likeOk = likeServie.findByBoardLike(id, loginId, boardKind);
+        boolean bookmarkOk = bookmarkService.findByBoardBookmark(id, loginId, boardKind);
+        List<BoardFileDTO> boardFileDTOList = boardService.findBoardFile(boardDTO.getId());
+        Map<String, Object> board = new HashMap<>();
+        board.put("boardDTO", boardDTO);
+        board.put("memberDTO", memberDTO);
+        board.put("boardFileList", boardFileDTOList);
+        board.put("boardLike", likeOk);
+        board.put("boardBookmark", bookmarkOk);
+        return new ResponseEntity<>(board, HttpStatus.OK);
     }
 
 

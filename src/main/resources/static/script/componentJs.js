@@ -584,32 +584,4 @@ if (imageElements2.length === 1) {
     nextButtonBoard2.style.display = "none";
     previousButton2.style.display = "none";
 }
-// 현재 페이지 번호를 추적하는 변수
-// let Page = 1;
-//
-// // 스크롤 이벤트를 감지하는 함수
-// function handleScroll() {
-//     // 스크롤 위치와 윈도우 높이, 문서 전체 높이를 비교하여 스크롤이 페이지 하단에 도달했는지 확인합니다.
-//     if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-//         // 페이지 번호를 증가시키고, 해당 페이지의 데이터를 서버에 요청합니다.
-//         Page++;
-//         loadData();
-//     }
-// }
 
-// 스크롤 이벤트에 handleScroll 함수를 연결합니다.
-// window.addEventListener('scroll', handleScroll);
-//
-// // 데이터를 불러오고 페이지에 추가하는 함수
-// function loadData() {
-//     // 서버에 요청을 보내어 Page에 해당하는 페이지의 데이터를 가져옵니다.
-//     axios.get(`/api/data?page=${Page}`)
-//         .then(response => {
-//             const data = response.data;
-//             // 가져온 데이터를 페이지에 추가하는 작업을 수행합니다.
-//             // 예를 들어, 가져온 데이터를 HTML 요소로 변환하여 페이지의 특정 컨테이너에 추가할 수 있습니다.
-//         })
-//         .catch(error => {
-//             // 에러 처리를 수행합니다.
-//         });
-// }
