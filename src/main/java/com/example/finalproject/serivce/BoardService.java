@@ -121,5 +121,9 @@ public class BoardService {
         });
         return boardFileDTOList;
     }
+    public void delete(Long id) {
+        boardRepository.deleteById(id);
+    }
 }
+
 

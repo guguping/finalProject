@@ -8,12 +8,11 @@ import com.example.finalproject.serivce.BoardService;
 import com.example.finalproject.serivce.MemberFollowService;
 import com.example.finalproject.serivce.MemberSerivce;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
@@ -37,12 +36,10 @@ public class BoardController {
         List<BoardDTO> boardDTOList = boardService.findAll(loginId);
         List<BoardFileDTO> boardFileDTOList = boardService.findAllFile();
         List<MemberDTO> memberDTOList = memberSerivce.findAll();
-//        List<BoardCommentDTO> boardCommentDTOList = boardCommentService.findAll();
+        List<BoardCommentDTO> boardCommentDTOList = boardCommentService.findAll();
         BoardDTO boardDTO = boardService.findById(loginId);
-        List<BoardCommentDTO> boardCommentDTOList = boardCommentService.findAll(boardDTO.getId());
-//        boardDTOList.forEach(boardDTO -> {
-//
-//        });
+//        List<BoardCommentDTO> boardCommentDTOList = boardCommentService.findAll(boardDTO.getId());
+
 
         model.addAttribute("boardCommentDTOList", boardCommentDTOList);
         model.addAttribute("boardFileList",boardFileDTOList);
@@ -60,5 +57,17 @@ public class BoardController {
         boardService.save(boardDTO);
         return "redirect:/board/main";
     }
+    @PostMapping("/findById")
+    @ResponseBody
+    public ResponseEntity<?> findBoardById(@RequestBody Long boardId) {
+        BoardDTO boardDTO = boardService.findById(boardId);
+        return ResponseEntity.ok(boardDTO);
+    }
+    @DeleteMapping("/board/{id}")
+    public ResponseEntity delete(@PathVariable Long id) {
+        boardService.delete(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 
 }
