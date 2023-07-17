@@ -1,5 +1,6 @@
 package com.example.finalproject.serivce;
 import com.example.finalproject.dto.BoardCommentDTO;
+import com.example.finalproject.dto.MemberDTO;
 import com.example.finalproject.entitiy.BoardCommentEntity;
 import com.example.finalproject.entitiy.BoardEntity;
 import com.example.finalproject.entitiy.MemberEntity;
@@ -57,6 +58,7 @@ public class BoardCommentService {
         });
         return commentDTOList;
     }
+
 }
 
 

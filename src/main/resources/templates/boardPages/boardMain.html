@@ -227,11 +227,6 @@
                                                                     </div>
                                                                 </div>
                                                                 <th:block th:each="boardDTO:${boardDTOList}">
-                                                                    <!--                                                                    <th:block-->
-                                                                    <!--                                                                            th:each="memberFollowDTO :${memberFollowList}">-->
-
-                                                                    <!--                                                                        <th:block-->
-                                                                    <!--                                                                                th:if="${session.memberId == boardDTO.getMemberId() or (session.memberId == boardDTO.getFollowerId() and boardDTO.getMemberId() == boardDTO.getFollowingId())}">-->
                                                                     <!--board 게시글 list -->
                                                                     <div class="boardMain-main-list-box">
                                                                         <div class="boardMain-main-list-inner">
@@ -306,7 +301,8 @@
                                                                                                         </header>
                                                                                                         <!--게시글 수정, 삭제-->
                                                                                                         <div style="padding: 0;margin-right: -8px;"
-                                                                                                             id="board-modal-on-off">
+                                                                                                             th:id="'board-modal-on-off'+${boardDTO.id}"
+                                                                                                             th:onclick="openBoardMenu([[${boardDTO.id}]])">
                                                                                                             <button class="boardMain-main-board-plus-btn"
                                                                                                                     th:if="${session.memberId == boardDTO.memberId}">
                                                                                                                 <div style="align-items: center;display: flex;justify-content: center;">
@@ -339,7 +335,7 @@
                                                                                                 <!--게시글 사진-->
                                                                                                 <!--  작업영역-->
                                                                                                 <div class="boardMain-main-board-img-box"
-                                                                                                     id="boardMain-main-board-img-box">
+                                                                                                     th:id="'boardMain-main-board-img-box' +${boardDTO.id}">
                                                                                                     <div class="boardMain-main-board-img-box-inner">
                                                                                                         <div style="display: block;position: relative;">
                                                                                                             <div class="img-padding-size"></div>
@@ -379,14 +375,19 @@
                                                                                                                     </div>
                                                                                                                     <!--페이징 버튼 이전 -->
                                                                                                                     <button class="boardMain-board-paging-left"
-                                                                                                                            tabindex="-1">
+                                                                                                                            tabindex="-1"
+                                                                                                                            th:id="'boardMain-board-paging-left'+${boardDTO.id}"
+                                                                                                                            th:onclick="goToPreviousPage([[${boardDTO.id}]])"
+                                                                                                                            style="display: none">
                                                                                                                         <div class="_9zm0">
 
                                                                                                                         </div>
                                                                                                                     </button>
                                                                                                                     <!--페이징 버튼 다음 -->
                                                                                                                     <button class="boardMain-board-paging-right"
-                                                                                                                            tabindex="-1">
+                                                                                                                            tabindex="-1"
+                                                                                                                            th:id="'boardMain-board-paging-right'+${boardDTO.id}"
+                                                                                                                            th:onclick="goToNextPage([[${boardDTO.id}]])">
                                                                                                                         <div class="_9zm2">
 
                                                                                                                         </div>
@@ -595,36 +596,31 @@
                                                                                                                 <!--가장 최근 댓글-->
 
                                                                                                                 <div class="board-contents-comment-small-list1"
-                                                                                                                     id="comment-list">
+                                                                                                                     th:id="'comment-list'+${boardDTO.id}">
                                                                                                                     <div class="board-contents-comment-small1">
                                                                                                                         <th:block
                                                                                                                                 th:each="commentList : ${boardCommentDTOList}">
-                                                                                                                            <th:block
-                                                                                                                                    th:if="${boardDTO.getId() == commentList.getBoardId() and commentList.memberId == boardDTO.memberId}">
-                                                                                                                                <div class="board-contents-comment-box">
+
+                                                                                                                            <div class="board-contents-comment-box">
+                                                                                                                                <div style="display: inline;">
                                                                                                                                     <div style="display: inline;">
-                                                                                                                                        <div style="display: inline;">
-                                                                                                                                            <a href="#"
-                                                                                                                                               class="board-contents-writer">
+                                                                                                                                        <a href="#"
+                                                                                                                                           class="board-contents-writer">
 
                                                                                                                                     <span class="djelRKwlemfdjrk">
                                                                                                                                         <div class="wkrtjdwkdlqfur"
-                                                                                                                                             id="comment-nickname"
-                                                                                                                                             th:text="${commentList.getMemberId()}">
+                                                                                                                                             id="comment-nickname">
                                                                                                                                         </div>
                                                                                                                                     </span>
-
-                                                                                                                                            </a>
-
-                                                                                                                                        </div>
+                                                                                                                                        </a>
                                                                                                                                     </div>
-                                                                                                                                    <span class="board-contents-margin">&nbsp;</span>
-                                                                                                                                    <span class="board-contents-text-contents">
-                                                                                                                                            <span class="board-contents-text-contents-inner"
-                                                                                                                                                  th:text="${commentList.getCommentContents()}"></span>
-                                                                                                                                        </span>
                                                                                                                                 </div>
-                                                                                                                            </th:block>
+                                                                                                                                <span class="board-contents-margin">&nbsp;</span>
+                                                                                                                                <span class="board-contents-text-contents">
+                                                                                                                                            <span class="board-contents-text-contents-inner"
+                                                                                                                                            ></span>
+                                                                                                                                        </span>
+                                                                                                                            </div>
                                                                                                                         </th:block>
                                                                                                                     </div>
                                                                                                                 </div>
@@ -639,7 +635,7 @@
                                                                                                                                 style="border: none;"
                                                                                                                                 placeholder="댓글 달기..."
                                                                                                                                 name="commentContents"
-                                                                                                                                id="commentContents"></textarea>
+                                                                                                                                th:id="'commentContents'+${boardDTO.id}"></textarea>
                                                                                                                                 <div style="margin: 0 8px 0 8px;">
                                                                                                                                     <div class="comment-textarea-btn"
                                                                                                                                          th:onclick="comment_write([[${boardDTO.id}]],[[${session.memberId}]])">
@@ -654,6 +650,7 @@
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>
+                                                                                            </div>
                                                                                         </article>
                                                                                     </div>
                                                                                 </div>
@@ -723,7 +720,6 @@
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
-
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -1126,7 +1122,8 @@
                                                                         <!--로그아웃 시작-->
                                                                         <div class="nav-logout-btn-"
                                                                              id="nav-logout-btn-">
-                                                                            <div class="nav-logout-btn-1">
+                                                                            <div class="nav-logout-btn-1"
+                                                                                 onclick="member_logout()">
                                                                                 <div class="nav-logout-btn-2">
                                                                                     <div class="nav-logout-btn-3">
                                                                                         <div class="nav-logout-btn-4">
@@ -1165,23 +1162,28 @@
             </div>
 
             <!--게시글 옵션 시작-->
-            <div style="position: absolute;top: 0;width: 100%">
-                <div class="plus-modal-board-" id="plus-modal-board-" style="display:none;">
-                    <div class="plus-modal-board-1">
-                        <div class="plus-modal-board-2">
-                            <div class="plus-modal-board-bg"></div>
-                            <div class="plus-modal-board-3">
-                                <div class="plus-modal-board-main-">
-                                    <div class="plus-modal-board-main-1">
-                                        <div class="plus-modal-board-main-2">
-                                            <div class="plus-modal-board-main-3">
-                                                <div class="plus-modal-board-inner-">
-                                                    <div class="plus-modal-board-inner-1">
-                                                        <div class="plus-modal-board-inner-2">
-                                                            <div class="plus-modal-board-inner-3">
-                                                                <button type="button" class="_a9--">삭제</button>
-                                                                <button type="button" class="_a9-">수정</button>
-                                                                <button type="button" class="_a9_1">취소</button>
+            <th:block th:each="boardDTO:${boardDTOList}">
+                <div style="position: absolute;top: 0;width: 100%">
+                    <div class="plus-modal-board-" id="plus-modal-board-" style="display:none;">
+                        <div class="plus-modal-board-1">
+                            <div class="plus-modal-board-2">
+                                <div class="plus-modal-board-bg"></div>
+                                <div class="plus-modal-board-3">
+                                    <div class="plus-modal-board-main-">
+                                        <div class="plus-modal-board-main-1">
+                                            <div class="plus-modal-board-main-2">
+                                                <div class="plus-modal-board-main-3">
+                                                    <div class="plus-modal-board-inner-">
+                                                        <div class="plus-modal-board-inner-1">
+                                                            <div class="plus-modal-board-inner-2">
+                                                                <div class="plus-modal-board-inner-3">
+                                                                    <button type="button" class="_a9--"
+                                                                            th:onclick="boardDelete([[${boardDTO.id}]])">
+                                                                        삭제
+                                                                    </button>
+                                                                    <button type="button" class="_a9-">수정</button>
+                                                                    <button type="button" class="_a9_1">취소</button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1194,30 +1196,19 @@
                         </div>
                     </div>
                 </div>
-            </div>
+                <th:break></th:break>
+            </th:block>
         </div>
     </main>
 </section>
 </body>
 
-<script th:inline="javascript">
 
-</script>
-<script type="text/javascript" th:src="@{/script/componentJs.js}"></script>
+<script th:inline="javascript" type="text/javascript" th:src="@{/script/componentJs.js}"></script>
 <script>
-    document.addEventListener("click", function (event) {
+    const member_logout = () => {
+        location.href = "/member/logout";
+    }
 
-        if (plusBoardOpModal.style.display === "block" && event.target !== plusBoardOpModalBtn && !plusBoardOpModalBtn.contains(event.target)) {
-            plusBoardOpModal.style.display = "none";
-        }
-    });
-
-    plusBoardOpModalBtn.addEventListener("click", function () {
-        if (plusBoardOpModal.style.display === "none") {
-            plusBoardOpModal.style.display = "block";
-        } else {
-            plusBoardOpModal.style.display = "none";
-        }
-    })
 </script>
 </html>

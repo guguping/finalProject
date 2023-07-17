@@ -24,14 +24,30 @@ const plusNavDisplay = document.getElementById('plusNavDisplay');
 const plusNavDisplayMain = document.getElementById('plusNavDisplay-main');
 
 const plusBoardOpModal = document.getElementById('plus-modal-board-');
-const plusBoardOpModalBtn = document.getElementById('board-modal-on-off');
 
 
-document.addEventListener("click", function (event) {
-    if (plusNavDisplayMain.style.display === "block" && event.target !== plusNavDisplay && !plusNavDisplay.contains(event.target)) {
-        plusNavDisplayMain.style.display = "none";
-    }
-});
+
+function openBoardMenu(boardId) {
+    const plusBoardOpModalBtn2 = document.getElementById("board-modal-on-off" + boardId);
+
+    plusBoardOpModalBtn.addEventListener("click", function() {
+        if (plusBoardOpModal.style.display === "none") {
+            plusBoardOpModal.style.display = "block";
+        } else {
+            plusBoardOpModal.style.display = "none";
+        }
+    });
+
+    document.addEventListener("click", function(event) {
+        if (plusBoardOpModal.style.display === "block" && event.target !== plusBoardOpModalBtn && !plusBoardOpModalBtn.contains(event.target)) {
+            plusBoardOpModal.style.display = "none";
+        }
+    });
+
+    // Perform post menu operation using boardId.
+    // Write the code to be executed here.
+    console.log("Performing post menu operation for boardId:", boardId);
+}
 
 plusNavDisplay.addEventListener("click", function () {
     if (plusNavDisplayMain.style.display === "none") {
@@ -409,9 +425,9 @@ boardMainContainers.forEach(function (boardMainContainer) {
 });
 
 
-const comment_list = (commentList, memberNickname) => {
+const comment_list = (commentList, memberNickname, boardId) => {
     console.log("댓글 목록 함수", commentList);
-    const resultArea = document.querySelector("#comment-list");
+    const resultArea = document.getElementById('comment-list'+boardId);
     resultArea.innerHTML = '';
 
     const latestComments = commentList.slice(0, 2);
@@ -441,7 +457,7 @@ const comment_list = (commentList, memberNickname) => {
 };
 
 const comment_write = (boardId, memberId) => {
-    const contents = document.querySelector("#commentContents").value;
+    const contents = document.getElementById('commentContents'+boardId).value;
     console.log("contents = " + contents);
     axios({
         method: "post",
@@ -457,17 +473,142 @@ const comment_write = (boardId, memberId) => {
         const commentList = boardMain.commentDTOList;
         console.log("res", res);
         console.log("댓글 목록", res.data);
-        document.querySelector("#commentContents").value = "";
+        // document.querySelector("#commentContents").value = "";
+        document.getElementById('commentContents'+boardId).value = "";
 
         // 멤버 닉네임 설정
         const memberNickname = memberDTO.memberNickName;
 
-        comment_list(commentList, memberNickname);
+        comment_list(commentList, memberNickname, boardId);
     }).catch(err => {
         console.log("err", err);
         alert("실패");
     });
 };
+const boardDelete = (id) => {
+    console.log("boardid ="+ id);
+    const boardid = id
+    axios({
+        method: "delete",
+        url: "/board/" + boardid
+    }).then(res => {
+        location.href = "/board/main";
+    }).catch(err => {
+        alert("삭제 실패!!");
+    });
+}
 
 
 
+var currentPage = 1; // 현재 페이지 초기값을 설정합니다.
+var imagesPerPage = 1; // 한 페이지에 표시할 이미지 수를 설정합니다.
+// var previousButton = document.querySelector(".boardMain-board-paging-left");
+// previousButton.style.display = "none";
+function goToPreviousPage(boardId) {
+    console.log("boardId=" + boardId);
+    var startIndex = (currentPage - 1) * imagesPerPage;
+    var endIndex = startIndex + imagesPerPage;
+    var boardMainContainer = document.getElementById("boardMain-main-board-img-box" + boardId);
+    var imageElements = boardMainContainer.querySelectorAll("img");
+
+    for (var i = 0; i < imageElements.length; i++) {
+        if (i >= startIndex && i < endIndex) {
+            imageElements[i].style.display = "block"; // set the image element visible
+        } else {
+            imageElements[i].style.display = "none"; // Set the image element to be hidden
+        }
+    }
+    if (currentPage > 1) {
+        currentPage--;
+    }
+    const nextButton = document.getElementById("boardMain-board-paging-right" + boardId);
+    const previousButton = document.getElementById("boardMain-board-paging-left" + boardId);
+
+    if (currentPage === 1) {
+        nextButton.style.display = "block";
+        previousButton.style.display = "none";
+    } else {
+        nextButton.style.display = "block";
+        previousButton.style.display = "block";
+    }
+    if (imageElements.length === 1) {
+        nextButton.style.display = "none";
+        previousButton.style.display = "none";
+    }
+}
+
+
+function goToNextPage(boardId) {
+    console.log("boardId=" + boardId);
+    var boardMainContainer = document.getElementById("boardMain-main-board-img-box" + boardId);
+    var imageElements = boardMainContainer.querySelectorAll("img");
+    const startIndex = (currentPage - 1) * imagesPerPage;
+    const endIndex = startIndex + imagesPerPage;
+
+
+    for (let i = 0; i < imageElements.length; i++) {
+        if (i >= startIndex && i < endIndex) {
+            imageElements[i].style.display = "block"; // set the image element visible
+        } else {
+            imageElements[i].style.display = "none"; // Set the image element to be hidden
+        }
+    }
+
+    if (currentPage < Math.ceil(imageElements.length / imagesPerPage)) {
+        currentPage++;
+    }
+    const nextButton = document.getElementById("boardMain-board-paging-right" + boardId);
+    const previousButton = document.getElementById("boardMain-board-paging-left" + boardId);
+
+    if (currentPage === Math.ceil(imageElements.length / imagesPerPage)) {
+        nextButton.style.display = "none";
+        previousButton.style.display = "block";
+    } else {
+        nextButton.style.display = "block";
+        previousButton.style.display = "block";
+    }
+    if (imageElements.length === 1) {
+        nextButton.style.display = "none";
+        previousButton.style.display = "none";
+    }
+}
+var boardMainContainer2 = document.querySelectorAll(".boardMain-main-board-img-box"); // select post container
+var imageElements2 = document.querySelectorAll(".imageContainer img"); // Select the image elements of the post
+// Hide previous button initially if it's the first image
+var previousButton2 = document.querySelector(".boardMain-board-paging-left");
+// Show next button if there are more images
+var nextButtonBoard2 = document.querySelector(".boardMain-board-paging-right");
+// Hide all buttons if there is only one image
+if (imageElements2.length === 1) {
+    nextButtonBoard2.style.display = "none";
+    previousButton2.style.display = "none";
+}
+// 현재 페이지 번호를 추적하는 변수
+let Page = 1;
+
+// 스크롤 이벤트를 감지하는 함수
+function handleScroll() {
+    // 스크롤 위치와 윈도우 높이, 문서 전체 높이를 비교하여 스크롤이 페이지 하단에 도달했는지 확인합니다.
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+        // 페이지 번호를 증가시키고, 해당 페이지의 데이터를 서버에 요청합니다.
+        Page++;
+        loadData();
+    }
+}
+
+// 스크롤 이벤트에 handleScroll 함수를 연결합니다.
+window.addEventListener('scroll', handleScroll);
+
+// 데이터를 불러오고 페이지에 추가하는 함수
+function loadData() {
+    // 서버에 요청을 보내어 Page에 해당하는 페이지의 데이터를 가져옵니다.
+    axios.get(`/api/data?page=${Page}`)
+        .then(response => {
+            const data = response.data;
+            // 가져온 데이터를 페이지에 추가하는 작업을 수행합니다.
+            // 예를 들어, 가져온 데이터를 HTML 요소로 변환하여 페이지의 특정 컨테이너에 추가할 수 있습니다.
+        })
+        .catch(error => {
+            // 에러 처리를 수행합니다.
+        });
+}
