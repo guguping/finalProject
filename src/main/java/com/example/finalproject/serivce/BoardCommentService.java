@@ -28,21 +28,21 @@ public class BoardCommentService {
         return boardCommentRepository.save(boardCommentEntity).getId();
     }
 
-    @Transactional
-    public List<BoardCommentDTO> findAll(Long boardId) {
-        BoardEntity boardEntity = boardRepository.findById(boardId).orElseThrow(() -> new NoSuchElementException());
-        // 1. BoardEntity에서 댓글 목록 가져오기
-//        List<CommentEntity> commentEntityList = boardEntity.getCommentEntityList();
-        // 2. CommentRepository에서 가져오기
-        // select * from comment_table where board_id=?
-        List<BoardCommentEntity> commentEntityList = boardCommentRepository.findByBoardEntityOrderByIdDesc(boardEntity);
-
-        List<BoardCommentDTO> commentDTOList = new ArrayList<>();
-        commentEntityList.forEach(comment -> {
-            commentDTOList.add(BoardCommentDTO.toDTO(comment));
-        });
-        return commentDTOList;
-    }
+//    @Transactional
+//    public List<BoardCommentDTO> findAll(Long boardId) {
+//        BoardEntity boardEntity = boardRepository.findById(boardId).orElseThrow(() -> new NoSuchElementException());
+//        // 1. BoardEntity에서 댓글 목록 가져오기
+////        List<CommentEntity> commentEntityList = boardEntity.getCommentEntityList();
+//        // 2. CommentRepository에서 가져오기
+//        // select * from comment_table where board_id=?
+//        List<BoardCommentEntity> commentEntityList = boardCommentRepository.findByBoardEntityOrderByIdDesc(boardEntity);
+//
+//        List<BoardCommentDTO> commentDTOList = new ArrayList<>();
+//        commentEntityList.forEach(comment -> {
+//            commentDTOList.add(BoardCommentDTO.toDTO(comment));
+//        });
+//        return commentDTOList;
+//    }
 
     public List<BoardCommentDTO> findAll() {
 
@@ -58,6 +58,32 @@ public class BoardCommentService {
         });
         return commentDTOList;
     }
+
+    public List<BoardCommentDTO> findAll(Long boardId) {
+        BoardEntity boardEntity = boardRepository.findById(boardId).orElseThrow(() -> new NoSuchElementException());
+        List<BoardCommentEntity> commentEntityList = boardCommentRepository.findByBoardEntityOrderByIdDesc(boardEntity);
+
+        List<BoardCommentDTO> commentDTOList = new ArrayList<>();
+        commentEntityList.forEach(comment -> {
+            commentDTOList.add(BoardCommentDTO.toDTO(comment));
+        });
+        List<BoardCommentDTO> boardCommentDTOList = new ArrayList<>();
+        for (int i = 0; i < commentDTOList.size(); i++) {
+            BoardCommentDTO boardCommentDTO = commentDTOList.get(i);
+            MemberDTO memberDTO = MemberDTO.toDTO(memberRepository.findById(boardCommentDTO.getMemberId()).orElseThrow(() -> new NoSuchElementException()));
+            boardCommentDTO.setMemberNickName(memberDTO.getMemberNickName());
+            boardCommentDTO.setMemberProfile(memberDTO.getMemberProfile());
+            boardCommentDTOList.add(boardCommentDTO);
+        }
+//        commentDTOList.forEach(comment -> {
+//            MemberDTO memberDTO = MemberDTO.toDTO(memberRepository.findById(comment.getMemberId()).orElseThrow(() -> new NoSuchElementException()));
+//            comment.setMemberNickName(memberDTO.getMemberNickName());
+//            System.out.println("comment.getMemberNickName = " + comment.getMemberNickName());
+//            boardCommentDTOList.add(comment);
+//        });
+        return boardCommentDTOList;
+    }
+
 
 }
 
