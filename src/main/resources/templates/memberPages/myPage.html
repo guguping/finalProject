@@ -99,7 +99,7 @@
                                                                         </span>
                                                                     </li>
                                                                     <li class="myPage-member-count-tap-1">
-                                                                        <a href="#" class="memberPage-member-count-tap-display">
+                                                                        <a href="#" class="memberPage-member-count-tap-display" onclick="fListOaEv()">
                                                                             팔로워
 
                                                                             <!--회원 팔로워 갯수-->
@@ -380,7 +380,7 @@
                     </div>
                 </div>
 
-                <div style="position: absolute;width: 100%;top: 0px;">
+                <div style="position: fixed;width: 100%;top: 0px;">
                     <div id="boardSave-layout" style="display: none;">
                         <div style="z-index: 3;position: relative;">
                             <div style="box-sizing: border-box;position: relative;z-index: 0;">
@@ -648,9 +648,9 @@
                 </div>
             </div>
 
-            <div id="user-img-Change-display" style="position: absolute;width: 100%;top: 0px;display: none;">
+            <div style="position: fixed;width: 100%;top: 0px;">
                 <div>
-                    <div class="vmfhvlftkwlsqusrud">
+                    <div class="vmfhvlftkwlsqusrud" id="user-img-Change-display" style="display: none;">
                         <div class="vmfhvlftkwlsqusrud1">
                             <div class="vmfhvlftkwlsqusrud2">
                                 <div class="dlrjsanjsep"></div>
@@ -691,10 +691,123 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="myPage-f-ing-b" id="myPage-f-ing-b" style="display: block;">
+                        <div class="myPage-f-ing-b-">
+                            <div class="myPage-f-ing-b-1">
+                                <div class="myPage-f-ing-bg"></div>
+                                <div class="myPage-f-ing-m">
+                                    <div class="myPage-f-ing-m-">
+                                        <div class="myPage-f-ing-m-1">
+                                            <div class="myPage-f-ing-m-2">
+                                                <div class="myPage-f-ing-m-3">
+                                                    <div class="myPage-f-ing-m-b">
+                                                        <div class="myPage-f-ing-m-b-">
+                                                            <div class="myPage-f-ing-m-b-1">
+                                                                <div class="myPage-f-ing-m-b-2">
+                                                                    <div class="myPage-f-ing-m-b-2-">
+                                                                        <div class="myPage-f-ing-m-b-2-1">
+                                                                            <h1 class="myPage-f-ing-m-b-2-2">
+                                                                                <div>팔로워</div>
+                                                                            </h1>
+                                                                        </div>
+
+                                                                        <div class="myPage-f-ing-m-b-2-1-">
+                                                                            <div class="myPage-f-ing-m-b-2-1-1">
+
+                                                                                <!--팔로워 리스트 닫기 버튼-->
+                                                                                <button class="myPage-f-ing-m-b-2-1-2" type="button" onclick="fListFaEv()">
+                                                                                    <div class="myPage-f-ing-m-b-2-1-3">
+                                                                                        <svg aria-label="닫기" class="myPage-f-ing-m-b-2-1-4" color="rgb(0, 0, 0)" fill="rgb(0, 0, 0)" height="18" role="img" viewBox="0 0 24 24" width="18">
+                                                                                            <title>닫기</title>
+                                                                                            <polyline fill="none" points="20.643 3.357 12 12 3.353 20.647" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></polyline>
+                                                                                            <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" x1="20.649" x2="3.354" y1="20.649" y2="3.354"></line>
+                                                                                        </svg>
+                                                                                    </div>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="myPage-f-ing-m-b-3">
+                                                                    <div class="myPage-f-ing-m-b-3-">
+                                                                        <div class="myPage-f-ing-m-b-3-1">
+
+                                                                            <div class="myPage-f-ing-m-b-3-2">
+                                                                                <div class="myPage-f-ing-m-b-3-2-">
+                                                                                    <div class="myPage-f-ing-m-b-3-2-1">
+                                                                                        <div class="myPage-f-ing-m-b-3-2-2">
+                                                                                            <div class="myPage-f-ing-m-prf">
+                                                                                                <div class="myPage-f-ing-m-prf-">
+                                                                                                    <div>
+                                                                                                        <div class="myPage-f-ing-m-prf-1">
+
+                                                                                                            <!--목록 링크 / 프로필사진-->
+                                                                                                            <a href="#" class="myPage-f-ing-m-prf-link">
+                                                                                                                <img class="myPage-f-ing-m-prf-img" src="../images/test프로필.jpg">
+                                                                                                            </a>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div class="myPage-f-ing-m-inf">
+                                                                                                <div class="myPage-f-ing-m-inf-">
+                                                                                                    <div class="myPage-f-ing-m-inf-1">
+                                                                                                        <span class="myPage-f-ing-m-inf-email">
+                                                                                                            <span class="myPage-f-ing-m-inf-email-">
+                                                                                                                <div class="myPage-f-ing-m-inf-email-1">
+                                                                                                                    <div class="myPage-f-ing-m-inf-email-2">
+
+                                                                                                                        <!--팔로 링크 / 이메일-->
+                                                                                                                        <a href="#" class="myPage-f-ing-m-inf-email-link">
+                                                                                                                            <span class="myPage-f-ing-m-inf-email-3">
+                                                                                                                                <div class="myPage-f-ing-m-inf-email-txt">jinddaeng96</div>
+                                                                                                                            </span>
+                                                                                                                        </a>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </span>
+                                                                                                        </span>
+
+                                                                                                        <!--팔로 이름-->
+                                                                                                        <span class="myPage-f-ing-m-inf-name">
+                                                                                                            <span class="myPage-f-ing-m-inf-name-txt">이진혁</span>
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div class="myPage-f-ing-m-dele">
+                                                                                                <div class="myPage-f-ing-m-dele-">
+
+                                                                                                    <!--팔로 삭제 버튼-->
+                                                                                                    <div class="myPage-f-ing-m-dele-btn">삭제</div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!--게시글 디테일 본문-->
-            <div style="position: absolute;width: 100%;top: 0px;" id="detail-box">
+            <div style="position: fixed;width: 100%;top: 0px;" id="detail-box">
 
             </div>
 
@@ -740,6 +853,7 @@
             const storedFileName = boardFileList[i].storedFileName;
             const boardLike = board.boardLike;  //boolean
             const boardBookmark = board.boardBookmark;  //boolean
+            const boardCommentList = board.boardCommentList;
             fileSize = boardFileList.length;
 
             let output = "<div class=\"myPage-board-detail-b1\">\n" +
@@ -1058,76 +1172,78 @@
                 "\n" +
                 "                                                                                    <!--게시글 상세 코멘트 리스트 시작-->\n" +
                 "                                                                                    <div class=\"detail-board-contents-comment-list\">\n" +
-                "                                                                                        <ul class=\"detail-board-contents-comment-list-\">\n" +
-                "                                                                                            <ul class=\"detail-board-contents-comment-list-1\">\n" +
-                "                                                                                                <div class=\"detail-board-contents-comment-box\">\n" +
-                "                                                                                                    <li class=\"detail-board-comment-list-li\">\n" +
-                "                                                                                                        <div class=\"detail-board-comment-size\">\n" +
-                "                                                                                                            <div class=\"_a9zo\">\n" +
-                "                                                                                                                <div>\n" +
-                "                                                                                                                    <div>\n" +
-                "                                                                                                                        <div class=\"eotrmftkdydwkdlalwl\">\n" +
-                "                                                                                                                            <canvas class=\"_aarh\"\n" +
-                "                                                                                                                                    height=\"42\"\n" +
-                "                                                                                                                                    width=\"42\"></canvas>\n" +
-                "\n" +
-                "                                                                                                                            <!--게시글 상세 댓글을 단 유저의 이미지-->\n" +
-                "                                                                                                                            <a href=\"#\"\n" +
-                "                                                                                                                               class=\"user-myPage-link\">\n" +
-                "                                                                                                                                <img \n" +
-                "                                                                                                                                     class=\"user-myPage-link-img\">\n" +
-                "                                                                                                                            </a>\n" +
-                "\n" +
-                "                                                                                                                        </div>\n" +
-                "                                                                                                                    </div>\n" +
-                "                                                                                                                </div>\n" +
-                "\n" +
-                "                                                                                                                <div class=\"_a9zr\">\n" +
-                "                                                                                                                    <h3 class=\"_a9zc\">\n" +
-                "                                                                                                                        <div class=\"dhfmsWhrakwls\">\n" +
-                "                                                                                                                            <div style=\"display: inline;\">\n" +
-                "                                                                                                                                <div style=\"display: inline;\">\n" +
-                "\n" +
-                "                                                                                                                                    <!--게시글 상세 댓글을 단 사용자 myPage 이동 링크-->\n" +
-                "                                                                                                                                    <a href=\"#\"\n" +
-                "                                                                                                                                       class=\"comment-user-going\"> 댓글 단 사람 닉네임(변경필)" + memberDTO.memberNickName + "</a>\n" +
-                "\n" +
-                "                                                                                                                                </div>\n" +
-                "                                                                                                                            </div>\n" +
-                "                                                                                                                        </div>\n" +
-                "                                                                                                                    </h3>\n" +
-                "\n" +
-                "                                                                                                                    <!--게시글 상세 댓글 내용-->\n" +
-                "                                                                                                                    <div style=\"display: inline\">\n" +
-                "                                                                                                                        <span class=\"detail-board-comment-text\">1</span>\n" +
-                "                                                                                                                    </div>\n" +
-                "\n" +
-                "                                                                                                                    <div class=\"detail-board-comment-info\">\n" +
-                "                                                                                                                        <span class=\"detail-board-comment-info-line\">\n" +
-                "\n" +
-                "                                                                                                                            <!--게시글 상세 댓글 작성 시간-->\n" +
-                "                                                                                                                            <a class=\"detail-board-comment-time-box\">\n" +
-                "                                                                                                                                <time class=\"detail-board-comment-time\"\n" +
-                "                                                                                                                                      datetime=\"2023-07-02T14:50:05.000Z\"\n" +
-                "                                                                                                                                      title=\"7월 2, 2023\">3시간</time>\n" +
-                "                                                                                                                            </a>\n" +
-                "\n" +
-                "                                                                                                                            <!--게시글 상세 댓글에 답글 디스플레이 on / off-->\n" +
-                "                                                                                                                            <button type=\"button\"\n" +
-                "                                                                                                                                    class=\"_a9ze\">\n" +
-                "                                                                                                                                <span class=\"aksemfRKrhalswnd\">답글 달기</span>\n" +
-                "                                                                                                                            </button>\n" +
-                "\n" +
-                "                                                                                                                        </span>\n" +
-                "                                                                                                                    </div>\n" +
-                "                                                                                                                </div>\n" +
-                "\n" +
-                "                                                                                                            </div>\n" +
-                "                                                                                                        </div>\n" +
-                "                                                                                                    </li>\n" +
-                "                                                                                                </div>\n" +
-                "                                                                                            </ul>\n" +
-                "                                                                                        </ul>\n" +
+                "                                                                                        <ul class=\"detail-board-contents-comment-list-\">\n";
+            for (let c in boardCommentList) {
+                output += "                                                                                            <ul class=\"detail-board-contents-comment-list-1\">\n" +
+                    "                                                                                                <div class=\"detail-board-contents-comment-box\">\n" +
+                    "                                                                                                    <li class=\"detail-board-comment-list-li\">\n" +
+                    "                                                                                                        <div class=\"detail-board-comment-size\">\n" +
+                    "                                                                                                            <div class=\"_a9zo\">\n" +
+                    "                                                                                                                <div>\n" +
+                    "                                                                                                                    <div>\n" +
+                    "                                                                                                                        <div class=\"eotrmftkdydwkdlalwl\">\n" +
+                    "                                                                                                                            <canvas class=\"_aarh\"\n" +
+                    "                                                                                                                                    height=\"42\"\n" +
+                    "                                                                                                                                    width=\"42\"></canvas>\n" +
+                    "\n" +
+                    "                                                                                                                            <!--게시글 상세 댓글을 단 유저의 이미지-->\n" +
+                    "                                                                                                                            <a href=\"#\"\n" +
+                    "                                                                                                                               class=\"user-myPage-link\">\n" +
+                    "                                                                                                                                <img \n" +
+                    "                                                                                                                                     class=\"user-myPage-link-img\" src=\"/upload/" + boardCommentList[c].memberProfile + "\"" + ">\n" +
+                    "                                                                                                                            </a>\n" +
+                    "\n" +
+                    "                                                                                                                        </div>\n" +
+                    "                                                                                                                    </div>\n" +
+                    "                                                                                                                </div>\n" +
+                    "\n" +
+                    "                                                                                                                <div class=\"_a9zr\">\n" +
+                    "                                                                                                                    <h3 class=\"_a9zc\">\n" +
+                    "                                                                                                                        <div class=\"dhfmsWhrakwls\">\n" +
+                    "                                                                                                                            <div style=\"display: inline;\">\n" +
+                    "                                                                                                                                <div style=\"display: inline;\">\n" +
+                    "\n" +
+                    "                                                                                                                                    <!--게시글 상세 댓글을 단 사용자 myPage 이동 링크-->\n" +
+                    "                                                                                                                                    <a href=\"#\"\n" +
+                    "                                                                                                                                       class=\"comment-user-going\">" + boardCommentList[c].memberNickName + "</a>\n" +
+                    "\n" +
+                    "                                                                                                                                </div>\n" +
+                    "                                                                                                                            </div>\n" +
+                    "                                                                                                                        </div>\n" +
+                    "                                                                                                                    </h3>\n" +
+                    "\n" +
+                    "                                                                                                                    <!--게시글 상세 댓글 내용-->\n" +
+                    "                                                                                                                    <div style=\"display: inline\">\n" +
+                    "                                                                                                                        <span class=\"detail-board-comment-text\">" + boardCommentList[c].commentContents + "</span>\n" +
+                    "                                                                                                                    </div>\n" +
+                    "\n" +
+                    "                                                                                                                    <div class=\"detail-board-comment-info\">\n" +
+                    "                                                                                                                        <span class=\"detail-board-comment-info-line\">\n" +
+                    "\n" +
+                    "                                                                                                                            <!--게시글 상세 댓글 작성 시간-->\n" +
+                    "                                                                                                                            <a class=\"detail-board-comment-time-box\">\n" +
+                    "                                                                                                                                <time class=\"detail-board-comment-time\"\n" +
+                    "                                                                                                                                      datetime=\"2023-07-02T14:50:05.000Z\"\n" +
+                    "                                                                                                                                      title=\"7월 2, 2023\">3시간</time>\n" +
+                    "                                                                                                                            </a>\n" +
+                    "\n" +
+                    "                                                                                                                            <!--게시글 상세 댓글에 답글 디스플레이 on / off-->\n" +
+                    "                                                                                                                            <button type=\"button\"\n" +
+                    "                                                                                                                                    class=\"_a9ze\">\n" +
+                    "                                                                                                                                <span class=\"aksemfRKrhalswnd\">답글 달기</span>\n" +
+                    "                                                                                                                            </button>\n" +
+                    "\n" +
+                    "                                                                                                                        </span>\n" +
+                    "                                                                                                                    </div>\n" +
+                    "                                                                                                                </div>\n" +
+                    "\n" +
+                    "                                                                                                            </div>\n" +
+                    "                                                                                                        </div>\n" +
+                    "                                                                                                    </li>\n" +
+                    "                                                                                                </div>\n" +
+                    "                                                                                            </ul>\n";
+            }
+            output += "                                                                                        </ul>\n" +
                 "                                                                                    </div>\n" +
                 "\n" +
                 "                                                                                    <section\n" +
@@ -1143,8 +1259,8 @@
                 "                                                                                                    <textarea\n" +
                 "                                                                                                            aria-label=\"댓글 달기\"\n" +
                 "                                                                                                            placeholder=\"댓글 달기...\"\n" +
-                "                                                                                                            class=\"detail-board-comment-save-textarea\"></textarea>\n" +
-                "                                                                                                    <div style=\"margin-left: 8px;\">\n" +
+                "                                                                                                            class=\"detail-board-comment-save-textarea\" id=\"board-comment-save-contents\"></textarea>\n" +
+                "                                                                                                    <div style=\"margin-left: 8px;\" onclick=\"comment_save(" + boardDTO.id + ")\">\n" +
                 "                                                                                                        <div class=\"detail-comment-sub-btn-box\">\n" +
                 "                                                                                                            <span style=\"opacity: .5;\">게시</span>\n" +
                 "                                                                                                        </div>\n" +
@@ -1254,6 +1370,23 @@
         });
     }
 
+    const comment_save = (id) => {
+        const commentContents = document.getElementById("board-comment-save-contents").value;
+
+        axios({
+            method: "post",
+            url: "/board/comment/"+id,
+            data: {
+                commentContents : commentContents
+            }
+        }).then(res => {
+            const boardComment = res.data;
+            board_detail(id);
+        }).catch(err => {
+
+        });
+    }
+
     const detail_off = () => {
         i = 0;
         resultArea.style.display = "none";
@@ -1333,6 +1466,14 @@
             }
         }
     }
+    const fListOaF = document.getElementById('myPage-f-ing-b');
 
+    const fListOaEv = () => {
+        fListOaF.style.display = "block";
+    }
+
+    const fListFaEv = () => {
+        fListOaF.style.display = "none";
+    }
 </script>
 </html>

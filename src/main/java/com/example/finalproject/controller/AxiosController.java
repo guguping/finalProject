@@ -1,5 +1,6 @@
 package com.example.finalproject.controller;
 
+import com.example.finalproject.dto.BoardCommentDTO;
 import com.example.finalproject.dto.BoardDTO;
 import com.example.finalproject.dto.BoardFileDTO;
 import com.example.finalproject.dto.MemberDTO;
@@ -23,6 +24,7 @@ public class AxiosController {
     private final MemberSerivce memberSerivce;
     private final LikeServie likeServie;
     private final BookmarkService bookmarkService;
+    private final BoardCommentService boardCommentService;
 
     @PostMapping("/member/email-check/{inputEmail}")
     public ResponseEntity<Boolean> mailCheck(@PathVariable String inputEmail) {
@@ -64,12 +66,14 @@ public class AxiosController {
         boolean likeOk = likeServie.findByBoardLike(id, loginId, boardKind);
         boolean bookmarkOk = bookmarkService.findByBoardBookmark(id, loginId, boardKind);
         List<BoardFileDTO> boardFileDTOList = boardService.findBoardFile(boardDTO.getId());
+        List<BoardCommentDTO> boardCommentDTOList = boardCommentService.findAll(boardDTO.getId());
         Map<String, Object> board = new HashMap<>();
         board.put("boardDTO", boardDTO);
         board.put("memberDTO", memberDTO);
         board.put("boardFileList", boardFileDTOList);
         board.put("boardLike", likeOk);
         board.put("boardBookmark", bookmarkOk);
+        board.put("boardCommentList", boardCommentDTOList);
         return new ResponseEntity<>(board, HttpStatus.OK);
     }
 
@@ -99,5 +103,15 @@ public class AxiosController {
         Long loginId = (Long) session.getAttribute("memberId");
         bookmarkService.delete(id, loginId, boardKind);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/board/comment/{id}")
+    public ResponseEntity boardComment(@PathVariable Long id, @RequestBody BoardCommentDTO boardCommentDTO, HttpSession session) {
+        Long loginId = (Long) session.getAttribute("memberId");
+        boardCommentDTO.setBoardId(id);
+        boardCommentDTO.setMemberId(loginId);
+        boardCommentService.save(boardCommentDTO);
+        List<BoardCommentDTO> boardCommentDTOList = boardCommentService.findAll(boardCommentDTO.getBoardId());
+        return new ResponseEntity<>(boardCommentDTOList, HttpStatus.OK);
     }
 }

@@ -16,6 +16,7 @@ public class BoardCommentDTO {
     private String commentContents;
     private String createdAt;
     private String memberNickName;
+    private String memberProfile;
 
 
 //     0 = 비수정 / 1 = 수정
