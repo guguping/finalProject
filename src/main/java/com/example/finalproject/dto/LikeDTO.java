@@ -3,6 +3,7 @@ package com.example.finalproject.dto;
 import com.example.finalproject.entitiy.BoardLikeEntity;
 import com.example.finalproject.entitiy.BoardReelsCommentEntity;
 import com.example.finalproject.entitiy.BoardReelsCommentLikeEntity;
+import com.example.finalproject.entitiy.BoardReelsLikeEntity;
 import com.example.finalproject.repository.ReelsCommentLikeRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,6 +29,18 @@ public class LikeDTO {
             likeDTO.setId(boardReelsCommentLikeEntity.getId());
             likeDTO.setMemberId(boardReelsCommentLikeEntity.getMemberEntity().getId());
             likeDTO.setCommentId(boardReelsCommentLikeEntity.getBoardReelsCommentEntity().getId());
+            return likeDTO;
+        }
+    }
+
+    public static LikeDTO reelsLiketoDTO(BoardReelsLikeEntity boardReelsLikeEntity) {
+        LikeDTO likeDTO = new LikeDTO();
+        if (boardReelsLikeEntity == null) {
+            return null;
+        } else {
+            likeDTO.setId(boardReelsLikeEntity.getId());
+            likeDTO.setBoardId(boardReelsLikeEntity.getBoardReelsEntity().getId());
+            likeDTO.setMemberId(boardReelsLikeEntity.getMemberEntity().getId());
             return likeDTO;
         }
     }

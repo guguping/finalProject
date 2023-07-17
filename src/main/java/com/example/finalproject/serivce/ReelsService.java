@@ -2,10 +2,7 @@ package com.example.finalproject.serivce;
 
 import com.example.finalproject.dto.*;
 import com.example.finalproject.entitiy.*;
-import com.example.finalproject.repository.BoardReelsRepository;
-import com.example.finalproject.repository.MemberRepository;
-import com.example.finalproject.repository.ReelsCommentLikeRepository;
-import com.example.finalproject.repository.ReelsCommentRepository;
+import com.example.finalproject.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +17,7 @@ public class ReelsService {
     private final ReelsCommentRepository reelsCommentRepository;
     private final MemberRepository memberRepository;
     private final ReelsCommentLikeRepository reelsCommentLikeRepository;
+    private final BoardReelsLikeRepository boardReelsLikeRepository;
 
     @Transactional
     public List<BoardReelsDTO> reelsFindAll() {
@@ -69,6 +67,33 @@ public class ReelsService {
     }
 
     public void deleteLike(LikeDTO likeDTO) {
-        reelsCommentLikeRepository.deleteById(likeDTO.getId());
+        if (likeDTO.getCommentId() != null) {
+            reelsCommentLikeRepository.deleteById(likeDTO.getId());
+        } else {
+            boardReelsLikeRepository.deleteById(likeDTO.getId());
+        }
+    }
+
+    @Transactional
+    public List<LikeDTO> findByLike(Long memberId) {
+        MemberEntity memberEntity = memberRepository.findById(memberId).orElseThrow(() -> new NoSuchElementException());
+        List<BoardReelsLikeEntity> boardReelsLikeEntityList = boardReelsLikeRepository.findAllByMemberEntity(memberEntity);
+        List<LikeDTO> likeDTOList = new ArrayList<>();
+        if (boardReelsLikeEntityList.size() == 0) {
+            return null;
+        } else {
+            boardReelsLikeEntityList.forEach(boardReelsLikeEntity -> {
+                likeDTOList.add(LikeDTO.reelsLiketoDTO(boardReelsLikeEntity));
+            });
+            return likeDTOList;
+        }
+    }
+
+    @Transactional
+    public LikeDTO saveReelsLike(LikeDTO likeDTO) {
+        BoardReelsEntity boardReelsEntity = boardReelsRepository.findById(likeDTO.getBoardId()).orElseThrow(() -> new NoSuchElementException());
+        MemberEntity memberEntity = memberRepository.findById(likeDTO.getMemberId()).orElseThrow(() -> new NoSuchElementException());
+        BoardReelsLikeEntity boardReelsLikeEntity = BoardReelsLikeEntity.toSaveEntity(boardReelsEntity,memberEntity);
+        return LikeDTO.reelsLiketoDTO((boardReelsLikeRepository.save(boardReelsLikeEntity)));
     }
 }

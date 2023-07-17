@@ -189,45 +189,47 @@
                                                                     </div>
                                                                     <div class="reels-v-s-m">
                                                                         <div class="reels-v-s-m-l">
-                                                                    <span>
-                                                                        <div class="reels-v-s-m-l-logo">
-                                                                            <div class="reels-v-s-m-l-logo-">
-                                                                                <span>
-
-                                                                                    <!--릴스 좋아요 버튼-->
-                                                                                    <svg aria-label="좋아요"
-                                                                                         class="reels-v-s-m-l-logo-m"
-                                                                                         color="rgb(38, 38, 38)"
-                                                                                         fill="rgb(38, 38, 38)"
-                                                                                         height="24" role="img"
-                                                                                         viewBox="0 0 24 24" width="24">
-                                                                                        <title>좋아요</title>
-                                                                                        <path d="M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 0 1 4.708-5.218 4.21 4.21 0 0 1 3.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 0 1 3.679-1.938m0-2a6.04 6.04 0 0 0-4.797 2.127 6.052 6.052 0 0 0-4.787-2.127A6.985 6.985 0 0 0 .5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 0 0 3.518 3.018 2 2 0 0 0 2.174 0 45.263 45.263 0 0 0 3.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 0 0-6.708-7.218Z"></path>
-                                                                                    </svg>
-
-                                                                                    <svg aria-label="좋아요 취소"
-                                                                                         class="reels-v-s-m-l-logo-m"
-                                                                                         color="rgb(255, 48, 64)"
-                                                                                         fill="rgb(255, 48, 64)"
-                                                                                         height="24" role="img"
-                                                                                         viewBox="0 0 48 48" width="24">
-                                                                                        <title>좋아요 취소</title>
-                                                                                        <path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path>
-                                                                                    </svg>
-
-                                                                                </span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </span>
-                                                                            <div class="reels-v-s-m-l-txt">
-                                                                                <div class="reels-v-s-m-l-txt-">
-                                                                                    <div class="reels-v-s-m-l-txt-1">
-                                                                                <span class="reels-v-s-m-l-txt-2">
-                                                                                    <span>32.8만</span>
-                                                                                </span>
+                                                                            <span>
+                                                                                <div class="reels-v-s-m-l-logo">
+                                                                                    <div class="reels-v-s-m-l-logo-">
+                                                                                        <span th:id="'boardLikeResult'+${reelsList.id}">
+                                                                                            <th:block th:if="${reelsLikeList != null}">
+                                                                                                <th:block th:each="like:${reelsLikeList}">
+                                                                                                    <th:block th:if="${like.memberId == session.memberId and like.boardId == reelsList.id}">
+                                                                                                        <svg th:onclick="likeOff([[${like.id}]],[[${reelsList.id}]],[[${session.memberId}]])" aria-label="좋아요 취소" class="reels-v-s-m-l-logo-m" color="rgb(255, 48, 64)" fill="rgb(255, 48, 64)" height="24" role="img" viewBox="0 0 48 48" width="24">
+                                                                                                            <title>좋아요 취소</title>
+                                                                                                            <path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path>
+                                                                                                        </svg>
+                                                                                                        <th:block th:break></th:block>
+                                                                                                    </th:block>
+                                                                                                    <th:block th:unless="${like.memberId == session.memberId and like.boardId == reelsList.id}">
+                                                                                                        <svg th:onclick="likeOn([[${session.memberId}]],[[${reelsList.id}]])" aria-label="좋아요" class="reels-v-s-m-l-logo-m" color="rgb(38, 38, 38)" fill="rgb(38, 38, 38)" height="24" role="img" viewBox="0 0 24 24" width="24">
+                                                                                                            <title>좋아요</title>
+                                                                                                            <path d="M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 0 1 4.708-5.218 4.21 4.21 0 0 1 3.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 0 1 3.679-1.938m0-2a6.04 6.04 0 0 0-4.797 2.127 6.052 6.052 0 0 0-4.787-2.127A6.985 6.985 0 0 0 .5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 0 0 3.518 3.018 2 2 0 0 0 2.174 0 45.263 45.263 0 0 0 3.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 0 0-6.708-7.218Z"></path>
+                                                                                                        </svg>
+                                                                                                        <th:block th:break></th:block>
+                                                                                                    </th:block>
+                                                                                                </th:block>
+                                                                                            </th:block>
+                                                                                            <th:block th:unless="${reelsLikeList != null}">
+                                                                                                    <svg th:onclick="likeOn([[${session.memberId}]],[[${reelsList.id}]])" aria-label="좋아요" class="reels-v-s-m-l-logo-m" color="rgb(38, 38, 38)" fill="rgb(38, 38, 38)" height="24" role="img" viewBox="0 0 24 24" width="24">
+                                                                                                        <title>좋아요</title>
+                                                                                                        <path d="M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 0 1 4.708-5.218 4.21 4.21 0 0 1 3.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 0 1 3.679-1.938m0-2a6.04 6.04 0 0 0-4.797 2.127 6.052 6.052 0 0 0-4.787-2.127A6.985 6.985 0 0 0 .5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 0 0 3.518 3.018 2 2 0 0 0 2.174 0 45.263 45.263 0 0 0 3.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 0 0-6.708-7.218Z"></path>
+                                                                                                    </svg>
+                                                                                            </th:block>
+                                                                                        </span>
                                                                                     </div>
                                                                                 </div>
-                                                                            </div>
+                                                                            </span>
+                                                                                <div class="reels-v-s-m-l-txt">
+                                                                                    <div class="reels-v-s-m-l-txt-">
+                                                                                        <div class="reels-v-s-m-l-txt-1">
+                                                                                        <span class="reels-v-s-m-l-txt-2">
+                                                                                            <span>32.8만</span>
+                                                                                        </span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
                                                                         </div>
 
                                                                         <div class="reels-v-s-m-l">
@@ -328,7 +330,8 @@
                                                     <div class="reels-s-c-mo-4">
                                                         <div class="reels-s-c-mo-tag">
                                                             <div class="reels-s-c-mo-tag-off">
-                                                                <div class="reels-s-c-mo-tag-off-" onclick="reelsCommentOaF1()">
+                                                                <div class="reels-s-c-mo-tag-off-"
+                                                                     onclick="reelsCommentOaF1()">
                                                                     <div class="reels-s-c-mo-tag-off-1">
 
                                                                         <!--릴스 코멘트 닫기 버튼-->
@@ -816,10 +819,10 @@
             commentInput.innerHTML = "<div></div>";
         }
     };
-    const commentLike = (i,commentId,memberId,sum) => {
-        let commentLikeResult = document.getElementById('userLike'+i);
-        let likeCount = document.getElementById('likeCount'+i);
-        let suma = sum+1;
+    const commentLike = (i, commentId, memberId, sum) => {
+        let commentLikeResult = document.getElementById('userLike' + i);
+        let likeCount = document.getElementById('likeCount' + i);
+        let suma = sum + 1;
         let output = "";
         let countput = "";
         console.log(sum);
@@ -832,7 +835,7 @@
             }
         }).then(res => {
             output += '<svg aria-label="좋아요 취소"\n' +
-                'onclick="commentUnLike('+i + ', ' + res.data.commentId + ', ' + res.data.memberId + ', ' + res.data.id + ', ' + suma + ')"\n' +
+                'onclick="commentUnLike(' + i + ', ' + res.data.commentId + ', ' + res.data.memberId + ', ' + res.data.id + ', ' + suma + ')"\n' +
                 'class="reels-comment-user-like"\n' +
                 'color="rgb(255, 48, 64)"\n' +
                 'fill="rgb(255, 48, 64)"\n' +
@@ -843,28 +846,28 @@
                 '<title>좋아요 취소</title>\n' +
                 '<path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path>\n' +
                 '</svg>\n'
-                countput += '<span>' + suma + '</span>'
+            countput += '<span>' + suma + '</span>'
             likeCount.innerHTML = countput;
             commentLikeResult.innerHTML = output;
         }).catch(err => {
             console.log("실패");
         })
     }
-    const commentUnLike = (i,commentId,memberId,commentLikeId,sum) => {
-        let commentLikeResult = document.getElementById('userLike'+i);
-        let likeCount = document.getElementById('likeCount'+i);
-        let suma = sum-1;
+    const commentUnLike = (i, commentId, memberId, commentLikeId, sum) => {
+        let commentLikeResult = document.getElementById('userLike' + i);
+        let likeCount = document.getElementById('likeCount' + i);
+        let suma = sum - 1;
         let countput = "";
         let output = ""
         axios({
             method: "post",
             url: "/Reels/commentUnLike",
             data: {
-                id:commentLikeId
+                id: commentLikeId
             }
         }).then(res => {
-            output += '<svg aria-label="좋아요"\n'+
-                'onclick="commentLike('+i + ', ' + commentId + ', ' + memberId + ', ' + suma +')"\n' +
+            output += '<svg aria-label="좋아요"\n' +
+                'onclick="commentLike(' + i + ', ' + commentId + ', ' + memberId + ', ' + suma + ')"\n' +
                 'class="reels-comment-user-like"\n' +
                 'color="rgb(142, 142, 142)"\n' +
                 'fill="rgb(142, 142, 142)"\n' +
@@ -883,10 +886,10 @@
         })
 
     }
-    
+
     const getCommentList = (boardId, memberId) => {
-            const commentResult = document.getElementById('commentAxios');
-            const commentInput = document.getElementById('reels-s-c-form');
+        const commentResult = document.getElementById('commentAxios');
+        const commentInput = document.getElementById('reels-s-c-form');
         axios({
             method: "post",
             url: "/Reels/comment",
@@ -901,7 +904,7 @@
                 for (let i = 0; i < res.data.commentContentsList.length; i++) {
                     sum = 0;
                     for (let j = 0; j < res.data.commentLikeList.length; j++) {
-                        if (res.data.commentLikeList[j] != null){
+                        if (res.data.commentLikeList[j] != null) {
                             if (res.data.commentLikeList[j].commentId === res.data.commentContentsList[i].id) {
                                 sum++;
                             }
@@ -912,7 +915,7 @@
                         '                                                                            <div>\n' +
                         '                                                                                <div class="reels-s-c-l-m-">\n' +
                         '                                                                                    <div class="reels-s-c-l-m-">\n' +
-                        '                                                                                        <a href="/member/myPage/'+res.data.commentMember[i].id+'"\n' +
+                        '                                                                                        <a href="/member/myPage/' + res.data.commentMember[i].id + '"\n' +
                         '                                                                                           class="reels-c-member-pro">\n' +
                         '\n' +
                         '                                                                                            <!--릴스 댓글 사용자 프로필이미지-->\n' +
@@ -932,7 +935,7 @@
                         '                                                                                            <span class="reels-s-c-l-c-3">\n' +
                         '                                                                                                <div class="reels-s-c-l-c-4">\n' +
                         '                                                                                                    <div class="reels-s-c-l-c-4">\n' +
-                        '                                                                                                        <a href="/member/myPage/'+res.data.commentMember[i].id+'"\n' +
+                        '                                                                                                        <a href="/member/myPage/' + res.data.commentMember[i].id + '"\n' +
                         '                                                                                                           class="reels-s-c-l-c-5">\n' +
                         '                                                                                                            <span class="reels-s-c-l-c-6">\n' +
                         '\n' +
@@ -944,7 +947,7 @@
                         '                                                                                                </div>\n' +
                         '                                                                                            </span>&nbsp;\n' +
                         '                                                                                            <span class="reels-c-time-box">\n' +
-                        '                                                                                                <a href="/member/myPage/'+res.data.commentMember[i].id+'"\n' +
+                        '                                                                                                <a href="/member/myPage/' + res.data.commentMember[i].id + '"\n' +
                         '                                                                                                   class="reels-c-time-box-">\n' +
                         '\n' +
                         '                                                                                                    <!--릴스 코멘트 게시글 작성 시간-->\n' +
@@ -972,8 +975,8 @@
                             '                                                                                            <div class="reels-s-c-like-3">\n' +
                             '                                                                                                <div class="reels-s-c-like-4">\n' +
                             '                                                                                                    <span id="userLike' + i + '">\n' +
-                            '                                                                                                        <svg aria-label="좋아요"\n'+
-                            '                                                                                                             onclick="commentLike(' + i + ', ' + res.data.commentContentsList[i].id + ', ' + res.data.seeMemberDTO.id + ', ' + sum +')"\n' +
+                            '                                                                                                        <svg aria-label="좋아요"\n' +
+                            '                                                                                                             onclick="commentLike(' + i + ', ' + res.data.commentContentsList[i].id + ', ' + res.data.seeMemberDTO.id + ', ' + sum + ')"\n' +
                             '                                                                                                             class="reels-comment-user-like"\n' +
                             '                                                                                                             color="rgb(142, 142, 142)"\n' +
                             '                                                                                                             fill="rgb(142, 142, 142)"\n' +
@@ -999,7 +1002,7 @@
                             '                                                                                                <div class="reels-s-c-like-4">\n' +
                             '                                                                                                    <span id="userLike' + i + '">\n' +
                             '                                                                                                        <svg aria-label="좋아요 취소"\n' +
-                            '                                                                                                             onclick="commentUnLike(' + i + ', ' + res.data.commentContentsList[i].id + ', ' + res.data.seeMemberDTO.id + ', ' + res.data.commentLikeList[i].id + ', ' + sum +')"\n' +
+                            '                                                                                                             onclick="commentUnLike(' + i + ', ' + res.data.commentContentsList[i].id + ', ' + res.data.seeMemberDTO.id + ', ' + res.data.commentLikeList[i].id + ', ' + sum + ')"\n' +
                             '                                                                                                             class="reels-comment-user-like"\n' +
                             '                                                                                                             color="rgb(255, 48, 64)"\n' +
                             '                                                                                                             fill="rgb(255, 48, 64)"\n' +
@@ -1019,7 +1022,7 @@
                     }
                     output += '<div class="reels-s-c-like-c">\n'
                     output += '<span class="reels-s-c-like-c-">\n'
-                    output += '<span id="likeCount'+ i +'">' + sum + '</span>\n';
+                    output += '<span id="likeCount' + i + '">' + sum + '</span>\n';
                     output += '</span>\n'
                     output += '</div>\n' +
                         '                                                                            </div>\n' +
@@ -1036,7 +1039,7 @@
                     '\n' +
                     '                                                                                    <!--릴스 댓글 작성칸 프로필 사진-->\n' +
                     '                                                                                    <img crossorigin="reels-s-c-form-member-profile"\n' +
-                    '                                                                                         src="/upload/'+res.data.seeMemberDTO.memberProfile+'"\n' +
+                    '                                                                                         src="/upload/' + res.data.seeMemberDTO.memberProfile + '"\n' +
                     '                                                                                         width="32">\n' +
                     '                                                                                </span>\n' +
                     '                                                                            </div>\n' +
@@ -1090,7 +1093,46 @@
         });
     };
 
+    const likeOn = (memberId,boardId) => {
+        let likeResult = document.getElementById('boardLikeResult'+boardId);
+        axios({
+            method: "post",
+            url: "/Reels/likeSave",
+            data: {
+                memberId:memberId,
+                boardId:boardId
+            }
+        }).then(res => {
+            let output = "";
+            output += '<svg onclick="likeOff('+res.data.id+', '+boardId+', '+memberId+')" aria-label="좋아요 취소" class="reels-v-s-m-l-logo-m" color="rgb(255, 48, 64)" fill="rgb(255, 48, 64)" height="24" role="img" viewBox="0 0 48 48" width="24">\n' +
+                '<title>좋아요 취소</title>\n' +
+                '<path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path>\n' +
+                '</svg>'
+            likeResult.innerHTML = output;
 
+        }).catch(err => {
+            console.log("실패");
+        })
+    }
 
+    const likeOff = (reelsLikeId, boardId, memberId) => {
+        let likeResult = document.getElementById('boardLikeResult'+boardId);
+        axios({
+            method: "post",
+            url: "/Reels/likeDelete",
+            data: {
+                id:reelsLikeId
+            }
+        }).then(res => {
+            let output = "";
+            output += '<svg onclick="likeOn('+boardId+', '+memberId+')" aria-label="좋아요" class="reels-v-s-m-l-logo-m" color="rgb(38, 38, 38)" fill="rgb(38, 38, 38)" height="24" role="img" viewBox="0 0 24 24" width="24">\n' +
+                '<title>좋아요</title>\n' +
+                '<path d="M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 0 1 4.708-5.218 4.21 4.21 0 0 1 3.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 0 1 3.679-1.938m0-2a6.04 6.04 0 0 0-4.797 2.127 6.052 6.052 0 0 0-4.787-2.127A6.985 6.985 0 0 0 .5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 0 0 3.518 3.018 2 2 0 0 0 2.174 0 45.263 45.263 0 0 0 3.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 0 0-6.708-7.218Z"></path>\n' +
+                '</svg>'
+            likeResult.innerHTML = output;
+        }).catch(err => {
+            console.log("실패");
+        })
+    }
 </script>
 </html>
