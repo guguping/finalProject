@@ -1,6 +1,7 @@
 package com.example.finalproject.serivce;
 
 import com.example.finalproject.dto.BoardDTO;
+import com.example.finalproject.dto.MemberDTO;
 import com.example.finalproject.dto.MemberFollowDTO;
 import com.example.finalproject.entitiy.BoardEntity;
 import com.example.finalproject.entitiy.MemberEntity;
@@ -33,21 +34,43 @@ public class MemberFollowService {
 
     public List<MemberFollowDTO> findByFollower(Long memberId) {
         MemberEntity memberEntity = memberRepository.findById(memberId).orElseThrow(() -> new NoSuchElementException());
-        List<MemberFollowEntity> memberFollowerEntityList = memberFollowRepository.findByFollowerMemberEntity(memberEntity);
-        List<MemberFollowDTO> memberFollowerDTOList = new ArrayList<>();
+        List<MemberFollowEntity> memberFollowerEntityList = memberFollowRepository.findByFollowingMemberEntity(memberEntity);
+        List<MemberFollowDTO> followerDTOList = new ArrayList<>();
         memberFollowerEntityList.forEach(memberFollowEntity -> {
-            memberFollowerDTOList.add(MemberFollowDTO.toDTO(memberFollowEntity));
+            followerDTOList.add(MemberFollowDTO.toDTO(memberFollowEntity));
         });
+        List<MemberFollowDTO> memberFollowerDTOList = new ArrayList<>();
+        for (int i = 0; i < followerDTOList.size(); i++) {
+            MemberFollowDTO memberFollowDTO = followerDTOList.get(i);
+            MemberDTO memberDTO = MemberDTO.toDTO(memberRepository.findById(memberFollowDTO.getFollowerId()).orElseThrow(() -> new NoSuchElementException()));
+            memberFollowDTO.setMemberNickName(memberDTO.getMemberNickName());
+            memberFollowDTO.setMemberProfile(memberDTO.getMemberProfile());
+            memberFollowDTO.setMemberName(memberDTO.getMemberName());
+            memberFollowerDTOList.add(memberFollowDTO);
+        }
         return memberFollowerDTOList;
     }
 
     public List<MemberFollowDTO> findByFollowing(Long memberId) {
         MemberEntity memberEntity = memberRepository.findById(memberId).orElseThrow(() -> new NoSuchElementException());
-        List<MemberFollowEntity> memberFollowingEntityList = memberFollowRepository.findByFollowingMemberEntity(memberEntity);
-        List<MemberFollowDTO> memberFollowingDTOList = new ArrayList<>();
+        List<MemberFollowEntity> memberFollowingEntityList = memberFollowRepository.findByFollowerMemberEntity(memberEntity);
+        List<MemberFollowDTO> followingDTOList = new ArrayList<>();
         memberFollowingEntityList.forEach(memberFollowEntity -> {
-            memberFollowingDTOList.add(MemberFollowDTO.toDTO(memberFollowEntity));
+            followingDTOList.add(MemberFollowDTO.toDTO(memberFollowEntity));
         });
+        List<MemberFollowDTO> memberFollowingDTOList = new ArrayList<>();
+        for (int i = 0; i < followingDTOList.size(); i++) {
+            MemberFollowDTO memberFollowDTO = followingDTOList.get(i);
+            MemberDTO memberDTO = MemberDTO.toDTO(memberRepository.findById(memberFollowDTO.getFollowingId()).orElseThrow(() -> new NoSuchElementException()));
+            memberFollowDTO.setMemberNickName(memberDTO.getMemberNickName());
+            memberFollowDTO.setMemberProfile(memberDTO.getMemberProfile());
+            memberFollowDTO.setMemberName(memberDTO.getMemberName());
+            memberFollowingDTOList.add(memberFollowDTO);
+        }
         return memberFollowingDTOList;
+    }
+
+    public void followDelete(Long id) {
+        memberFollowRepository.deleteById(id);
     }
 }

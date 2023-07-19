@@ -17,6 +17,10 @@ public class MemberFollowDTO {
 //    팔로우를 받아 팔로잉이 늘어난 사람의 번호
     private Long followingId;
 
+    private String memberNickName;
+    private String memberName;
+    private String memberProfile;
+
     public static MemberFollowDTO toDTO(MemberFollowEntity memberFollowEntity){
         MemberFollowDTO memberFollowDTO = new MemberFollowDTO();
         memberFollowDTO.setId(memberFollowEntity.getId());
