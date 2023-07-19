@@ -99,19 +99,19 @@
                                                                         </span>
                                                                     </li>
                                                                     <li class="myPage-member-count-tap-1">
-                                                                        <a href="#" class="memberPage-member-count-tap-display" onclick="fListOaEv()">
+                                                                        <a href="#" class="memberPage-member-count-tap-display" onclick="follow_list(0)">
                                                                             팔로워
 
                                                                             <!--회원 팔로워 갯수-->
-                                                                            <span class="_ac2a" title="45"><span th:text="${memberFollowerCount}"></span></span>
+                                                                            <span class="_ac2a" title="45"><span id="member-follower-count" th:text="${memberFollowerCount}"></span></span>
                                                                         </a>
                                                                     </li>
                                                                     <li class="myPage-member-count-tap-1">
-                                                                        <a href="#" class="memberPage-member-count-tap-display">
+                                                                        <a href="#" class="memberPage-member-count-tap-display" onclick="follow_list(1)">
                                                                             팔로우
 
                                                                             <!--회원 팔로우 갯수-->
-                                                                            <span class="_ac2a"><span th:text="${memberFollowingCount}"></span></span>
+                                                                            <span class="_ac2a"><span id="member-following-count" th:text="${memberFollowingCount}"></span></span>
                                                                         </a>
                                                                     </li>
                                                                 </ul>
@@ -220,7 +220,7 @@
                                                                                         <div class="myPage-detail-logo-img-box">
                                                                                             <div class="myPage-detail-logo-inner">
                                                                                                 <th:block th:each="fileName:${boardFileDTOList}">
-                                                                                                    <th:block  th:if="${boardDTO.getId() == fileName.getBoardId() && boardDTO.getMemberId() == session.memberId}">
+                                                                                                    <th:block  th:if="${boardDTO.getId() == fileName.getBoardId() && boardDTO.getMemberId() == memberDTO.id}">
                                                                                                         <!--                                                                                            <img th:src="@{/images/내보드사진.jpg}" class="myPage-detail-img-size">-->
                                                                                                         <img class="myPage-detail-img-size" th:src="@{|/upload/${fileName.getStoredFileName()}}">
                                                                                                         <th:block
@@ -692,117 +692,9 @@
                         </div>
                     </div>
 
+                    <!-- 팔로워 div -->
                     <div class="myPage-f-ing-b" id="myPage-f-ing-b" style="display: block;">
-                        <div class="myPage-f-ing-b-">
-                            <div class="myPage-f-ing-b-1">
-                                <div class="myPage-f-ing-bg"></div>
-                                <div class="myPage-f-ing-m">
-                                    <div class="myPage-f-ing-m-">
-                                        <div class="myPage-f-ing-m-1">
-                                            <div class="myPage-f-ing-m-2">
-                                                <div class="myPage-f-ing-m-3">
-                                                    <div class="myPage-f-ing-m-b">
-                                                        <div class="myPage-f-ing-m-b-">
-                                                            <div class="myPage-f-ing-m-b-1">
-                                                                <div class="myPage-f-ing-m-b-2">
-                                                                    <div class="myPage-f-ing-m-b-2-">
-                                                                        <div class="myPage-f-ing-m-b-2-1">
-                                                                            <h1 class="myPage-f-ing-m-b-2-2">
-                                                                                <div>팔로워</div>
-                                                                            </h1>
-                                                                        </div>
 
-                                                                        <div class="myPage-f-ing-m-b-2-1-">
-                                                                            <div class="myPage-f-ing-m-b-2-1-1">
-
-                                                                                <!--팔로워 리스트 닫기 버튼-->
-                                                                                <button class="myPage-f-ing-m-b-2-1-2" type="button" onclick="fListFaEv()">
-                                                                                    <div class="myPage-f-ing-m-b-2-1-3">
-                                                                                        <svg aria-label="닫기" class="myPage-f-ing-m-b-2-1-4" color="rgb(0, 0, 0)" fill="rgb(0, 0, 0)" height="18" role="img" viewBox="0 0 24 24" width="18">
-                                                                                            <title>닫기</title>
-                                                                                            <polyline fill="none" points="20.643 3.357 12 12 3.353 20.647" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></polyline>
-                                                                                            <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" x1="20.649" x2="3.354" y1="20.649" y2="3.354"></line>
-                                                                                        </svg>
-                                                                                    </div>
-                                                                                </button>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="myPage-f-ing-m-b-3">
-                                                                    <div class="myPage-f-ing-m-b-3-">
-                                                                        <div class="myPage-f-ing-m-b-3-1">
-
-                                                                            <div class="myPage-f-ing-m-b-3-2">
-                                                                                <div class="myPage-f-ing-m-b-3-2-">
-                                                                                    <div class="myPage-f-ing-m-b-3-2-1">
-                                                                                        <div class="myPage-f-ing-m-b-3-2-2">
-                                                                                            <div class="myPage-f-ing-m-prf">
-                                                                                                <div class="myPage-f-ing-m-prf-">
-                                                                                                    <div>
-                                                                                                        <div class="myPage-f-ing-m-prf-1">
-
-                                                                                                            <!--목록 링크 / 프로필사진-->
-                                                                                                            <a href="#" class="myPage-f-ing-m-prf-link">
-                                                                                                                <img class="myPage-f-ing-m-prf-img" src="../images/test프로필.jpg">
-                                                                                                            </a>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-
-                                                                                            <div class="myPage-f-ing-m-inf">
-                                                                                                <div class="myPage-f-ing-m-inf-">
-                                                                                                    <div class="myPage-f-ing-m-inf-1">
-                                                                                                        <span class="myPage-f-ing-m-inf-email">
-                                                                                                            <span class="myPage-f-ing-m-inf-email-">
-                                                                                                                <div class="myPage-f-ing-m-inf-email-1">
-                                                                                                                    <div class="myPage-f-ing-m-inf-email-2">
-
-                                                                                                                        <!--팔로 링크 / 이메일-->
-                                                                                                                        <a href="#" class="myPage-f-ing-m-inf-email-link">
-                                                                                                                            <span class="myPage-f-ing-m-inf-email-3">
-                                                                                                                                <div class="myPage-f-ing-m-inf-email-txt">jinddaeng96</div>
-                                                                                                                            </span>
-                                                                                                                        </a>
-                                                                                                                    </div>
-                                                                                                                </div>
-                                                                                                            </span>
-                                                                                                        </span>
-
-                                                                                                        <!--팔로 이름-->
-                                                                                                        <span class="myPage-f-ing-m-inf-name">
-                                                                                                            <span class="myPage-f-ing-m-inf-name-txt">이진혁</span>
-                                                                                                        </span>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-
-                                                                                            <div class="myPage-f-ing-m-dele">
-                                                                                                <div class="myPage-f-ing-m-dele-">
-
-                                                                                                    <!--팔로 삭제 버튼-->
-                                                                                                    <div class="myPage-f-ing-m-dele-btn">삭제</div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -823,6 +715,7 @@
     const resultArea = document.getElementById("detail-box");
     let i = 0;
     let fileSize = 1;
+    let followDeleteCount = 0;
     const boardKind = 1;
 
     const userImgChangeOn = () => {
@@ -1383,7 +1276,7 @@
             const boardComment = res.data;
             board_detail(id);
         }).catch(err => {
-
+            alert("comment_save 실패");
         });
     }
 
@@ -1472,8 +1365,174 @@
         fListOaF.style.display = "block";
     }
 
-    const fListFaEv = () => {
+    const fListFaEv = (type) => {
         fListOaF.style.display = "none";
+        if (type == 0) {
+            const followerCountElement = document.getElementById("member-follower-count");
+            let followerCount = followerCountElement.textContent.trim();
+            followerCount -= followDeleteCount;
+            followerCountElement.innerHTML = followerCount;
+        } else {
+            const followingCountElement = document.getElementById("member-following-count");
+            let followingCount = followingCountElement.textContent.trim();
+            followingCount -= followDeleteCount;
+            followingCountElement.innerHTML = followingCount;
+        }
+        followDeleteCount = 0;
     }
+
+    const follow_list = (type) => {
+        const memberId = [[${memberDTO.id}]];
+        const followResult = document.getElementById("myPage-f-ing-b");
+
+        axios({
+            method: "post",
+            url: "/follow/list/" + memberId + "?type=" + type
+        }).then(res => {
+            const memberFollowList = res.data;
+
+            let output = "<div class=\"myPage-f-ing-b-\">\n" +
+                "                            <div class=\"myPage-f-ing-b-1\">\n" +
+                "                                <div class=\"myPage-f-ing-bg\"></div>\n" +
+                "                                <div class=\"myPage-f-ing-m\">\n" +
+                "                                    <div class=\"myPage-f-ing-m-\">\n" +
+                "                                        <div class=\"myPage-f-ing-m-1\">\n" +
+                "                                            <div class=\"myPage-f-ing-m-2\">\n" +
+                "                                                <div class=\"myPage-f-ing-m-3\">\n" +
+                "                                                    <div class=\"myPage-f-ing-m-b\">\n" +
+                "                                                        <div class=\"myPage-f-ing-m-b-\">\n" +
+                "                                                            <div class=\"myPage-f-ing-m-b-1\">\n" +
+                "                                                                <div class=\"myPage-f-ing-m-b-2\">\n" +
+                "                                                                    <div class=\"myPage-f-ing-m-b-2-\">\n" +
+                "                                                                        <div class=\"myPage-f-ing-m-b-2-1\">\n" +
+                "                                                                            <h1 class=\"myPage-f-ing-m-b-2-2\">\n";
+            if (type == 0) {
+                output += "                                                                                <div>팔로워</div>\n";
+            } else {
+                output += "                                                                                <div>팔로우</div>\n";
+            }
+            output += "                                                                            </h1>\n" +
+                "                                                                        </div>\n" +
+                "\n" +
+                "                                                                        <div class=\"myPage-f-ing-m-b-2-1-\">\n" +
+                "                                                                            <div class=\"myPage-f-ing-m-b-2-1-1\">\n" +
+                "\n" +
+                "                                                                                <!--팔로워 리스트 닫기 버튼-->\n" +
+                "                                                                                <button class=\"myPage-f-ing-m-b-2-1-2\" type=\"button\" onclick=\"fListFaEv(" + type + ")\">\n" +
+                "                                                                                    <div class=\"myPage-f-ing-m-b-2-1-3\">\n" +
+                "                                                                                        <svg aria-label=\"닫기\" class=\"myPage-f-ing-m-b-2-1-4\" color=\"rgb(0, 0, 0)\" fill=\"rgb(0, 0, 0)\" height=\"18\" role=\"img\" viewBox=\"0 0 24 24\" width=\"18\">\n" +
+                "                                                                                            <title>닫기</title>\n" +
+                "                                                                                            <polyline fill=\"none\" points=\"20.643 3.357 12 12 3.353 20.647\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\"></polyline>\n" +
+                "                                                                                            <line fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"3\" x1=\"20.649\" x2=\"3.354\" y1=\"20.649\" y2=\"3.354\"></line>\n" +
+                "                                                                                        </svg>\n" +
+                "                                                                                    </div>\n" +
+                "                                                                                </button>\n" +
+                "                                                                            </div>\n" +
+                "                                                                        </div>\n" +
+                "                                                                    </div>\n" +
+                "                                                                </div>\n" +
+                "\n" +
+                "                                                                <div class=\"myPage-f-ing-m-b-3\">\n" +
+                "                                                                    <div class=\"myPage-f-ing-m-b-3-\">\n" +
+                "                                                                        <div class=\"myPage-f-ing-m-b-3-1\">\n" +
+                "\n" +
+                "                                                                            <div class=\"myPage-f-ing-m-b-3-2\">\n" +
+                "                                                                                <div class=\"myPage-f-ing-m-b-3-2-\">\n" +
+                "                                                                                    <div class=\"myPage-f-ing-m-b-3-2-1\">\n";
+            for (let f in memberFollowList) {
+                output += "                                                                                        <div class=\"myPage-f-ing-m-b-3-2-2\">\n" +
+                    "                                                                                            <div class=\"myPage-f-ing-m-prf\">\n" +
+                    "                                                                                                <div class=\"myPage-f-ing-m-prf-\">\n" +
+                    "                                                                                                    <div>\n" +
+                    "                                                                                                        <div class=\"myPage-f-ing-m-prf-1\">\n" +
+                    "\n" +
+                    "                                                                                                            <!--목록 링크 / 프로필사진-->\n" +
+                    "                                                                                                            <a href=\"#\" class=\"myPage-f-ing-m-prf-link\" onclick=\"follow_memberPage(" + memberFollowList[f].followerId + "," + memberFollowList[f].followingId + "," + type + ")\">\n" +
+                    "                                                                                                                <img class=\"myPage-f-ing-m-prf-img\" src=\"/upload/" + memberFollowList[f].memberProfile + "\"" + ">\n" +
+                    "                                                                                                            </a>\n" +
+                    "                                                                                                        </div>\n" +
+                    "                                                                                                    </div>\n" +
+                    "                                                                                                </div>\n" +
+                    "                                                                                            </div>\n" +
+                    "\n" +
+                    "                                                                                            <div class=\"myPage-f-ing-m-inf\">\n" +
+                    "                                                                                                <div class=\"myPage-f-ing-m-inf-\">\n" +
+                    "                                                                                                    <div class=\"myPage-f-ing-m-inf-1\">\n" +
+                    "                                                                                                        <span class=\"myPage-f-ing-m-inf-email\">\n" +
+                    "                                                                                                            <span class=\"myPage-f-ing-m-inf-email-\">\n" +
+                    "                                                                                                                <div class=\"myPage-f-ing-m-inf-email-1\">\n" +
+                    "                                                                                                                    <div class=\"myPage-f-ing-m-inf-email-2\">\n" +
+                    "\n" +
+                    "                                                                                                                        <!--팔로 링크 / 이메일-->\n" +
+                    "                                                                                                                        <a href=\"#\" class=\"myPage-f-ing-m-inf-email-link\" onclick=\"follow_memberPage(" + memberFollowList[f].followerId + "," + memberFollowList[f].followingId + "," + type + ")\">\n" +
+                    "                                                                                                                            <span class=\"myPage-f-ing-m-inf-email-3\">\n" +
+                    "                                                                                                                                <div class=\"myPage-f-ing-m-inf-email-txt\">" + memberFollowList[f].memberNickName + "</div>\n" +
+                    "                                                                                                                            </span>\n" +
+                    "                                                                                                                        </a>\n" +
+                    "                                                                                                                    </div>\n" +
+                    "                                                                                                                </div>\n" +
+                    "                                                                                                            </span>\n" +
+                    "                                                                                                        </span>\n" +
+                    "\n" +
+                    "                                                                                                        <!--팔로 이름-->\n" +
+                    "                                                                                                        <span class=\"myPage-f-ing-m-inf-name\">\n" +
+                    "                                                                                                            <span class=\"myPage-f-ing-m-inf-name-txt\">" + memberFollowList[f].memberName +"</span>\n" +
+                    "                                                                                                        </span>\n" +
+                    "                                                                                                    </div>\n" +
+                    "                                                                                                </div>\n" +
+                    "                                                                                            </div>\n" +
+                    "\n" +
+                    "                                                                                            <div class=\"myPage-f-ing-m-dele\">\n" +
+                    "                                                                                                <div class=\"myPage-f-ing-m-dele-\">\n" +
+                    "\n" +
+                    "                                                                                                    <!--팔로 삭제 버튼-->\n" +
+                    "                                                                                                    <div class=\"myPage-f-ing-m-dele-btn\" onclick=\"follow_delete(" + memberFollowList[f].id + "," + type + ")\">삭제</div>\n" +
+                    "                                                                                                </div>\n" +
+                    "                                                                                            </div>\n" +
+                    "                                                                                        </div>\n";
+            }
+            output += "                                                                                    </div>\n" +
+                "                                                                                </div>\n" +
+                "                                                                            </div>\n" +
+                "                                                                        </div>\n" +
+                "                                                                    </div>\n" +
+                "                                                                </div>\n" +
+                "                                                            </div>\n" +
+                "                                                        </div>\n" +
+                "                                                    </div>\n" +
+                "                                                </div>\n" +
+                "                                            </div>\n" +
+                "                                        </div>\n" +
+                "                                    </div>\n" +
+                "                                </div>\n" +
+                "                            </div>\n" +
+                "                        </div>"
+            followResult.style.display = "";
+            followResult.innerHTML = output;
+        }).catch(err => {
+            alert("followList 실패");
+        });
+    }
+
+    const follow_delete = (id, type) => {
+        axios({
+            method: "delete",
+            url: "/follow/" + id + "?type=" + type
+        }).then(res => {
+            followDeleteCount += 1;
+            follow_list(type);
+        }).catch(err => {
+            alert("follower삭제 실패");
+        });
+    }
+
+    const follow_memberPage = (followerId, followingId, type) => {
+        if (type == 0) {
+            location.href = "/member/myPage/" + followerId;
+        } else {
+            location.href = "/member/myPage/" + followingId;
+        }
+    }
+
 </script>
 </html>

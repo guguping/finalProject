@@ -1,9 +1,6 @@
 package com.example.finalproject.controller;
 
-import com.example.finalproject.dto.BoardCommentDTO;
-import com.example.finalproject.dto.BoardDTO;
-import com.example.finalproject.dto.BoardFileDTO;
-import com.example.finalproject.dto.MemberDTO;
+import com.example.finalproject.dto.*;
 import com.example.finalproject.serivce.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -12,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +23,7 @@ public class AxiosController {
     private final LikeServie likeServie;
     private final BookmarkService bookmarkService;
     private final BoardCommentService boardCommentService;
+    private final MemberFollowService memberFollowService;
 
     @PostMapping("/member/email-check/{inputEmail}")
     public ResponseEntity<Boolean> mailCheck(@PathVariable String inputEmail) {
@@ -113,5 +112,22 @@ public class AxiosController {
         boardCommentService.save(boardCommentDTO);
         List<BoardCommentDTO> boardCommentDTOList = boardCommentService.findAll(boardCommentDTO.getBoardId());
         return new ResponseEntity<>(boardCommentDTOList, HttpStatus.OK);
+    }
+
+    @PostMapping("/follow/list/{id}")
+    public ResponseEntity findByFollower(@PathVariable Long id, @RequestParam("type") int type) {
+        List<MemberFollowDTO> memberFollowDTOList = new ArrayList<>();
+        if (type == 0) {
+            memberFollowDTOList = memberFollowService.findByFollower(id);
+        } else {
+            memberFollowDTOList = memberFollowService.findByFollowing(id);
+        }
+        return new ResponseEntity<>(memberFollowDTOList, HttpStatus.OK);
+    }
+
+    @DeleteMapping("follow/{id}")
+    public ResponseEntity followerDelete(@PathVariable Long id, @RequestParam("type") int type) {
+        memberFollowService.followDelete(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
