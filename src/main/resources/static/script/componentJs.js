@@ -29,24 +29,12 @@ const plusBoardOpModal = document.getElementById('plus-modal-board-');
 
 function openBoardMenu(boardId) {
     let plusBoardOpModalBtn2 = document.getElementById("board-modal-on-off" + boardId);
-
-    plusBoardOpModalBtn2.addEventListener("click", function() {
         if (plusBoardOpModal.style.display === "none") {
             plusBoardOpModal.style.display = "block";
             console.log("응애");
         } else {
             plusBoardOpModal.style.display = "none";
         }
-    });
-
-    // document.addEventListener("click", function(event) {
-    //     if (plusBoardOpModal.style.display === "block" && event.target !== plusBoardOpModalBtn2 && !plusBoardOpModalBtn2.contains(event.target)) {
-    //         plusBoardOpModal.style.display = "none";
-    //     }
-    // });
-
-    // Perform post menu operation using boardId.
-    // Write the code to be executed here.
     console.log("Performing post menu operation for boardId:", boardId);
 }
 
@@ -585,3 +573,22 @@ if (imageElements2.length === 1) {
     previousButton2.style.display = "none";
 }
 
+const board_img_paging = (imgPage) => {
+    for (let p = 0; p < fileSize; p++) {
+        // 부모 요소 선택
+        var parentElement = document.querySelector('.boardMain-board-paging-num');
+
+        // 자식 요소 생성
+        var childElement = document.createElement('div');
+        childElement.className = 'boardMain-board-paging-num-on';
+        var childElementOff = document.createElement('div');
+        childElementOff.className = 'boardMain-board-paging-num-off';
+
+        // 자식 요소를 부모 요소의 하위로 추가
+        if (p == imgPage) {
+            parentElement.appendChild(childElementOff);
+        } else {
+            parentElement.appendChild(childElement);
+        }
+    }
+}
