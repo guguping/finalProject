@@ -77,12 +77,14 @@ public class BoardController {
         boolean likeOk = likeServie.findByBoardLike(id, loginId, boardKind);
         boolean bookmarkOk = bookmarkService.findByBoardBookmark(id, loginId, boardKind);
         List<BoardFileDTO> boardFileDTOList = boardService.findBoardFile(boardDTO.getId());
+        List<BoardCommentDTO> boardCommentDTOList = boardCommentService.findAll(boardDTO.getId());
         Map<String, Object> board = new HashMap<>();
         board.put("boardDTO", boardDTO);
         board.put("memberDTO", memberDTO);
         board.put("boardFileList", boardFileDTOList);
         board.put("boardLike", likeOk);
         board.put("boardBookmark", bookmarkOk);
+        board.put("boardCommentList", boardCommentDTOList);
         return new ResponseEntity<>(board, HttpStatus.OK);
     }
 

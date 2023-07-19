@@ -3,24 +3,24 @@ let i = 0;
 let fileSize = 1;
 const mainBoardDetailOff = (boardId) => {
     const mainDetail = document.getElementById('mainBoardDetail' + boardId);
-    console.log("boardId="+ boardId);
+    console.log("boardId=" + boardId);
     i = 0;
     mainDetail.style.display = "none";
 
 }
-const fuckyou = () => {
-    const fuckyouyou = document.getElementById('plus-modal-board-');
-    fuckyouyou.style.display = "none";
-}
 
-const openMainDetail = (id) => {
+
+const boardKind = 1;
+const openMainDetail = (id, loginId) => {
     console.log("id =" + id);
-    const boardKind = 1;
+    const loginid = loginId;
+
     const mainDetail = document.getElementById('mainBoardDetail' + id);
     axios({
         method: "get",
         url: "/boardDetail/" + id + "?boardKind=" + boardKind
     }).then(res => {
+
         const board = res.data;
         const boardDTO = board.boardDTO;
         const memberDTO = board.memberDTO;
@@ -28,6 +28,7 @@ const openMainDetail = (id) => {
         const storedFileName = boardFileList[i].storedFileName;
         const boardLike = board.boardLike;  //boolean
         const boardBookmark = board.boardBookmark;  //boolean
+        const boardCommentList = board.boardCommentList;
         fileSize = boardFileList.length;
 
         let output = "<div class=\"myPage-board-detail-b1\">\n" +
@@ -62,48 +63,7 @@ const openMainDetail = (id) => {
             "\n" +
             "                                                    <!--다음 게시물 next버튼-->\n" +
             "                                                    <div>\n" +
-            "                                                        <div class=\"myPage-board-detail-box-next\">\n" +
-            "                                                            <div class=\"myPage-board-detail-box-next-size\">\n" +
-            "                                                                <!--이전 게시물 버튼-->\n" +
-            "                                                                <div class=\"detail-box-back\">\n" +
-            "                                                                    <button class=\"detail-box-back-btn\" type=\"button\">\n" +
-            "                                                                        <div class=\"detail-box-back-btn-lz\">\n" +
-            "                                                                            <span style=\"display: inline-block;transform: rotate(270deg);\">\n" +
-            "                                                                                <svg aria-label=\"돌아가기\"\n" +
-            "                                                                                     class=\"detail-box-back-btn-logo\"\n" +
-            "                                                                                     color=\"rgb(0, 0, 0)\"\n" +
-            "                                                                                     fill=\"rgb(0, 0, 0)\" height=\"16\"\n" +
-            "                                                                                     role=\"img\" viewBox=\"0 0 24 24\"\n" +
-            "                                                                                     width=\"16\">\n" +
-            "                                                                                    <title>돌아가기</title>\n" +
-            "                                                                                    <path d=\"M21 17.502a.997.997 0 0 1-.707-.293L12 8.913l-8.293 8.296a1 1 0 1 1-1.414-1.414l9-9.004a1.03 1.03 0 0 1 1.414 0l9 9.004A1 1 0 0 1 21 17.502Z\"></path>\n" +
-            "                                                                                </svg>\n" +
-            "                                                                            </span>\n" +
-            "                                                                        </div>\n" +
-            "                                                                    </button>\n" +
-            "                                                                </div>\n" +
-            "                                                                <!--다음 게시물 버튼-->\n" +
-            "                                                                <div class=\"detail-box-next\">\n" +
-            "                                                                    <button class=\"detail-box-next-btn\" type=\"button\">\n" +
-            "                                                                        <div class=\"detail-box-next-btn-rz\">\n" +
-            "                                                                            <span style=\"display: inline-block;transform: rotate(90deg);\">\n" +
-            "                                                                                <svg aria-label=\"다음\"\n" +
-            "                                                                                     class=\"detail-box-next-btn-logo\"\n" +
-            "                                                                                     color=\"rgb(0, 0, 0)\"\n" +
-            "                                                                                     fill=\"rgb(0, 0, 0)\" height=\"16\"\n" +
-            "                                                                                     role=\"img\" viewBox=\"0 0 24 24\"\n" +
-            "                                                                                     width=\"16\">\n" +
-            "                                                                                    <title>다음</title>\n" +
-            "                                                                                    <path d=\"M21 17.502a.997.997 0 0 1-.707-.293L12 8.913l-8.293 8.296a1 1 0 1 1-1.414-1.414l9-9.004a1.03 1.03 0 0 1 1.414 0l9 9.004A1 1 0 0 1 21 17.502Z\"></path>\n" +
-            "                                                                                </svg>\n" +
-            "                                                                            </span>\n" +
-            "                                                                        </div>\n" +
-            "                                                                    </button>\n" +
-            "                                                                </div>\n" +
-            "                                                            </div>\n" +
-            "\n" +
-            "                                                        </div>\n" +
-            "                                                    </div>\n" +
+            "                                                        \n" +
             "\n" +
             "                                                    <!--게시글 디테일 본문-->\n" +
             "                                                    <div class=\"detail-box-body-1\">\n" +
@@ -215,35 +175,39 @@ const openMainDetail = (id) => {
             "                                                                                                </div>\n" +
             "                                                                                            </div>\n" +
             "                                                                                        </header>\n" +
-            "                                                                                        <div style=\"padding-right: 8px;\">\n" +
-            "                                                                                            <div class=\"detail-board-plus-box\">\n" +
-            "                                                                                                <div class=\"detail-board-plus-box-inner\">\n" +
-            "                                                                                                    <div class=\"ejqhrldksWhrdlqslek\">\n" +
-            "                                                                                                        <svg aria-label=\"옵션 더 보기\"\n" +
-            "                                                                                                             class=\"_ab6-\"\n" +
-            "                                                                                                             color=\"rgb(0, 0, 0)\"\n" +
-            "                                                                                                             fill=\"rgb(0, 0, 0)\"\n" +
-            "                                                                                                             height=\"24\"\n" +
-            "                                                                                                             role=\"img\"\n" +
-            "                                                                                                             viewBox=\"0 0 24 24\"\n" +
-            "                                                                                                             width=\"24\">\n" +
-            "                                                                                                            <circle cx=\"12\"\n" +
-            "                                                                                                                    cy=\"12\"\n" +
-            "                                                                                                                    r=\"1.5\"></circle>\n" +
-            "                                                                                                            <circle cx=\"6\"\n" +
-            "                                                                                                                    cy=\"12\"\n" +
-            "                                                                                                                    r=\"1.5\"></circle>\n" +
-            "                                                                                                            <circle cx=\"18\"\n" +
-            "                                                                                                                    cy=\"12\"\n" +
-            "                                                                                                                    r=\"1.5\"></circle>\n" +
-            "                                                                                                        </svg>\n" +
-            "                                                                                                    </div>\n" +
-            "                                                                                                </div>\n" +
-            "                                                                                            </div>\n" +
-            "                                                                                        </div>\n" +
-            "                                                                                    </div>\n" +
+            "\n"
+        if (boardDTO.memberId === loginid) {
+            output += "<div style=\"padding-right: 8px;\">\n" +
+                "                                                                                            <div class=\"detail-board-plus-box\" onclick=\"openBoardMenu(" + boardDTO.id + ")\">\n" +
+                "                                                                                                <div class=\"detail-board-plus-box-inner\">\n" +
+                "                                                                                                    <div class=\"ejqhrldksWhrdlqslek\">\n" +
+                "                                                                                                        <svg aria-label=\"옵션 더 보기\"\n" +
+                "                                                                                                             class=\"_ab6-\"\n" +
+                "                                                                                                             color=\"rgb(0, 0, 0)\"\n" +
+                "                                                                                                             fill=\"rgb(0, 0, 0)\"\n" +
+                "                                                                                                             height=\"24\"\n" +
+                "                                                                                                             role=\"img\"\n" +
+                "                                                                                                             viewBox=\"0 0 24 24\"\n" +
+                "                                                                                                             width=\"24\">\n" +
+                "                                                                                                            <circle cx=\"12\"\n" +
+                "                                                                                                                    cy=\"12\"\n" +
+                "                                                                                                                    r=\"1.5\"></circle>\n" +
+                "                                                                                                            <circle cx=\"6\"\n" +
+                "                                                                                                                    cy=\"12\"\n" +
+                "                                                                                                                    r=\"1.5\"></circle>\n" +
+                "                                                                                                            <circle cx=\"18\"\n" +
+                "                                                                                                                    cy=\"12\"\n" +
+                "                                                                                                                    r=\"1.5\"></circle>\n" +
+                "                                                                                                        </svg>\n" +
+                "                                                                                                    </div>\n" +
+                "                                                                                                </div>\n" +
+                "                                                                                            </div>\n"+
+                "                                                                                       </div>\n"
+        }
+        ;
+        output += "                                                                                    </div>\n" +
             "                                                                                </div>\n" +
-            "                                                                                <div class=\"detail-board-contents-comment\">\n" +
+            "<div class=\"detail-board-contents-comment\">\n" +
             "                                                                                    <section class=\"detail-board-like-\">\n" +
             "                                                                                        <span style=\"display: inline-block;margin-left: -8px\">\n" +
             "                                                                                            <div class=\"detail-board-like-1\">\n" +
@@ -346,76 +310,105 @@ const openMainDetail = (id) => {
             "\n" +
             "                                                                                    <!--게시글 상세 코멘트 리스트 시작-->\n" +
             "                                                                                    <div class=\"detail-board-contents-comment-list\">\n" +
-            "                                                                                        <ul class=\"detail-board-contents-comment-list-\">\n" +
-            "                                                                                            <ul class=\"detail-board-contents-comment-list-1\">\n" +
-            "                                                                                                <div class=\"detail-board-contents-comment-box\">\n" +
-            "                                                                                                    <li class=\"detail-board-comment-list-li\">\n" +
-            "                                                                                                        <div class=\"detail-board-comment-size\">\n" +
-            "                                                                                                            <div class=\"_a9zo\">\n" +
-            "                                                                                                                <div>\n" +
-            "                                                                                                                    <div>\n" +
-            "                                                                                                                        <div class=\"eotrmftkdydwkdlalwl\">\n" +
-            "                                                                                                                            <canvas class=\"_aarh\"\n" +
-            "                                                                                                                                    height=\"42\"\n" +
-            "                                                                                                                                    width=\"42\"></canvas>\n" +
-            "\n" +
-            "                                                                                                                            <!--게시글 상세 댓글을 단 유저의 이미지-->\n" +
-            "                                                                                                                            <a href=\"#\"\n" +
-            "                                                                                                                               class=\"user-myPage-link\">\n" +
-            "                                                                                                                                <img \n" +
-            "                                                                                                                                     class=\"user-myPage-link-img\">\n" +
-            "                                                                                                                            </a>\n" +
-            "\n" +
-            "                                                                                                                        </div>\n" +
-            "                                                                                                                    </div>\n" +
-            "                                                                                                                </div>\n" +
-            "\n" +
-            "                                                                                                                <div class=\"_a9zr\">\n" +
-            "                                                                                                                    <h3 class=\"_a9zc\">\n" +
-            "                                                                                                                        <div class=\"dhfmsWhrakwls\">\n" +
-            "                                                                                                                            <div style=\"display: inline;\">\n" +
-            "                                                                                                                                <div style=\"display: inline;\">\n" +
-            "\n" +
-            "                                                                                                                                    <!--게시글 상세 댓글을 단 사용자 myPage 이동 링크-->\n" +
-            "                                                                                                                                    <a href=\"#\"\n" +
-            "                                                                                                                                       class=\"comment-user-going\"> 댓글 단 사람 닉네임(변경필)" + memberDTO.memberNickName + "</a>\n" +
-            "\n" +
-            "                                                                                                                                </div>\n" +
-            "                                                                                                                            </div>\n" +
-            "                                                                                                                        </div>\n" +
-            "                                                                                                                    </h3>\n" +
-            "\n" +
-            "                                                                                                                    <!--게시글 상세 댓글 내용-->\n" +
-            "                                                                                                                    <div style=\"display: inline\">\n" +
-            "                                                                                                                        <span class=\"detail-board-comment-text\">1</span>\n" +
-            "                                                                                                                    </div>\n" +
-            "\n" +
-            "                                                                                                                    <div class=\"detail-board-comment-info\">\n" +
-            "                                                                                                                        <span class=\"detail-board-comment-info-line\">\n" +
-            "\n" +
-            "                                                                                                                            <!--게시글 상세 댓글 작성 시간-->\n" +
-            "                                                                                                                            <a class=\"detail-board-comment-time-box\">\n" +
-            "                                                                                                                                <time class=\"detail-board-comment-time\"\n" +
-            "                                                                                                                                      datetime=\"2023-07-02T14:50:05.000Z\"\n" +
-            "                                                                                                                                      title=\"7월 2, 2023\">3시간</time>\n" +
-            "                                                                                                                            </a>\n" +
-            "\n" +
-            "                                                                                                                            <!--게시글 상세 댓글에 답글 디스플레이 on / off-->\n" +
-            "                                                                                                                            <button type=\"button\"\n" +
-            "                                                                                                                                    class=\"_a9ze\">\n" +
-            "                                                                                                                                <span class=\"aksemfRKrhalswnd\">답글 달기</span>\n" +
-            "                                                                                                                            </button>\n" +
-            "\n" +
-            "                                                                                                                        </span>\n" +
-            "                                                                                                                    </div>\n" +
-            "                                                                                                                </div>\n" +
-            "\n" +
-            "                                                                                                            </div>\n" +
-            "                                                                                                        </div>\n" +
-            "                                                                                                    </li>\n" +
-            "                                                                                                </div>\n" +
-            "                                                                                            </ul>\n" +
-            "                                                                                        </ul>\n" +
+            "                                                                                        <ul class=\"detail-board-contents-comment-list-\">\n";
+
+        for (let c in boardCommentList) {
+            output += `<ul class="detail-board-contents-comment-list-1">`
+            if (boardCommentList[c].memberId === loginid) {
+                output += ` 
+    <div class="detail-board-contents-comment-box"  onmouseover="showPlusButton(${boardCommentList[c].id})"
+      onmouseout="hidePlusButton(${boardCommentList[c].id})" >
+      `
+            } else {
+                output += `
+            <div className="detail-board-contents-comment-box">`
+            }
+            ;
+            output += `
+        <li class="detail-board-comment-list-li">
+            <div class="detail-board-comment-size">
+                <div class="_a9zo">
+                    <div>
+                        <div>
+                            <div class="eotrmftkdydwkdlalwl">
+                                <canvas class="_aarh"
+                                        height="42"
+                                        width="42"></canvas>
+                                
+                                <!--게시글 상세 댓글을 단 유저의 이미지-->
+                                <a href="#"
+                                   class="user-myPage-link">
+                                    <img class="user-myPage-link-img" src="/upload/${boardCommentList[c].memberProfile}">
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="_a9zr">
+                        <h3 class="_a9zc">
+                            <div class="dhfmsWhrakwls">
+                                <div style="display: inline;">
+                                    <div style="display: inline;">
+
+                                        <!--게시글 상세 댓글을 단 사용자 myPage 이동 링크-->
+                                        <a href="#"
+                                           class="comment-user-going">${boardCommentList[c].memberNickName}</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </h3>
+
+                        <!--게시글 상세 댓글 내용-->
+                        <div style="display: inline">
+                            <span class="detail-board-comment-text">${boardCommentList[c].commentContents}</span>
+                        </div>
+
+                        <div class="detail-board-comment-info">
+                            <span class="detail-board-comment-info-line" style="display: flex; align-items: center;">
+      
+    <!-- Post Detail Comment Time -->
+    <a class="detail-board-comment-time-box">
+        <time class="detail-board-comment-time"
+              datetime="2023-07-02T14:50:05.000Z"
+              title="July 2, 2023">3시간 전</time>
+    </a>
+
+    <!-- Turn on/off display replies to post detail comments -->
+    <button type="button" class="_a9ze">
+        <span class="aksemfRKrhalswnd">답글 달기</span>
+    </button>
+    <button class="Detail-board-plus-btn"
+    style="display: none;padding: 0;height: 18px;" id="Detail-board-plus-btn${boardCommentList[c].id}" onclick="openCommentMenu(${boardCommentList[c].id},${boardDTO.id})">
+        <div style="align-items: center; display: flex; justify-content: center;">
+            <div class="boardMain-main-board-plus-btn-img-box">
+                <svg aria-label="More Options"
+                     class="_ab6-"
+                     color="rgb(115, 115, 115)"
+                     fill="rgb(115, 115, 115)"
+                     height="24"
+                     role="img"
+                     viewBox="0 0 24 24"
+                     width="24">
+                    <circle cx="12" cy="12" r="1.5"></circle>
+                    <circle cx="6" cy="12" r="1.5"></circle>
+                    <circle cx="18" cy="12" r="1.5"></circle>
+                </svg>
+            </div>
+        </div>
+    </button>
+</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </div>
+</ul>`
+        }
+        ;
+        output += "                                                                                        </ul>\n" +
             "                                                                                    </div>\n" +
             "\n" +
             "                                                                                    <section\n" +
@@ -431,8 +424,8 @@ const openMainDetail = (id) => {
             "                                                                                                    <textarea\n" +
             "                                                                                                            aria-label=\"댓글 달기\"\n" +
             "                                                                                                            placeholder=\"댓글 달기...\"\n" +
-            "                                                                                                            class=\"detail-board-comment-save-textarea\"></textarea>\n" +
-            "                                                                                                    <div style=\"margin-left: 8px;\">\n" +
+            "                                                                                                            class=\"detail-board-comment-save-textarea\" id=\"board-comment-save-contents\"></textarea>\n" +
+            "                                                                                                    <div style=\"margin-left: 8px;\" onclick=\"comment_save(" + boardDTO.id + ")\">\n" +
             "                                                                                                        <div class=\"detail-comment-sub-btn-box\">\n" +
             "                                                                                                            <span style=\"opacity: .5;\">게시</span>\n" +
             "                                                                                                        </div>\n" +
@@ -461,6 +454,45 @@ const openMainDetail = (id) => {
             "                            </div>\n" +
             "                        </div>\n" +
             "                    </div>"
+        for (let c in boardCommentList) {
+            output += `
+
+        <div style="position: fixed;top: 0;width: 100%;z-index: 100;">
+                    <div class="plus-modal-board-" id="plus-modal-detail" style="display: none;">
+                        <div class="plus-modal-board-1">
+                            <div class="plus-modal-board-2">
+                                <div class="plus-modal-board-bg"></div>
+                                <div class="plus-modal-board-3">
+                                    <div class="plus-modal-board-main-">
+                                        <div class="plus-modal-board-main-1">
+                                            <div class="plus-modal-board-main-2">
+                                                <div class="plus-modal-board-main-3">
+                                                    <div class="plus-modal-board-inner-">
+                                                        <div class="plus-modal-board-inner-1">
+                                                            <div class="plus-modal-board-inner-2">
+                                                                <div class="plus-modal-board-inner-3">
+                                                                    <button type="button" class="_a9--"
+                                                                            onclick="CommentDelete([[${boardDTO.id}]])">
+                                                                        삭제
+                                                                    </button>
+                                                                    <button type="button" class="_a9-">수정</button>
+                                                                    <button type="button" class="_a9_1"
+                                                                            onclick="fuckyou()">취소
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`
+        }
         mainDetail.style.display = "";
         mainDetail.innerHTML = output;
 
@@ -495,12 +527,16 @@ const openMainDetail = (id) => {
         if (fileSize > 1) {
             board_img_paging_controller(i);
         }
+
+
     }).catch(err => {
         alert("detail 실패");
     });
 
 
 }
+
+
 const board_like = (id) => {
     axios({
         method: "post",
@@ -547,7 +583,22 @@ const detail_off = () => {
     i = 0;
     mainDetail.style.display = "none";
 }
+const comment_save = (id) => {
+    const commentContents = document.getElementById("board-comment-save-contents").value;
 
+    axios({
+        method: "post",
+        url: "/board/comment/" + id,
+        data: {
+            commentContents: commentContents
+        }
+    }).then(res => {
+        const boardComment = res.data;
+        openMainDetail(id);
+    }).catch(err => {
+
+    });
+}
 const detail_file_next = (id) => {
     i += 1;
     openMainDetail(id);
@@ -617,4 +668,48 @@ const board_img_paging_controller = (imgPage) => {
             parentElement.appendChild(childElement);
         }
     }
+
 }
+
+
+function showPlusButton(CommentId) {
+    let ondist = document.getElementById("Detail-board-plus-btn" + CommentId)
+    ondist.style.display = 'block';
+    console.log("Commentid = " + CommentId);
+
+}
+
+function hidePlusButton(CommentId) {
+    let ondist = document.getElementById("Detail-board-plus-btn" + CommentId)
+    ondist.style.display = 'none';
+    console.log("Commentid = " + CommentId);
+}
+const fuckyou = () => {
+    document.getElementById('plus-modal-detail').style.display = "none";
+
+
+}
+
+
+function openCommentMenu(CommentId,boardId) {
+    let plusCommentModal = document.getElementById("plus-modal-detail");
+    if (plusCommentModal.style.display === 'none') {
+        plusCommentModal.style.display = 'block';
+        console.log("응애");
+    } else if(fuckyou) {
+        plusCommentModal.style.display = 'none';
+    }else{
+        plusCommentModal.style.display = 'none';
+    }
+    console.log("CommentId", CommentId);
+
+}
+
+plusNavDisplay.addEventListener("click", function () {
+    if (plusNavDisplayMain.style.display === "none") {
+        plusNavDisplayMain.style.display = "block";
+    } else {
+        plusNavDisplayMain.style.display = "none";
+    }
+});
+

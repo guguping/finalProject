@@ -3750,3 +3750,36 @@ dlalwlfkqslek:after {
     content: "";
     height: 0;
 }
+.Detail-board-plus-btn {
+    align-items: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+    color: rgb(0,0,0);
+    font-size: 14px;
+    line-height: 18px;
+    margin: 0;
+}
+.Detail-board-plus-btn-img-box {
+    height: 24px;
+    width: 24px;
+    overflow-y: visible;
+    border-bottom-left-radius: 0;
+    justify-content: center;
+    background-color: transparent;
+    flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    border-bottom-right-radius: 0;
+    flex-shrink: 0;
+    overflow-x: visible;
+    align-self: auto;
+    position: relative;
+    flex-grow: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
