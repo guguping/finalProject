@@ -2,6 +2,7 @@ package com.example.finalproject.controller;
 
 import com.example.finalproject.dto.BoardReelsCommentDTO;
 import com.example.finalproject.dto.BoardReelsDTO;
+import com.example.finalproject.dto.BookmarkDTO;
 import com.example.finalproject.dto.LikeDTO;
 import com.example.finalproject.serivce.ReelsService;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 @Controller
 @RequiredArgsConstructor
@@ -25,22 +27,17 @@ public class ReelsController {
 
     @GetMapping("/board/reels")
     public String reelsPage(Model model, HttpSession session) {
-        List<BoardReelsDTO> boardReelsDTOList = reelsService.reelsFindAll();
-        List<LikeDTO> boardReelsLikeDTOList = reelsService.findByLike((Long) session.getAttribute("memberId"));
+        List<BoardReelsDTO> boardReelsDTOList = reelsService.reelsFindAll((Long) session.getAttribute("memberId"));
         if (boardReelsDTOList == null) {
             model.addAttribute("boardReelsList", null);
+            model.addAttribute("commentCount",null);
+            model.addAttribute("likeCount", null);
         } else {
+            List<Integer> commentCount = reelsService.commentCount(boardReelsDTOList);
+            List<Integer> likeCount = reelsService.likeCount(boardReelsDTOList);
             model.addAttribute("boardReelsList", boardReelsDTOList);
-        }
-
-        if (boardReelsLikeDTOList == null) {
-            model.addAttribute("reelsLikeList", null);
-        } else {
-            int Result = boardReelsDTOList.size() - boardReelsLikeDTOList.size();
-            for (int i = 1; i <= Result; i++) {
-                boardReelsLikeDTOList.add(null);
-            }
-            model.addAttribute("reelsLikeList", boardReelsLikeDTOList);
+            model.addAttribute("commentCount",commentCount);
+            model.addAttribute("likeCount",likeCount);
         }
         return "boardPages/boardReels";
     }
@@ -68,7 +65,7 @@ public class ReelsController {
     }
 
     @PostMapping("/Reels/commentUnLike")
-    public ResponseEntity<?> reelsCommnetUnLike(@RequestBody LikeDTO likeDTO) {
+    public ResponseEntity<?> reelsCommentUnLike(@RequestBody LikeDTO likeDTO) {
         reelsService.deleteLike(likeDTO);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -82,6 +79,17 @@ public class ReelsController {
     @PostMapping("/Reels/likeDelete")
     public ResponseEntity<?> reelsLikeDelete(@RequestBody LikeDTO likeDTO) {
         reelsService.deleteLike(likeDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @PostMapping("/Reels/markSave")
+    public ResponseEntity<?> bookMarkSave(@RequestBody BookmarkDTO bookmarkDTO) {
+        BookmarkDTO bookmarkDTOResult = reelsService.saveBookMark(bookmarkDTO);
+        return new ResponseEntity<>(bookmarkDTOResult, HttpStatus.OK);
+    }
+    @PostMapping("/Reels/markDelete")
+    public ResponseEntity<?> bookMarkDelete(@RequestBody BookmarkDTO bookmarkDTO) {
+        System.out.println("bookmarkDTO = " + bookmarkDTO);
+        reelsService.deleteBook(bookmarkDTO);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

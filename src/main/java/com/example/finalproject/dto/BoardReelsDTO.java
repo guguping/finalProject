@@ -16,6 +16,7 @@ public class BoardReelsDTO {
     private String reelsFile;
     private String createdAt;
     private String reelsContents;
+    private Long likeId;
 
     public static BoardReelsDTO toDTO(BoardReelsEntity boardReelsEntity) {
         return BoardReelsDTO.builder()
