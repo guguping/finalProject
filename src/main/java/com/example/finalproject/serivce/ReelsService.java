@@ -18,14 +18,35 @@ public class ReelsService {
     private final MemberRepository memberRepository;
     private final ReelsCommentLikeRepository reelsCommentLikeRepository;
     private final BoardReelsLikeRepository boardReelsLikeRepository;
+    private final BoardReelsBookMarkRepository boardReelsBookMarkRepository;
 
     @Transactional
-    public List<BoardReelsDTO> reelsFindAll() {
+    public List<BoardReelsDTO> reelsFindAll(Long memberId) {
+        MemberEntity memberEntity = memberRepository.findById(memberId).orElseThrow(() -> new NoSuchElementException());
         List<BoardReelsEntity> boardReelsEntityList = boardReelsRepository.findAll();
+        List<BoardReelsLikeEntity> boardReelsLikeEntityList = boardReelsLikeRepository.findAllByMemberEntityOrderByBoardReelsEntityIdAsc(memberEntity);
         List<BoardReelsDTO> boardReelsDTOList = new ArrayList<>();
-        boardReelsEntityList.forEach(boardReelsEntity -> {
-            boardReelsDTOList.add(BoardReelsDTO.toDTO(boardReelsEntity));
-        });
+        for (int i = 0; i < boardReelsEntityList.size(); i++) {
+            BoardReelsEntity boardReelsEntity = boardReelsEntityList.get(i);
+            BoardReelsLikeEntity boardReelsLikeEntity = null;
+            BoardReelsDTO dto = new BoardReelsDTO();
+
+            for (int j = 0 ; j < boardReelsLikeEntityList.size(); j++){
+                boardReelsLikeEntity = boardReelsLikeEntityList.get(j);
+                if (boardReelsLikeEntity != null){
+                    if (boardReelsLikeEntity.getBoardReelsEntity().getId() == boardReelsEntity.getId()){
+                        dto.setLikeId(boardReelsLikeEntity.getId());
+                    }
+                }
+            }
+
+            dto.setId(boardReelsEntity.getId());
+            dto.setMemberId(boardReelsEntity.getMemberEntity().getId());
+            dto.setReelsFile(boardReelsEntity.getReelsFile());
+            dto.setReelsContents(boardReelsEntity.getReelsContents());
+
+            boardReelsDTOList.add(dto);
+        }
         return boardReelsDTOList;
     }
 
@@ -75,25 +96,42 @@ public class ReelsService {
     }
 
     @Transactional
-    public List<LikeDTO> findByLike(Long memberId) {
-        MemberEntity memberEntity = memberRepository.findById(memberId).orElseThrow(() -> new NoSuchElementException());
-        List<BoardReelsLikeEntity> boardReelsLikeEntityList = boardReelsLikeRepository.findAllByMemberEntity(memberEntity);
-        List<LikeDTO> likeDTOList = new ArrayList<>();
-        if (boardReelsLikeEntityList.size() == 0) {
-            return null;
-        } else {
-            boardReelsLikeEntityList.forEach(boardReelsLikeEntity -> {
-                likeDTOList.add(LikeDTO.reelsLiketoDTO(boardReelsLikeEntity));
-            });
-            return likeDTOList;
-        }
-    }
-
-    @Transactional
     public LikeDTO saveReelsLike(LikeDTO likeDTO) {
         BoardReelsEntity boardReelsEntity = boardReelsRepository.findById(likeDTO.getBoardId()).orElseThrow(() -> new NoSuchElementException());
         MemberEntity memberEntity = memberRepository.findById(likeDTO.getMemberId()).orElseThrow(() -> new NoSuchElementException());
         BoardReelsLikeEntity boardReelsLikeEntity = BoardReelsLikeEntity.toSaveEntity(boardReelsEntity,memberEntity);
         return LikeDTO.reelsLiketoDTO((boardReelsLikeRepository.save(boardReelsLikeEntity)));
+    }
+
+    @Transactional
+    public List<Integer> commentCount(List<BoardReelsDTO> boardReelsDTOList) {
+        List<Integer> commentCount = new ArrayList<>();
+        boardReelsDTOList.forEach(boardReelsDTO -> {
+            BoardReelsEntity boardReelsEntity = boardReelsRepository.findById(boardReelsDTO.getId()).orElseThrow(() -> new NoSuchElementException());
+            List<BoardReelsCommentEntity> boardReelsCommentEntity = reelsCommentRepository.findByBoardReelsEntityOrderByIdDesc(boardReelsEntity);
+            commentCount.add(boardReelsCommentEntity.size());
+        });
+        return commentCount;
+    }
+
+    public List<Integer> likeCount(List<BoardReelsDTO> boardReelsDTOList) {
+        List<Integer> likeCount = new ArrayList<>();
+        boardReelsDTOList.forEach(boardReelsDTO -> {
+            BoardReelsEntity boardReelsEntity = boardReelsRepository.findById(boardReelsDTO.getId()).orElseThrow(() -> new NoSuchElementException());
+            List<BoardReelsLikeEntity> boardReelsLikeEntityList = boardReelsLikeRepository.findByBoardReelsEntityOrderByIdDesc(boardReelsEntity);
+            likeCount.add(boardReelsLikeEntityList.size());
+        });
+        return likeCount;
+    }
+
+    public BookmarkDTO saveBookMark(BookmarkDTO bookmarkDTO) {
+        BoardReelsEntity boardReelsEntity = boardReelsRepository.findById(bookmarkDTO.getReelsId()).orElseThrow(() -> new NoSuchElementException());
+        MemberEntity memberEntity = memberRepository.findById(bookmarkDTO.getMemberId()).orElseThrow(() -> new NoSuchElementException());
+        BoardReelsBookmarkEntity boardReelsBookmarkEntity = BoardReelsBookmarkEntity.toSavedEntity(boardReelsEntity, memberEntity);
+        return BookmarkDTO.reelsToDTO(boardReelsBookMarkRepository.save(boardReelsBookmarkEntity));
+    }
+
+    public void deleteBook(BookmarkDTO bookmarkDTO) {
+        boardReelsBookMarkRepository.deleteById(bookmarkDTO.getId());
     }
 }
