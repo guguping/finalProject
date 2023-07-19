@@ -25,10 +25,12 @@ public class ReelsService {
         MemberEntity memberEntity = memberRepository.findById(memberId).orElseThrow(() -> new NoSuchElementException());
         List<BoardReelsEntity> boardReelsEntityList = boardReelsRepository.findAll();
         List<BoardReelsLikeEntity> boardReelsLikeEntityList = boardReelsLikeRepository.findAllByMemberEntityOrderByBoardReelsEntityIdAsc(memberEntity);
+        List<BoardReelsBookmarkEntity> boardReelsBookmarkEntityList = boardReelsBookMarkRepository.findAllByMemberEntityOrderByBoardReelsEntityIdAsc(memberEntity);
         List<BoardReelsDTO> boardReelsDTOList = new ArrayList<>();
         for (int i = 0; i < boardReelsEntityList.size(); i++) {
             BoardReelsEntity boardReelsEntity = boardReelsEntityList.get(i);
             BoardReelsLikeEntity boardReelsLikeEntity = null;
+            BoardReelsBookmarkEntity boardReelsBookmarkEntity = null;
             BoardReelsDTO dto = new BoardReelsDTO();
 
             for (int j = 0 ; j < boardReelsLikeEntityList.size(); j++){
@@ -36,6 +38,14 @@ public class ReelsService {
                 if (boardReelsLikeEntity != null){
                     if (boardReelsLikeEntity.getBoardReelsEntity().getId() == boardReelsEntity.getId()){
                         dto.setLikeId(boardReelsLikeEntity.getId());
+                    }
+                }
+            }
+            for (int q = 0; q < boardReelsBookmarkEntityList.size(); q++) {
+                boardReelsBookmarkEntity = boardReelsBookmarkEntityList.get(q);
+                if (boardReelsBookmarkEntity != null) {
+                    if (boardReelsBookmarkEntity.getBoardReelsEntity().getId() == boardReelsEntity.getId()){
+                        dto.setBookId(boardReelsBookmarkEntity.getId());
                     }
                 }
             }
