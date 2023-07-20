@@ -31,10 +31,13 @@ public class KakaoProfile {
         public Boolean is_email_valid;
         public Boolean is_email_verified;
         public String email;
+        private String birthday; // birthday 필드 추가
         private Boolean has_birthday;
         private Boolean birthday_needs_agreement;
+        private String birthday_type;
         private Boolean has_gender;
         private Boolean gender_needs_agreement;
+        private String gender;
 
         @Data
         public static class Profile {
