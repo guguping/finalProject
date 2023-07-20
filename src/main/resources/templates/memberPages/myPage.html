@@ -57,12 +57,12 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="myPage-user-delete-tap">
+                                                                    <div class="myPage-user-delete-tap" th:if="${memberDTO.id == session.memberId}">
                                                                         <div class="myPage-user-delete-tap-1">
 
                                                                             <!--회원 로그아웃, 삭제 디스플레이 on/off 버튼-->
                                                                             <div class="myPage-user-delete-tap-2"
-                                                                                 role="button">
+                                                                                 role="button" onclick="deleOn()">
                                                                                 <svg aria-label="옵션"
                                                                                      class="myPage-user-delete"
                                                                                      color="rgb(0, 0, 0)"
@@ -271,6 +271,8 @@
                                                                                     </a>
                                                                                 </div>
                                                                             </th:block>
+                                                                            <div class="myPage-board-item-box"></div>
+                                                                            <div class="myPage-board-item-box"></div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -345,7 +347,7 @@
                                                                 <!--로그아웃 시작-->
                                                                 <div class="nav-logout-btn-"
                                                                      id="nav-logout-btn-">
-                                                                    <div class="nav-logout-btn-1" onclick="member_logout()">
+                                                                    <div class="nav-logout-btn-1" onclick="user_logout()">
                                                                         <div class="nav-logout-btn-2">
                                                                             <div class="nav-logout-btn-3">
                                                                                 <div class="nav-logout-btn-4">
@@ -696,6 +698,36 @@
                     <div class="myPage-f-ing-b" id="myPage-f-ing-b" style="display: block;">
 
                     </div>
+
+                    <div class="myPage-f-ing-b" id="myPage-user-d-l" style="display: none;">
+                        <div class="myPage-user-d-l">
+                            <div class="myPage-user-d-l-">
+                                <div class="myPage-user-d-l-1"></div>
+                                <div class="myPage-user-d-l-1-">
+                                    <div class="myPage-user-d-l-2">
+                                        <div class="myPage-user-d-l-3">
+                                            <div class="myPage-user-d-l-4">
+                                                <div class="myPage-user-d-l-5">
+                                                    <div class="myPage-user-d-l-6">
+                                                        <div class="myPage-user-d-l-m">
+                                                            <div class="myPage-user-d-l-m-">
+                                                                <div class="myPage-user-d-l-m-1">
+                                                                    <button class="myPage-user-d-l-m-btn" onclick="user_delete()" style="color: red;font-weight: 700;" type="button" tabindex="0">회원탈퇴</button>
+                                                                    <button class="myPage-user-d-l-m-btn" onclick="user_logout()" type="button" tabindex="0">로그아웃</button>
+                                                                    <button class="myPage-user-d-l-m-btn" type="button" onclick="deleOff()" tabindex="0">취소</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <!--게시글 디테일 본문-->
@@ -1082,7 +1114,50 @@
                 "\n" +
                 "                                                                                    <!--게시글 상세 코멘트 리스트 시작-->\n" +
                 "                                                                                    <div class=\"detail-board-contents-comment-list\">\n" +
-                "                                                                                        <ul class=\"detail-board-contents-comment-list-\">\n";
+                "                                                                                        <ul class=\"detail-board-contents-comment-list-\">\n"+
+                "                                                                                           <div class=\"detail-board-contents-t-d\">\n" +
+                "                                                                                                <li class=\"detail-board-contents-t-\" style=\"border-bottom: 1px solid rgb(239, 239, 239);\">\n" +
+                "                                                                                                    <div class=\"detail-board-contents-t-b\">\n" +
+                "                                                                                                        <div class=\"detail-board-contents-t-b-\">\n" +
+                "                                                                                                            <div>\n" +
+                "                                                                                                                <div>\n" +
+                "                                                                                                                    <div class=\"detail-board-contents-pr\">\n" +
+                "                                                                                                                        <a href=\"#\" class=\"detail-board-contents-pr-link\">\n" +
+                "\n" +
+                "                                                                                                                            <!--게시글 작성자의 프로필 사진이 들어가야함-->\n" +
+                "                                                                                                                            <img class=\"detail-board-contents-pr-\" src=\"../images/test프로필.jpg\">\n" +
+                "                                                                                                                        </a>\n" +
+                "                                                                                                                    </div>\n" +
+                "                                                                                                                </div>\n" +
+                "                                                                                                            </div>\n" +
+                "\n" +
+                "                                                                                                            <div class=\"detail-board-contents-t-m\">\n" +
+                "                                                                                                                <h2 class=\"detail-board-contents-t-m-n\">\n" +
+                "                                                                                                                    <div class=\"detail-board-contents-t-m-n-\">\n" +
+                "                                                                                                                        <div class=\"xt0psk2\">\n" +
+                "\n" +
+                "                                                                                                                            <!--게시글 작성자 닉네임-->\n" +
+                "                                                                                                                            <a href=\"#\" class=\"detail-board-contents-t-m-n-link\">guping__</a>\n" +
+                "                                                                                                                        </div>\n" +
+                "                                                                                                                    </div>\n" +
+                "                                                                                                                </h2>\n" +
+                "\n" +
+                "                                                                                                                <div class=\"_a9zs\">\n" +
+                "\n" +
+                "                                                                                                                    <!--게시글 내용-->\n" +
+                "                                                                                                                    <h1 class=\"detail-board-contents-t-m-t\">뿟싼</h1>\n" +
+                "                                                                                                                </div>\n" +
+                "\n" +
+                "                                                                                                                <div class=\"detail-board-contents-mar\">\n" +
+                "                                                                                                                    <span class=\"detail-board-contents-mar-\">\n" +
+                "                                                                                                                        <time class=\"timeIsGold\" datetime=\"2018-10-01T19:23:59.000Z\" title=\"10월 2, 2018\">250주</time>\n" +
+                "                                                                                                                    </span>\n" +
+                "                                                                                                                </div>\n" +
+                "                                                                                                            </div>\n" +
+                "                                                                                                        </div>\n" +
+                "                                                                                                    </div>\n" +
+                "                                                                                                </li>\n" +
+                "                                                                                            </div>";
             for (let c in boardCommentList) {
                 output += "                                                                                            <ul class=\"detail-board-contents-comment-list-1\">\n" +
                     "                                                                                                <div class=\"detail-board-contents-comment-box\">\n" +
@@ -1368,10 +1443,6 @@
         board_detail(id);
     }
 
-    const member_logout = () => {
-        location.href = "/member/logout";
-    }
-
     const board_img_paging_controller = (imgPage) => {
         for (let p = 0; p < fileSize; p++) {
             // 부모 요소 선택
@@ -1564,6 +1635,24 @@
         } else {
             location.href = "/member/myPage/" + followingId;
         }
+    }
+
+    const deleOn = () => {
+        const userDeleteBtn = document.getElementById("myPage-user-d-l");
+        userDeleteBtn.style.display = "";
+    }
+    
+    const deleOff = () => {
+        const userDeleteBtn = document.getElementById("myPage-user-d-l");
+        userDeleteBtn.style.display = "none";
+    }
+
+    const user_delete = () => {
+        location.href = "/member/delete";
+    }
+
+    const user_logout = () => {
+        location.href = "/member/logout";
     }
 
 </script>

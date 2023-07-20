@@ -147,4 +147,8 @@ public class MemberSerivce {
             return null;
         }
     }
+
+    public void delete(Long id) {
+        memberRepository.deleteById(id);
+    }
 }
