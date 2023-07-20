@@ -30,7 +30,7 @@
                                                                     <div class="_aadm">
                                                                         <button class="_aadn" title="프로필 사진 바꾸기"
                                                                                 type="button"
-                                                                                onclick="userImgChangeOn()">
+                                                                                th:onclick="userImgChangeOn([[${memberDTO.id}]])">
                                                                             <img th:src="@{|/upload/${memberDTO.memberProfile}}"
                                                                                  class="myPage-main-img">
                                                                         </button>
@@ -713,13 +713,17 @@
     const myPageImgSubmit = document.getElementById('myPageImgSubmit');
     let userImgInput = document.getElementById('userImgInput');
     const resultArea = document.getElementById("detail-box");
-    let i = 0;
+    let boardFileCount = 0;
     let fileSize = 1;
     let followDeleteCount = 0;
+    let boardListCount = 0;
     const boardKind = 1;
 
-    const userImgChangeOn = () => {
-        userImgChange.style.display = "block";
+    const userImgChangeOn = (memberId) => {
+        const loginId = [[${session.memberId}]];
+        if (memberId == loginId) {
+            userImgChange.style.display = "block";
+        }
     }
     const userImgChangeOff = () => {
         userImgChange.style.display = "none";
@@ -741,13 +745,22 @@
         }).then(res => {
             const board = res.data;
             const boardDTO = board.boardDTO;
+            const boardDTOList = board.boardDTOList;
             const memberDTO = board.memberDTO;
             const boardFileList = board.boardFileList;
-            const storedFileName = boardFileList[i].storedFileName;
+            const storedFileName = boardFileList[boardFileCount].storedFileName;
             const boardLike = board.boardLike;  //boolean
             const boardBookmark = board.boardBookmark;  //boolean
             const boardCommentList = board.boardCommentList;
             fileSize = boardFileList.length;
+
+            for (let b = 0; b < boardDTOList.length; b++) {
+                if (boardDTOList[b].id !== boardDTO.id) {
+                    boardListCount += 1;
+                } else {
+                    break;
+                }
+            }
 
             let output = "<div class=\"myPage-board-detail-b1\">\n" +
                 "                        <div class=\"myPage-board-detail-b2\">\n" +
@@ -782,44 +795,48 @@
                 "                                                    <!--다음 게시물 next버튼-->\n" +
                 "                                                    <div>\n" +
                 "                                                        <div class=\"myPage-board-detail-box-next\">\n" +
-                "                                                            <div class=\"myPage-board-detail-box-next-size\">\n" +
-                "                                                                <!--이전 게시물 버튼-->\n" +
-                "                                                                <div class=\"detail-box-back\">\n" +
-                "                                                                    <button class=\"detail-box-back-btn\" type=\"button\">\n" +
-                "                                                                        <div class=\"detail-box-back-btn-lz\">\n" +
-                "                                                                            <span style=\"display: inline-block;transform: rotate(270deg);\">\n" +
-                "                                                                                <svg aria-label=\"돌아가기\"\n" +
-                "                                                                                     class=\"detail-box-back-btn-logo\"\n" +
-                "                                                                                     color=\"rgb(0, 0, 0)\"\n" +
-                "                                                                                     fill=\"rgb(0, 0, 0)\" height=\"16\"\n" +
-                "                                                                                     role=\"img\" viewBox=\"0 0 24 24\"\n" +
-                "                                                                                     width=\"16\">\n" +
-                "                                                                                    <title>돌아가기</title>\n" +
-                "                                                                                    <path d=\"M21 17.502a.997.997 0 0 1-.707-.293L12 8.913l-8.293 8.296a1 1 0 1 1-1.414-1.414l9-9.004a1.03 1.03 0 0 1 1.414 0l9 9.004A1 1 0 0 1 21 17.502Z\"></path>\n" +
-                "                                                                                </svg>\n" +
-                "                                                                            </span>\n" +
-                "                                                                        </div>\n" +
-                "                                                                    </button>\n" +
-                "                                                                </div>\n" +
-                "                                                                <!--다음 게시물 버튼-->\n" +
-                "                                                                <div class=\"detail-box-next\">\n" +
-                "                                                                    <button class=\"detail-box-next-btn\" type=\"button\">\n" +
-                "                                                                        <div class=\"detail-box-next-btn-rz\">\n" +
-                "                                                                            <span style=\"display: inline-block;transform: rotate(90deg);\">\n" +
-                "                                                                                <svg aria-label=\"다음\"\n" +
-                "                                                                                     class=\"detail-box-next-btn-logo\"\n" +
-                "                                                                                     color=\"rgb(0, 0, 0)\"\n" +
-                "                                                                                     fill=\"rgb(0, 0, 0)\" height=\"16\"\n" +
-                "                                                                                     role=\"img\" viewBox=\"0 0 24 24\"\n" +
-                "                                                                                     width=\"16\">\n" +
-                "                                                                                    <title>다음</title>\n" +
-                "                                                                                    <path d=\"M21 17.502a.997.997 0 0 1-.707-.293L12 8.913l-8.293 8.296a1 1 0 1 1-1.414-1.414l9-9.004a1.03 1.03 0 0 1 1.414 0l9 9.004A1 1 0 0 1 21 17.502Z\"></path>\n" +
-                "                                                                                </svg>\n" +
-                "                                                                            </span>\n" +
-                "                                                                        </div>\n" +
-                "                                                                    </button>\n" +
-                "                                                                </div>\n" +
-                "                                                            </div>\n" +
+                "                                                            <div class=\"myPage-board-detail-box-next-size\">\n";
+            if (boardListCount != 0) {
+                output += "                                                                <!--이전 게시물 버튼-->\n" +
+                    "                                                                <div class=\"detail-box-back\">\n" +
+                    "                                                                    <button class=\"detail-box-back-btn\" type=\"button\" onclick=\"board_detail_back(" + boardDTOList[boardListCount-1].id + ")\">\n" +
+                    "                                                                        <div class=\"detail-box-back-btn-lz\">\n" +
+                    "                                                                            <span style=\"display: inline-block;transform: rotate(270deg);\">\n" +
+                    "                                                                                <svg aria-label=\"돌아가기\"\n" +
+                    "                                                                                     class=\"detail-box-back-btn-logo\"\n" +
+                    "                                                                                     color=\"rgb(0, 0, 0)\"\n" +
+                    "                                                                                     fill=\"rgb(0, 0, 0)\" height=\"16\"\n" +
+                    "                                                                                     role=\"img\" viewBox=\"0 0 24 24\"\n" +
+                    "                                                                                     width=\"16\">\n" +
+                    "                                                                                    <title>돌아가기</title>\n" +
+                    "                                                                                    <path d=\"M21 17.502a.997.997 0 0 1-.707-.293L12 8.913l-8.293 8.296a1 1 0 1 1-1.414-1.414l9-9.004a1.03 1.03 0 0 1 1.414 0l9 9.004A1 1 0 0 1 21 17.502Z\"></path>\n" +
+                    "                                                                                </svg>\n" +
+                    "                                                                            </span>\n" +
+                    "                                                                        </div>\n" +
+                    "                                                                    </button>\n" +
+                    "                                                                </div>\n";
+            }
+            if (boardListCount != boardDTOList.length -1) {
+                output += "                                                                <!--다음 게시물 버튼-->\n" +
+                    "                                                                <div class=\"detail-box-next\">\n" +
+                    "                                                                    <button class=\"detail-box-next-btn\" type=\"button\" onclick=\"board_detail_next(" + boardDTOList[boardListCount+1].id + ")\">\n" +
+                    "                                                                        <div class=\"detail-box-next-btn-rz\">\n" +
+                    "                                                                            <span style=\"display: inline-block;transform: rotate(90deg);\">\n" +
+                    "                                                                                <svg aria-label=\"다음\"\n" +
+                    "                                                                                     class=\"detail-box-next-btn-logo\"\n" +
+                    "                                                                                     color=\"rgb(0, 0, 0)\"\n" +
+                    "                                                                                     fill=\"rgb(0, 0, 0)\" height=\"16\"\n" +
+                    "                                                                                     role=\"img\" viewBox=\"0 0 24 24\"\n" +
+                    "                                                                                     width=\"16\">\n" +
+                    "                                                                                    <title>다음</title>\n" +
+                    "                                                                                    <path d=\"M21 17.502a.997.997 0 0 1-.707-.293L12 8.913l-8.293 8.296a1 1 0 1 1-1.414-1.414l9-9.004a1.03 1.03 0 0 1 1.414 0l9 9.004A1 1 0 0 1 21 17.502Z\"></path>\n" +
+                    "                                                                                </svg>\n" +
+                    "                                                                            </span>\n" +
+                    "                                                                        </div>\n" +
+                    "                                                                    </button>\n" +
+                    "                                                                </div>\n";
+            }
+            output +=    "                                                            </div>\n" +
                 "\n" +
                 "                                                        </div>\n" +
                 "                                                    </div>\n" +
@@ -1189,12 +1206,12 @@
             if (fileSize == 1) {
                 nextBtn_controller("off");
                 backBtn_controller("off");
-            } else if (fileSize == (i+1)) {
+            } else if (fileSize == (boardFileCount+1)) {
                 nextBtn_controller("off");
                 backBtn_controller("on");
-            } else if (fileSize > (i+1) && i != 0) {
+            } else if (fileSize > (boardFileCount+1) && boardFileCount != 0) {
                 backBtn_controller("on");
-            } else if (i == 0) {
+            } else if (boardFileCount == 0) {
                 backBtn_controller("off");
             }
 
@@ -1214,7 +1231,7 @@
 
             // 사진 페이징 표기 제어
             if (fileSize > 1) {
-                board_img_paging_controller(i);
+                board_img_paging_controller(boardFileCount);
             }
         }).catch(err => {
             alert("detail 실패");
@@ -1274,6 +1291,7 @@
             }
         }).then(res => {
             const boardComment = res.data;
+            boardListCount = 0;
             board_detail(id);
         }).catch(err => {
             alert("comment_save 실패");
@@ -1281,17 +1299,20 @@
     }
 
     const detail_off = () => {
-        i = 0;
+        boardFileCount = 0;
+        boardListCount = 0;
         resultArea.style.display = "none";
     }
 
     const detail_file_next = (id) => {
-        i += 1;
+        boardFileCount += 1;
+        boardListCount = 0;
         board_detail(id);
     }
 
     const detail_file_back = (id) => {
-        i -= 1;
+        boardFileCount -= 1;
+        boardListCount = 0;
         board_detail(id);
     }
 
@@ -1334,6 +1355,17 @@
             boardBookmarkBtn.style.display = "";
             boardUnBookmarkBtn.style.display = "none";
         }
+    }
+
+    const board_detail_next = (id) => {
+        boardListCount = 0;
+        boardFileCount = 0;
+        board_detail(id);
+    }
+    const board_detail_back = (id) => {
+        boardListCount = 0;
+        boardFileCount = 0;
+        board_detail(id);
     }
 
     const member_logout = () => {
