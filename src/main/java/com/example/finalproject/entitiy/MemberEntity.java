@@ -2,6 +2,8 @@ package com.example.finalproject.entitiy;
 
 import com.example.finalproject.domain.Role;
 import com.example.finalproject.dto.MemberDTO;
+import com.example.finalproject.kakaoDTO.KakaoProfile;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
@@ -35,7 +37,7 @@ public class MemberEntity extends BaseEntity implements UserDetails {
     @Column(length = 13,unique = true)
     private String memberMobile;
 
-    @Column(length = 10,nullable = false)
+    @Column(length = 50,nullable = false)
     private String memberNickName;
 
     @Column(length = 20)
@@ -57,6 +59,9 @@ public class MemberEntity extends BaseEntity implements UserDetails {
     @Column
     private Role role;
 
+    private String oauth;
+
+
     public static MemberEntity toEntity(MemberDTO memberDTO) {
         MemberEntity memberEntity = new MemberEntity();
         memberEntity.setMemberEmail(memberDTO.getMemberEmail());
@@ -70,6 +75,20 @@ public class MemberEntity extends BaseEntity implements UserDetails {
         memberEntity.setMemberProfile(memberDTO.getMemberProfile());
         memberEntity.setReelsAttached(memberDTO.getReelsAttached());
         memberEntity.setRole(Role.ROLE_MEMBER);
+        return memberEntity;
+    }
+
+    public static MemberEntity createKakaoMember(KakaoProfile kakaoProfile, String cosKey) {
+        MemberEntity memberEntity = new MemberEntity();
+        String memberNick = "kakaoUser"+kakaoProfile.getProperties().getNickname();
+        memberEntity.setMemberEmail(kakaoProfile.getKakao_account().getEmail());
+        memberEntity.setMemberName(kakaoProfile.getProperties().getNickname());
+        memberEntity.setMemberNickName(memberNick);
+        memberEntity.setMemberBirth("1999" + kakaoProfile.getKakao_account().getBirthday());
+        memberEntity.setMemberGender(kakaoProfile.getKakao_account().getGender());
+        memberEntity.setOauth("kakao");
+        // 나머지 필요한 속성 설정
+
         return memberEntity;
     }
 
