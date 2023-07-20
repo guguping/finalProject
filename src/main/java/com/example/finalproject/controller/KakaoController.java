@@ -23,6 +23,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -54,7 +55,7 @@ public class KakaoController {
         // HttpBody 오브젝트 생성
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("grant_type", "authorization_code");
-        params.add("client_id", "efdb03407631600af87edf1770f10824");
+        params.add("client_id", "483c5fda5520fe4ac417eb418b63af8b");
         params.add("redirect_uri", "http://localhost:8090/kakao/login");
         params.add("code", code);
 
@@ -114,7 +115,7 @@ public class KakaoController {
 
         System.out.println("유저네임 : "+kakaoProfile.getKakao_account().getEmail()+"_"+kakaoProfile.getId());
         System.out.println("이메일 : "+kakaoProfile.getKakao_account().getEmail());
-        System.out.println("생일 : " + kakaoProfile.getProperties().getBirthday());
+        System.out.println("생일 : " + kakaoProfile.getKakao_account().getBirthday());
         // UUID란 -> 중복되지 않는 어떤 특정 값을 만들어내는 알고리즘
 
         MemberEntity kakaoMember = MemberEntity.createKakaoMember(kakaoProfile, cosKey);

@@ -36,7 +36,7 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     open-in-view: false
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
 
 # db query log ?? ??
 logging:
@@ -56,7 +56,7 @@ cos:
       client:
         registration:
           kakao:
-            client-id: efdb03407631600af87edf1770f10824
+            client-id: 483c5fda5520fe4ac417eb418b63af8b
             client-secret: R0JWWsM65JcTVLNHUV7BbxNED6akiH5v
             redirect-uri: http://localhost:8090/oauth/kakao
             authorization-grant-type: authorization_code

@@ -37,7 +37,7 @@ public class MemberEntity extends BaseEntity implements UserDetails {
     @Column(length = 13,unique = true)
     private String memberMobile;
 
-    @Column(length = 10,nullable = false)
+    @Column(length = 50,nullable = false)
     private String memberNickName;
 
     @Column(length = 20)
@@ -80,23 +80,16 @@ public class MemberEntity extends BaseEntity implements UserDetails {
 
     public static MemberEntity createKakaoMember(KakaoProfile kakaoProfile, String cosKey) {
         MemberEntity memberEntity = new MemberEntity();
+        String memberNick = "kakaoUser"+kakaoProfile.getProperties().getNickname();
         memberEntity.setMemberEmail(kakaoProfile.getKakao_account().getEmail());
         memberEntity.setMemberName(kakaoProfile.getProperties().getNickname());
-        memberEntity.setMemberNickName(generateMemberNickname());
-        memberEntity.setMemberBirth("1999" + kakaoProfile.getProperties().getBirthday());
-        memberEntity.setMemberGender(kakaoProfile.getProperties().getGender());
+        memberEntity.setMemberNickName(memberNick);
+        memberEntity.setMemberBirth("1999" + kakaoProfile.getKakao_account().getBirthday());
+        memberEntity.setMemberGender(kakaoProfile.getKakao_account().getGender());
         memberEntity.setOauth("kakao");
         // 나머지 필요한 속성 설정
 
         return memberEntity;
-    }
-
-    private static int memberCount = 0;
-
-    // 회원 닉네임 생성 메서드
-    private static String generateMemberNickname() {
-        memberCount++; // 회원 수 증가
-        return "kakaoUser" + memberCount;
     }
 
     @OneToMany(mappedBy = "memberEntity", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
