@@ -61,6 +61,7 @@ public class AxiosController {
     public ResponseEntity findById(@PathVariable Long id, @RequestParam("boardKind") int boardKind, HttpSession session) throws Exception {
         Long loginId = (Long) session.getAttribute("memberId");
         BoardDTO boardDTO = boardService.findById(id);
+        List<BoardDTO> boardDTOList = boardService.findByMemberId(boardDTO.getMemberId());
         MemberDTO memberDTO = memberSerivce.findById(boardDTO.getMemberId());
         boolean likeOk = likeServie.findByBoardLike(id, loginId, boardKind);
         boolean bookmarkOk = bookmarkService.findByBoardBookmark(id, loginId, boardKind);
@@ -68,6 +69,7 @@ public class AxiosController {
         List<BoardCommentDTO> boardCommentDTOList = boardCommentService.findAll(boardDTO.getId());
         Map<String, Object> board = new HashMap<>();
         board.put("boardDTO", boardDTO);
+        board.put("boardDTOList", boardDTOList);
         board.put("memberDTO", memberDTO);
         board.put("boardFileList", boardFileDTOList);
         board.put("boardLike", likeOk);
