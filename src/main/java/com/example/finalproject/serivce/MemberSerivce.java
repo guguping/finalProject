@@ -56,6 +56,7 @@ public class MemberSerivce {
     }
 
     public MemberDTO findById(Long memberId) {
+        System.out.println("memberId = " + memberId);
         MemberEntity memberEntity = memberRepository.findById(memberId).orElseThrow(() -> new NoSuchElementException());// -> 익명함수 처리 (함수의 이름이 없는 함수)
         return MemberDTO.toDTO(memberEntity);
 //        Optional<MemberEntity> memberEntityOptional = memberRepository.findById(id);
@@ -135,5 +136,15 @@ public class MemberSerivce {
         // 기본 이미지로 변경
         String originalFileName = "defaultImage.jpg";
         memberRepository.updateProfile(loginId, originalFileName);
+    }
+
+    public Long findByMemberEmail(String memberEmail) {
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findByMemberEmail(memberEmail);
+        if (optionalMemberEntity.isPresent()) {
+            MemberEntity memberEntity = optionalMemberEntity.get();
+            return memberEntity.getId();
+        } else {
+            return null;
+        }
     }
 }

@@ -94,12 +94,24 @@ public class BoardService {
         return boardDTOList;
     }
 
+//    @Transactional
+//    public BoardDTO findById(Long id) {
+//        BoardEntity boardEntity = boardRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
+//        BoardDTO boardDTO = BoardDTO.toDTO(boardEntity);
+//        return boardDTO;
+//    }
+
     @Transactional
     public BoardDTO findById(Long id) {
-        BoardEntity boardEntity = boardRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
-        BoardDTO boardDTO = BoardDTO.toDTO(boardEntity);
-        return boardDTO;
+        BoardEntity boardEntity = boardRepository.findById(id).orElse(null);
+        if (boardEntity == null) {
+            return null;
+        } else {
+            BoardDTO boardDTO = BoardDTO.toDTO(boardEntity);
+            return boardDTO;
+        }
     }
+
 
     @Transactional
     public List<BoardFileDTO> findBoardFile(Long id) {
