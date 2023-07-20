@@ -2,6 +2,8 @@ package com.example.finalproject.entitiy;
 
 import com.example.finalproject.domain.Role;
 import com.example.finalproject.dto.MemberDTO;
+import com.example.finalproject.kakaoDTO.KakaoProfile;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
@@ -57,6 +59,9 @@ public class MemberEntity extends BaseEntity implements UserDetails {
     @Column
     private Role role;
 
+    private String oauth;
+
+
     public static MemberEntity toEntity(MemberDTO memberDTO) {
         MemberEntity memberEntity = new MemberEntity();
         memberEntity.setMemberEmail(memberDTO.getMemberEmail());
@@ -71,6 +76,27 @@ public class MemberEntity extends BaseEntity implements UserDetails {
         memberEntity.setReelsAttached(memberDTO.getReelsAttached());
         memberEntity.setRole(Role.ROLE_MEMBER);
         return memberEntity;
+    }
+
+    public static MemberEntity createKakaoMember(KakaoProfile kakaoProfile, String cosKey) {
+        MemberEntity memberEntity = new MemberEntity();
+        memberEntity.setMemberEmail(kakaoProfile.getKakao_account().getEmail());
+        memberEntity.setMemberName(kakaoProfile.getProperties().getNickname());
+        memberEntity.setMemberNickName(generateMemberNickname());
+        memberEntity.setMemberBirth("1999" + kakaoProfile.getProperties().getBirthday());
+        memberEntity.setMemberGender(kakaoProfile.getProperties().getGender());
+        memberEntity.setOauth("kakao");
+        // 나머지 필요한 속성 설정
+
+        return memberEntity;
+    }
+
+    private static int memberCount = 0;
+
+    // 회원 닉네임 생성 메서드
+    private static String generateMemberNickname() {
+        memberCount++; // 회원 수 증가
+        return "kakaoUser" + memberCount;
     }
 
     @OneToMany(mappedBy = "memberEntity", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
@@ -114,6 +140,7 @@ public class MemberEntity extends BaseEntity implements UserDetails {
 
     @OneToMany(mappedBy = "memberEntity", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<BoardBookmarkEntity> boardBookmarkEntityList = new ArrayList<>();
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

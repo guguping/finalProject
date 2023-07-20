@@ -9,11 +9,18 @@ import com.example.finalproject.serivce.MailSendService;
 import com.example.finalproject.serivce.MemberFollowService;
 import com.example.finalproject.serivce.MemberSerivce;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
@@ -62,11 +69,76 @@ public class MemberController {
         }
     }
 
-    @GetMapping("/logout")
-    public String logout(HttpSession session) {
-        session.invalidate();
-        return "redirect:/";
+//    @GetMapping("/logout")
+//    public String logout(HttpSession session) {
+//        session.invalidate();
+//        return "redirect:/";
+//    }
+
+//    @RequestMapping("/logout")
+//    public String logout(Authentication authentication, HttpServletRequest request, HttpSession session) {
+//        String authorizationHeader = request.getHeader("Authorization");
+//        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+//            String accessToken = authorizationHeader.substring("Bearer ".length());
+//            // 액세스 토큰을 사용하여 로그아웃 처리
+//            if (authentication != null && authentication.isAuthenticated()) {
+//                // 일반 로그인일 경우
+//                // 로그아웃 처리
+//                authentication.setAuthenticated(false);
+//                SecurityContextHolder.clearContext();
+//            } else {
+////                 카카오 로그인일 경우
+////                 카카오 로그아웃 API 호출
+//                String kakaoLogoutUrl = "https://kapi.kakao.com/v1/user/logout";
+//                HttpHeaders headers = new HttpHeaders();
+//                headers.add("Authorization", "Bearer " + accessToken);
+//                HttpEntity<String> requestEntity = new HttpEntity<>(null, headers);
+//                RestTemplate restTemplate = new RestTemplate();
+//                restTemplate.exchange(kakaoLogoutUrl, HttpMethod.POST, requestEntity, String.class);
+//            }
+//
+//            // 세션 초기화
+//            session.invalidate();
+//
+//            return "redirect:/"; // 로그아웃 후 리다이렉트할 페이지
+//        } else {
+//            // Authorization 헤더가 없거나 올바르지 않은 경우 처리
+//            // 오류 처리 또는 다른 로직 수행
+//            return "error";
+//        }
+//    }
+
+    @RequestMapping("/logout")
+    public String kakaoLogout(HttpSession session) {
+        String accessToken = (String) session.getAttribute("accessToken");
+        System.out.println(accessToken);
+
+        // 액세스 토큰을 사용하여 카카오 로그아웃 API 호출
+        if (accessToken != null) {
+            RestTemplate restTemplate = new RestTemplate();
+            HttpHeaders headers = new HttpHeaders();
+            headers.setBearerAuth(accessToken);
+            HttpEntity<String> entity = new HttpEntity<>(headers);
+
+            String kakaoLogoutUrl = "https://kapi.kakao.com/v1/user/logout";
+            ResponseEntity<String> response = restTemplate.exchange(kakaoLogoutUrl, HttpMethod.POST, entity, String.class);
+
+            if (response.getStatusCode().is2xxSuccessful()) {
+                // 카카오 로그아웃 성공
+                session.removeAttribute("accessToken");
+                session.removeAttribute("memberId");
+                session.invalidate();
+                return "redirect:/"; // 로그아웃 후 리다이렉트할 페이지
+            } else {
+                // 카카오 로그아웃 실패
+                return "error"; // 오류 페이지
+            }
+        } else {
+            // 액세스 토큰이 없는 경우
+            return "error"; // 오류 페이지
+        }
     }
+
 
     @GetMapping("/myPage/{id}")
     public String memberMyPages(@PathVariable Long id, Model model) {

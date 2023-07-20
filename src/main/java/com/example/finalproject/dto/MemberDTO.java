@@ -37,7 +37,7 @@ public class MemberDTO {
         memberDTO.setMemberBirth(memberEntity.getMemberBirth());
         memberDTO.setMemberMobile(memberEntity.getMemberMobile());
         memberDTO.setMemberNickName(memberEntity.getMemberNickName());
-        memberDTO.setMemberNickName(memberEntity.getMemberNickName());
+        memberDTO.setMemberPassword(memberEntity.getMemberPassword());
         memberDTO.setMemberGender(memberEntity.getMemberGender());
         memberDTO.setMemberText(memberEntity.getMemberText());
         memberDTO.setReelsAttached(memberEntity.getReelsAttached());

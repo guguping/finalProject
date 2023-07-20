@@ -2,7 +2,7 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Instagram</title>
+    <title>Outstagram</title>
     <th:block th:replace="component/config :: config"></th:block>
     <link rel="stylesheet" href="../css/index.css">
 </head>
@@ -24,7 +24,7 @@
                 <div class="main-block2-inner">
                     <div class="block2-inner-logo">
                         <div class="logo-button-style">
-                            <i class="index-logo"></i>
+                            <img src="../images/indexImages/outtest.png" class="boardMain-nav-svg" style="width: 200px;height: 70px;">
                         </div>
                     </div>
                     <div class="block2-inner-formBox">
@@ -69,7 +69,12 @@
                                 <div class="loginChoice-menu-one">
                                     <button class="loginChoice-menu-one-item">
                                         <span><img src="../images/indexImages/KakaoLogo.png" class="KakaoLogo"></span>
-                                        <span style="color: #385185;">Kakao으로 로그인</span>
+                                        <span style="color: #385185;">
+                                            <a href="https://kauth.kakao.com/oauth/authorize
+                                                ?client_id=efdb03407631600af87edf1770f10824
+                                                &redirect_uri=http://localhost:8090/kakao/login
+                                                &response_type=code" style="text-decoration: none;color: rgb(125,125,125);">Kakao으로 로그인</a>
+                                        </span>
                                     </button>
                                 </div>
                             </div>
