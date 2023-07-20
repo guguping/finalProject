@@ -1125,7 +1125,7 @@
                 "                                                                                                                        <a href=\"#\" class=\"detail-board-contents-pr-link\">\n" +
                 "\n" +
                 "                                                                                                                            <!--게시글 작성자의 프로필 사진이 들어가야함-->\n" +
-                "                                                                                                                            <img class=\"detail-board-contents-pr-\" src=\"../images/test프로필.jpg\">\n" +
+                "                                                                                                                            <img class=\"detail-board-contents-pr-\" src=\"/upload/" + memberDTO.memberProfile + "\">\n" +
                 "                                                                                                                        </a>\n" +
                 "                                                                                                                    </div>\n" +
                 "                                                                                                                </div>\n" +
@@ -1137,16 +1137,18 @@
                 "                                                                                                                        <div class=\"xt0psk2\">\n" +
                 "\n" +
                 "                                                                                                                            <!--게시글 작성자 닉네임-->\n" +
-                "                                                                                                                            <a href=\"#\" class=\"detail-board-contents-t-m-n-link\">guping__</a>\n" +
+                "                                                                                                                            <a href=\"#\" class=\"detail-board-contents-t-m-n-link\">" + memberDTO.memberNickName + "</a>\n" +
                 "                                                                                                                        </div>\n" +
                 "                                                                                                                    </div>\n" +
                 "                                                                                                                </h2>\n" +
                 "\n" +
                 "                                                                                                                <div class=\"_a9zs\">\n" +
-                "\n" +
-                "                                                                                                                    <!--게시글 내용-->\n" +
-                "                                                                                                                    <h1 class=\"detail-board-contents-t-m-t\">뿟싼</h1>\n" +
-                "                                                                                                                </div>\n" +
+                "\n";
+            if (boardDTO.boardContents != null) {
+                output += "                                                                                                                    <!--게시글 내용-->\n" +
+                    "                                                                                                                    <h1 class=\"detail-board-contents-t-m-t\">" + boardDTO.boardContents + "</h1>\n";
+            }
+            output += "                                                                                                                </div>\n" +
                 "\n" +
                 "                                                                                                                <div class=\"detail-board-contents-mar\">\n" +
                 "                                                                                                                    <span class=\"detail-board-contents-mar-\">\n" +
