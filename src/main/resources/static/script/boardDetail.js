@@ -1,13 +1,7 @@
 //    게시글 디테일 연결
 let i = 0;
 let fileSize = 1;
-const mainBoardDetailOff = (boardId) => {
-    const mainDetail = document.getElementById('mainBoardDetail' + boardId);
-    console.log("boardId=" + boardId);
-    i = 0;
-    mainDetail.style.display = "none";
 
-}
 
 
 const boardKind = 1;
@@ -454,7 +448,6 @@ const openMainDetail = (id, loginId) => {
             "                            </div>\n" +
             "                        </div>\n" +
             "                    </div>"
-        for (let c in boardCommentList) {
             output += `
 
         <div style="position: fixed;top: 0;width: 100%;z-index: 100;">
@@ -475,7 +468,6 @@ const openMainDetail = (id, loginId) => {
                                                                             onclick="CommentDelete([[${boardDTO.id}]])">
                                                                         삭제
                                                                     </button>
-                                                                    <button type="button" class="_a9-">수정</button>
                                                                     <button type="button" class="_a9_1"
                                                                             onclick="fuckyou()">취소
                                                                     </button>
@@ -492,7 +484,7 @@ const openMainDetail = (id, loginId) => {
                         </div>
                     </div>
                 </div>`
-        }
+
         mainDetail.style.display = "";
         mainDetail.innerHTML = output;
 
@@ -532,8 +524,6 @@ const openMainDetail = (id, loginId) => {
     }).catch(err => {
         alert("detail 실패");
     });
-
-
 }
 
 
@@ -689,6 +679,14 @@ const fuckyou = () => {
 
 
 }
+const mainBoardDetailOff = (boardId) => {
+    const mainDetail = document.getElementById('mainBoardDetail' + boardId);
+    console.log("boardId=" + boardId);
+    i = 0;
+    mainDetail.style.display = "none";
+    mainDetail.innerHTML = "";
+
+}
 
 
 function openCommentMenu(CommentId,boardId) {
@@ -712,4 +710,23 @@ plusNavDisplay.addEventListener("click", function () {
         plusNavDisplayMain.style.display = "none";
     }
 });
+function CommentDelete(boardId) {
+    // 서버로 보낼 요청 데이터를 생성합니다.
+    const requestData = {
+        boardId: boardId,
+    };
 
+    // axios를 사용하여 서버에 DELETE 요청을 보냅니다.
+    axios.delete('/api/comments/delete', {
+        data: requestData,
+    })
+        .then(response => {
+            // 서버로부터 응답을 받았을 때 처리할 내용을 여기에 작성합니다.
+            // 예를 들어, 삭제가 성공적으로 이루어졌을 때 사용자에게 알림을 표시하는 등의 작업을 수행할 수 있습니다.
+            console.log('댓글 삭제 성공:', response.data);
+        })
+        .catch(error => {
+            // 에러 처리
+            console.error('댓글 삭제 실패:', error.response.data);
+        });
+}

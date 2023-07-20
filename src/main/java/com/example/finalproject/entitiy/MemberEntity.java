@@ -134,6 +134,8 @@ public class MemberEntity extends BaseEntity implements UserDetails {
     @OneToMany(mappedBy = "memberEntity", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<BoardBookmarkEntity> boardBookmarkEntityList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "memberEntity",cascade = CascadeType.REMOVE,orphanRemoval = true,fetch = FetchType.LAZY)
+    private List<BoardReelsBookmarkEntity> boardReelsBookmarkEntityList = new ArrayList<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
