@@ -4,6 +4,7 @@ import com.example.finalproject.dto.BoardDTO;
 import com.example.finalproject.dto.BoardFileDTO;
 import com.example.finalproject.dto.MemberDTO;
 import com.example.finalproject.dto.MemberFollowDTO;
+import com.example.finalproject.entitiy.MemberEntity;
 import com.example.finalproject.serivce.BoardService;
 import com.example.finalproject.serivce.MailSendService;
 import com.example.finalproject.serivce.MemberFollowService;
@@ -23,7 +24,9 @@ import org.springframework.web.client.RestTemplate;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -160,16 +163,6 @@ public class MemberController {
         return "memberPages/myPage";
     }
 
-    @GetMapping("/findPwAuth")
-    public String findPwAuthForm() {
-        return "memberPages/memberReset";
-    }
-
-    @GetMapping("/findPw")
-    public String findPwForm() {
-        return "memberPages/passwordUpdate";
-    }
-
     @PostMapping("/profileUpdate")
     public String profileUpdate(@ModelAttribute MemberDTO memberDTO, HttpSession session) throws IOException {
         Long loginId = (Long) session.getAttribute("memberId");
@@ -185,12 +178,57 @@ public class MemberController {
         return "redirect:/member/myPage/" + loginId;
     }
 
+    @GetMapping("/findPwAuth")
+    public String findPwAuthForm() {
+        return "memberPages/memberReset";
+    }
+
+    @GetMapping("/findPw")
+    public String findPwForm(@RequestParam("email") String email, Model model) {
+        System.out.println("email = " + email);
+        model.addAttribute("email", email);
+        return "memberPages/passwordUpdate";
+    }
+
+    @GetMapping("/findPwAuthMail")
+    @ResponseBody
+    public String findPwAuth(String email) {
+        System.out.println("이메일 인증 요청이 들어옴!");
+        System.out.println("이메일 인증 이메일 : " + email);
+        return mailSendService.createMailForm2(email);
+    }
+
+    @PostMapping("/findPw")
+    public String findPW(@RequestParam("email") String email,
+                         @RequestParam("memberPassword") String memberPassword) {
+        Long memberId = memberSerivce.findByMemberEmail(email);
+        MemberDTO memberDTO = memberSerivce.findById(memberId);
+        memberSerivce.changePassword(memberDTO, memberPassword);
+        return "index";
+    }
+
+    @PostMapping("/checkPassword")
+    public ResponseEntity<Map<String, Boolean>> checkPassword(@RequestBody Map<String, String> request) {
+        String email = request.get("email");
+        String plainPassword = request.get("password");
+        Long memberId = memberSerivce.findByMemberEmail(email);
+        MemberDTO memberDTO = memberSerivce.findById(memberId);
+        String orginPassword = memberDTO.getMemberPassword();
+
+        boolean result = memberSerivce.checkPassword(plainPassword, orginPassword);
+        System.out.println("result = " + result);
+
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("result", result);
+
+        return ResponseEntity.ok(response);
+    }
+  
     @GetMapping("/delete")
     public String delete(HttpSession session) {
         Long loginId = (Long) session.getAttribute("memberId");
         memberSerivce.delete(loginId);
         return "redirect:/member/logout";
     }
-
 
 }

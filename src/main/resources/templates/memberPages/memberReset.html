@@ -50,30 +50,33 @@
                                 <span class="memberPassRest-form-q-m1">로그인에 문제가 있나요?</span>
                               </div>
                               <div class="memberPassRest-form-q-m">
-                                <span class="memberPassRest-form-q-s1">이메일 주소, 전화번호 또는 사용자 이름을 입력하시면 계정에 다시 액세스할 수 있는 링크를 보내드립니다.</span>
+                                <span class="memberPassRest-form-q-s1">이메일 주소를 입력하시면 인증번호를 보내드립니다.</span>
                               </div>
                               <div class="memberPassRest-form-q-m">
 
                                 <!--사용자에게 비밀번호를 받는 폼태그-->
                                 <form action="/member/findPw" method="get">
                                   <label class="memberPassRest-input-label">
-                                    <input class="memberPassRest-input" id="memberPassRest-input" spellcheck="true" type="text" value="" name="cppEmailOrUsername">
+                                    <input class="memberPassRest-input" id="memberPassRest-input" spellcheck="true" type="text" value="" name="email">
                                     <span class="_adrs" id="_adrs">이메일, 전화번호, 사용자 이름</span>
                                   </label>
                                   <label class="memberPassRest-input-label2" id="memberPassRest-input-label2" style="display: none;">
-                                    <input class="memberPassRest-input" id="memberPassRest-input1" dir="" spellcheck="true" type="text" value="" name="cppEmailOrUsername">
+                                    <input class="memberPassRest-input" id="memberPassRest-input1" dir="" spellcheck="true" type="text" value="" name="code">
                                     <span class="_adrs" id="_adrs1">인증 번호</span>
                                   </label>
-                                  <button type="submit" id="email-check-submit-btn" style="display: none;"></button>
+<!--                                  <button type="submit" id="email-check-submit-btn" style="display: none;"></button>-->
                                 </form>
                               </div>
                               <div class="memberPassRest-form-q-m">
                                 <div class="memberPassRest-nbtn" id="memberPassRest-nbtn">
-                                  <span class="xbyyjgo" id="xbyyjgo">로그인 링크 보내기</span>
+                                  <span class="xbyyjgo" id="xbyyjgo">인증 번호 보내기</span>
                                 </div>
-                                <div class="memberPassRest-nbtn-" id="memberPassRest-nbtn-" style="display: none;" onclick="showEamilCheckBox()">로그인 링크 보내기</div>
-                                <div class="memberPassRest-nbtn-" id="memberPassRest-nbtn--" style="display: none;">인증하기</div>
+                                <div class="memberPassRest-nbtn-" id="memberPassRest-nbtn-" style="display: none;" onclick="showEmailCheckBox(); sendMailForPw();">인증 번호 보내기</div>
+                                <div class="memberPassRest-nbtn-" id="memberPassRest-nbtn--" style="display: none;" onclick="nextPage()">인증하기</div>
                                 <a href="/accounts/account_recovery/?username=" class="memberPassRest-q" target="_blank">비밀번호를 재설정할 수 없나요?</a>
+                              </div>
+                              <div>
+                                <div id="AuthCode-result" style="text-align: center"></div>
                               </div>
                               <div class="memberPassRest-form-q-a">
                                 <div class="memberPassRest-form-q-a1">
@@ -83,7 +86,7 @@
                                 </div>
                               </div>
                               <div class="memberPassRest-form-q-m">
-                                <a href="/save" class="memberPassRest-memberSave-going">새 계정 만들기</a>
+                                <a href="/member/save" class="memberPassRest-memberSave-going">새 계정 만들기</a>
                               </div>
                               <div class="memberPassRest-toBack" id="memberPassRest-toBack">
                                 <div class="memberPassRest-toBack1">
@@ -136,7 +139,7 @@
     }
   })
 
-  const showEamilCheckBox = () => {
+  const showEmailCheckBox = () => {
     memberEmailCheck.style.display = "flex";
     bottomMargin.style.marginTop = "13px";
     memberPassRestbtnOn.style.display = "none";
@@ -151,8 +154,64 @@
       adrs1.style.transform = "";
     }
   })
-  emailCheckBtn.addEventListener('click', function () {
-    emailCheckNoneBtn.click();
-  })
+  // emailCheckBtn.addEventListener('click', function () {
+  //   emailCheckNoneBtn.click();
+  // })
+
+  // 이메일 인증
+  function sendMailForPw() {
+    const MailPw = $('#memberPassRest-input').val();
+    console.log("확인용"+MailPw);
+
+    axios.get('/member/findPwAuthMail', {
+      params: {
+        email: MailPw
+      }
+    }).then(function(response) {
+      console.log(response.data);
+      code = response.data;
+    }).catch(function (error) {
+      console.log(error);
+    });
+  }
+
+  // 인증 코드 검사
+  let isCodeValid = false;
+
+  // 인증번호 비교
+  $('#memberPassRest-input1').blur(function () {
+    const inputCode = $(this).val();
+    const $resultMsg = $('#AuthCode-result');
+
+    if(parseInt(inputCode) === parseInt(code)){
+      // $resultMsg.html('인증번호가 일치합니다.');
+      // $resultMsg.css('color','green');
+      $resultMsg.html('');
+      isCodeValid = true;
+    }else{
+      $resultMsg.html('코드가 유효하지 않습니다. 새 코드를 요청하세요.');
+      $resultMsg.css('color','red');
+      isCodeValid = false;
+    }
+  });
+
+  // 인증 번호 유효성 검사
+  function isValidCode() {
+    if (isCodeValid) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  function nextPage() {
+    const email = document.getElementById("memberPassRest-input").value;
+    console.log(email);
+    if (!isValidCode()) {
+      return;
+    }
+    location.href = "/member/findPw?email=" + email;
+  }
+
 </script>
 </html>

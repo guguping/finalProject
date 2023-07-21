@@ -42,6 +42,21 @@ public class MailSendService {
         sendMail(setFrom, toMail, title, content);
         return Integer.toString(authNum);
     }
+
+    public String createMailForm2(String email) {
+        createAuthCode();
+        String setFrom = "fluer7123@gmail.com";
+        String toMail = email;
+        String title = "비밀번호 재설정 인증 이메일입니다";
+        String content =
+                "안녕하세요" +
+                        "<br><br>" +
+                        "인증 번호는 " + authNum + "입니다." +
+                        "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
+        sendMail(setFrom, toMail, title, content);
+        return Integer.toString(authNum);
+    }
+
     // 메일을 보내는 메소드
     public void sendMail(String setFrom, String toMail, String title, String content) {
         MimeMessage message = mailSender.createMimeMessage();

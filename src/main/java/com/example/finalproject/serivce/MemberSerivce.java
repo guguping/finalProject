@@ -148,7 +148,20 @@ public class MemberSerivce {
         }
     }
 
+    @Transactional
+    public void changePassword(MemberDTO memberDTO, String memberPassword) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        memberDTO.setMemberPassword(encoder.encode(memberPassword));
+        memberRepository.save(MemberEntity.toUpdateEntity(memberDTO));
+    }
+
+    public boolean checkPassword(String plainPassword, String encryptedPassword) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        return encoder.matches(plainPassword, encryptedPassword);
+    }
+  
     public void delete(Long id) {
         memberRepository.deleteById(id);
+
     }
 }
