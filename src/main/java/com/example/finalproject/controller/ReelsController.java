@@ -1,9 +1,7 @@
 package com.example.finalproject.controller;
 
-import com.example.finalproject.dto.BoardReelsCommentDTO;
-import com.example.finalproject.dto.BoardReelsDTO;
-import com.example.finalproject.dto.BookmarkDTO;
-import com.example.finalproject.dto.LikeDTO;
+import com.example.finalproject.dto.*;
+import com.example.finalproject.serivce.MemberSerivce;
 import com.example.finalproject.serivce.ReelsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,10 +22,12 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 public class ReelsController {
     private final ReelsService reelsService;
+    private final MemberSerivce memberSerivce;
 
     @GetMapping("/board/reels")
     public String reelsPage(Model model, HttpSession session) {
         List<BoardReelsDTO> boardReelsDTOList = reelsService.reelsFindAll((Long) session.getAttribute("memberId"));
+        MemberDTO memberDTO = memberSerivce.findById((Long) session.getAttribute("memberId"));
         if (boardReelsDTOList == null) {
             model.addAttribute("boardReelsList", null);
             model.addAttribute("commentCount",null);
@@ -35,6 +35,7 @@ public class ReelsController {
         } else {
             List<Integer> commentCount = reelsService.commentCount(boardReelsDTOList);
             List<Integer> likeCount = reelsService.likeCount(boardReelsDTOList);
+            model.addAttribute("memberDTO",memberDTO);
             model.addAttribute("boardReelsList", boardReelsDTOList);
             model.addAttribute("commentCount",commentCount);
             model.addAttribute("likeCount",likeCount);
