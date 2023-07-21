@@ -1,13 +1,7 @@
 //    게시글 디테일 연결
 let i = 0;
 let fileSize = 1;
-const mainBoardDetailOff = (boardId) => {
-    const mainDetail = document.getElementById('mainBoardDetail' + boardId);
-    console.log("boardId=" + boardId);
-    i = 0;
-    mainDetail.style.display = "none";
 
-}
 
 
 const boardKind = 1;
@@ -20,7 +14,6 @@ const openMainDetail = (id, loginId) => {
         method: "get",
         url: "/boardDetail/" + id + "?boardKind=" + boardKind
     }).then(res => {
-
         const board = res.data;
         const boardDTO = board.boardDTO;
         const memberDTO = board.memberDTO;
@@ -311,9 +304,57 @@ const openMainDetail = (id, loginId) => {
             "                                                                                    <!--게시글 상세 코멘트 리스트 시작-->\n" +
             "                                                                                    <div class=\"detail-board-contents-comment-list\">\n" +
             "                                                                                        <ul class=\"detail-board-contents-comment-list-\">\n";
+        if(boardCommentList.boardContents !== null){
+            output += `
+             <div class="detail-board-contents-t-d">
+                                                                                                <li class="detail-board-contents-t-" style="border-bottom: 1px solid rgb(239, 239, 239);">
+                                                                                                    <div class="detail-board-contents-t-b">
+                                                                                                        <div class="detail-board-contents-t-b-">
+                                                                                                            <div>
+                                                                                                                <div>
+                                                                                                                    <div class="detail-board-contents-pr">
+                                                                                                                        <a href="#" class="detail-board-contents-pr-link">
+
+                                                                                                                            <!--게시글 작성자의 프로필 사진이 들어가야함-->
+                                                                                                                            <img class="detail-board-contents-pr-" src="/upload/${memberDTO.memberProfile}">
+                                                                                                                        </a>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+
+                                                                                                            <div class="detail-board-contents-t-m">
+                                                                                                                <h2 class="detail-board-contents-t-m-n">
+                                                                                                                    <div class="detail-board-contents-t-m-n-">
+                                                                                                                        <div class="xt0psk2">
+
+                                                                                                                            <!--게시글 작성자 닉네임-->
+                                                                                                                            <a href="#" class="detail-board-contents-t-m-n-link" >${memberDTO.memberNickName}</a>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </h2>
+
+                                                                                                                <div class="_a9zs">
+
+                                                                                                                    <!--게시글 내용-->
+                                                                                                                    <h1 class="detail-board-contents-t-m-t" >${boardDTO.boardContents}</h1>
+                                                                                                                </div>
+
+                                                                                                                <div class="detail-board-contents-mar">
+                                                                                                                    <span class="detail-board-contents-mar-">
+                                                                                                                        <time class="timeIsGold" datetime="2018-10-01T19:23:59.000Z" title="10월 2, 2018">250주</time>
+                                                                                                                    </span>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </li>
+                                                                                            </div>
+            `
+        }
 
         for (let c in boardCommentList) {
-            output += `<ul class="detail-board-contents-comment-list-1">`
+            output += `
+<ul class="detail-board-contents-comment-list-1">`
             if (boardCommentList[c].memberId === loginid) {
                 output += ` 
     <div class="detail-board-contents-comment-box"  onmouseover="showPlusButton(${boardCommentList[c].id})"
@@ -454,45 +495,10 @@ const openMainDetail = (id, loginId) => {
             "                            </div>\n" +
             "                        </div>\n" +
             "                    </div>"
-        for (let c in boardCommentList) {
             output += `
-
-        <div style="position: fixed;top: 0;width: 100%;z-index: 100;">
-                    <div class="plus-modal-board-" id="plus-modal-detail" style="display: none;">
-                        <div class="plus-modal-board-1">
-                            <div class="plus-modal-board-2">
-                                <div class="plus-modal-board-bg"></div>
-                                <div class="plus-modal-board-3">
-                                    <div class="plus-modal-board-main-">
-                                        <div class="plus-modal-board-main-1">
-                                            <div class="plus-modal-board-main-2">
-                                                <div class="plus-modal-board-main-3">
-                                                    <div class="plus-modal-board-inner-">
-                                                        <div class="plus-modal-board-inner-1">
-                                                            <div class="plus-modal-board-inner-2">
-                                                                <div class="plus-modal-board-inner-3">
-                                                                    <button type="button" class="_a9--"
-                                                                            onclick="CommentDelete([[${boardDTO.id}]])">
-                                                                        삭제
-                                                                    </button>
-                                                                    <button type="button" class="_a9-">수정</button>
-                                                                    <button type="button" class="_a9_1"
-                                                                            onclick="fuckyou()">취소
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div style="position: fixed;top: 0;width: 100%;z-index: 100;" id="plus-modal-detail" style="display: none";>
+               
                 </div>`
-        }
         mainDetail.style.display = "";
         mainDetail.innerHTML = output;
 
@@ -532,8 +538,6 @@ const openMainDetail = (id, loginId) => {
     }).catch(err => {
         alert("detail 실패");
     });
-
-
 }
 
 
@@ -689,21 +693,20 @@ const fuckyou = () => {
 
 
 }
-
-
-function openCommentMenu(CommentId,boardId) {
-    let plusCommentModal = document.getElementById("plus-modal-detail");
-    if (plusCommentModal.style.display === 'none') {
-        plusCommentModal.style.display = 'block';
-        console.log("응애");
-    } else if(fuckyou) {
-        plusCommentModal.style.display = 'none';
-    }else{
-        plusCommentModal.style.display = 'none';
-    }
-    console.log("CommentId", CommentId);
+const mainBoardDetailOff = (boardId) => {
+    const mainDetail = document.getElementById('mainBoardDetail' + boardId);
+    console.log("boardId=" + boardId);
+    i = 0;
+    mainDetail.style.display = "none";
+    mainDetail.innerHTML = "";
 
 }
+
+
+
+
+
+
 
 plusNavDisplay.addEventListener("click", function () {
     if (plusNavDisplayMain.style.display === "none") {
@@ -713,3 +716,59 @@ plusNavDisplay.addEventListener("click", function () {
     }
 });
 
+const commentDelete = (boardid, commentId) => {
+    console.log("commentid ="+ commentId);
+    console.log("boardId ="+ boardid);
+    axios({
+        method: "delete",
+        url: "/comment/" + commentId
+    }).then(res => {
+        openMainDetail(boardid)
+    }).catch(err => {
+        alert("삭제 실패!!");
+    });
+}
+function openCommentMenu(CommentId, boardId) {
+    const plusCommentModal = document.getElementById("plus-modal-detail");
+    const boardid = boardId;
+    const Commentid = CommentId;
+    let input = `
+     <div class="plus-modal-board-">
+         <div class="plus-modal-board-1">
+                            <div class="plus-modal-board-2">
+                                <div class="plus-modal-board-bg"></div>
+                                <div class="plus-modal-board-3">
+                                    <div class="plus-modal-board-main-">
+                                        <div class="plus-modal-board-main-1">
+                                            <div class="plus-modal-board-main-2">
+                                                <div class="plus-modal-board-main-3">
+                                                    <div class="plus-modal-board-inner-">
+                                                        <div class="plus-modal-board-inner-1">
+                                                            <div class="plus-modal-board-inner-2">
+                                                                <div class="plus-modal-board-inner-3">
+                                                                    <button type="button" class="_a9--"
+                                                                            onclick="commentDelete(${boardid}, ${Commentid})">
+                                                                        삭제
+                                                                    </button>
+                                                                    <button type="button" class="_a9_1"
+                                                                            onclick="fuckyou()">취소
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        `;
+    plusCommentModal.innerHTML = input;
+    plusCommentModal.style.display = "";
+
+
+    console.log("CommentId", Commentid + "boardId = " + boardid);
+}

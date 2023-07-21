@@ -159,4 +159,9 @@ public class MemberSerivce {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         return encoder.matches(plainPassword, encryptedPassword);
     }
+  
+    public void delete(Long id) {
+        memberRepository.deleteById(id);
+
+    }
 }

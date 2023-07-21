@@ -46,7 +46,7 @@
                                                                                         <li class="boardMain-main-section2-story-item">
                                                                                             <div class="boardMain-main-section2-story-item-inner">
                                                                                                 <button class="boardMain-main-section2-story-item-btn">
-                                                                                                    <div class="boardMain-main-section2-story-item-img">
+                                                                                                    <div class="boardMain-main-section2-story-item-img" onclick="goingStory()">
                                                                                                         <canvas class="_aarh"
                                                                                                                 id="myCanvas"
                                                                                                                 height="66"
@@ -291,8 +291,8 @@
                                                                                                                         <div style="top: 1px;position: relative;">
                                                                                                                         <span class="boardMain-main-board-time-box-inner">
                                                                                                                             <span class="boardMain-main-board-time-item1">•</span>
-                                                                                                                            <time datetime="2023-06-25T08:19:04.000Z"
-                                                                                                                                  title="6월 25, 2023">1시간</time>
+                                                                                                                            <time th:date="${boardDTO.createdAt}" th:id="'datetime'+${boardDTO.id}"
+                                                                                                                                  ></time>
                                                                                                                         </span>
                                                                                                                         </div>
                                                                                                                     </div>
@@ -585,7 +585,7 @@
                                                                                                                 <!--댓글 갯수-->
                                                                                                                 <div class="board-contents-comment-small">
                                                                                                                     <div class="board-contents-comment-open">
-                                                                                                                        <a href="#"
+                                                                                                                        <a th:onclick="openMainDetail([[${boardDTO.id}]],[[${session.memberId}]])"
                                                                                                                            class="board-contents-detail">
                                                                                                                         <span class="board-contents-comment-count">
                                                                                                                             댓글
@@ -1003,7 +1003,7 @@
                                                                                                                              <span class="emeldjENfgdjTek">
 
                                                                                                                              <!--게시글 저장공간 사용자 프로필 사진-->
-                                                                                                                                <img src="../images/test프로필.jpg"
+                                                                                                                                <img th:src="@{/images/test프로필.jpg}"
                                                                                                                                      class="board-save-contents-input-img">
 
                                                                                                                              </span>
@@ -1064,6 +1064,9 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div style="display: none;"id="mainUpdateDetail">
+
                                     </div>
                                 </div>
                             </div>
@@ -1184,7 +1187,9 @@
                                                                             th:onclick="boardDelete([[${boardDTO.id}]])">
                                                                         삭제
                                                                     </button>
-                                                                    <button type="button" class="_a9-">수정</button>
+                                                                    <button type="button" class="_a9-"
+                                                                            th:onclick="boardUpdateForm([[${boardDTO.id}]],[[${session.memberId}]])">
+                                                                        수정</button>
                                                                     <button type="button" class="_a9_1"
                                                                             onclick="fuckyou2()">취소
                                                                     </button>
@@ -1201,18 +1206,15 @@
                         </div>
                     </div>
                 </div>
-                <th:break></th:break>
-            </th:block>
-            <div>
-                <th:block th:each="boardDTO:${boardDTOList}">
+                <div>
                     <!--게시글 옵션 시작-->
                     <div style="position: fixed;width: 100%;top: 0px;display: none;"
                          th:id="'mainBoardDetail'+${boardDTO.id}">
 
                     </div>
-                    <th:break></th:break>
-                </th:block>
-            </div>
+                </div>
+                <th:break></th:break>
+            </th:block>
         </div>
     </main>
 </section>
@@ -1221,15 +1223,64 @@
 
 <script th:inline="javascript" type="text/javascript" th:src="@{/script/componentJs.js}"></script>
 <script th:inline="javascript" type="text/javascript" th:src="@{/script/boardDetail.js}"></script>
+<script th:inline="javascript" type="text/javascript" th:src="@{/script/boardUpdate.js}"></script>
 
-<script>
+<script th:inline="javascript" type="text/javascript">
     const member_logout = () => {
         location.href = "/member/logout";
     }
     const fuckyou2 = () => {
         document.getElementById('plus-modal-board-').style.display = "none";
     }
+    function applyTimeToBoards(boardId) {
+        // 게시글 ID에 해당하는 모든 time 태그를 선택합니다.
+        const timeTags = document.querySelectorAll(`#datetime${boardId}`);
 
+        timeTags.forEach((timeTag) => {
+            const createdAtValue = timeTag.getAttribute("th:date");
+            const postTime = new Date(createdAtValue); // Date 객체로 변환합니다.
+
+            // 현재 시간을 가져옵니다.
+            const currentTime = new Date();
+
+            // 게시글 작성 시간과 현재 시간 사이의 차이를 계산합니다 (밀리초 단위).
+            const timeDifference = currentTime - postTime;
+
+            // 밀리초를 일, 시간, 분으로 변환합니다.
+            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+
+            // 시간을 출력합니다.
+            timeTag.innerText = `${hours}시간 ${minutes}분 전`;
+        });
+    }
+
+    // 각 게시글의 작성 시간을 표시합니다.
+    applyTimeToBoards();
+
+    //
+    //
+    //
+    // const postTime = createdAtValue;
+    //
+    // // 현재 시간 가져오기
+    // const currentTime = new Date();
+    //
+    // // 시간 차이 계산 (밀리초 단위)
+    // const timeDifference = currentTime - postTime;
+    //
+    // // 밀리초를 일, 시간, 분으로 변환
+    // const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    // const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    // const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+    //
+    // // 결과를 화면에 표시
+    // document.getElementById('datetime').innerText = `${hours}시간 ${minutes}분 전`;
+
+    const goingStory = () => {
+      location.href ="/story/board";
+    }
 
 </script>
 </html>

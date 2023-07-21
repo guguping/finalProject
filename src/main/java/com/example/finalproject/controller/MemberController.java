@@ -72,11 +72,11 @@ public class MemberController {
         }
     }
 
-//    @GetMapping("/logout")
-//    public String logout(HttpSession session) {
-//        session.invalidate();
-//        return "redirect:/";
-//    }
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/";
+    }
 
 //    @RequestMapping("/logout")
 //    public String logout(Authentication authentication, HttpServletRequest request, HttpSession session) {
@@ -111,36 +111,36 @@ public class MemberController {
 //        }
 //    }
 
-    @RequestMapping("/logout")
-    public String kakaoLogout(HttpSession session) {
-        String accessToken = (String) session.getAttribute("accessToken");
-        System.out.println(accessToken);
-
-        // 액세스 토큰을 사용하여 카카오 로그아웃 API 호출
-        if (accessToken != null) {
-            RestTemplate restTemplate = new RestTemplate();
-            HttpHeaders headers = new HttpHeaders();
-            headers.setBearerAuth(accessToken);
-            HttpEntity<String> entity = new HttpEntity<>(headers);
-
-            String kakaoLogoutUrl = "https://kapi.kakao.com/v1/user/logout";
-            ResponseEntity<String> response = restTemplate.exchange(kakaoLogoutUrl, HttpMethod.POST, entity, String.class);
-
-            if (response.getStatusCode().is2xxSuccessful()) {
-                // 카카오 로그아웃 성공
-                session.removeAttribute("accessToken");
-                session.removeAttribute("memberId");
-                session.invalidate();
-                return "redirect:/"; // 로그아웃 후 리다이렉트할 페이지
-            } else {
-                // 카카오 로그아웃 실패
-                return "error"; // 오류 페이지
-            }
-        } else {
-            // 액세스 토큰이 없는 경우
-            return "error"; // 오류 페이지
-        }
-    }
+//    @RequestMapping("/logout")
+//    public String kakaoLogout(HttpSession session) {
+//        String accessToken = (String) session.getAttribute("accessToken");
+//        System.out.println(accessToken);
+//
+//        // 액세스 토큰을 사용하여 카카오 로그아웃 API 호출
+//        if (accessToken != null) {
+//            RestTemplate restTemplate = new RestTemplate();
+//            HttpHeaders headers = new HttpHeaders();
+//            headers.setBearerAuth(accessToken);
+//            HttpEntity<String> entity = new HttpEntity<>(headers);
+//
+//            String kakaoLogoutUrl = "https://kapi.kakao.com/v1/user/logout";
+//            ResponseEntity<String> response = restTemplate.exchange(kakaoLogoutUrl, HttpMethod.POST, entity, String.class);
+//
+//            if (response.getStatusCode().is2xxSuccessful()) {
+//                // 카카오 로그아웃 성공
+//                session.removeAttribute("accessToken");
+//                session.removeAttribute("memberId");
+//                session.invalidate();
+//                return "redirect:/"; // 로그아웃 후 리다이렉트할 페이지
+//            } else {
+//                // 카카오 로그아웃 실패
+//                return "error"; // 오류 페이지
+//            }
+//        } else {
+//            // 액세스 토큰이 없는 경우
+//            return "error"; // 오류 페이지
+//        }
+//    }
 
 
     @GetMapping("/myPage/{id}")
@@ -223,7 +223,12 @@ public class MemberController {
 
         return ResponseEntity.ok(response);
     }
-
-
+  
+    @GetMapping("/delete")
+    public String delete(HttpSession session) {
+        Long loginId = (Long) session.getAttribute("memberId");
+        memberSerivce.delete(loginId);
+        return "redirect:/member/logout";
+    }
 
 }
