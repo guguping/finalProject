@@ -251,7 +251,7 @@
                                                                                                                         <div style="position: relative;">
                                                                                                                             <a href="#"
                                                                                                                                class="boardMain-main-item-profile">
-                                                                                                                                <img src="../images/에1리프로필.jpg"
+                                                                                                                                <img th:src="@{|/upload/${memberDTO.memberProfile}}"
                                                                                                                                      class="boardMain-item-profile">
                                                                                                                             </a>
                                                                                                                         </div>
@@ -684,7 +684,7 @@
                                                                                                         <img class="user-info-img"
                                                                                                              crossorigin="anonymous"
                                                                                                              draggable="false"
-                                                                                                             src="../images/test프로필.jpg">
+                                                                                                             th:src="@{|/upload/${memberDTO.memberProfile}}">
                                                                                                     </a>
 
                                                                                                 </div>

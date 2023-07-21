@@ -15,12 +15,11 @@ const plusLogoImg = document.querySelector('.boardMain-nav-list-plus-img');
 const prevButton = document.getElementById('prevButton');
 const nextButton = document.getElementById('nextButton');
 const pageNumberContainer = document.getElementById('previewImgPagingItem-num-item-box');
-
 const navLogoutBtn = document.getElementById('nav-logout-btn-');
 const navLogoutBtnHover = document.getElementById('nav-logout-btn-hover-box');
 const darkModG = document.getElementById('dakrModG');
 const darkModGHover = document.getElementById('darkModG-Hover');
-const plusNavDisplay = document.getElementById('plusNavDisplay');
+
 const plusNavDisplayMain = document.getElementById('plusNavDisplay-main');
 
 const plusBoardOpModal = document.getElementById('plus-modal-board-');
@@ -37,14 +36,13 @@ function openBoardMenu(boardId) {
         }
     console.log("Performing post menu operation for boardId:", boardId);
 }
-
-plusNavDisplay.addEventListener("click", function () {
+const plusNavDisplay = () => {
     if (plusNavDisplayMain.style.display === "none") {
         plusNavDisplayMain.style.display = "block";
     } else {
         plusNavDisplayMain.style.display = "none";
     }
-});
+}
 
 darkModG.addEventListener("mouseover", function () {
     darkModGHover.style.opacity = "1";

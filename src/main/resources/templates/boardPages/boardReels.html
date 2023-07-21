@@ -754,7 +754,9 @@
 </body>
 <script type="text/javascript" th:src="@{/script/componentJs.js}"></script>
 <script th:inline="javascript">
-
+    const member_logout = () => {
+        location.href = "/member/logout";
+    }
     const reelsCommentOaF1 = () => {
         const commentBox = document.getElementById('reels-s-c-mo');
         const commentResult = document.getElementById('commentAxios');
