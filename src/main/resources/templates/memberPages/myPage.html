@@ -650,7 +650,7 @@
                 </div>
             </div>
 
-            <div style="position: fixed;width: 100%;top: 0px;">
+            <div style="position: fixed;width: 100%;top: 0px;z-index: 1">
                 <div>
                     <div class="vmfhvlftkwlsqusrud" id="user-img-Change-display" style="display: none;">
                         <div class="vmfhvlftkwlsqusrud1">
@@ -728,6 +728,38 @@
                         </div>
                     </div>
 
+                    <div class="plus-modal-board-" id="plus-modal-board-" style="display: none;">
+
+                        <!--                        <div class="plus-modal-board-1">-->
+                        <!--                            <div class="plus-modal-board-2">-->
+                        <!--                                <div class="plus-modal-board-bg"></div>-->
+                        <!--                                <div class="plus-modal-board-3">-->
+                        <!--                                    <div class="plus-modal-board-main-">-->
+                        <!--                                        <div class="plus-modal-board-main-1">-->
+                        <!--                                            <div class="plus-modal-board-main-2">-->
+                        <!--                                                <div class="plus-modal-board-main-3">-->
+                        <!--                                                    <div class="plus-modal-board-inner-">-->
+                        <!--                                                        <div class="plus-modal-board-inner-1">-->
+                        <!--                                                            <div class="plus-modal-board-inner-2">-->
+                        <!--                                                                <div class="plus-modal-board-inner-3">-->
+                        <!--                                                                    <button type="button" class="_a9&#45;&#45;" id="dkan" th:onclick="CommentDelete(${board})">-->
+                        <!--                                                                        삭제-->
+                        <!--                                                                    </button>-->
+                        <!--                                                                    <button type="button" class="_a9_1" onclick="tlfgjaOff()">취소-->
+                        <!--                                                                    </button>-->
+                        <!--                                                                </div>-->
+                        <!--                                                            </div>-->
+                        <!--                                                        </div>-->
+                        <!--                                                    </div>-->
+                        <!--                                                </div>-->
+                        <!--                                            </div>-->
+                        <!--                                        </div>-->
+                        <!--                                    </div>-->
+                        <!--                                </div>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+<!--                    </div>-->
+
                 </div>
             </div>
             <!--게시글 디테일 본문-->
@@ -745,14 +777,19 @@
     const myPageImgSubmit = document.getElementById('myPageImgSubmit');
     let userImgInput = document.getElementById('userImgInput');
     const resultArea = document.getElementById("detail-box");
+
     let boardFileCount = 0;
     let fileSize = 1;
     let followDeleteCount = 0;
     let boardListCount = 0;
     const boardKind = 1;
 
+    const didi = document.getElementById('myPage-board-detail-b1');
+    const plusBoardOpModalBtn1 = document.getElementById('modaltest');
+    const dkan = document.getElementById('plus-modal-board-');
+    const loginId = [[${session.memberId}]];
+
     const userImgChangeOn = (memberId) => {
-        const loginId = [[${session.memberId}]];
         if (memberId == loginId) {
             userImgChange.style.display = "block";
         }
@@ -982,34 +1019,36 @@
                 "                                                                                                    </div>\n" +
                 "                                                                                                </div>\n" +
                 "                                                                                            </div>\n" +
-                "                                                                                        </header>\n" +
-                "                                                                                        <div style=\"padding-right: 8px;\">\n" +
-                "                                                                                            <div class=\"detail-board-plus-box\">\n" +
-                "                                                                                                <div class=\"detail-board-plus-box-inner\">\n" +
-                "                                                                                                    <div class=\"ejqhrldksWhrdlqslek\">\n" +
-                "                                                                                                        <svg aria-label=\"옵션 더 보기\"\n" +
-                "                                                                                                             class=\"_ab6-\"\n" +
-                "                                                                                                             color=\"rgb(0, 0, 0)\"\n" +
-                "                                                                                                             fill=\"rgb(0, 0, 0)\"\n" +
-                "                                                                                                             height=\"24\"\n" +
-                "                                                                                                             role=\"img\"\n" +
-                "                                                                                                             viewBox=\"0 0 24 24\"\n" +
-                "                                                                                                             width=\"24\">\n" +
-                "                                                                                                            <circle cx=\"12\"\n" +
-                "                                                                                                                    cy=\"12\"\n" +
-                "                                                                                                                    r=\"1.5\"></circle>\n" +
-                "                                                                                                            <circle cx=\"6\"\n" +
-                "                                                                                                                    cy=\"12\"\n" +
-                "                                                                                                                    r=\"1.5\"></circle>\n" +
-                "                                                                                                            <circle cx=\"18\"\n" +
-                "                                                                                                                    cy=\"12\"\n" +
-                "                                                                                                                    r=\"1.5\"></circle>\n" +
-                "                                                                                                        </svg>\n" +
-                "                                                                                                    </div>\n" +
-                "                                                                                                </div>\n" +
-                "                                                                                            </div>\n" +
-                "                                                                                        </div>\n" +
-                "                                                                                    </div>\n" +
+                "                                                                                        </header>\n";
+            if (memberDTO.id == loginId) {
+                output += "                                                                                        <div style=\"padding-right: 8px;\">\n" +
+                    "                                                                                            <div class=\"detail-board-plus-box\" id=\"modaltest\" onclick=\"board_option()\">\n" +
+                    "                                                                                                <div class=\"detail-board-plus-box-inner\">\n" +
+                    "                                                                                                    <div class=\"ejqhrldksWhrdlqslek\">\n" +
+                    "                                                                                                        <svg aria-label=\"옵션 더 보기\"\n" +
+                    "                                                                                                             class=\"_ab6-\"\n" +
+                    "                                                                                                             color=\"rgb(0, 0, 0)\"\n" +
+                    "                                                                                                             fill=\"rgb(0, 0, 0)\"\n" +
+                    "                                                                                                             height=\"24\"\n" +
+                    "                                                                                                             role=\"img\"\n" +
+                    "                                                                                                             viewBox=\"0 0 24 24\"\n" +
+                    "                                                                                                             width=\"24\">\n" +
+                    "                                                                                                            <circle cx=\"12\"\n" +
+                    "                                                                                                                    cy=\"12\"\n" +
+                    "                                                                                                                    r=\"1.5\"></circle>\n" +
+                    "                                                                                                            <circle cx=\"6\"\n" +
+                    "                                                                                                                    cy=\"12\"\n" +
+                    "                                                                                                                    r=\"1.5\"></circle>\n" +
+                    "                                                                                                            <circle cx=\"18\"\n" +
+                    "                                                                                                                    cy=\"12\"\n" +
+                    "                                                                                                                    r=\"1.5\"></circle>\n" +
+                    "                                                                                                        </svg>\n" +
+                    "                                                                                                    </div>\n" +
+                    "                                                                                                </div>\n" +
+                    "                                                                                            </div>\n" +
+                    "                                                                                        </div>";
+            }
+            output += "                                                                                    </div>\n" +
                 "                                                                                </div>\n" +
                 "                                                                                <div class=\"detail-board-contents-comment\">\n" +
                 "                                                                                    <section class=\"detail-board-like-\">\n" +
@@ -1162,7 +1201,7 @@
                 "                                                                                            </div>";
             for (let c in boardCommentList) {
                 output += "                                                                                            <ul class=\"detail-board-contents-comment-list-1\">\n" +
-                    "                                                                                                <div class=\"detail-board-contents-comment-box\">\n" +
+                    "                                                                                                <div class=\"detail-board-contents-comment-box \" onmouseover=\"showPlusButton(" + boardCommentList[c].id + ")\" onmouseout=\"hidePlusButton(" + boardCommentList[c].id + ")\" >\n" +
                     "                                                                                                    <li class=\"detail-board-comment-list-li\">\n" +
                     "                                                                                                        <div class=\"detail-board-comment-size\">\n" +
                     "                                                                                                            <div class=\"_a9zo\">\n" +
@@ -1205,7 +1244,7 @@
                     "                                                                                                                    </div>\n" +
                     "\n" +
                     "                                                                                                                    <div class=\"detail-board-comment-info\">\n" +
-                    "                                                                                                                        <span class=\"detail-board-comment-info-line\">\n" +
+                    "                                                                                                                        <span class=\"detail-board-comment-info-line\" style=\"display: flex; align-items: center;\">\n" +
                     "\n" +
                     "                                                                                                                            <!--게시글 상세 댓글 작성 시간-->\n" +
                     "                                                                                                                            <a class=\"detail-board-comment-time-box\">\n" +
@@ -1219,7 +1258,30 @@
                     "                                                                                                                                    class=\"_a9ze\">\n" +
                     "                                                                                                                                <span class=\"aksemfRKrhalswnd\">답글 달기</span>\n" +
                     "                                                                                                                            </button>\n" +
-                    "\n" +
+                    "\n";
+                if (boardCommentList[c].memberId == loginId || boardDTO.memberId == loginId) {
+                    output += "                                                                                                                            <!-- 댓글 옵션-->\n" +
+                        "                                                                                                                            <button class=\"_a9ze\"\n" +
+                        "                                                                                                                                    style=\"padding: 0;height: 18px;display: none;\" type=\"button\" onclick=\"openCommentMenu(" + boardCommentList[c].id + "," + boardDTO.id + ")\" id=\"Detail-board-plus-btn" + boardCommentList[c].id + "\"  >\n" +
+                        "                                                                                                                                    <div style=\"align-items: center; display: flex; justify-content: center;\" >\n" +
+                        "                                                                                                                                        <div class=\"boardMain-main-board-plus-btn-img-box\">\n" +
+                        "                                                                                                                                            <svg aria-label=\"More Options\"\n" +
+                        "                                                                                                                                                 class=\"_ab6-\"\n" +
+                        "                                                                                                                                                 color=\"rgb(115, 115, 115)\"\n" +
+                        "                                                                                                                                                 fill=\"rgb(115, 115, 115)\"\n" +
+                        "                                                                                                                                                 height=\"24\"\n" +
+                        "                                                                                                                                                 role=\"img\"\n" +
+                        "                                                                                                                                                 viewBox=\"0 0 24 24\"\n" +
+                        "                                                                                                                                                 width=\"24\">\n" +
+                        "                                                                                                                                                <circle cx=\"12\" cy=\"12\" r=\"1.5\"></circle>\n" +
+                        "                                                                                                                                                <circle cx=\"6\" cy=\"12\" r=\"1.5\"></circle>\n" +
+                        "                                                                                                                                                <circle cx=\"18\" cy=\"12\" r=\"1.5\"></circle>\n" +
+                        "                                                                                                                                            </svg>\n" +
+                        "                                                                                                                                        </div>\n" +
+                        "                                                                                                                                    </div>\n" +
+                        "                                                                                                                                </button>";
+                }
+                output += "\n" +
                     "                                                                                                                        </span>\n" +
                     "                                                                                                                    </div>\n" +
                     "                                                                                                                </div>\n" +
@@ -1273,6 +1335,36 @@
                 "                                    </div>\n" +
                 "                                </div>\n" +
                 "\n" +
+                "                                <div style=\"position: fixed;top: 0;width: 100%;z-index: 100;\">\n" +
+                "                                    <div class=\"plus-modal-board-\" id=\"ddd\" style=\"display:none;\">\n" +
+                "                                        <div class=\"plus-modal-board-1\">\n" +
+                "                                            <div class=\"plus-modal-board-2\">\n" +
+                "                                                <div class=\"plus-modal-board-bg\"></div>\n" +
+                "                                                <div class=\"plus-modal-board-3\">\n" +
+                "                                                    <div class=\"plus-modal-board-main-\">\n" +
+                "                                                        <div class=\"plus-modal-board-main-1\">\n" +
+                "                                                            <div class=\"plus-modal-board-main-2\">\n" +
+                "                                                                <div class=\"plus-modal-board-main-3\">\n" +
+                "                                                                    <div class=\"plus-modal-board-inner-\">\n" +
+                "                                                                        <div class=\"plus-modal-board-inner-1\">\n" +
+                "                                                                            <div class=\"plus-modal-board-inner-2\">\n" +
+                "                                                                                <div class=\"plus-modal-board-inner-3\">\n" +
+                "                                                                                    <button type=\"button\" class=\"_a9--\" onclick=\"myPageDelete(" + boardDTO.id + "," + loginId + ")\">삭제</button>\n" +
+                "                                                                                    <button type=\"button\" class=\"_a9-\">수정</button>\n" +
+                "                                                                                    <button type=\"button\" class=\"_a9_1\" onclick='modalOffset()' id=\"off\">취소</button>\n" +
+                "                                                                                </div>\n" +
+                "                                                                            </div>\n" +
+                "                                                                        </div>\n" +
+                "                                                                    </div>\n" +
+                "                                                                </div>\n" +
+                "                                                            </div>\n" +
+                "                                                        </div>\n" +
+                "                                                    </div>\n" +
+                "                                                </div>\n" +
+                "                                            </div>\n" +
+                "                                        </div>\n" +
+                "                                    </div>\n" +
+                "                                </div>\n" +
                 "                            </div>\n" +
                 "                        </div>\n" +
                 "                    </div>"
@@ -1643,7 +1735,7 @@
         const userDeleteBtn = document.getElementById("myPage-user-d-l");
         userDeleteBtn.style.display = "";
     }
-    
+
     const deleOff = () => {
         const userDeleteBtn = document.getElementById("myPage-user-d-l");
         userDeleteBtn.style.display = "none";
@@ -1657,5 +1749,102 @@
         location.href = "/member/logout";
     }
 
+    const tlfgja = () => {
+        dkan.style.display = "block";
+    }
+    const tlfgjaOff = () => {
+        dkan.style.display = "none";
+    }
+
+    const board_option = () => {
+        const plusBoardOpModal1 = document.getElementById('ddd');
+        if (plusBoardOpModal1.style.display === "none") {
+            plusBoardOpModal1.style.display = "block";
+        }
+    }
+
+    const modalOffset = () => {
+        const plusBoardOpModal1 = document.getElementById('ddd');
+        if (plusBoardOpModal1.style.display === "block") {
+            plusBoardOpModal1.style.display = "none";
+        }
+    }
+    function showPlusButton(CommentId) {
+        let ondist = document.getElementById("Detail-board-plus-btn" + CommentId);
+        ondist.style.display = 'inline-block';
+
+    }
+
+    function hidePlusButton(CommentId) {
+        let ondist = document.getElementById("Detail-board-plus-btn" + CommentId);
+        ondist.style.display = 'none';
+    }
+
+    function openCommentMenu(CommentId, boardId) {
+        const plusCommentModal = document.getElementById("plus-modal-board-");
+        const boardid = boardId;
+        const Commentid = CommentId;
+        let input = `
+     <div class="plus-modal-board-">
+         <div class="plus-modal-board-1">
+                            <div class="plus-modal-board-2">
+                                <div class="plus-modal-board-bg"></div>
+                                <div class="plus-modal-board-3">
+                                    <div class="plus-modal-board-main-">
+                                        <div class="plus-modal-board-main-1">
+                                            <div class="plus-modal-board-main-2">
+                                                <div class="plus-modal-board-main-3">
+                                                    <div class="plus-modal-board-inner-">
+                                                        <div class="plus-modal-board-inner-1">
+                                                            <div class="plus-modal-board-inner-2">
+                                                                <div class="plus-modal-board-inner-3">
+                                                                    <button type="button" class="_a9--"
+                                                                            onclick="CommentDelete(${boardid}, ${Commentid})">
+                                                                        삭제
+                                                                    </button>
+                                                                    <button type="button" class="_a9_1"
+                                                                            onclick="tlfgjaOff()">취소
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        `;
+        plusCommentModal.innerHTML = input;
+        plusCommentModal.style.display = "";
+    }
+
+    const CommentDelete = (boardId, commentId) => {
+        const plusCommentModal = document.getElementById("plus-modal-board-");
+        axios({
+            method: "delete",
+            url: "/comment/" + commentId
+        }).then(res => {
+            plusCommentModal.style.display = "none";
+            boardListCount = 0;
+            board_detail(boardId);
+        }).catch(err => {
+            alert("삭제 실패!!");
+        });
+    }
+    const myPageDelete = (id, memberId) => {
+        const boardId = id;
+        axios({
+            method: "delete",
+            url: "/board/" + boardId
+        }).then(res => {
+            location.href = "/member/myPage/" + memberId;
+        }).catch(err => {
+            alert("삭제 실패!!");
+        });
+    }
 </script>
 </html>
