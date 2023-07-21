@@ -84,6 +84,10 @@ public class BoardCommentService {
         return boardCommentDTOList;
     }
 
+    public void delete(Long id) {
+        boardCommentRepository.deleteById(id);
+    }
+
 
 }
 

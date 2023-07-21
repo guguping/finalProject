@@ -136,6 +136,14 @@ public class BoardService {
     public void delete(Long id) {
         boardRepository.deleteById(id);
     }
+
+    public void update(BoardDTO boardDTO) {
+        // 로그인한 아이디의 memberDTO 가져오기
+        MemberEntity memberEntity = memberRepository.findById(boardDTO.getMemberId()).orElseThrow(() -> new NoSuchElementException());
+        // 1. Board 테이블에 데이터를 먼저 저장
+        BoardEntity boardEntity = BoardEntity.toUpdateEntity(boardDTO, memberEntity);
+        boardRepository.save(boardEntity);
+    }
 }
 
 
