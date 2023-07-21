@@ -87,6 +87,11 @@ public class BoardController {
         board.put("boardCommentList", boardCommentDTOList);
         return new ResponseEntity<>(board, HttpStatus.OK);
     }
+    @PutMapping("boardUpdate/{id}")
+    public ResponseEntity update(@RequestBody BoardDTO boardDTO){
+        boardService.update(boardDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 
 }
