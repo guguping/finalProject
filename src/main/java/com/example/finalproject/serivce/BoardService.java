@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,6 +28,7 @@ public class BoardService {
     private final MemberRepository memberRepository;
     private final BoardCommentRepository boardCommentRepository;
     private final BoardLikeRepository boardLikeRepository;
+    private final BoardBookmarkRepository boardBookmarkRepository;
 
     public Long save(BoardDTO boardDTO) throws IOException {
         // 로그인한 아이디의 memberDTO 가져오기
@@ -53,9 +55,9 @@ public class BoardService {
     @Transactional
     public List<BoardDTO> findAll(Long loginId) {
         List<BoardEntity> boardEntityList = boardRepository.findAllByFollowerIdOrMemberId(loginId);
-        
+
         for (BoardEntity boardEntity: boardEntityList
-             ) {
+        ) {
             System.out.println("boardEntity = " + boardEntity);
         }
 
@@ -66,7 +68,27 @@ public class BoardService {
         boardEntityList.forEach(boardEntity -> {
             boardDTOList.add(BoardDTO.toDTO(boardEntity));
         });
-        return boardDTOList;
+
+        MemberEntity memberEntity = memberRepository.findById(loginId).orElseThrow(() -> new NoSuchElementException());
+        List<BoardDTO> boardDTOList1 = new ArrayList<>();
+        for (int i = 0; i < boardDTOList.size(); i++) {
+            BoardDTO boardDTO = boardDTOList.get(i);
+            BoardEntity boardEntity = boardRepository.findById(boardDTO.getId()).orElseThrow(() -> new NoSuchElementException());
+            Optional<BoardLikeEntity> optionalBoardLikeEntity = boardLikeRepository.findByBoardEntityAndMemberEntity(boardEntity, memberEntity);
+            Optional<BoardBookmarkEntity> optionalBoardBookmarkEntity = boardBookmarkRepository.findByBoardEntityAndMemberEntity(boardEntity, memberEntity);
+            if (optionalBoardLikeEntity.isEmpty()) {
+                boardDTO.setBoardLike(0);
+            } else {
+                boardDTO.setBoardLike(1);
+            }
+            if (optionalBoardBookmarkEntity.isEmpty()) {
+                boardDTO.setBoardBookmark(0);
+            } else {
+                boardDTO.setBoardBookmark(1);
+            }
+            boardDTOList1.add(boardDTO);
+        }
+        return boardDTOList1;
     }
 
     @Transactional

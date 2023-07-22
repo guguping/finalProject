@@ -34,6 +34,8 @@ public class BoardDTO {
     private int boardLikeCount;
     private int boardCommentCount;
 
+    private int boardLike;
+    private int boardBookmark;
 
     public static BoardDTO toDTO(BoardEntity boardEntity) {
         BoardDTO boardDTO = new BoardDTO();
