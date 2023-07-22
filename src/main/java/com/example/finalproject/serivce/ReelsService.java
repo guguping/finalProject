@@ -54,6 +54,8 @@ public class ReelsService {
             dto.setMemberId(boardReelsEntity.getMemberEntity().getId());
             dto.setReelsFile(boardReelsEntity.getReelsFile());
             dto.setReelsContents(boardReelsEntity.getReelsContents());
+            dto.setMemberProfile(boardReelsEntity.getMemberEntity().getMemberProfile());
+            dto.setMemberNickName(boardReelsEntity.getMemberEntity().getMemberNickName());
 
             boardReelsDTOList.add(dto);
         }

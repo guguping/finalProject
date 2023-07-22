@@ -18,6 +18,8 @@ public class BoardReelsDTO {
     private String reelsContents;
     private Long likeId;
     private Long bookId;
+    private String memberProfile;
+    private String memberNickName;
 
     public static BoardReelsDTO toDTO(BoardReelsEntity boardReelsEntity) {
         return BoardReelsDTO.builder()
