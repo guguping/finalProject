@@ -466,9 +466,9 @@ const openMainDetail = (id, loginId) => {
             "                                                                                                            aria-label=\"댓글 달기\"\n" +
             "                                                                                                            placeholder=\"댓글 달기...\"\n" +
             "                                                                                                            class=\"detail-board-comment-save-textarea\" id=\"board-comment-save-contents\"></textarea>\n" +
-            "                                                                                                    <div style=\"margin-left: 8px;\" onclick=\"comment_save(" + boardDTO.id + ")\">\n" +
+            "                                                                                                    <div style=\"margin-left: 8px;cursor: pointer;\" onclick=\"comment_save(" + boardDTO.id + ")\">\n" +
             "                                                                                                        <div class=\"detail-comment-sub-btn-box\">\n" +
-            "                                                                                                            <span style=\"opacity: .5;\">게시</span>\n" +
+            "                                                                                                            <span>게시</span>\n" +
             "                                                                                                        </div>\n" +
             "                                                                                                    </div>\n" +
             "                                                                                                </div>\n" +
@@ -701,20 +701,6 @@ const mainBoardDetailOff = (boardId) => {
     mainDetail.innerHTML = "";
 
 }
-
-
-
-
-
-
-
-plusNavDisplay.addEventListener("click", function () {
-    if (plusNavDisplayMain.style.display === "none") {
-        plusNavDisplayMain.style.display = "block";
-    } else {
-        plusNavDisplayMain.style.display = "none";
-    }
-});
 
 const commentDelete = (boardid, commentId) => {
     console.log("commentid ="+ commentId);

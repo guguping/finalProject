@@ -1617,7 +1617,7 @@
     border-bottom-color: rgba(0, 0, 0, 0.4);
     border-left-width: 0;
     text-overflow: ellipsis;
-    color: rgb(179, 219, 255);
+    color: rgb(0, 149, 246);
     padding: 0;
     appearance: none;
     border-top-color: rgba(0, 0, 0, 0.4);
@@ -1650,6 +1650,9 @@
     list-style: none;
     text-decoration: none;
     outline: none;
+}
+.detail-comment-sub-btn-box:hover{
+    color: rgba(0,0,0,0.4);
 }
 
 .myPage-nav-form-xmf {
@@ -3678,4 +3681,75 @@
     flex-grow: 0;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+}
+
+.myPage-user-fow-btn {
+    background-color: rgb(0,149,246);
+    border: none;
+    border-radius: 8px;
+    color: rgb(255,255,255);
+    position: relative;
+    text-align: center;
+    -webkit-appearance: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 7px 16px!important;
+    pointer-events: auto;
+    text-overflow: ellipsis;
+    text-transform: inherit;
+    -webkit-user-select: none;
+    width: auto;
+    margin: 0;
+}
+.myPage-user-fow-btn:hover {
+    background-color: #1877F2;
+}
+.myPage-user-fow-btn1 {
+    background-color: rgb(239,239,239);
+    border: none;
+    border-radius: 8px;
+    color: rgb(255,255,255);
+    position: relative;
+    text-align: center;
+    -webkit-appearance: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 7px 16px!important;
+    pointer-events: auto;
+    text-overflow: ellipsis;
+    text-transform: inherit;
+    -webkit-user-select: none;
+    width: auto;
+    margin: 0;
+}
+.myPage-user-fow-btn1:hover {
+    background-color: #DBDBDB;
+}
+.myPage-user-fow-tb {
+    height: 100%;
+    overflow-y: visible;
+    border-radius: 0;
+    justify-content: center;
+    background-color: transparent;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    overflow-x: visible;
+    position: relative;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+.myPage-user-fow-txt {
+    display: block;
+    font-weight: 600;
+    margin: 0;
+    font-size: 14px;
+    line-height: 18px;
 }
