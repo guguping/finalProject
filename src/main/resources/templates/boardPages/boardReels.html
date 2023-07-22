@@ -773,10 +773,7 @@
     const vidPaS = (reelsBoardId) => {
         const myVid = document.getElementById(reelsBoardId);
         const myVidPlayBtn = document.getElementById('reels-v-p-element-' + reelsBoardId);
-        const testH = getElementHeight('reelsMain'+reelsBoardId);
-        const testB = getElementHeight('reelsB'+reelsBoardId);
-        console.log(testH);
-        console.log(testB);
+
         if (myVid.paused) {
             myVidPlayBtn.style.opacity = '0';
             myVidPlayBtn.style.transitionDuration = '.3s';
