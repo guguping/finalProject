@@ -52,7 +52,7 @@
 
                                                                                 <!--프로필 편집 이동-->
                                                                                 <a href="#"
-                                                                                   class="myPage-user-profile-edit-link">프로필
+                                                                                   class="myPage-user-profile-edit-link" onclick="popop()">프로필
                                                                                     편집</a>
                                                                             </div>
                                                                         </div>
@@ -1845,6 +1845,11 @@
         }).catch(err => {
             alert("삭제 실패!!");
         });
+    }
+
+    const popop = () => {
+        const settings = 'toolbar = 0, status = 0, location = 0, scrollbars=yes, height=600, width=800,left=500, top=200';
+        window.open("/member/popup","_blank",settings);
     }
 </script>
 </html>

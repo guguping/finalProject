@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Instagram</title>
+    <title>Outstagram</title>
     <th:block th:replace="component/config :: config"></th:block>
     <link rel="stylesheet" type="text/css" th:href="@{/css/boardReels.css}"/>
 </head>
@@ -108,43 +108,45 @@
                                                                                                                     <div class="reels-v-v-element-4"
                                                                                                                          id="reels-v-v-element-4"
                                                                                                                          th:onclick="vidPaS([[${reelsList.id}]])">
-                                                                                                                        <div class="reels-user-info">
-                                                                                                                            <div class="reels-user-info-">
-                                                                                                                                <a href="#"
-                                                                                                                                   class="reels-made-user-link">
-                                                                                                                                    <div class="reels-made-user-link-">
-                                                                                                                                        <div class="reels-m-pr-">
-                                                                                                                                            <div>
+                                                                                                                    </div>
+                                                                                                                    <div class="reels-user-info">
+                                                                                                                        <div class="reels-user-info-">
+                                                                                                                            <a th:href="@{/member/myPage/{memberId}(memberId=${reelsList.memberId})}"
+                                                                                                                               class="reels-made-user-link">
+                                                                                                                                <div class="reels-made-user-link-">
+                                                                                                                                    <div class="reels-m-pr-">
+                                                                                                                                        <div>
                                                                                                                                         <span class="reels-m-pr-1">
 
                                                                                                                                             <!--릴스 게시자 프로필-->
                                                                                                                                             <img class="reels-m-pr"
-                                                                                                                                                 src="../images/test프로필.jpg">
+                                                                                                                                                 th:src="@{|/upload/${reelsList.memberProfile}}">
                                                                                                                                         </span>
-                                                                                                                                            </div>
                                                                                                                                         </div>
-
-                                                                                                                                        <!--릴스 게시자 닉네임-->
-                                                                                                                                        <span class="reels-made-user-nick">guping__</span>
                                                                                                                                     </div>
-                                                                                                                                </a>
-                                                                                                                                <span class="flftmWLd">
-                                                                                                                            <span class="flftmWLd-">•</span>
-                                                                                                                        </span>
+
+                                                                                                                                    <!--릴스 게시자 닉네임-->
+                                                                                                                                    <span class="reels-made-user-nick" th:text="${reelsList.memberNickName}"></span>
+                                                                                                                                </div>
+                                                                                                                            </a>
+                                                                                                                            <th:block th:if="${reelsList.memberId != session.memberId}">
+                                                                                                                                    <span class="flftmWLd">
+                                                                                                                                        <span class="flftmWLd-">•</span>
+                                                                                                                                    </span>
 
                                                                                                                                 <!--릴스 게시자 팔로우 버튼-->
                                                                                                                                 <div class="reels-member-fol">
                                                                                                                                     팔로우
                                                                                                                                 </div>
-                                                                                                                            </div>
+                                                                                                                            </th:block>
+                                                                                                                        </div>
 
-                                                                                                                            <div class="reels-v-title">
-                                                                                                                                <div class="reels-v-title-">
-                                                                                                                                    <div class="reels-v-title-1">
+                                                                                                                        <div class="reels-v-title">
+                                                                                                                            <div class="reels-v-title-">
+                                                                                                                                <div class="reels-v-title-1">
                                                                                                                                         <span class="reels-v-title-txt"
                                                                                                                                               th:text="${reelsList.getReelsContents()}"></span>
-                                                                                                                                        <span class="reels-v-title-txt-plus">… 더 보기</span>
-                                                                                                                                    </div>
+                                                                                                                                    <span class="reels-v-title-txt-plus">… 더 보기</span>
                                                                                                                                 </div>
                                                                                                                             </div>
                                                                                                                         </div>

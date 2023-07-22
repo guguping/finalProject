@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>프로필 편집 • Outstagram</title>
+  <link data-default-icon="https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png" rel="icon" sizes="192x192" href="https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png">
+  <link rel="stylesheet" href="../css/myPopup.css">
+</head>
+<body class="popup-body">
+<div>
+  <div>
+    <div class>
+      <div class="popup-body-xmf">
+        <div class="popup-body-xmf-">
+          <div class="popup-body-xmf-1">
+            <div class="popup-body-xmf-2">
+              <div class="popup-body-xmf-3">
+                <div class="popup-body-xmf-4">
+                  <div class="popup-main">
+                    <section class="popup-main-">
+                      <main class="popup-main-m">
+                        <h1 class="h1dd">설정</h1>
+                        <div class="_ab81">
+                          <article class="_ab83">
+                            <div class="_afgk">
+                              <div class="profile-title">
+                                <div class="profile-title-">
+                                  <h2 class="_acl0">프로필 편집</h2>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="_ab4f">
+                              <div class="_ab4g">
+                                <div class="_aadm">
+
+                                  <!--사용자 프로필 사진 들어가는 곳-->
+                                  <button type="button" class="_aadn" onclick="memberImgSub()">
+                                    <img src="../images/test프로필.jpg" class="_aadp">
+                                  </button>
+                                  <div>
+                                    <form>
+                                      <input accept="image/jpeg,image/png" class="_ac69" type="file" id="memberImg">
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="_ab4h">
+                                <div class="user-nick-co">
+
+                                  <!--사용자 닉네임-->
+                                  <span class="user-nick-co-">guping__</span>
+                                </div>
+
+                                <div class="member-profile-ch" onclick="memberImgSub()">프로필 사진 바꾸기</div>
+                              </div>
+                            </div>
+
+                            <form class="_ab43">
+                              <div class="_ab3p">
+                                <aside class="_ad6_">
+                                  <label class="_ab3q" for="pepLinks">웹사이트</label>
+                                </aside>
+                                <div class="_ab3t">
+                                  <div class="_ab3t-">
+                                    <input aria-required="false" disabled="" id="pepLinks" placeholder="웹사이트" class="pepLinks" dir="" type="text" value="">
+                                    <div class="webInput-txt">
+                                      <div class="webInput-txt-">
+                                        <span class="webInput-txt-1">링크 수정은 모바일에서만 가능합니다. Outstagram 앱으로 이동하여 프로필의 소개에서 웹사이트를 변경하여 수정하세요.</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="_ab3p"></div>
+                              <div></div>
+                              <div class="_ab3p"></div>
+                              <div class="_ab3p"></div>
+                            </form>
+                          </article>
+                        </div>
+                      </main>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<script>
+  const memberImgSub = () => {
+    const subBTN = document.getElementById('memberImg');
+    subBTN.click();
+  }
+</script>
+</html>

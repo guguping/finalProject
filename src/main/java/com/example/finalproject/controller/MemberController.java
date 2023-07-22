@@ -231,4 +231,9 @@ public class MemberController {
         return "redirect:/member/logout";
     }
 
+    @GetMapping("/popup")
+    public String popup() {
+        return "memberPages/popup";
+    }
+
 }
