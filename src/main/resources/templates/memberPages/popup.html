@@ -3,9 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <title>프로필 편집 • Outstagram</title>
-    <link data-default-icon="https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png" rel="icon" sizes="192x192" href="https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png">
+    <link data-default-icon="https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png" rel="icon"
+          sizes="192x192" href="https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png">
+    <link rel="stylesheet" href="../css/myPopup.css">
+    <link rel="stylesheet" href="../css/component.css">
 </head>
-<body>
-<h2>안녕 나는 팝업</h2>
+<body class="popup-body">
+<div>
+    <div>
+        <div class>
+            <div class="popup-body-xmf">
+                <div class="popup-body-xmf-">
+                    <div class="popup-body-xmf-1">
+                        <div class="popup-body-xmf-2">
+                            <div class="popup-body-xmf-3">
+                                <div class="popup-body-xmf-4">
+                                    <div class="popup-main">
+                                        <section class="popup-main-">
+                                            <main class="popup-main-m">
+                                                <div class="_ab81">
+                                                    <ul class="_ab85"></ul>
+                                                    <article class="_ab83">
+                                                        <div class="_afgk">
+                                                            <div class="profile-title">
+                                                                <div class="profile-title-">
+                                                                    <h2 class="_acl0">프로필 편집</h2>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="_ab4f">
+                                                            <div class="_ab4g">
+                                                                <div class="_aadm">
+
+                                                                    <!--사용자 프로필 사진 들어가는 곳-->
+                                                                    <button type="button" class="_aadn"
+                                                                            onclick="memberImgSub()">
+                                                                        <img src="../images/test프로필.jpg" class="_aadp">
+                                                                    </button>
+                                                                    <div>
+                                                                        <form>
+                                                                            <input accept="image/jpeg,image/png"
+                                                                                   class="_ac69" type="file"
+                                                                                   id="memberImg">
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="_ab4h">
+                                                                <div class="user-nick-co">
+
+                                                                    <!--사용자 닉네임-->
+                                                                    <span class="user-nick-co-">guping__</span>
+                                                                </div>
+
+                                                                <div class="member-profile-ch" onclick="memberImgSub()">
+                                                                    프로필 사진 바꾸기
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <form class="_ab43">
+                                                            <div class="_ab3p">
+                                                                <aside class="_ad6_">
+                                                                    <label class="_ab3q" for="pepLinks">웹사이트</label>
+                                                                </aside>
+                                                                <div class="_ab3t">
+                                                                    <div class="_ab3t-">
+                                                                        <input aria-required="false" disabled=""
+                                                                               id="pepLinks" placeholder="웹사이트"
+                                                                               class="pepLinks" dir="" type="text"
+                                                                               value="">
+                                                                        <div class="webInput-txt">
+                                                                            <div class="webInput-txt-">
+                                                                                <span class="webInput-txt-1">링크 수정은 모바일에서만 가능합니다. Outstagram 앱으로 이동하여 프로필의 소개에서 웹사이트를 변경하여 수정하세요.</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="_ab3p">
+                                                                <aside class="_ad6_">
+                                                                    <div>
+                                                                        <label class="_ab3q" for="pepBio">소개</label>
+                                                                    </div>
+                                                                </aside>
+                                                                <div class="_ab3t">
+                                                                    <div class="mTxtcontents">
+
+                                                                        <!--사용자 소개-->
+                                                                        <textarea class="_ab44" id="pepBio"></textarea>
+
+                                                                        <!--카운트-->
+                                                                        <div class="mTxtCount">
+                                                                            <span class="mTxtCount-">0 / 150</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="ab3o2">
+                                                                <div class="ab3o2-">
+                                                                    <div class="_ab3p">
+                                                                        <aside class="_ad6_">
+                                                                            <label class="_ab3q"
+                                                                                   for="pepGender">성별</label>
+                                                                        </aside>
+                                                                        <div class="_ab3t">
+                                                                            <div class="mTxtGender">
+
+                                                                                <!--사용자 성별-->
+                                                                                <input id="pepGender"
+                                                                                       class="mTxtGender2" type="text"
+                                                                                       value="남성" tabindex="0">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="_ab3p">
+                                                                    <aside class="qlqlel">
+                                                                        <label class="_ab3q"></label>
+                                                                    </aside>
+                                                                    <div class="_ab3t">
+                                                                        <div class="blindTxt">
+                                                                            <span class="blindTxt-">이 정보는 공개 프로필에 포함되지 않습니다.</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="_ab3p">
+                                                                <aside class="_ad6_">
+                                                                    <label class="_ab3q">프로필에 계정 추천 표시</label>
+                                                                </aside>
+                                                                <div class="_ab3t">
+                                                                    <div class="_ab46">
+                                                                        <label class="_aahb">
+
+                                                                            <!--체크박스 스크립트 연결 필요함-->
+                                                                            <input type="checkbox" class="_aahe">
+                                                                            <div class="_aahg"></div>
+                                                                            <div class="memberBlindCh">
+                                                                                <span class="memberBlindCh-">사람들이 회원님의 프로필에서 비슷한 계정 추천을 볼 수 있는지와 회원님의 계정이 다른 프로필에서 추천될 수 있는지를 선택하세요.<a
+                                                                                        class="_ab41" href="https://help.instagram.com/530450580417848" target="_blank">[?]</a></span>
+                                                                            </div>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="_ab3p">
+                                                                <aside class="qlsrhdrks">
+                                                                    <label class="_ab3q"></label>
+                                                                </aside>
+                                                                <div class="_ab3t1">
+                                                                    <div class="_ab47">
+                                                                        <div class="savedBTN">제출</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </article>
+                                                </div>
+                                            </main>
+                                            <div style="order: 5;">
+                                                <div th:replace="component/component :: footer"></div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
+<script>
+    const memberImgSub = () => {
+        const subBTN = document.getElementById('memberImg');
+        subBTN.click();
+    }
+</script>
 </html>

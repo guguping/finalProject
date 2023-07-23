@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>가입하기 • Instagram</title>
+    <title th:text="${memberDTO.memberName+'(@'+memberDTO.memberNickName+')'}+' • Outstagram'"></title>
     <th:block th:replace="component/config :: config"></th:block>
     <link rel="stylesheet" type="text/css" th:href="@{/css/myPage.css}" />
 </head>
