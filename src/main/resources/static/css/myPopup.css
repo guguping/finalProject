@@ -739,6 +739,28 @@
     font-size: 14px;
     line-height: 18px;
 }
+._aahg1 {
+    border: 1px solid rgb(219,219,219);
+    border-radius: 3px;
+    box-sizing: border-box;
+    display: inline-block;
+    height: 16px;
+    margin: 0 8px 0 3px;
+    position: relative;
+    width: 16px;
+}
+_aahg1:before {
+    border-bottom: 2px solid rgb(255,255,255);
+    border-left: 2px solid rgb(255,255,255);
+    content: ' ';
+    display: block;
+    height: 3px;
+    left: 2px;
+    position: absolute;
+    top: 3px;
+    transform: rotateZ(-45deg);
+    width: 8px;
+}
 ._aahg {
     border: 1px solid rgb(219,219,219);
     border-radius: 3px;

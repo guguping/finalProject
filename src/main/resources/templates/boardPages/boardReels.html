@@ -1085,7 +1085,7 @@
                             }
                         }).then(res => {
                             let output = "";
-                            output += '<span>'+(commentCount+1)+'</span>'
+                            output += '<span>'+(++commentCount)+'</span>'
                             reelsCommentInput.value = "";
                             commentCountResult.innerHTML = output;
                             getCommentList(boardId, memberId, commentCount);
