@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>프로필 편집 • Outstagram</title>
     <link data-default-icon="https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png" rel="icon"
           sizes="192x192" href="https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="../css/myPopup.css">
     <link rel="stylesheet" href="../css/component.css">
+    <link rel="stylesheet" href="../css/myPage.css">
 </head>
 <body class="popup-body">
 <div>
@@ -37,17 +40,10 @@
                                                                 <div class="_aadm">
 
                                                                     <!--사용자 프로필 사진 들어가는 곳-->
-                                                                    <button type="button" class="_aadn"
-                                                                            onclick="memberImgSub()">
-                                                                        <img src="../images/test프로필.jpg" class="_aadp">
+                                                                    <button type="button" class="_aadn" id="changeResult"
+                                                                            th:onclick="userImgChangeOn([[${memberDTO.id}]])">
+                                                                        <img th:src="@{|/upload/${memberDTO.memberProfile}}" class="_aadp">
                                                                     </button>
-                                                                    <div>
-                                                                        <form>
-                                                                            <input accept="image/jpeg,image/png"
-                                                                                   class="_ac69" type="file"
-                                                                                   id="memberImg">
-                                                                        </form>
-                                                                    </div>
                                                                 </div>
                                                             </div>
 
@@ -55,10 +51,10 @@
                                                                 <div class="user-nick-co">
 
                                                                     <!--사용자 닉네임-->
-                                                                    <span class="user-nick-co-">guping__</span>
+                                                                    <span class="user-nick-co-" th:text="${memberDTO.memberNickName}"></span>
                                                                 </div>
 
-                                                                <div class="member-profile-ch" onclick="memberImgSub()">
+                                                                <div class="member-profile-ch" th:onclick="userImgChangeOn([[${memberDTO.id}]])">
                                                                     프로필 사진 바꾸기
                                                                 </div>
                                                             </div>
@@ -93,7 +89,7 @@
                                                                     <div class="mTxtcontents">
 
                                                                         <!--사용자 소개-->
-                                                                        <textarea class="_ab44" id="pepBio"></textarea>
+                                                                        <textarea class="_ab44" id="pepBio" th:text="${memberDTO.memberText}"></textarea>
 
                                                                         <!--카운트-->
                                                                         <div class="mTxtCount">
@@ -115,7 +111,7 @@
                                                                                 <!--사용자 성별-->
                                                                                 <input id="pepGender"
                                                                                        class="mTxtGender2" type="text"
-                                                                                       value="남성" tabindex="0">
+                                                                                       th:value="${memberDTO.memberGender}" tabindex="0">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -141,7 +137,7 @@
 
                                                                             <!--체크박스 스크립트 연결 필요함-->
                                                                             <input type="checkbox" class="_aahe">
-                                                                            <div class="_aahg"></div>
+                                                                            <div class="_aahg" id="checkBox" onclick="checkBoxBf()"></div>
                                                                             <div class="memberBlindCh">
                                                                                 <span class="memberBlindCh-">사람들이 회원님의 프로필에서 비슷한 계정 추천을 볼 수 있는지와 회원님의 계정이 다른 프로필에서 추천될 수 있는지를 선택하세요.<a
                                                                                         class="_ab41" href="https://help.instagram.com/530450580417848" target="_blank">[?]</a></span>
@@ -156,7 +152,7 @@
                                                                 </aside>
                                                                 <div class="_ab3t1">
                                                                     <div class="_ab47">
-                                                                        <div class="savedBTN">제출</div>
+                                                                        <div class="savedBTN" onclick="memberUpdate()">제출</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -177,12 +173,138 @@
             </div>
         </div>
     </div>
+    <div style="position: fixed;width: 100%;top: 0px;z-index: 1;">
+        <div class="vmfhvlftkwlsqusrud" id="user-img-Change-display" style="display: none;">
+            <div class="vmfhvlftkwlsqusrud1">
+                <div class="vmfhvlftkwlsqusrud2">
+                    <div class="dlrjsanjsep"></div>
+                    <div class="gkftndlTek">
+                        <div class="xmfdmfaksemfdjTek">
+                            <div class="wkdlwptlwkrdldi">
+                                <div class="myPage-user-ch-img-box">
+                                    <div class="myPage-user-ch-img-box-margin">
+                                        <div class="myPage-user-cj-img-qhsans">
+                                            <div style="display: flex;flex-direction: column;height: 100%;max-width: 100%;">
+                                                <div class="_a9-v">
+                                                    <div class="_a9-y">
+                                                        <span class="whdgkqtjsanf">프로필 사진 바꾸기</span>
+                                                    </div>
+                                                    <div class="_a9-z">
+                                                        <button class="tkwlsdjqfhem" tabindex="0" onclick="userImgChangeBtn()">사진 업로드
+                                                        </button>
+                                                        <button class="guswotkwlstkrwp" tabindex="0" onclick="userImgDeleteBtn()">현재 사진 삭제
+                                                        </button>
+                                                        <button class="cnlth" tabindex="0" onclick="userImgChangeOff()">취소</button>
+
+                                                        <!--이미지 변경 form 태그-->
+                                                        <form action="/member/profileUpdate" method="post" style="margin: 0;padding: 0;" enctype="multipart/form-data">
+                                                            <input accept="image/*"
+                                                                   class="_ac69" type="file" id="userImgInput" name="memberFile">
+                                                            <button type="submit" style="display: none;"
+                                                                    id="myPageImgSubmit"></button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
-<script>
-    const memberImgSub = () => {
-        const subBTN = document.getElementById('memberImg');
-        subBTN.click();
+<script th:inline="javascript">
+    const userImgChange = document.getElementById('user-img-Change-display');
+    let userImgInput = document.getElementById('userImgInput');
+    const changeResult = document.getElementById('changeResult');
+    const memberText = document.getElementById('pepBio');
+    const memberGender = document.getElementById('pepGender');
+    const loginId = [[${session.memberId}]];
+    const userImgChangeOn = (memberId) => {
+        if (memberId == loginId) {
+            userImgChange.style.display = "block";
+        }
     }
+    const userImgChangeOff = () => {
+        userImgChange.style.display = "none";
+    }
+    const userImgChangeBtn = () => {
+        userImgInput.click();
+    }
+    userImgInput.addEventListener("change", async e => {
+        const file = e.target.files[0];
+
+        if (!file) {
+            console.log("파일이 선택되지 않았습니다.");
+            return;
+        }
+
+        try {
+            const formData = new FormData();
+            formData.append("memberFile", file);
+
+            const response = await axios.post("/member/profileUpdate1", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            });
+
+            let output = "";
+            output += `<img src="/upload/${response.data.memberProfile}" class="_aadp">`;
+
+            changeResult.innerHTML = output;
+            opener.parent.location.reload();
+            userImgChangeOff();
+            e.target.value = null;
+        } catch (error) {
+            console.error("실패:", error);
+        }
+    });
+    const userImgDeleteBtn = () => {
+        axios({
+            method: "post",
+            url: "/member/profileDelete1"
+        }).then(res => {
+            let output = "";
+            output += "<img src=\"/upload/"+res.data.memberProfile+"\" class=\"_aadp\">"
+
+            changeResult.innerHTML = output;
+            opener.parent.location.reload();
+            userImgChangeOff();
+        }).catch(err => {
+            console.log("실패");
+        })
+    };
+    const memberUpdate = () => {
+        axios({
+            method: "post",
+            url:"/member/textUpdate",
+            data: {
+                memberText:memberText.value,
+                memberGender:memberGender.value
+            }
+        }).then(res => {
+            console.log("성공");
+            opener.parent.location.reload();
+            window.close();
+        }).catch(err => {
+            console.log("실패");
+        })
+    }
+    const checkBoxBf = () => {
+        const checkBox = $('#checkBox');
+        if (checkBox.hasClass("_aahg1")) {
+            checkBox.removeClass("_aahg1");
+            checkBox.addClass("_aahg");
+        } else {
+            checkBox.removeClass("_aahg");
+            checkBox.addClass("_aahg1");
+        }
+    };
 </script>
 </html>

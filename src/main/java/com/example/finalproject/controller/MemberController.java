@@ -10,20 +10,19 @@ import com.example.finalproject.serivce.MailSendService;
 import com.example.finalproject.serivce.MemberFollowService;
 import com.example.finalproject.serivce.MemberSerivce;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.lang.reflect.Member;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -170,12 +169,29 @@ public class MemberController {
         memberSerivce.profileUpdate(memberDTO);
         return "redirect:/member/myPage/" + loginId;
     }
+    @PostMapping("/profileUpdate1")
+    public ResponseEntity<?> profileUpdate1(@RequestParam("memberFile") MultipartFile memberFile, HttpSession session) throws IOException {
+        MemberDTO memberDTO = new MemberDTO();
+        Long loginId = (Long) session.getAttribute("memberId");
+        memberDTO.setId(loginId);
+        memberDTO.setMemberFile(memberFile);
+        memberSerivce.profileUpdate(memberDTO);
+        MemberDTO memberDTO1 = memberSerivce.findById((Long) session.getAttribute("memberId"));
+        return new ResponseEntity<>(memberDTO1,HttpStatus.OK);
+    }
 
     @GetMapping("/profileDelete")
     public String profileDelete(HttpSession session) {
         Long loginId = (Long) session.getAttribute("memberId");
         memberSerivce.profileDelete(loginId);
         return "redirect:/member/myPage/" + loginId;
+    }
+    @PostMapping("/profileDelete1")
+    public ResponseEntity<?> profileDelete1(HttpSession session) {
+        Long loginId = (Long) session.getAttribute("memberId");
+        memberSerivce.profileDelete(loginId);
+        MemberDTO memberDTO = memberSerivce.findById((Long) session.getAttribute("memberId"));
+        return new ResponseEntity<>(memberDTO,HttpStatus.OK);
     }
 
     @GetMapping("/findPwAuth")
@@ -232,8 +248,17 @@ public class MemberController {
     }
 
     @GetMapping("/popup")
-    public String popup() {
+    public String popup(HttpSession session, Model model) {
+        MemberDTO memberDTO = memberSerivce.findById((Long) session.getAttribute("memberId"));
+        model.addAttribute("memberDTO", memberDTO);
         return "memberPages/popup";
     }
-
+    @PostMapping("/textUpdate")
+    public ResponseEntity<?> textUpdate(@RequestBody MemberDTO memberDTO, HttpSession session) {
+        MemberDTO upDTO = memberSerivce.findById((Long) session.getAttribute("memberId"));
+        upDTO.setMemberText(memberDTO.getMemberText());
+        upDTO.setMemberGender(memberDTO.getMemberGender());
+        memberSerivce.memberUpdate(upDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

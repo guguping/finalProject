@@ -164,4 +164,8 @@ public class MemberSerivce {
         memberRepository.deleteById(id);
 
     }
+
+    public void memberUpdate(MemberDTO upDTO) {
+        memberRepository.save(MemberEntity.toUpdateEntity(upDTO));
+    }
 }
