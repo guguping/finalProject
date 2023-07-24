@@ -9,7 +9,7 @@
     <div class="boardMain-nav-box-inner">
         <div class="boardMain-nav-flex-box">
             <div class="boardMain-nav-flex-box-inner">
-                <div class="boardMain-nav-margin">
+                <div class="boardMain-nav-margin" id="navMenuBox">
                     <div class="boardMain-nav-logo-box">
                         <div class="boardMain-nav-logo-box-inner">
                             <div style="opacity: 1;">
@@ -17,8 +17,8 @@
                                    class="boardMain-nav-logo-link">
                                     <div class="boardMain-nav-logo-link-inner">
                                         <div class="boardMain-nav-logo-inner">
-                                            <img th:src="@{/images/indexImages/outtest.png}" class="boardMain-nav-svg" style="width: 125px;height: 55px;">
-                                            <svg aria-label="Instagram" class="boardMain-nav-svg1" color="rgb(0, 0, 0)" fill="rgb(0, 0, 0)" height="24" role="img" viewBox="0 0 24 24" width="24">
+                                            <img th:src="@{/images/indexImages/outtest.png}" class="boardMain-nav-svg" id="searchImg" style="width: 125px;height: 55px;">
+                                            <svg aria-label="Instagram" class="boardMain-nav-svg1" id="searchImg2" color="rgb(0, 0, 0)" fill="rgb(0, 0, 0)" height="24" role="img" viewBox="0 0 24 24" width="24">
                                                 <title>Outstagram</title>
                                                 <path d="M12 2.982c2.937 0 3.285.011 4.445.064a6.087 6.087 0 0 1 2.042.379 3.408 3.408 0 0 1 1.265.823 3.408 3.408 0 0 1 .823 1.265 6.087 6.087 0 0 1 .379 2.042c.053 1.16.064 1.508.064 4.445s-.011 3.285-.064 4.445a6.087 6.087 0 0 1-.379 2.042 3.643 3.643 0 0 1-2.088 2.088 6.087 6.087 0 0 1-2.042.379c-1.16.053-1.508.064-4.445.064s-3.285-.011-4.445-.064a6.087 6.087 0 0 1-2.043-.379 3.408 3.408 0 0 1-1.264-.823 3.408 3.408 0 0 1-.823-1.265 6.087 6.087 0 0 1-.379-2.042c-.053-1.16-.064-1.508-.064-4.445s.011-3.285.064-4.445a6.087 6.087 0 0 1 .379-2.042 3.408 3.408 0 0 1 .823-1.265 3.408 3.408 0 0 1 1.265-.823 6.087 6.087 0 0 1 2.042-.379c1.16-.053 1.508-.064 4.445-.064M12 1c-2.987 0-3.362.013-4.535.066a8.074 8.074 0 0 0-2.67.511 5.392 5.392 0 0 0-1.949 1.27 5.392 5.392 0 0 0-1.269 1.948 8.074 8.074 0 0 0-.51 2.67C1.012 8.638 1 9.013 1 12s.013 3.362.066 4.535a8.074 8.074 0 0 0 .511 2.67 5.392 5.392 0 0 0 1.27 1.949 5.392 5.392 0 0 0 1.948 1.269 8.074 8.074 0 0 0 2.67.51C8.638 22.988 9.013 23 12 23s3.362-.013 4.535-.066a8.074 8.074 0 0 0 2.67-.511 5.625 5.625 0 0 0 3.218-3.218 8.074 8.074 0 0 0 .51-2.67C22.988 15.362 23 14.987 23 12s-.013-3.362-.066-4.535a8.074 8.074 0 0 0-.511-2.67 5.392 5.392 0 0 0-1.27-1.949 5.392 5.392 0 0 0-1.948-1.269 8.074 8.074 0 0 0-2.67-.51C15.362 1.012 14.987 1 12 1Zm0 5.351A5.649 5.649 0 1 0 17.649 12 5.649 5.649 0 0 0 12 6.351Zm0 9.316A3.667 3.667 0 1 1 15.667 12 3.667 3.667 0 0 1 12 15.667Zm5.872-10.859a1.32 1.32 0 1 0 1.32 1.32 1.32 1.32 0 0 0-1.32-1.32Z"></path>
                                             </svg>
@@ -78,7 +78,7 @@
 
                                                                             <!--검색 - 악시오스 사용-->
                                                                             <a class="boardMain-nav-list-search-link"
-                                                                               href="#">
+                                                                               href="#" onclick="memberSearchOaF();return false;">
                                                                                 <div class="boardMain-nav-list-search-box-size">
                                                                                     <div>
                                                                                         <div class="boardMain-nav-list-search-img-box">
@@ -401,6 +401,126 @@
                                                             </span>
                     </div>
 
+                </div>
+            </div>
+
+            <!--여기부터 검색 시작-->
+            <div class="nav-search-b2" id="navSearchMenu">
+                <div class="nav-search-b-">
+                    <div class="nav-search-b-1">
+                        <div class="nav-search-b-t">
+                            <div>
+                                <span class="nav-search-b-t-">검색</span>
+                            </div>
+                        </div>
+
+                        <div class="nav-search-b-m">
+                            <div class="nav-search-b-m-s">
+                                <div class="nav-search-b-m-s-">
+                                    <input class="nav-search-b-m-s-input" type="text" placeholder="검색">
+                                    <div class="anjswlahfma"></div>
+                                    <div class="nav-search-b-m-s-input-clean"></div>
+                                </div>
+                            </div>
+                            <div class="nav-search-b-m-s-l">
+                                <div class="nav-search-b-m-s-l-">
+
+                                    <!--검색 기록 시작-->
+                                    <!--                            <div class="nav-search-b-m-s-l-i">-->
+                                    <!--                                <span class="nav-search-b-m-s-l-i-">최근 검색 항목</span>-->
+                                    <!--                                <div class="nav-search-b-m-s-l-i-1">모두 지우기</div>-->
+                                    <!--                            </div>-->
+                                    <!--                            <ul class="_abo1">-->
+                                    <!--                                <div>-->
+                                    <!--                                    <a href="#" class="search-m">-->
+                                    <!--                                        <div class="search-m-">-->
+                                    <!--                                            <div class="search-m-1">-->
+                                    <!--                                                <div class="search-m-2">-->
+                                    <!--                                                    <div class="search-m-i">-->
+                                    <!--                                                        <div class="search-m-i-">-->
+                                    <!--                                                            <div class="search-m-i-1">-->
+                                    <!--                                                                <canvas class="search-m-i-canvas" height="54" width="54"></canvas>-->
+                                    <!--                                                                <span class="search-m-i-2">-->
+
+                                    <!--                                                                    &lt;!&ndash;검색 기록 이미지&ndash;&gt;-->
+                                    <!--                                                                    <img src="../images/test프로필.jpg" class="search-m-i-img">-->
+                                    <!--                                                                </span>-->
+                                    <!--                                                            </div>-->
+                                    <!--                                                        </div>-->
+                                    <!--                                                    </div>-->
+                                    <!--                                                    <div class="search-m-it">-->
+                                    <!--                                                        <div class="search-m-it-">-->
+                                    <!--                                                            <div class="search-m-it-1">-->
+                                    <!--                                                                <div class="search-m-it-2">-->
+
+                                    <!--                                                                    &lt;!&ndash;검색 기록 사용자 닉네임&ndash;&gt;-->
+                                    <!--                                                                    <span class="search-m-it-3">karina_aespas_</span>-->
+                                    <!--                                                                </div>-->
+                                    <!--                                                                <span class="search-m-it-4">-->
+                                    <!--                                                                    <span class="search-m-it-5">AESPA KARINA 카리나 • 팔로잉</span>-->
+                                    <!--                                                                </span>-->
+                                    <!--                                                            </div>-->
+                                    <!--                                                        </div>-->
+                                    <!--                                                    </div>-->
+                                    <!--                                                    <div class="search-m-ite">-->
+                                    <!--                                                        <div class="search-m-ite-">-->
+                                    <!--                                                            <div class="search-m-ite-1">-->
+                                    <!--                                                                <div class="search-m-ite-2">-->
+                                    <!--                                                                    <svg aria-label="닫기" class="close-icon" color="rgb(115, 115, 115)" fill="rgb(115, 115, 115)" height="16" role="img" viewBox="0 0 24 24" width="16">-->
+                                    <!--                                                                        <title>닫기</title>-->
+                                    <!--                                                                        <polyline fill="none" points="20.643 3.357 12 12 3.353 20.647" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></polyline>-->
+                                    <!--                                                                        <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" x1="20.649" x2="3.354" y1="20.649" y2="3.354"></line>-->
+                                    <!--                                                                    </svg>-->
+                                    <!--                                                                </div>-->
+                                    <!--                                                            </div>-->
+                                    <!--                                                        </div>-->
+                                    <!--                                                    </div>-->
+                                    <!--                                                </div>-->
+                                    <!--                                            </div>-->
+                                    <!--                                        </div>-->
+                                    <!--                                    </a>-->
+                                    <!--                                </div>-->
+                                    <!--                            </ul>-->
+
+                                    <!--검색 시작-->
+                                    <div>
+                                        <div class="_abn_">
+                                            <a href="#" class="search-m-u">
+                                                <div class="search-m-u-">
+                                                    <div class="search-m-u-1">
+                                                        <div class="search-m-u-2">
+                                                            <div class="search-m-u-i">
+                                                                <div class="search-m-u-i-">
+                                                                    <div class="search-m-u-i-1">
+                                                                        <canvas class="search-m-i-canvas" height="54" width="54"></canvas>
+                                                                        <span class="search-m-u-i-2">
+                                                                    <img src="../images/test프로필.jpg" class="search-m-u-i-img">
+                                                                </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="search-m-u-it">
+                                                                <div class="search-m-u-it-">
+                                                                    <div class="search-m-u-it-1">
+                                                                        <div class="search-m-u-it-2">
+                                                                            <span class="search-m-u-it-3">24.1a__96</span>
+                                                                        </div>
+                                                                        <span class="search-m-u-it-4">
+                                                                    <span class="search-m-u-it-5">힘찬</span>
+                                                                </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

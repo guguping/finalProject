@@ -25,17 +25,17 @@ const plusNavDisplayMain = document.getElementById('plusNavDisplay-main');
 const plusBoardOpModal = document.getElementById('plus-modal-board-');
 
 
-
 function openBoardMenu(boardId) {
     let plusBoardOpModalBtn2 = document.getElementById("board-modal-on-off" + boardId);
-        if (plusBoardOpModal.style.display === "none") {
-            plusBoardOpModal.style.display = "block";
-            console.log("응애");
-        } else {
-            plusBoardOpModal.style.display = "none";
-        }
+    if (plusBoardOpModal.style.display === "none") {
+        plusBoardOpModal.style.display = "block";
+        console.log("응애");
+    } else {
+        plusBoardOpModal.style.display = "none";
+    }
     console.log("Performing post menu operation for boardId:", boardId);
 }
+
 const plusNavDisplay = () => {
     if (plusNavDisplayMain.style.display === "none") {
         plusNavDisplayMain.style.display = "block";
@@ -414,10 +414,10 @@ boardMainContainers.forEach(function (boardMainContainer) {
 
 const comment_list = (commentList, memberNickname, boardId) => {
     console.log("댓글 목록 함수", commentList);
-    const resultArea = document.getElementById('comment-list'+boardId);
+    const resultArea = document.getElementById('comment-list' + boardId);
     resultArea.innerHTML = '';
 
-    const latestComments = commentList.slice(0, 2);
+    const latestComments = commentList.slice(0, 1);
 
     for (let i in latestComments) {
         const commentHtml = `
@@ -444,7 +444,7 @@ const comment_list = (commentList, memberNickname, boardId) => {
 };
 
 const comment_write = (boardId, memberId) => {
-    const contents = document.getElementById('commentContents'+boardId).value;
+    const contents = document.getElementById('commentContents' + boardId).value;
     console.log("contents = " + contents);
     axios({
         method: "post",
@@ -461,7 +461,7 @@ const comment_write = (boardId, memberId) => {
         console.log("res", res);
         console.log("댓글 목록", res.data);
         // document.querySelector("#commentContents").value = "";
-        document.getElementById('commentContents'+boardId).value = "";
+        document.getElementById('commentContents' + boardId).value = "";
 
         // 멤버 닉네임 설정
         const memberNickname = memberDTO.memberNickName;
@@ -473,7 +473,7 @@ const comment_write = (boardId, memberId) => {
     });
 };
 const boardDelete = (id) => {
-    console.log("boardid ="+ id);
+    console.log("boardid =" + id);
     const boardid = id
     axios({
         method: "delete",
@@ -484,7 +484,6 @@ const boardDelete = (id) => {
         alert("삭제 실패!!");
     });
 }
-
 
 
 var currentPage = 1; // 현재 페이지 초기값을 설정합니다.
@@ -559,6 +558,7 @@ function goToNextPage(boardId) {
         previousButton.style.display = "none";
     }
 }
+
 var boardMainContainer2 = document.querySelectorAll(".boardMain-main-board-img-box"); // select post container
 var imageElements2 = document.querySelectorAll(".imageContainer img"); // Select the image elements of the post
 // Hide previous button initially if it's the first image
@@ -588,5 +588,85 @@ const board_img_paging = (imgPage) => {
         } else {
             parentElement.appendChild(childElement);
         }
+    }
+}
+const memberSearchOaF = () => {
+    const searchBox = $('#navSearchMenu');
+    const navMenuBox = $('#navMenuBox');
+    const navLogo = document.getElementById('searchImg');
+    const navLogo2 = document.getElementById('searchImg2');
+    if (searchBox.hasClass("nav-search-b2")) {
+        searchBox.removeClass("nav-search-b2");
+        if (navMenuBox.width() === 311) {
+            navMenuBox.removeClass("boardMain-nav-margin");
+            navMenuBox.addClass("boardMain-nav-margin1"); // 311
+            searchBox.addClass("nav-search-b");
+            setTimeout(function() {
+                navLogo.style.display = "none";
+                navLogo2.style.display = "block";
+            }, 500);
+        } else if (navMenuBox.width() === 220) {
+            navMenuBox.removeClass("boardMain-nav-margin");
+            navMenuBox.addClass("boardMain-nav-margin2"); //220
+            searchBox.addClass("nav-search-b");
+            setTimeout(function() {
+                navLogo.style.display = "none";
+                navLogo2.style.display = "block";
+            }, 500);
+        } else {
+            searchBox.addClass("nav-search-b");
+        }
+    } else if (searchBox.hasClass("nav-search-b1")) {
+        searchBox.removeClass("nav-search-b1");
+        if (navMenuBox.hasClass("boardMain-nav-margin4")) {
+            navMenuBox.removeClass("boardMain-nav-margin4");
+            navMenuBox.addClass("boardMain-nav-margin1");
+            searchBox.addClass("nav-search-b");
+            setTimeout(function() {
+                navLogo.style.display = "none";
+                navLogo2.style.display = "block";
+            }, 500);
+        } else if (navMenuBox.hasClass("boardMain-nav-margin5")) {
+            navMenuBox.removeClass("boardMain-nav-margin5");
+            navMenuBox.addClass("boardMain-nav-margin2");
+            searchBox.addClass("nav-search-b");
+            setTimeout(function() {
+                navLogo.style.display = "none";
+                navLogo2.style.display = "block";
+            }, 500);
+        } else {
+            searchBox.addClass("nav-search-b");
+        }
+    } else {
+        searchBox.removeClass("nav-search-b");
+        if (navMenuBox.hasClass("boardMain-nav-margin1")) {
+            navMenuBox.removeClass("boardMain-nav-margin1");
+            navMenuBox.addClass("boardMain-nav-margin4"); // 길어지기 311
+            searchBox.addClass("nav-search-b1");
+            setTimeout(function() {
+                navLogo.style.display = "block";
+                navLogo2.style.display = "none";
+            }, 500);
+        } else if (navMenuBox.hasClass("boardMain-nav-margin2")) {
+            navMenuBox.removeClass("boardMain-nav-margin2");
+            navMenuBox.addClass("boardMain-nav-margin5"); // 길어지기 220
+            searchBox.addClass("nav-search-b1");
+            setTimeout(function() {
+                navLogo.style.display = "block";
+                navLogo2.style.display = "none";
+            }, 500);
+        } else {
+            searchBox.addClass("nav-search-b1");
+        }
+        setTimeout(function() {
+            navMenuBox.removeClass("boardMain-nav-margin5");
+            navMenuBox.removeClass("boardMain-nav-margin4");
+            navMenuBox.addClass("boardMain-nav-margin"); // 길어지기 220
+            searchBox.removeClass("nav-search-b1");
+            searchBox.addClass("nav-search-b2");
+            navLogo.style.display = "";
+            navLogo2.style.display = "";
+        }, 1000);
+
     }
 }
