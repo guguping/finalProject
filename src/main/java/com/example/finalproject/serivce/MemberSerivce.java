@@ -193,4 +193,13 @@ public class MemberSerivce {
     public void memberUpdate(MemberDTO upDTO) {
         memberRepository.save(MemberEntity.toUpdateEntity(upDTO));
     }
+
+    public List<MemberDTO> searchMember(String q) {
+        List<MemberEntity> memberEntityList = memberRepository.findByMemberNameContainingOrMemberNickNameContaining(q, q);
+        List<MemberDTO> memberDTOList = new ArrayList<>();
+        memberEntityList.forEach(memberEntity -> {
+            memberDTOList.add(MemberDTO.toDTO(memberEntity));
+        });
+        return memberDTOList;
+    }
 }

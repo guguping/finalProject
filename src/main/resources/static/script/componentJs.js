@@ -601,7 +601,7 @@ const memberSearchOaF = () => {
             navMenuBox.removeClass("boardMain-nav-margin");
             navMenuBox.addClass("boardMain-nav-margin1"); // 311
             searchBox.addClass("nav-search-b");
-            setTimeout(function() {
+            setTimeout(function () {
                 navLogo.style.display = "none";
                 navLogo2.style.display = "block";
             }, 500);
@@ -609,7 +609,7 @@ const memberSearchOaF = () => {
             navMenuBox.removeClass("boardMain-nav-margin");
             navMenuBox.addClass("boardMain-nav-margin2"); //220
             searchBox.addClass("nav-search-b");
-            setTimeout(function() {
+            setTimeout(function () {
                 navLogo.style.display = "none";
                 navLogo2.style.display = "block";
             }, 500);
@@ -622,7 +622,7 @@ const memberSearchOaF = () => {
             navMenuBox.removeClass("boardMain-nav-margin4");
             navMenuBox.addClass("boardMain-nav-margin1");
             searchBox.addClass("nav-search-b");
-            setTimeout(function() {
+            setTimeout(function () {
                 navLogo.style.display = "none";
                 navLogo2.style.display = "block";
             }, 500);
@@ -630,7 +630,7 @@ const memberSearchOaF = () => {
             navMenuBox.removeClass("boardMain-nav-margin5");
             navMenuBox.addClass("boardMain-nav-margin2");
             searchBox.addClass("nav-search-b");
-            setTimeout(function() {
+            setTimeout(function () {
                 navLogo.style.display = "none";
                 navLogo2.style.display = "block";
             }, 500);
@@ -643,7 +643,7 @@ const memberSearchOaF = () => {
             navMenuBox.removeClass("boardMain-nav-margin1");
             navMenuBox.addClass("boardMain-nav-margin4"); // 길어지기 311
             searchBox.addClass("nav-search-b1");
-            setTimeout(function() {
+            setTimeout(function () {
                 navLogo.style.display = "block";
                 navLogo2.style.display = "none";
             }, 500);
@@ -651,14 +651,14 @@ const memberSearchOaF = () => {
             navMenuBox.removeClass("boardMain-nav-margin2");
             navMenuBox.addClass("boardMain-nav-margin5"); // 길어지기 220
             searchBox.addClass("nav-search-b1");
-            setTimeout(function() {
+            setTimeout(function () {
                 navLogo.style.display = "block";
                 navLogo2.style.display = "none";
             }, 500);
         } else {
             searchBox.addClass("nav-search-b1");
         }
-        setTimeout(function() {
+        setTimeout(function () {
             navMenuBox.removeClass("boardMain-nav-margin5");
             navMenuBox.removeClass("boardMain-nav-margin4");
             navMenuBox.addClass("boardMain-nav-margin"); // 길어지기 220
@@ -670,3 +670,69 @@ const memberSearchOaF = () => {
 
     }
 }
+let debounceTimeout;
+
+// 사용자 입력을 처리하는 debounce 함수
+function debounce(func, delay) {
+    clearTimeout(debounceTimeout);
+    debounceTimeout = setTimeout(func, delay);
+}
+
+const memberSearchInput = document.getElementById('nav-search-b-m-s-input');
+memberSearchInput.addEventListener('keyup', function () {
+    const searchMemberResult = document.getElementById('searchMemberResult');
+    debounce(function () {
+        let keyResult = memberSearchInput.value;
+        axios({
+            method: "post",
+            url: "/member/search",
+            data: {
+                q: keyResult
+            }
+        }).then(res => {
+            let output = "";
+            if (res.data.length === 0) {
+                output += '<div class="nav-search-b-m-u-x">검색 결과가 없습니다.</div>';
+            } else {
+                for (let i = 0; i < res.data.length; i++) {
+                    output += '<div class="_abn_">\n' +
+                        '                                            <a href="/member/myPage/' + res.data[i].id + '" class="search-m-u">\n' +
+                        '                                                <div class="search-m-u-">\n' +
+                        '                                                    <div class="search-m-u-1">\n' +
+                        '                                                        <div class="search-m-u-2">\n' +
+                        '                                                            <div class="search-m-u-i">\n' +
+                        '                                                                <div class="search-m-u-i-">\n' +
+                        '                                                                    <div class="search-m-u-i-1">\n' +
+                        '                                                                        <canvas class="search-m-i-canvas" height="54" width="54"></canvas>\n' +
+                        '                                                                        <span class="search-m-u-i-2">\n' +
+                        '                                                                    <img src="/upload/' + res.data[i].memberProfile + '" class="search-m-u-i-img">\n' +
+                        '                                                                </span>\n' +
+                        '                                                                    </div>\n' +
+                        '                                                                </div>\n' +
+                        '                                                            </div>\n' +
+                        '                                                            <div class="search-m-u-it">\n' +
+                        '                                                                <div class="search-m-u-it-">\n' +
+                        '                                                                    <div class="search-m-u-it-1">\n' +
+                        '                                                                        <div class="search-m-u-it-2">\n' +
+                        '                                                                            <span class="search-m-u-it-3">' + res.data[i].memberNickName + '</span>\n' +
+                        '                                                                        </div>\n' +
+                        '                                                                        <span class="search-m-u-it-4">\n' +
+                        '                                                                    <span class="search-m-u-it-5">' + res.data[i].memberName + '</span>\n' +
+                        '                                                                </span>\n' +
+                        '                                                                    </div>\n' +
+                        '                                                                </div>\n' +
+                        '                                                            </div>\n' +
+                        '                                                        </div>\n' +
+                        '                                                    </div>\n' +
+                        '                                                </div>\n' +
+                        '                                            </a>\n' +
+                        '                                        </div>'
+                }
+            }
+            searchMemberResult.innerHTML = output;
+            console.log("성공");
+        }).catch(err => {
+            console.log("실패");
+        });
+    }, 1000); // 1초 지연
+});

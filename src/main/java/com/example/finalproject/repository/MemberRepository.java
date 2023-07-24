@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface MemberRepository extends JpaRepository<MemberEntity,Long> {
@@ -21,4 +22,6 @@ public interface MemberRepository extends JpaRepository<MemberEntity,Long> {
     @Modifying
     @Query(value = "update member_table set member_profile=:memberProfile where id=:id", nativeQuery = true)
     void updateProfile(@Param("id") Long id, @Param("memberProfile") String memberProfile);
+
+    List<MemberEntity> findByMemberNameContainingOrMemberNickNameContaining(String q, String q1);
 }
