@@ -261,4 +261,10 @@ public class MemberController {
         memberSerivce.memberUpdate(upDTO);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    @PostMapping("/search")
+    public ResponseEntity<?> memberSearch(@RequestBody Map<String, String> requestBody) {
+        String q = requestBody.get("q");
+        List<MemberDTO> memberDTOList = memberSerivce.searchMember(q);
+        return new ResponseEntity<>(memberDTOList, HttpStatus.OK);
+    }
 }
