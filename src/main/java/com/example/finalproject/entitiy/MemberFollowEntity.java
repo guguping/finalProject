@@ -23,4 +23,11 @@ public class MemberFollowEntity extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "following_id")
     private MemberEntity followingMemberEntity;
+
+    public static MemberFollowEntity toSaveEntity(MemberEntity memberEntity, MemberEntity loginMemberEntity) {
+        MemberFollowEntity memberFollowEntity = new MemberFollowEntity();
+        memberFollowEntity.setFollowingMemberEntity(memberEntity);
+        memberFollowEntity.setFollowerMemberEntity(loginMemberEntity);
+        return memberFollowEntity;
+    }
 }
