@@ -590,6 +590,8 @@ const board_img_paging = (imgPage) => {
         }
     }
 }
+
+const memberSearchInput = document.getElementById('nav-search-b-m-s-input');
 const memberSearchOaF = () => {
     const searchBox = $('#navSearchMenu');
     const navMenuBox = $('#navMenuBox');
@@ -666,8 +668,8 @@ const memberSearchOaF = () => {
             searchBox.addClass("nav-search-b2");
             navLogo.style.display = "";
             navLogo2.style.display = "";
+            memberSearchInput.value = "";
         }, 1000);
-
     }
 }
 let debounceTimeout;
@@ -678,61 +680,123 @@ function debounce(func, delay) {
     debounceTimeout = setTimeout(func, delay);
 }
 
-const memberSearchInput = document.getElementById('nav-search-b-m-s-input');
 memberSearchInput.addEventListener('keyup', function () {
     const searchMemberResult = document.getElementById('searchMemberResult');
-    debounce(function () {
-        let keyResult = memberSearchInput.value;
-        axios({
-            method: "post",
-            url: "/member/search",
-            data: {
-                q: keyResult
-            }
-        }).then(res => {
-            let output = "";
-            if (res.data.length === 0) {
-                output += '<div class="nav-search-b-m-u-x">검색 결과가 없습니다.</div>';
-            } else {
-                for (let i = 0; i < res.data.length; i++) {
-                    output += '<div class="_abn_">\n' +
-                        '                                            <a href="/member/myPage/' + res.data[i].id + '" class="search-m-u">\n' +
-                        '                                                <div class="search-m-u-">\n' +
-                        '                                                    <div class="search-m-u-1">\n' +
-                        '                                                        <div class="search-m-u-2">\n' +
-                        '                                                            <div class="search-m-u-i">\n' +
-                        '                                                                <div class="search-m-u-i-">\n' +
-                        '                                                                    <div class="search-m-u-i-1">\n' +
-                        '                                                                        <canvas class="search-m-i-canvas" height="54" width="54"></canvas>\n' +
-                        '                                                                        <span class="search-m-u-i-2">\n' +
-                        '                                                                    <img src="/upload/' + res.data[i].memberProfile + '" class="search-m-u-i-img">\n' +
-                        '                                                                </span>\n' +
-                        '                                                                    </div>\n' +
-                        '                                                                </div>\n' +
-                        '                                                            </div>\n' +
-                        '                                                            <div class="search-m-u-it">\n' +
-                        '                                                                <div class="search-m-u-it-">\n' +
-                        '                                                                    <div class="search-m-u-it-1">\n' +
-                        '                                                                        <div class="search-m-u-it-2">\n' +
-                        '                                                                            <span class="search-m-u-it-3">' + res.data[i].memberNickName + '</span>\n' +
-                        '                                                                        </div>\n' +
-                        '                                                                        <span class="search-m-u-it-4">\n' +
-                        '                                                                    <span class="search-m-u-it-5">' + res.data[i].memberName + '</span>\n' +
-                        '                                                                </span>\n' +
-                        '                                                                    </div>\n' +
-                        '                                                                </div>\n' +
-                        '                                                            </div>\n' +
-                        '                                                        </div>\n' +
-                        '                                                    </div>\n' +
-                        '                                                </div>\n' +
-                        '                                            </a>\n' +
-                        '                                        </div>'
+        debounce(function () {
+            let keyResult = memberSearchInput.value;
+            axios({
+                method: "post",
+                url: "/member/search",
+                data: {
+                    q: keyResult
                 }
-            }
-            searchMemberResult.innerHTML = output;
-            console.log("성공");
-        }).catch(err => {
-            console.log("실패");
-        });
-    }, 1000); // 1초 지연
+            }).then(res => {
+                if (keyResult === "") {
+                    let iinput = "";
+                    iinput += '<div class="nav-search-b-m-s-l-i">\n' +
+                        '                                                                        <span class="nav-search-b-m-s-l-i-">최근 검색 항목</span>\n' +
+                        '                                                                        <div class="nav-search-b-m-s-l-i-1">모두 지우기</div>\n' +
+                        '                                                                    </div>\n' +
+                        '                                                                    <ul class="_abo1">\n' +
+                        '                                                                        <div>\n' +
+                        '                                                                            <a href="#" class="search-m">\n' +
+                        '                                                                                <div class="search-m-">\n' +
+                        '                                                                                    <div class="search-m-1">\n' +
+                        '                                                                                        <div class="search-m-2">\n' +
+                        '                                                                                            <div class="search-m-i">\n' +
+                        '                                                                                                <div class="search-m-i-">\n' +
+                        '                                                                                                    <div class="search-m-i-1">\n' +
+                        '                                                                                                        <canvas class="search-m-i-canvas" height="54" width="54"></canvas>\n' +
+                        '                                                                                                        <span class="search-m-i-2">\n' +
+                        '\n' +
+                        '                                                                                                            <!--검색 기록 이미지-->\n' +
+                        '                                                                                                            <img src="../images/test프로필.jpg" class="search-m-i-img">\n' +
+                        '                                                                                                        </span>\n' +
+                        '                                                                                                    </div>\n' +
+                        '                                                                                                </div>\n' +
+                        '                                                                                            </div>\n' +
+                        '                                                                                            <div class="search-m-it">\n' +
+                        '                                                                                                <div class="search-m-it-">\n' +
+                        '                                                                                                    <div class="search-m-it-1">\n' +
+                        '                                                                                                        <div class="search-m-it-2">\n' +
+                        '\n' +
+                        '                                                                                                            <!--검색 기록 사용자 닉네임-->\n' +
+                        '                                                                                                            <span class="search-m-it-3">karina_aespas_</span>\n' +
+                        '                                                                                                        </div>\n' +
+                        '                                                                                                        <span class="search-m-it-4">\n' +
+                        '                                                                                                            <span class="search-m-it-5">AESPA KARINA 카리나 • 팔로잉</span>\n' +
+                        '                                                                                                        </span>\n' +
+                        '                                                                                                    </div>\n' +
+                        '                                                                                                </div>\n' +
+                        '                                                                                            </div>\n' +
+                        '                                                                                            <div class="search-m-ite">\n' +
+                        '                                                                                                <div class="search-m-ite-">\n' +
+                        '                                                                                                    <div class="search-m-ite-1">\n' +
+                        '                                                                                                        <div class="search-m-ite-2">\n' +
+                        '                                                                                                            <svg aria-label="닫기" class="close-icon" color="rgb(115, 115, 115)" fill="rgb(115, 115, 115)" height="16" role="img" viewBox="0 0 24 24" width="16">\n' +
+                        '                                                                                                                <title>닫기</title>\n' +
+                        '                                                                                                                <polyline fill="none" points="20.643 3.357 12 12 3.353 20.647" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></polyline>\n' +
+                        '                                                                                                                <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" x1="20.649" x2="3.354" y1="20.649" y2="3.354"></line>\n' +
+                        '                                                                                                            </svg>\n' +
+                        '                                                                                                        </div>\n' +
+                        '                                                                                                    </div>\n' +
+                        '                                                                                                </div>\n' +
+                        '                                                                                            </div>\n' +
+                        '                                                                                        </div>\n' +
+                        '                                                                                    </div>\n' +
+                        '                                                                                </div>\n' +
+                        '                                                                            </a>\n' +
+                        '                                                                        </div>\n' +
+                        '                                                                    </ul>'
+                    searchMemberResult.innerHTML = iinput;
+                } else {
+                    let output = "";
+                    if (res.data.length === 0) {
+                        output += '<div class="nav-search-b-m-u-x">검색 결과가 없습니다.</div>';
+                    } else {
+                        for (let i = 0; i < res.data.length; i++) {
+                            output += '<div class="_abn_">\n' +
+                                '                                            <a href="/member/myPage1/' + res.data[i].id + '" class="search-m-u">\n' +
+                                '                                                <div class="search-m-u-">\n' +
+                                '                                                    <div class="search-m-u-1">\n' +
+                                '                                                        <div class="search-m-u-2">\n' +
+                                '                                                            <div class="search-m-u-i">\n' +
+                                '                                                                <div class="search-m-u-i-">\n' +
+                                '                                                                    <div class="search-m-u-i-1">\n' +
+                                '                                                                        <canvas class="search-m-i-canvas" height="54" width="54"></canvas>\n' +
+                                '                                                                        <span class="search-m-u-i-2">\n' +
+                                '                                                                    <img src="/upload/' + res.data[i].memberProfile + '" class="search-m-u-i-img">\n' +
+                                '                                                                </span>\n' +
+                                '                                                                    </div>\n' +
+                                '                                                                </div>\n' +
+                                '                                                            </div>\n' +
+                                '                                                            <div class="search-m-u-it">\n' +
+                                '                                                                <div class="search-m-u-it-">\n' +
+                                '                                                                    <div class="search-m-u-it-1">\n' +
+                                '                                                                        <div class="search-m-u-it-2">\n' +
+                                '                                                                            <span class="search-m-u-it-3">' + res.data[i].memberNickName + '</span>\n' +
+                                '                                                                        </div>\n' +
+                                '                                                                        <span class="search-m-u-it-4">\n' +
+                                '                                                                    <span class="search-m-u-it-5">' + res.data[i].memberName + '</span>\n' +
+                                '                                                                </span>\n' +
+                                '                                                                    </div>\n' +
+                                '                                                                </div>\n' +
+                                '                                                            </div>\n' +
+                                '                                                        </div>\n' +
+                                '                                                    </div>\n' +
+                                '                                                </div>\n' +
+                                '                                            </a>\n' +
+                                '                                        </div>'
+                        }
+                    }
+                    searchMemberResult.innerHTML = output;
+                }
+            }).catch(err => {
+                console.log("실패");
+            });
+        }, 1000); // 1초 지연
 });
+
+const inputClear = () => {
+    memberSearchInput.value = "";
+}

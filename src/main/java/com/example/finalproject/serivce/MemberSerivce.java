@@ -4,7 +4,10 @@ import com.example.finalproject.domain.Role;
 import com.example.finalproject.dto.BoardFileDTO;
 import com.example.finalproject.dto.MemberDTO;
 import com.example.finalproject.entitiy.MemberEntity;
+import com.example.finalproject.entitiy.MemberFollowEntity;
+import com.example.finalproject.entitiy.MemberSearchEntity;
 import com.example.finalproject.repository.MemberRepository;
+import com.example.finalproject.repository.SearchRepository;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,6 +29,7 @@ import java.util.Optional;
 public class MemberSerivce {
 
     private final MemberRepository memberRepository;
+    private final SearchRepository searchRepository;
 
     public Long save(MemberDTO memberDTO) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -201,5 +205,12 @@ public class MemberSerivce {
             memberDTOList.add(MemberDTO.toDTO(memberEntity));
         });
         return memberDTOList;
+    }
+
+    public void searchSaved(Long loginId, Long searchId) {
+        MemberEntity loginEntity = memberRepository.findById(loginId).orElseThrow(() -> new NoSuchElementException());
+        MemberEntity searchEntity = memberRepository.findById(searchId).orElseThrow(() -> new NoSuchElementException());
+        MemberSearchEntity searchMemberEntity = MemberSearchEntity.toSaveEntity(loginEntity, searchEntity);
+        searchRepository.save(searchMemberEntity);
     }
 }

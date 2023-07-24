@@ -154,6 +154,12 @@ public class MemberEntity extends BaseEntity implements UserDetails {
     @OneToMany(mappedBy = "memberEntity",cascade = CascadeType.REMOVE,orphanRemoval = true,fetch = FetchType.LAZY)
     private List<BoardReelsBookmarkEntity> boardReelsBookmarkEntityList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "searchMember",cascade = CascadeType.REMOVE,orphanRemoval = true,fetch = FetchType.LAZY)
+    private List<MemberSearchEntity> searchMemberEntityList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "memberSearch",cascade = CascadeType.REMOVE,orphanRemoval = true,fetch = FetchType.LAZY)
+    private List<MemberSearchEntity> memberSearchEntityList = new ArrayList<>();
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singleton(new SimpleGrantedAuthority(Role.ROLE_MEMBER.name()));

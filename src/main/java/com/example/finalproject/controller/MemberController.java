@@ -173,6 +173,38 @@ public class MemberController {
         return "memberPages/myPage";
     }
 
+    @GetMapping("/myPage1/{id}")
+    public String memberMyPages1(@PathVariable Long id, Model model, HttpSession session) {
+        Long loginId = (Long) session.getAttribute("memberId");
+        MemberDTO loginMemberDTO = memberSerivce.findById(loginId);
+        // 해당 피드의 멤버 정보 가져오기
+        MemberDTO memberDTO = memberSerivce.findById(id);
+        // 해당 피드의 멤버가 작성한 board 정보 가져오기
+        memberSerivce.searchSaved(loginId, id);
+        List<BoardDTO> boardDTOList = boardService.findByMemberId(id);
+        List<BoardFileDTO> boardFileDTOList = boardService.findAllFileOrderByDesc();
+        List<MemberFollowDTO> memberFollowerDTOList = memberFollowService.findByFollower(id);
+        List<MemberFollowDTO> memberFollowingDTOList = memberFollowService.findByFollowing(id);
+        int followOk = 0;
+        for (MemberFollowDTO f : memberFollowerDTOList) {
+            if (f.getFollowerId() == loginId) {
+                followOk = 1;
+                break;
+            }
+        }
+        int memberFollowerCount = memberFollowerDTOList.size();
+        int memberFollowingCount = memberFollowingDTOList.size();
+
+        model.addAttribute("memberDTO", loginMemberDTO);
+        model.addAttribute("pageMemberDTO", memberDTO);
+        model.addAttribute("boardDTOList", boardDTOList);
+        model.addAttribute("boardFileDTOList", boardFileDTOList);
+        model.addAttribute("memberFollowerCount", memberFollowerCount);
+        model.addAttribute("memberFollowingCount", memberFollowingCount);
+        model.addAttribute("memberFollowOk", followOk);
+        return "memberPages/myPage";
+    }
+
     @PostMapping("/profileUpdate")
     public String profileUpdate(@ModelAttribute MemberDTO memberDTO, HttpSession session) throws IOException {
         Long loginId = (Long) session.getAttribute("memberId");
