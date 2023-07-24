@@ -45,15 +45,40 @@ public class MemberSerivce {
 //
 //    }
 
+//    public MemberDTO findByMemberEmailAndMemberPassword(MemberDTO memberDTO) {
+//        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+//        System.out.println("암호화: " + encoder.encode(memberDTO.getMemberPassword()));
+//        Optional<MemberEntity> memberEntityOptional = memberRepository.findByMemberEmailAndMemberPassword(memberDTO.getMemberEmail(), encoder.encode(memberDTO.getMemberPassword()));
+//        System.out.println(memberEntityOptional.isPresent());
+//        if (memberEntityOptional.isPresent()) {
+//            return MemberDTO.toDTO(memberEntityOptional.get());
+//        } else {
+//            return null;
+//        }
+//    }
+
     public MemberDTO findByMemberEmailAndMemberPassword(MemberDTO memberDTO) {
-        Optional<MemberEntity> memberEntityOptional = memberRepository.findByMemberEmailAndMemberPassword(memberDTO.getMemberEmail(), memberDTO.getMemberPassword());
-        System.out.println(memberEntityOptional.isPresent());
+        String rawPassword = memberDTO.getMemberPassword();
+
+        Optional<MemberEntity> memberEntityOptional = memberRepository.findByMemberEmail(memberDTO.getMemberEmail());
+
         if (memberEntityOptional.isPresent()) {
-            return MemberDTO.toDTO(memberEntityOptional.get());
+            MemberEntity memberEntity = memberEntityOptional.get();
+            String hashedPassword = memberEntity.getMemberPassword();
+
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            boolean isPasswordMatch = encoder.matches(rawPassword, hashedPassword);
+
+            if (isPasswordMatch) {
+                return MemberDTO.toDTO(memberEntity);
+            } else {
+                return null; // 비밀번호가 일치하지 않는 경우 로그인 실패
+            }
         } else {
-            return null;
+            return null; // 해당 이메일로 등록된 회원이 없는 경우 로그인 실패
         }
     }
+
 
     public MemberDTO findById(Long memberId) {
         System.out.println("memberId = " + memberId);
