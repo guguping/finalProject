@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${memberDTO.memberName+'(@'+memberDTO.memberNickName+')'}+' • Outstagram'"></title>
+    <title th:text="${pageMemberDTO.memberName+'(@'+pageMemberDTO.memberNickName+')'}+' • Outstagram'"></title>
     <th:block th:replace="component/config :: config"></th:block>
     <link rel="stylesheet" type="text/css" th:href="@{/css/myPage.css}" />
 </head>
@@ -30,8 +30,8 @@
                                                                     <div class="_aadm">
                                                                         <button class="_aadn" title="프로필 사진 바꾸기"
                                                                                 type="button"
-                                                                                th:onclick="userImgChangeOn([[${memberDTO.id}]])">
-                                                                            <img th:src="@{|/upload/${memberDTO.memberProfile}}"
+                                                                                th:onclick="userImgChangeOn([[${pageMemberDTO.id}]])">
+                                                                            <img th:src="@{|/upload/${pageMemberDTO.memberProfile}}"
                                                                                  class="myPage-main-img">
                                                                         </button>
 
@@ -43,9 +43,30 @@
                                                                     <a href="#" class="myPage-member-nickName">
 
                                                                         <!--myPage 상단 유저 닉네임-->
-                                                                        <h2 class="member-nickName-te" th:text="${memberDTO.memberNickName}"></h2>
+                                                                        <h2 class="member-nickName-te" th:text="${pageMemberDTO.memberNickName}"></h2>
 
                                                                     </a>
+
+                                                                    <div id="member-follow-btn">
+                                                                        <!--팔로우 버튼-->
+                                                                        <div class="myPage-user-profile-edit" th:if="${memberFollowOk == 0 && pageMemberDTO.id != session.memberId}">
+                                                                            <button class="myPage-user-fow-btn" th:onclick="member_follow([[${pageMemberDTO.id}]])">
+                                                                                <div class="myPage-user-fow-tb">
+                                                                                    <div class="myPage-user-fow-txt" dir="auto">팔로우</div>
+                                                                                </div>
+                                                                            </button>
+                                                                        </div>
+
+                                                                        <!--팔로잉 취소-->
+                                                                        <div class="myPage-user-profile-edit" th:if="${memberFollowOk == 1 && pageMemberDTO.id != session.memberId}">
+                                                                            <button class="myPage-user-fow-btn1" th:onclick="member_unFollow([[${pageMemberDTO.id}]])">
+                                                                                <div class="myPage-user-fow-tb">
+                                                                                    <div class="myPage-user-fow-txt" style="color: black" dir="auto">팔로잉</div>
+                                                                                </div>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+
                                                                     <div class="myPage-user-profile-edit">
                                                                         <div class="myPage-user-profile-edit-1">
                                                                             <div class="myPage-user-profile-edit-2">
@@ -57,7 +78,7 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="myPage-user-delete-tap" th:if="${memberDTO.id == session.memberId}">
+                                                                    <div class="myPage-user-delete-tap" th:if="${pageMemberDTO.id == session.memberId}">
                                                                         <div class="myPage-user-delete-tap-1">
 
                                                                             <!--회원 로그아웃, 삭제 디스플레이 on/off 버튼-->
@@ -117,10 +138,10 @@
                                                                 </ul>
                                                                 <div class="myPage-member-memberTxt">
                                                                     <div class="myPage-member-memberTxt-top">
-                                                                        <span class="myPage-member-memberTxt-top-1" th:text="${memberDTO.memberName}">
+                                                                        <span class="myPage-member-memberTxt-top-1" th:text="${pageMemberDTO.memberName}">
                                                                         </span>
                                                                     </div>
-                                                                    <h1 class="myPage-top-memberTxt-2" dir="auto" th:text="${memberDTO.memberText}"></h1>
+                                                                    <h1 class="myPage-top-memberTxt-2" dir="auto" th:text="${pageMemberDTO.memberText}"></h1>
                                                                 </div>
                                                             </section>
                                                         </header>
@@ -220,7 +241,7 @@
                                                                                         <div class="myPage-detail-logo-img-box">
                                                                                             <div class="myPage-detail-logo-inner">
                                                                                                 <th:block th:each="fileName:${boardFileDTOList}">
-                                                                                                    <th:block  th:if="${boardDTO.getId() == fileName.getBoardId() && boardDTO.getMemberId() == memberDTO.id}">
+                                                                                                    <th:block  th:if="${boardDTO.getId() == fileName.getBoardId() && boardDTO.getMemberId() == pageMemberDTO.id}">
                                                                                                         <!--                                                                                            <img th:src="@{/images/내보드사진.jpg}" class="myPage-detail-img-size">-->
                                                                                                         <img class="myPage-detail-img-size" th:src="@{|/upload/${fileName.getStoredFileName()}}">
                                                                                                         <th:block
@@ -758,18 +779,18 @@
                         <!--                                </div>-->
                         <!--                            </div>-->
                         <!--                        </div>-->
-<!--                    </div>-->
+                        <!--                    </div>-->
+
+                    </div>
+                </div>
+                <!--게시글 디테일 본문-->
+                <div style="position: fixed;width: 100%;top: 0px;" id="detail-box">
 
                 </div>
-            </div>
-            <!--게시글 디테일 본문-->
-            <div style="position: fixed;width: 100%;top: 0px;" id="detail-box">
 
             </div>
-
         </div>
     </div>
-</div>
 </body>
 <script type="text/javascript" th:src="@{/script/componentJs.js}"></script>
 <script>
@@ -987,7 +1008,7 @@
                 "\n" +
                 "                                                                                                            <!--게시글 상세페이지 유저 사진-->\n" +
                 "                                                                                                            <a href=\"#\"\n" +
-                "                                                                                                               class=\"user-myPage-link\">\n" +
+                "                                                                                                               class=\"user-myPage-link\" onclick=\"detail_memberPage(" + memberDTO.id + ")\">\n" +
                 "                                                                                                                <img \n" +
                 "                                                                                                                     class=\"user-myPage-link-img\"\n" +
                 "                                                                                                                     src=\"/upload/" + memberDTO.memberProfile + "\"" +
@@ -1010,7 +1031,7 @@
                 "                                                                                                                        <div style=\"display: inline;\">\n" +
                 "                                                                                                                            <!--게시글 상세페이지 유저 닉네임-->\n" +
                 "                                                                                                                            <a href=\"#\"\n" +
-                "                                                                                                                               class=\"detail-board-user-nick-link\">" + memberDTO.memberNickName + "</a>\n" +
+                "                                                                                                                               class=\"detail-board-user-nick-link\" onclick=\"detail_memberPage(" + memberDTO.id + ")\">" + memberDTO.memberNickName + "</a>\n" +
                 "                                                                                                                        </div>\n" +
                 "                                                                                                                    </div>\n" +
                 "                                                                                                                </span>\n" +
@@ -1161,7 +1182,7 @@
                 "                                                                                                            <div>\n" +
                 "                                                                                                                <div>\n" +
                 "                                                                                                                    <div class=\"detail-board-contents-pr\">\n" +
-                "                                                                                                                        <a href=\"#\" class=\"detail-board-contents-pr-link\">\n" +
+                "                                                                                                                        <a href=\"#\" class=\"detail-board-contents-pr-link\" onclick=\"detail_memberPage(" + memberDTO.id + ")\">\n" +
                 "\n" +
                 "                                                                                                                            <!--게시글 작성자의 프로필 사진이 들어가야함-->\n" +
                 "                                                                                                                            <img class=\"detail-board-contents-pr-\" src=\"/upload/" + memberDTO.memberProfile + "\">\n" +
@@ -1176,7 +1197,7 @@
                 "                                                                                                                        <div class=\"xt0psk2\">\n" +
                 "\n" +
                 "                                                                                                                            <!--게시글 작성자 닉네임-->\n" +
-                "                                                                                                                            <a href=\"#\" class=\"detail-board-contents-t-m-n-link\">" + memberDTO.memberNickName + "</a>\n" +
+                "                                                                                                                            <a href=\"#\" class=\"detail-board-contents-t-m-n-link\" onclick=\"detail_memberPage(" + memberDTO.id + ")\">" + memberDTO.memberNickName + "</a>\n" +
                 "                                                                                                                        </div>\n" +
                 "                                                                                                                    </div>\n" +
                 "                                                                                                                </h2>\n" +
@@ -1216,7 +1237,7 @@
                     "                                                                                                                            <a href=\"#\"\n" +
                     "                                                                                                                               class=\"user-myPage-link\">\n" +
                     "                                                                                                                                <img \n" +
-                    "                                                                                                                                     class=\"user-myPage-link-img\" src=\"/upload/" + boardCommentList[c].memberProfile + "\"" + ">\n" +
+                    "                                                                                                                                     class=\"user-myPage-link-img\" src=\"/upload/" + boardCommentList[c].memberProfile + "\"" + " onclick=\"detail_memberPage(" + boardCommentList[c].memberId + ")\">\n" +
                     "                                                                                                                            </a>\n" +
                     "\n" +
                     "                                                                                                                        </div>\n" +
@@ -1231,7 +1252,7 @@
                     "\n" +
                     "                                                                                                                                    <!--게시글 상세 댓글을 단 사용자 myPage 이동 링크-->\n" +
                     "                                                                                                                                    <a href=\"#\"\n" +
-                    "                                                                                                                                       class=\"comment-user-going\">" + boardCommentList[c].memberNickName + "</a>\n" +
+                    "                                                                                                                                       class=\"comment-user-going\" onclick=\"detail_memberPage(" + boardCommentList[c].memberId + ")\">" + boardCommentList[c].memberNickName + "</a>\n" +
                     "\n" +
                     "                                                                                                                                </div>\n" +
                     "                                                                                                                            </div>\n" +
@@ -1471,6 +1492,7 @@
         boardFileCount = 0;
         boardListCount = 0;
         resultArea.style.display = "none";
+        location.reload();
     }
 
     const detail_file_next = (id) => {
@@ -1579,7 +1601,7 @@
     }
 
     const follow_list = (type) => {
-        const memberId = [[${memberDTO.id}]];
+        const memberId = [[${pageMemberDTO.id}]];
         const followResult = document.getElementById("myPage-f-ing-b");
 
         axios({
@@ -1850,6 +1872,58 @@
     const popop = () => {
         const settings = 'toolbar = 0, status = 0, location = 0, scrollbars=yes, height=600, width=800,left=500, top=200';
         window.open("/member/popup","_blank",settings);
+    }
+
+    const member_follow = (id) => {
+        axios({
+            method: "post",
+            url: "/follow/save/" + id
+        }).then(res => {
+            const followBtnResult = document.getElementById("member-follow-btn");
+            const followerCountElement = document.getElementById("member-follower-count");
+            let followerCount = followerCountElement.textContent.trim();
+            let output = "                                                               <div class=\"myPage-user-profile-edit\">\n" +
+                "                                                                            <button class=\"myPage-user-fow-btn1\" onclick=\"member_unFollow(" + id + ")\">\n" +
+                "                                                                                <div class=\"myPage-user-fow-tb\">\n" +
+                "                                                                                    <div class=\"myPage-user-fow-txt\" style=\"color: black\" dir=\"auto\">팔로잉</div>\n" +
+                "                                                                                </div>\n" +
+                "                                                                            </button>\n" +
+                "                                                                        </div>";
+            followBtnResult.innerHTML = "";
+            followBtnResult.innerHTML = output;
+            followerCount++;
+            followerCountElement.innerHTML = followerCount;
+        }).catch(err => {
+            alert("follow 실패");
+        });
+    }
+
+    const member_unFollow = (id) => {
+        axios({
+            method: "delete",
+            url: "/follow/unFollow/" + id
+        }).then(res => {
+            const followBtnResult = document.getElementById("member-follow-btn");
+            const followerCountElement = document.getElementById("member-follower-count");
+            let followerCount = followerCountElement.textContent.trim();
+            let output = "                                                               <div class=\"myPage-user-profile-edit\">\n" +
+                "                                                                            <button class=\"myPage-user-fow-btn\" onclick=\"member_follow(" + id + ")\">\n" +
+                "                                                                                <div class=\"myPage-user-fow-tb\">\n" +
+                "                                                                                    <div class=\"myPage-user-fow-txt\" dir=\"auto\">팔로우</div>\n" +
+                "                                                                                </div>\n" +
+                "                                                                            </button>\n" +
+                "                                                                        </div>";
+            followBtnResult.innerHTML = "";
+            followBtnResult.innerHTML = output;
+            followerCount--;
+            followerCountElement.innerHTML = followerCount;
+        }).catch(err => {
+            alert("unFollow 실패");
+        });
+    }
+
+    const detail_memberPage = (id) => {
+        location.href = "/member/myPage/" + id;
     }
 </script>
 </html>

@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -130,6 +131,21 @@ public class AxiosController {
     @DeleteMapping("follow/{id}")
     public ResponseEntity followerDelete(@PathVariable Long id, @RequestParam("type") int type) {
         memberFollowService.followDelete(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/follow/save/{id}")
+    public ResponseEntity followSave(@PathVariable Long id, HttpSession session) {
+        Long loginId = (Long) session.getAttribute("memberId");
+        memberFollowService.save(id, loginId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @Transactional
+    @DeleteMapping("/follow/unFollow/{id}")
+    public ResponseEntity followDelete(@PathVariable Long id, HttpSession session) {
+        Long loginId = (Long) session.getAttribute("memberId");
+        memberFollowService.deleteByFollow(id, loginId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

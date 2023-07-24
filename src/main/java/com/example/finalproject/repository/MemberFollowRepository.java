@@ -16,4 +16,6 @@ public interface MemberFollowRepository extends JpaRepository<MemberFollowEntity
 
     List<MemberFollowEntity> findByFollowingMemberEntity(MemberEntity memberEntity);
 
+    void deleteByFollowingMemberEntityAndFollowerMemberEntity(MemberEntity memberEntity, MemberEntity loginMemberEntity);
+
 }

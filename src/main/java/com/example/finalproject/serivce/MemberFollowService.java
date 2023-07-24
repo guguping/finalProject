@@ -73,4 +73,17 @@ public class MemberFollowService {
     public void followDelete(Long id) {
         memberFollowRepository.deleteById(id);
     }
+
+    public void save(Long id, Long loginId) {
+        MemberEntity memberEntity = memberRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
+        MemberEntity loginMemberEntity = memberRepository.findById(loginId).orElseThrow(() -> new NoSuchElementException());
+        MemberFollowEntity memberFollowEntity = MemberFollowEntity.toSaveEntity(memberEntity, loginMemberEntity);
+        memberFollowRepository.save(memberFollowEntity);
+    }
+
+    public void deleteByFollow(Long id, Long loginId) {
+        MemberEntity memberEntity = memberRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
+        MemberEntity loginMemberEntity = memberRepository.findById(loginId).orElseThrow(() -> new NoSuchElementException());
+        memberFollowRepository.deleteByFollowingMemberEntityAndFollowerMemberEntity(memberEntity, loginMemberEntity);
+    }
 }
