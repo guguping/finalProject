@@ -3359,6 +3359,9 @@ svg:not(:root) {
     display: block;
 }
 ._abn_ {
+    background: rgb(255,255,255);
+}
+._abn_:hover {
     background: rgb(250,250,250);
 }
 ._abn_:not(:first-child) {
