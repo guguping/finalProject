@@ -127,10 +127,11 @@
                                 <div class="memberSaveForm-loginForm">
 
                                     <!--api 로그인 사용 버튼-->
-                                    <button type="button" class="loginForm-api-btn">
-                                        <span><img src="../images/indexImages/KakaoLogo.png" class="KakaoLogo"></span>
-                                        Kakao으로 로그인
-                                    </button>
+
+                                        <button type="button" class="loginForm-api-btn" onclick="redirectToKakaoLogin()">
+                                            <span><img src="../images/indexImages/KakaoLogo.png" class="KakaoLogo"></span>
+                                            Kakao으로 로그인
+                                        </button>
                                 </div>
                                 <div style="margin: 10px 40px 18px;">
                                     <div style="display: flex;flex-direction: row;">
@@ -974,6 +975,10 @@
         } else {
             return false;
         }
+    }
+
+    function redirectToKakaoLogin() {
+        window.location.href = "https://kauth.kakao.com/oauth/authorize?client_id=483c5fda5520fe4ac417eb418b63af8b&redirect_uri=http://localhost:8090/kakao/login&response_type=code";
     }
 
 

@@ -3,11 +3,13 @@ package com.example.finalproject.serivce;
 import com.example.finalproject.dto.*;
 import com.example.finalproject.entitiy.*;
 import com.example.finalproject.repository.*;
+import com.example.finalproject.util.UtilClass;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.reflect.Member;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
@@ -19,6 +21,7 @@ public class ReelsService {
     private final ReelsCommentLikeRepository reelsCommentLikeRepository;
     private final BoardReelsLikeRepository boardReelsLikeRepository;
     private final BoardReelsBookMarkRepository boardReelsBookMarkRepository;
+    private final UtilClass utilClass;
 
     @Transactional
     public List<BoardReelsDTO> reelsFindAll(Long memberId) {
@@ -72,7 +75,10 @@ public class ReelsService {
         Map<String, Object> reelsCommentResponse = new HashMap<>();
         boardReelsCommentEntityList.forEach(boardReelsCommentEntity -> {
             reelsCommentLikeList.add(LikeDTO.reelsCommentLikeToDTO(reelsCommentLikeRepository.findByBoardReelsCommentEntity(boardReelsCommentEntity).orElse(null)));
-            boardReelsCommentDTOList.add(BoardReelsCommentDTO.toDTO(boardReelsCommentEntity));
+            LocalDateTime createdAt = boardReelsCommentEntity.getCreatedAt();
+            String time = utilClass.timeForToday(createdAt);
+            boardReelsCommentDTOList.add(BoardReelsCommentDTO.toDTO2(boardReelsCommentEntity, time));
+            System.out.println("boardReelsCommentDTOList.get(0).getTimeAgo() = " + boardReelsCommentDTOList.get(0).getTimeAgo());
         });
         boardReelsCommentDTOList.forEach(boardReelsCommentDTO -> {
             memberDTOList.add(MemberDTO.toDTO(memberRepository.findById(boardReelsCommentDTO.getMemberId()).orElseThrow(() -> new NoSuchElementException())));

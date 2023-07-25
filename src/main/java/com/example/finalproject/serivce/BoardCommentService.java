@@ -7,9 +7,12 @@ import com.example.finalproject.entitiy.MemberEntity;
 import com.example.finalproject.repository.BoardCommentRepository;
 import com.example.finalproject.repository.BoardRepository;
 import com.example.finalproject.repository.MemberRepository;
+import com.example.finalproject.util.UtilClass;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -20,6 +23,7 @@ public class BoardCommentService {
     private final BoardCommentRepository boardCommentRepository;
     private final BoardRepository boardRepository;
     private final MemberRepository memberRepository;
+    private final UtilClass utilClass;
 
     public Long save(BoardCommentDTO commentDTO) {
         BoardEntity boardEntity = boardRepository.findById(commentDTO.getBoardId()).orElseThrow(() -> new NoSuchElementException());
@@ -65,7 +69,9 @@ public class BoardCommentService {
 
         List<BoardCommentDTO> commentDTOList = new ArrayList<>();
         commentEntityList.forEach(comment -> {
-            commentDTOList.add(BoardCommentDTO.toDTO(comment));
+            LocalDateTime createdAt = comment.getCreatedAt();
+            String time = utilClass.timeForToday(createdAt);
+            commentDTOList.add(BoardCommentDTO.toDTO2(comment, time));
         });
         List<BoardCommentDTO> boardCommentDTOList = new ArrayList<>();
         for (int i = 0; i < commentDTOList.size(); i++) {
