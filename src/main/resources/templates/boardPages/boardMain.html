@@ -249,11 +249,20 @@
                                                                                                                 <div>
                                                                                                                     <div>
                                                                                                                         <div style="position: relative;">
+                                                                                                                            <th:block
+                                                                                                                                    th:each="memberDTO:${memberDTOList}">
+                                                                                                                                <th:block
+                                                                                                                                        th:if="${boardDTO.getMemberId() == memberDTO.getId()}">
                                                                                                                             <a href="#"
                                                                                                                                class="boardMain-main-item-profile">
                                                                                                                                 <img th:src="@{|/upload/${memberDTO.memberProfile}}"
+                                                                                                                                     th:onclick="member_page([[${memberDTO.id}]])"
                                                                                                                                      class="boardMain-item-profile">
                                                                                                                             </a>
+                                                                                                                                    <th:block
+                                                                                                                                            th:break></th:block>
+                                                                                                                                </th:block>
+                                                                                                                            </th:block>
                                                                                                                         </div>
                                                                                                                     </div>
                                                                                                                 </div>
@@ -274,7 +283,8 @@
                                                                                                                                            <th:block
                                                                                                                                                    th:if="${boardDTO.getMemberId() == memberDTO.getId()}">
                                                                                                                                         <a th:text="${memberDTO.memberNickName}"
-                                                                                                                                           class="main-item-writer3"></a>
+                                                                                                                                           class="main-item-writer3"
+                                                                                                                                           th:onclick="member_page([[${memberDTO.id}]])"></a>
                                                                                                                                                     <th:block
                                                                                                                                                             th:break></th:block>
                                                                                                                                            </th:block>
@@ -291,8 +301,7 @@
                                                                                                                         <div style="top: 1px;position: relative;">
                                                                                                                         <span class="boardMain-main-board-time-box-inner">
                                                                                                                             <span class="boardMain-main-board-time-item1">•</span>
-                                                                                                                            <time th:date="${boardDTO.createdAt}" th:id="'datetime'+${boardDTO.id}"
-                                                                                                                            ></time>
+                                                                                                                            <time th:date="${boardDTO.createdAt}" th:id="'datetime'+${boardDTO.id}" th:text="${boardDTO.timeAgo}"></time>
                                                                                                                         </span>
                                                                                                                         </div>
                                                                                                                     </div>
@@ -525,7 +534,7 @@
                                                                                                                             <span class="like-count-text">
                                                                                                                                 좋아요
                                                                                                                                 <!--좋아요 count-->
-                                                                                                                                <span>30만</span>
+                                                                                                                                <span th:text="${boardDTO.boardLikeCount}" th:id="'like-count-text-'+${boardDTO.id}"></span>
                                                                                                                                 개
                                                                                                                             </span>
                                                                                                                         </a>
@@ -589,7 +598,7 @@
                                                                                                                            class="board-contents-detail">
                                                                                                                         <span class="board-contents-comment-count">
                                                                                                                             댓글
-                                                                                                                            <span>546</span>
+                                                                                                                            <span th:text="${boardDTO.boardCommentCount}" th:id="'comment-count-text-'+${boardDTO.id}"></span>
                                                                                                                             개 모두 보기
                                                                                                                         </span>
                                                                                                                         </a>
@@ -1275,7 +1284,10 @@
 
     const main_like_controller = (type, id) => {
         const mainLikeResult = document.getElementById("like-btn-logo-form"+id);
+        const mainBoardLikeCountResult = document.getElementById("like-count-text-"+id);
+        let mainBoardLikeCount = mainBoardLikeCountResult.textContent.trim();
         if (type == "unLike") {
+            mainBoardLikeCount++;
             mainLikeResult.innerHTML = "";
             let output = "                                                                                                                <span onclick=\"main_unLike(" + id + ")\">\n" +
                 "                                                                                                                            <svg aria-label=\"좋아요 취소\"\n" +
@@ -1291,6 +1303,7 @@
                 "                                                                                                                        </span>";
             mainLikeResult.innerHTML = output;
         } else {
+            mainBoardLikeCount--;
             mainLikeResult.innerHTML = "";
             let output = "                                                                                                              <span onclick=\"main_like(" + id + ")\">\n" +
                 "                                                                                                                            <svg aria-label=\"좋아요\"\n" +
@@ -1306,6 +1319,9 @@
                 "                                                                                                                        </span>";
             mainLikeResult.innerHTML = output;
         }
+        let countOutput = "<span id=\"like-count-text-" + id + "\">" + mainBoardLikeCount + "</span>";
+        mainBoardLikeCountResult.innerHTML = "";
+        mainBoardLikeCountResult.innerHTML = countOutput;
     }
 
     const main_bookmark = (id) => {
@@ -1369,6 +1385,10 @@
                 "                                                                                                                                </span>";
             mainBookmarkResult.innerHTML = output;
         }
+    }
+
+    const member_page = (id) => {
+        location.href = "/member/myPage/" + id;
     }
 </script>
 </html>

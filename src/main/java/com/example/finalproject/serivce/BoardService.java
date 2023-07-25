@@ -70,7 +70,13 @@ public class BoardService {
 //            boardDTOList.add(BoardDTO.toDTO(boardEntity));
 //        }
         boardEntityList.forEach(boardEntity -> {
-            boardDTOList.add(BoardDTO.toDTO(boardEntity));
+            List<BoardLikeEntity> boardLikeEntityList = boardLikeRepository.findByBoardEntity(boardEntity);
+            int boardLikeCount = boardLikeEntityList.size();
+            List<BoardCommentEntity> boardCommentEntityList = boardCommentRepository.findByBoardEntity(boardEntity);
+            int boardCommentCount = boardCommentEntityList.size();
+            LocalDateTime createdAt = boardEntity.getCreatedAt();
+            String time = utilClass.timeForToday(createdAt);
+            boardDTOList.add(BoardDTO.toMainDTO(boardEntity, boardLikeCount, boardCommentCount, time));
         });
 
         MemberEntity memberEntity = memberRepository.findById(loginId).orElseThrow(() -> new NoSuchElementException());

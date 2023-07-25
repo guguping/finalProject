@@ -138,7 +138,7 @@ const openMainDetail = (id, loginId) => {
             "                                                                                                               class=\"user-myPage-link\">\n" +
             "                                                                                                                <img \n" +
             "                                                                                                                     class=\"user-myPage-link-img\"\n" +
-            "                                                                                                                     src=\"/upload/" + memberDTO.memberProfile + "\"" +
+            "                                                                                                                     src=\"/upload/" + memberDTO.memberProfile + "\" onclick=\"member_page(" + memberDTO.id + ")\"" +
             "                                                                                                                     >\n" +
             "                                                                                                            </a>\n" +
             "\n" +
@@ -158,7 +158,7 @@ const openMainDetail = (id, loginId) => {
             "                                                                                                                        <div style=\"display: inline;\">\n" +
             "                                                                                                                            <!--게시글 상세페이지 유저 닉네임-->\n" +
             "                                                                                                                            <a href=\"#\"\n" +
-            "                                                                                                                               class=\"detail-board-user-nick-link\">" + memberDTO.memberNickName + "</a>\n" +
+            "                                                                                                                               class=\"detail-board-user-nick-link\" onclick=\"member_page(" + memberDTO.id + ")\">" + memberDTO.memberNickName + "</a>\n" +
             "                                                                                                                        </div>\n" +
             "                                                                                                                    </div>\n" +
             "                                                                                                                </span>\n" +
@@ -316,7 +316,7 @@ const openMainDetail = (id, loginId) => {
                                                                                                                         <a href="#" class="detail-board-contents-pr-link">
 
                                                                                                                             <!--게시글 작성자의 프로필 사진이 들어가야함-->
-                                                                                                                            <img class="detail-board-contents-pr-" src="/upload/${memberDTO.memberProfile}">
+                                                                                                                            <img class="detail-board-contents-pr-" src="/upload/${memberDTO.memberProfile}" onclick="member_page([[${memberDTO.id}]])">
                                                                                                                         </a>
                                                                                                                     </div>
                                                                                                                 </div>
@@ -328,7 +328,7 @@ const openMainDetail = (id, loginId) => {
                                                                                                                         <div class="xt0psk2">
 
                                                                                                                             <!--게시글 작성자 닉네임-->
-                                                                                                                            <a href="#" class="detail-board-contents-t-m-n-link" >${memberDTO.memberNickName}</a>
+                                                                                                                            <a href="#" class="detail-board-contents-t-m-n-link" onclick="member_page([[${memberDTO.id}]])">${memberDTO.memberNickName}</a>
                                                                                                                         </div>
                                                                                                                     </div>
                                                                                                                 </h2>
@@ -341,7 +341,7 @@ const openMainDetail = (id, loginId) => {
 
                                                                                                                 <div class="detail-board-contents-mar">
                                                                                                                     <span class="detail-board-contents-mar-">
-                                                                                                                        <time class="timeIsGold" datetime="2018-10-01T19:23:59.000Z" title="10월 2, 2018">250주</time>
+                                                                                                                        <time class="timeIsGold" datetime="2018-10-01T19:23:59.000Z" title="10월 2, 2018">${boardDTO.timeAgo}</time>
                                                                                                                     </span>
                                                                                                                 </div>
                                                                                                             </div>
@@ -379,7 +379,7 @@ const openMainDetail = (id, loginId) => {
                                 <!--게시글 상세 댓글을 단 유저의 이미지-->
                                 <a href="#"
                                    class="user-myPage-link">
-                                    <img class="user-myPage-link-img" src="/upload/${boardCommentList[c].memberProfile}">
+                                    <img class="user-myPage-link-img" src="/upload/${boardCommentList[c].memberProfile}" onclick="member_page(${boardCommentList[c].memberId})">
                                 </a>
 
                             </div>
@@ -394,7 +394,7 @@ const openMainDetail = (id, loginId) => {
 
                                         <!--게시글 상세 댓글을 단 사용자 myPage 이동 링크-->
                                         <a href="#"
-                                           class="comment-user-going">${boardCommentList[c].memberNickName}</a>
+                                           class="comment-user-going" onclick="member_page(${boardCommentList[c].memberId})">${boardCommentList[c].memberNickName}</a>
 
                                     </div>
                                 </div>
@@ -413,7 +413,7 @@ const openMainDetail = (id, loginId) => {
     <a class="detail-board-comment-time-box">
         <time class="detail-board-comment-time"
               datetime="2023-07-02T14:50:05.000Z"
-              title="July 2, 2023">3시간 전</time>
+              title="July 2, 2023">${boardCommentList[c].timeAgo}</time>
     </a>
 
     <!-- Turn on/off display replies to post detail comments -->
