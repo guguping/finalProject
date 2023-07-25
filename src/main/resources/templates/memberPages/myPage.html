@@ -1211,8 +1211,8 @@
             output += "                                                                                                                </div>\n" +
                 "\n" +
                 "                                                                                                                <div class=\"detail-board-contents-mar\">\n" +
-                "                                                                                                                    <span class=\"detail-board-contents-mar-\">\n" +
-                "                                                                                                                        <time class=\"timeIsGold\" datetime=\"2018-10-01T19:23:59.000Z\" title=\"10월 2, 2018\">250주</time>\n" +
+                "                                                                                                                    <span id=\"createdDate\" class=\"detail-board-contents-mar-\">\n" +
+                                                                                                                                         boardDTO.timeAgo +
                 "                                                                                                                    </span>\n" +
                 "                                                                                                                </div>\n" +
                 "                                                                                                            </div>\n" +
@@ -1271,7 +1271,7 @@
                     "                                                                                                                            <a class=\"detail-board-comment-time-box\">\n" +
                     "                                                                                                                                <time class=\"detail-board-comment-time\"\n" +
                     "                                                                                                                                      datetime=\"2023-07-02T14:50:05.000Z\"\n" +
-                    "                                                                                                                                      title=\"7월 2, 2023\">3시간</time>\n" +
+                    "                                                                                                                                      title=\"7월 2, 2023\">" + boardCommentList[c].timeAgo + "</time>\n" +
                     "                                                                                                                            </a>\n" +
                     "\n" +
                     "                                                                                                                            <!--게시글 상세 댓글에 답글 디스플레이 on / off-->\n" +
@@ -1925,5 +1925,29 @@
     const detail_memberPage = (id) => {
         location.href = "/member/myPage/" + id;
     }
+
+    function timeForToday(value) {
+        const today = new Date();
+        const timeValue = new Date(value);
+
+        const betweenTime = Math.floor((today.getTime() - timeValue.getTime()) / 1000 / 60);
+        if (betweenTime < 1) return '방금전';
+        if (betweenTime < 60) {
+            return `${betweenTime}분전`;
+        }
+
+        const betweenTimeHour = Math.floor(betweenTime / 60);
+        if (betweenTimeHour < 24) {
+            return `${betweenTimeHour}시간전`;
+        }
+
+        const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
+        if (betweenTimeDay < 365) {
+            return `${betweenTimeDay}일전`;
+        }
+
+        return `${Math.floor(betweenTimeDay / 365)}년전`;
+    }
+
 </script>
 </html>

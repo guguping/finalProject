@@ -17,6 +17,7 @@ public class BoardCommentDTO {
     private String createdAt;
     private String memberNickName;
     private String memberProfile;
+    private String timeAgo;
 
 
 //     0 = 비수정 / 1 = 수정
@@ -29,6 +30,17 @@ public class BoardCommentDTO {
         boardCommentDTO.setBoardId(boardCommentEntity.getBoardEntity().getId());
         boardCommentDTO.setMemberId(boardCommentEntity.getMemberEntity().getId());
         boardCommentDTO.setCreatedAt(UtilClass.dateFormat(boardCommentEntity.getCreatedAt()));
+        return boardCommentDTO;
+    }
+
+    public static BoardCommentDTO toDTO2(BoardCommentEntity boardCommentEntity, String time) {
+        BoardCommentDTO boardCommentDTO = new BoardCommentDTO();
+        boardCommentDTO.setId(boardCommentEntity.getId());
+        boardCommentDTO.setCommentContents(boardCommentEntity.getCommentContents());
+        boardCommentDTO.setBoardId(boardCommentEntity.getBoardEntity().getId());
+        boardCommentDTO.setMemberId(boardCommentEntity.getMemberEntity().getId());
+        boardCommentDTO.setCreatedAt(UtilClass.dateFormat(boardCommentEntity.getCreatedAt()));
+        boardCommentDTO.setTimeAgo(time);
         return boardCommentDTO;
     }
 }

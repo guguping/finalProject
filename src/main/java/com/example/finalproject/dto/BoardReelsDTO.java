@@ -21,6 +21,8 @@ public class BoardReelsDTO {
     private String memberProfile;
     private String memberNickName;
 
+
+
     public static BoardReelsDTO toDTO(BoardReelsEntity boardReelsEntity) {
         return BoardReelsDTO.builder()
                 .id(boardReelsEntity.getId())
