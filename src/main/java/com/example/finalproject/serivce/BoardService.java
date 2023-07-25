@@ -6,6 +6,7 @@ import com.example.finalproject.dto.MemberDTO;
 import com.example.finalproject.dto.MemberFollowDTO;
 import com.example.finalproject.entitiy.*;
 import com.example.finalproject.repository.*;
+import com.example.finalproject.util.UtilClass;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.persistence.EntityNotFoundException;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -30,6 +32,7 @@ public class BoardService {
     private final BoardCommentRepository boardCommentRepository;
     private final BoardLikeRepository boardLikeRepository;
     private final BoardBookmarkRepository boardBookmarkRepository;
+    private final UtilClass utilClass;
 
     public Long save(BoardDTO boardDTO) throws IOException {
         // 로그인한 아이디의 memberDTO 가져오기
@@ -130,7 +133,9 @@ public class BoardService {
         if (boardEntity == null) {
             return null;
         } else {
-            BoardDTO boardDTO = BoardDTO.toDTO(boardEntity);
+            LocalDateTime createdAt = boardEntity.getCreatedAt();
+            String time = utilClass.timeForToday(createdAt);
+            BoardDTO boardDTO = BoardDTO.toDTO2(boardEntity, time);
             return boardDTO;
         }
     }
