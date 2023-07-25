@@ -418,7 +418,7 @@ const openMainDetail = (id, loginId) => {
 
     <!-- Turn on/off display replies to post detail comments -->
     <button type="button" class="_a9ze">
-        <span class="aksemfRKrhalswnd">답글 달기</span>
+        <span class="aksemfRKrhalswnd"></span>
     </button>
     <button class="Detail-board-plus-btn"
     style="display: none;padding: 0;height: 18px;" id="Detail-board-plus-btn${boardCommentList[c].id}" onclick="openCommentMenu(${boardCommentList[c].id},${boardDTO.id})">

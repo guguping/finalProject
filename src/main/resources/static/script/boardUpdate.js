@@ -96,13 +96,13 @@ const boardUpdateForm = (id) =>{
                                                                                                                                 <!--게시판 상세 이미지 넣을 곳-->
                                                                                                                                 <ul class="detail-img-ul">
                                                                                                                                     <li class="detail-img-li">
-                                                                                                                                        <div class="detail-img-li-inner" style="max-width: 710px;max-height: 718px;">
+                                                                                                                                        <div class="detail-img-li-inner" style="max-width: 718px;max-height: 718px;">
                                                                                                                                             <div class="detail-img-dlrjsanjfRK">
                                                                                                                                                 <div>
                                                                                                                                                     <div class="detail-img-sc">
-                                                                                                                                                        <div class="detail-img-sc-inner" style="display: flex;justify-content: center;">
+                                                                                                                                                        <div class="detail-img-sc-inner" style="padding-top: 100px;display: flex;justify-content: center;">
                                                                                                                                                             <img class="detail-re-img-size1" style="max-width: 718px; max-height: 718px;"
-                                                                                                                                                                 src="/upload/${storedFileName}"
+                                                                                                                                                                 width="500" height="500" src="/upload/${storedFileName}"
                                                                                                                                                             >
                                                                                                                                                         </div>
                                                                                                                                                         <div style="position: absolute;top: 0;left: 0;right: 0;bottom: 0;"></div>
