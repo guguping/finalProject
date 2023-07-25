@@ -97,4 +97,26 @@ public class BoardDTO {
 
         return boardDTO;
     }
+
+    public static BoardDTO toMainDTO(BoardEntity boardEntity, int likeCount, int commentCount, String time) {
+        BoardDTO boardDTO = new BoardDTO();
+        boardDTO.setId(boardEntity.getId());
+        boardDTO.setMemberId(boardEntity.getMemberEntity().getId());
+        boardDTO.setBoardContents(boardEntity.getBoardContents());
+        boardDTO.setBoardBlind(boardEntity.getBoardBlind());
+        boardDTO.setCreatedAt(UtilClass.dateFormat(boardEntity.getCreatedAt()));
+        boardDTO.setBoardUpdate(boardEntity.getBoardUpdate());
+        boardDTO.setBoardLikeCount(likeCount);
+        boardDTO.setBoardCommentCount(commentCount);
+        boardDTO.setTimeAgo(time);
+
+        // 파일 조회
+        List<String> storedFileNameList = new ArrayList<>();
+        for (BoardFileEntity boardFileEntity : boardEntity.getBoardFileEntityList()) {
+            storedFileNameList.add(boardFileEntity.getStoredFileName());
+        }
+        boardDTO.setStoredFileName(storedFileNameList);
+
+        return boardDTO;
+    }
 }

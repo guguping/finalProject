@@ -458,6 +458,15 @@ const comment_write = (boardId, memberId) => {
         const boardMain = res.data;
         const memberDTO = boardMain.memberDTO;
         const commentList = boardMain.commentDTOList;
+
+        const mainBoardCommentCountResult = document.getElementById("comment-count-text-"+boardId);
+        let mainBoardCommentCount = mainBoardCommentCountResult.textContent.trim();
+        mainBoardCommentCount++;
+
+        let countOutput = "<span id=\"comment-count-text-" + boardId + "\">" + mainBoardCommentCount + "</span>";
+        mainBoardCommentCountResult.innerHTML = "";
+        mainBoardCommentCountResult.innerHTML = countOutput;
+
         console.log("res", res);
         console.log("댓글 목록", res.data);
         // document.querySelector("#commentContents").value = "";

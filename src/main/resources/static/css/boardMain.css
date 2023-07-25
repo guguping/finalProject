@@ -2087,6 +2087,7 @@ dlalwlfkqslek:after {
     overflow: hidden;
     position: relative;
     padding-bottom: 100%;
+    border-radius: 4px 0 0 4px;
 }
 
 .detail-re-img-size {
