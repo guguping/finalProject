@@ -302,11 +302,11 @@
                                                                                                         <!--게시글 수정, 삭제-->
                                                                                                         <div style="padding: 0;margin-right: -8px;"
                                                                                                              th:id="'board-modal-on-off'+${boardDTO.id}"
-                                                                                                             th:onclick="openBoardMenu([[${boardDTO.id}]])">
+                                                                                                             th:onclick="boardModal([[${boardDTO.id}]])">
                                                                                                             <button class="boardMain-main-board-plus-btn"
                                                                                                                     th:if="${session.memberId == boardDTO.memberId}">
                                                                                                                 <div style="align-items: center;display: flex;justify-content: center;">
-                                                                                                                    <div class="boardMain-main-board-plus-btn-img-box" >
+                                                                                                                    <div class="boardMain-main-board-plus-btn-img-box">
                                                                                                                         <svg aria-label="옵션 더 보기"
                                                                                                                              class="_ab6-"
                                                                                                                              color="rgb(0, 0, 0)"
@@ -1170,40 +1170,8 @@
             <!--게시글 옵션 시작-->
             <th:block th:each="boardDTO:${boardDTOList}">
                 <div style="position: fixed;top: 0;width: 100%;z-index: 100;">
-                    <div class="plus-modal-board-" id="plus-modal-board-" style="display:none;">
-                        <div class="plus-modal-board-1">
-                            <div class="plus-modal-board-2">
-                                <div class="plus-modal-board-bg"></div>
-                                <div class="plus-modal-board-3">
-                                    <div class="plus-modal-board-main-">
-                                        <div class="plus-modal-board-main-1">
-                                            <div class="plus-modal-board-main-2">
-                                                <div class="plus-modal-board-main-3">
-                                                    <div class="plus-modal-board-inner-">
-                                                        <div class="plus-modal-board-inner-1">
-                                                            <div class="plus-modal-board-inner-2">
-                                                                <div class="plus-modal-board-inner-3">
-                                                                    <button type="button" class="_a9--"
-                                                                            th:onclick="boardDelete([[${boardDTO.id}]])">
-                                                                        삭제
-                                                                    </button>
-                                                                    <button type="button" class="_a9-"
-                                                                            th:onclick="boardUpdateForm([[${boardDTO.id}]],[[${session.memberId}]])">
-                                                                        수정</button>
-                                                                    <button type="button" class="_a9_1"
-                                                                            onclick="fuckyou2()">취소
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="plus-modal-board-" th:id="'boardModal'+${boardDTO.id}" style="display:none;">
+
                     </div>
                 </div>
                 <div>
@@ -1229,54 +1197,56 @@
     const member_logout = () => {
         location.href = "/member/logout";
     }
-    const fuckyou2 = () => {
-        document.getElementById('plus-modal-board-').style.display = "none";
+
+
+    function boardModal(boardId) {
+        const plusBoardModal = document.getElementById("boardModal" + boardId);
+        const boardid = boardId;
+
+        let input = `
+     <div class="plus-modal-board-1">
+                            <div class="plus-modal-board-2">
+                                <div class="plus-modal-board-bg"></div>
+                                <div class="plus-modal-board-3">
+                                    <div class="plus-modal-board-main-">
+                                        <div class="plus-modal-board-main-1">
+                                            <div class="plus-modal-board-main-2">
+                                                <div class="plus-modal-board-main-3">
+                                                    <div class="plus-modal-board-inner-">
+                                                        <div class="plus-modal-board-inner-1">
+                                                            <div class="plus-modal-board-inner-2">
+                                                                <div class="plus-modal-board-inner-3">
+                                                                    <button type="button" class="_a9--"
+                                                                            onclick="boardDelete(${boardid})">
+                                                                        삭제
+                                                                    </button>
+                                                                    <button type="button" class="_a9-"
+                                                                            onclick="boardUpdateForm(${boardid})">
+                                                                        수정</button>
+                                                                    <button type="button" class="_a9_1"
+                                                                            onclick="fuckyou2(${boardid})">취소
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        `;
+        plusBoardModal.innerHTML = input;
+        plusBoardModal.style.display = "";
+
+
+        console.log("boardId = " + boardid);
     }
-    function applyTimeToBoards(boardId) {
-        // 게시글 ID에 해당하는 모든 time 태그를 선택합니다.
-        const timeTags = document.querySelectorAll(`#datetime${boardId}`);
-
-        timeTags.forEach((timeTag) => {
-            const createdAtValue = timeTag.getAttribute("th:date");
-            const postTime = new Date(createdAtValue); // Date 객체로 변환합니다.
-
-            // 현재 시간을 가져옵니다.
-            const currentTime = new Date();
-
-            // 게시글 작성 시간과 현재 시간 사이의 차이를 계산합니다 (밀리초 단위).
-            const timeDifference = currentTime - postTime;
-
-            // 밀리초를 일, 시간, 분으로 변환합니다.
-            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-
-            // 시간을 출력합니다.
-            timeTag.innerText = `${hours}시간 ${minutes}분 전`;
-        });
+    const fuckyou2 = (boardid) => {
+        document.getElementById("boardModal" + boardid).style.display = "none";
     }
-
-    // 각 게시글의 작성 시간을 표시합니다.
-    applyTimeToBoards();
-
-    //
-    //
-    //
-    // const postTime = createdAtValue;
-    //
-    // // 현재 시간 가져오기
-    // const currentTime = new Date();
-    //
-    // // 시간 차이 계산 (밀리초 단위)
-    // const timeDifference = currentTime - postTime;
-    //
-    // // 밀리초를 일, 시간, 분으로 변환
-    // const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-    // const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    // const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-    //
-    // // 결과를 화면에 표시
-    // document.getElementById('datetime').innerText = `${hours}시간 ${minutes}분 전`;
 
     const goingStory = () => {
         location.href ="/story/board";

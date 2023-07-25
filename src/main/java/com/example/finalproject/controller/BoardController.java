@@ -87,11 +87,28 @@ public class BoardController {
         board.put("boardCommentList", boardCommentDTOList);
         return new ResponseEntity<>(board, HttpStatus.OK);
     }
-    @PutMapping("boardUpdate/{id}")
-    public ResponseEntity update(@RequestBody BoardDTO boardDTO){
+//    @PutMapping("/boardUpdate/{id}")
+//    public ResponseEntity update(@PathVariable Long id, @RequestBody BoardDTO boardDTO) {
+//        // 클라이언트로부터 받은 id 값을 사용하여 해당 게시글을 식별합니다.
+//        boardDTO.setId(id);
+//        // boardService의 update 메서드를 호출하여 해당 게시글을 업데이트합니다.
+//        boardService.update(id);
+//        // 업데이트가 성공적으로 완료되면 200 OK를 응답으로 반환합니다.
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
+@PutMapping("/boardUpdate/{id}")
+public ResponseEntity<String> updateBoard(@PathVariable Long id, @RequestBody BoardDTO boardDTO) {
+    // BoardDTO에 넘어온 id를 설정합니다.
+
+    try {
         boardService.update(boardDTO);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.ok("게시글 수정 성공!");
+    } catch (NoSuchElementException e) {
+        return ResponseEntity.notFound().build();
+    } catch (Exception e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("게시글 수정 실패!");
     }
+}
 
 
 }

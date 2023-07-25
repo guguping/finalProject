@@ -1,7 +1,8 @@
-const boardUpdateForm = (id, loginId) =>{
+
+const boardUpdateForm = (id) =>{
     console.log("id =" + id);
-    const loginid = loginId;
-    fuckyou2()
+
+    fuckyou2(id)
     const updateDetail = document.getElementById('mainUpdateDetail');
     axios({
         method: "get",
@@ -12,9 +13,6 @@ const boardUpdateForm = (id, loginId) =>{
         const memberDTO = board.memberDTO;
         const boardFileList = board.boardFileList;
         const storedFileName = boardFileList[i].storedFileName;
-        const boardLike = board.boardLike;  //boolean
-        const boardBookmark = board.boardBookmark;  //boolean
-        const boardCommentList = board.boardCommentList;
         fileSize = boardFileList.length;
 
         let output =`
@@ -73,7 +71,7 @@ const boardUpdateForm = (id, loginId) =>{
                                                                                                     <div class="anjswlahfmfdhfmsWHr">
                                                                                                         <div class="anjswlahfmfdhfmsWHr-margin">
                                                                                                             <div class="anjswlahfmfdhfmsWHr-btn"
-                                                                                                                 onclick="boardUpdate(${boardDTO.id}.${loginId})">
+                                                                                                                 onclick="boardUpdate(${id})">
                                                                                                                 완료
                                                                                                             </div>
                                                                                                         </div>
@@ -98,12 +96,12 @@ const boardUpdateForm = (id, loginId) =>{
                                                                                                                                 <!--게시판 상세 이미지 넣을 곳-->
                                                                                                                                 <ul class="detail-img-ul">
                                                                                                                                     <li class="detail-img-li">
-                                                                                                                                        <div class="detail-img-li-inner">
+                                                                                                                                        <div class="detail-img-li-inner" style="max-width: 710px;max-height: 718px;">
                                                                                                                                             <div class="detail-img-dlrjsanjfRK">
                                                                                                                                                 <div>
                                                                                                                                                     <div class="detail-img-sc">
-                                                                                                                                                        <div class="detail-img-sc-inner">
-                                                                                                                                                            <img class="detail-re-img-size"
+                                                                                                                                                        <div class="detail-img-sc-inner" style="display: flex;justify-content: center;">
+                                                                                                                                                            <img class="detail-re-img-size1" style="max-width: 718px; max-height: 718px;"
                                                                                                                                                                  src="/upload/${storedFileName}"
                                                                                                                                                             >
                                                                                                                                                         </div>
@@ -120,11 +118,11 @@ const boardUpdateForm = (id, loginId) =>{
 
                                                                                                                         <!--페이지 이동 버튼-->
                                                                                                                         <button aria-label="돌아가기"
-                                                                                                                                class="detail-img-back-btn" id="detail-back-btn" style="display: none;" onclick="detail_file_back(${boardDTO.id})">
+                                                                                                                                class="detail-img-back-btn" id="detail-back-btn" style="display: none;" onclick="update_file_back(${boardDTO.id})">
                                                                                                                             <div class="detail-img-back-btn-logo"></div>
                                                                                                                         </button>
                                                                                                                         <button aria-label="다음"
-                                                                                                                                class="detail-img-next-btn" id="detail-next-btn" onclick="detail_file_next(${boardDTO.id})">
+                                                                                                                                class="detail-img-next-btn" id="detail-next-btn" onclick="update_file_next(${boardDTO.id})">
                                                                                                                             <div class="detail-img-next-btn-logo"></div>
                                                                                                                         </button>
                                                                                                                     </div>
@@ -133,24 +131,17 @@ const boardUpdateForm = (id, loginId) =>{
 
                                                                                                             <!--하단의 페이징 넘버-->
                                                                                                             <div class="detail-img-bottom-num-box">
-                                                                                                                <div class="detail-img-bottom-num-on"></div>
-                                                                                                                <div class="detail-img-bottom-num-off"></div>
-                                                                                                                <div class="detail-img-bottom-num-on"></div>
+                                                                                                              
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <form enctype="multipart/form-data"
-                                                                                                      method="post"
-                                                                                                      action="/board/save"
-                                                                                                      onsubmit="return image_check()"
-                                                                                                      style="margin: 0;padding: 0;">
-                                                                                                    <input accept="image/jpeg,image/png,image/heic,image/heif,video/mp4,video/quicktime"
-                                                                                                           class="img-input-"
-                                                                                                           name="boardFile"
-                                                                                                           id="img-input-"
-                                                                                                           multiple
-                                                                                                           type="file">
+                                                                                                      method="put"
+                                                                                                      action="/boardUpdate/${id}"
+                                                                                                      style="margin: 0;padding: 0;"
+                                                                                                      >
+                                                                                                    
 
                                                                                                     <!--게시글 저장 내용 화면-->
                                                                                                     <div class="board-save-contents-input-box">
@@ -198,10 +189,9 @@ const boardUpdateForm = (id, loginId) =>{
                                                                                                                         <div class="board-save-contents-t">
                                                                                                                             <textarea
                                                                                                                                     class="board-save-input-style"
-                                                                                                                                    name="boardContents"
-                                                                                                                                    placeholder="${boardDTO.boardContents}">${boardDTO.boardContents}</textarea>
+                                                                                                                                    name="boardContents" id="boardContents"
+                                                                                                                                    placeholder="${boardDTO.boardContents}" >${boardDTO.boardContents}</textarea>
                                                                                                                         </div>
-
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                             </div>
@@ -210,7 +200,7 @@ const boardUpdateForm = (id, loginId) =>{
 
                                                                                                     <button type="submit"
                                                                                                             style="display: none;"
-                                                                                                            id="boardSave-btn">
+                                                                                                            id="boardUpdate-btn">
                                                                                                         저장용
                                                                                                     </button>
                                                                                                 </form>
@@ -233,25 +223,68 @@ const boardUpdateForm = (id, loginId) =>{
             `
         updateDetail.style.display = "";
         updateDetail.innerHTML = output;
+
+        // 사진 next, back 버튼 제어
+        if (fileSize == 1) {
+            nextBtn_controller("off");
+            backBtn_controller("off");
+        } else if (fileSize == (i + 1)) {
+            nextBtn_controller("off");
+            backBtn_controller("on");
+        } else if (fileSize > (i + 1) && i != 0) {
+            backBtn_controller("on");
+        } else if (i == 0) {
+            backBtn_controller("off");
+        }
+
+
+        // 사진 페이징 표기 제어
+        if (fileSize > 1) {
+            board_img_paging_controller(i);
+        }
     }).catch(err => {
         alert("update 실패");
     });
 }
 
-const boardUpdate = (id, loginId) => {
+const boardUpdate = (id) => {
+    const boardContents = document.querySelector("#boardContents").value;
+    console.log("boardContents = " + boardContents);
     axios({
         method: "put",
-        url: "/boardUpdate/" + id
+        url: "/boardUpdate/" + id,
+        data: {
+            boardContents: boardContents
+        }
     }).then(res => {
-        openMainDetail(boardid)
+        alert("수정이 완료되었습니다!");
+        // 수정이 성공적으로 완료되었을 때 실행할 코드를 여기에 추가해주세요
+        // 예를 들어 수정이 완료되면 다른 작업을 수행하거나 페이지를 리로드하는 등의 작업을 할 수 있습니다.
     }).catch(err => {
-        alert("수정 실패!!");
+        alert("수정에 실패하였습니다!");
     });
 }
+// const boardUpdate = () => {
+//     const boardUpdate= document.getElementById('boardUpdate-btn');
+//     boardUpdate.click();
+// }
+
+const update_file_next = (id) => {
+    i += 1;
+    boardUpdateForm(id);
+}
+
+const update_file_back = (id) => {
+    i -= 1;
+    boardUpdateForm(id);
+}
+
+
 const updateFormOff = () => {
     const mainUpdateDetail = document.getElementById('mainUpdateDetail');
     const boardUpdateLayout = document.getElementById("boardUpdate-layout");
     mainUpdateDetail.style.display = "none";
     boardUpdateLayout.style.display = "none";
+    location.reload()
 
 }
