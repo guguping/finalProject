@@ -3367,6 +3367,9 @@ svg:not(:root) {
 ._abn_:not(:first-child) {
     margin-top: 10px;
 }
+.margin-list-:not(:first-child) {
+    margin-top: 10px;
+}
 .search-m-u {
     border-color: rgba(0,0,0,0.4);
     background-color: transparent;

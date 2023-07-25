@@ -606,6 +606,8 @@ const memberSearchOaF = () => {
             setTimeout(function () {
                 navLogo.style.display = "none";
                 navLogo2.style.display = "block";
+                memberSearchInput.value = "";
+                searchList();
             }, 500);
         } else if (navMenuBox.width() === 220) {
             navMenuBox.removeClass("boardMain-nav-margin");
@@ -614,6 +616,8 @@ const memberSearchOaF = () => {
             setTimeout(function () {
                 navLogo.style.display = "none";
                 navLogo2.style.display = "block";
+                memberSearchInput.value = "";
+                searchList();
             }, 500);
         } else {
             searchBox.addClass("nav-search-b");
@@ -627,6 +631,7 @@ const memberSearchOaF = () => {
             setTimeout(function () {
                 navLogo.style.display = "none";
                 navLogo2.style.display = "block";
+                searchList();
             }, 500);
         } else if (navMenuBox.hasClass("boardMain-nav-margin5")) {
             navMenuBox.removeClass("boardMain-nav-margin5");
@@ -635,6 +640,7 @@ const memberSearchOaF = () => {
             setTimeout(function () {
                 navLogo.style.display = "none";
                 navLogo2.style.display = "block";
+                searchList();
             }, 500);
         } else {
             searchBox.addClass("nav-search-b");
@@ -648,6 +654,7 @@ const memberSearchOaF = () => {
             setTimeout(function () {
                 navLogo.style.display = "block";
                 navLogo2.style.display = "none";
+                memberSearchInput.value = "";
             }, 500);
         } else if (navMenuBox.hasClass("boardMain-nav-margin2")) {
             navMenuBox.removeClass("boardMain-nav-margin2");
@@ -656,6 +663,7 @@ const memberSearchOaF = () => {
             setTimeout(function () {
                 navLogo.style.display = "block";
                 navLogo2.style.display = "none";
+                memberSearchInput.value = "";
             }, 500);
         } else {
             searchBox.addClass("nav-search-b1");
@@ -669,6 +677,7 @@ const memberSearchOaF = () => {
             navLogo.style.display = "";
             navLogo2.style.display = "";
             memberSearchInput.value = "";
+            searchList();
         }, 1000);
     }
 }
@@ -692,63 +701,8 @@ memberSearchInput.addEventListener('keyup', function () {
                 }
             }).then(res => {
                 if (keyResult === "") {
-                    let iinput = "";
-                    iinput += '<div class="nav-search-b-m-s-l-i">\n' +
-                        '                                                                        <span class="nav-search-b-m-s-l-i-">최근 검색 항목</span>\n' +
-                        '                                                                        <div class="nav-search-b-m-s-l-i-1">모두 지우기</div>\n' +
-                        '                                                                    </div>\n' +
-                        '                                                                    <ul class="_abo1">\n' +
-                        '                                                                        <div>\n' +
-                        '                                                                            <a href="#" class="search-m">\n' +
-                        '                                                                                <div class="search-m-">\n' +
-                        '                                                                                    <div class="search-m-1">\n' +
-                        '                                                                                        <div class="search-m-2">\n' +
-                        '                                                                                            <div class="search-m-i">\n' +
-                        '                                                                                                <div class="search-m-i-">\n' +
-                        '                                                                                                    <div class="search-m-i-1">\n' +
-                        '                                                                                                        <canvas class="search-m-i-canvas" height="54" width="54"></canvas>\n' +
-                        '                                                                                                        <span class="search-m-i-2">\n' +
-                        '\n' +
-                        '                                                                                                            <!--검색 기록 이미지-->\n' +
-                        '                                                                                                            <img src="../images/test프로필.jpg" class="search-m-i-img">\n' +
-                        '                                                                                                        </span>\n' +
-                        '                                                                                                    </div>\n' +
-                        '                                                                                                </div>\n' +
-                        '                                                                                            </div>\n' +
-                        '                                                                                            <div class="search-m-it">\n' +
-                        '                                                                                                <div class="search-m-it-">\n' +
-                        '                                                                                                    <div class="search-m-it-1">\n' +
-                        '                                                                                                        <div class="search-m-it-2">\n' +
-                        '\n' +
-                        '                                                                                                            <!--검색 기록 사용자 닉네임-->\n' +
-                        '                                                                                                            <span class="search-m-it-3">karina_aespas_</span>\n' +
-                        '                                                                                                        </div>\n' +
-                        '                                                                                                        <span class="search-m-it-4">\n' +
-                        '                                                                                                            <span class="search-m-it-5">AESPA KARINA 카리나 • 팔로잉</span>\n' +
-                        '                                                                                                        </span>\n' +
-                        '                                                                                                    </div>\n' +
-                        '                                                                                                </div>\n' +
-                        '                                                                                            </div>\n' +
-                        '                                                                                            <div class="search-m-ite">\n' +
-                        '                                                                                                <div class="search-m-ite-">\n' +
-                        '                                                                                                    <div class="search-m-ite-1">\n' +
-                        '                                                                                                        <div class="search-m-ite-2">\n' +
-                        '                                                                                                            <svg aria-label="닫기" class="close-icon" color="rgb(115, 115, 115)" fill="rgb(115, 115, 115)" height="16" role="img" viewBox="0 0 24 24" width="16">\n' +
-                        '                                                                                                                <title>닫기</title>\n' +
-                        '                                                                                                                <polyline fill="none" points="20.643 3.357 12 12 3.353 20.647" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></polyline>\n' +
-                        '                                                                                                                <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" x1="20.649" x2="3.354" y1="20.649" y2="3.354"></line>\n' +
-                        '                                                                                                            </svg>\n' +
-                        '                                                                                                        </div>\n' +
-                        '                                                                                                    </div>\n' +
-                        '                                                                                                </div>\n' +
-                        '                                                                                            </div>\n' +
-                        '                                                                                        </div>\n' +
-                        '                                                                                    </div>\n' +
-                        '                                                                                </div>\n' +
-                        '                                                                            </a>\n' +
-                        '                                                                        </div>\n' +
-                        '                                                                    </ul>'
-                    searchMemberResult.innerHTML = iinput;
+
+                    searchList()
                 } else {
                     let output = "";
                     if (res.data.length === 0) {
@@ -799,4 +753,101 @@ memberSearchInput.addEventListener('keyup', function () {
 
 const inputClear = () => {
     memberSearchInput.value = "";
+}
+const searchListDelete = (searchId) => {
+    axios({
+        method:"post",
+        url: "/member/searchDelete",
+        data:{
+            searchId:searchId
+        }
+    }).then(res => {
+        searchList();
+    }).catch(err => {
+        console.log("실패");
+    })
+}
+const deleteAll = () => {
+    axios({
+        method:"post",
+        url: "/member/searchDeleteAll"
+    }).then(res => {
+        searchList();
+    }).catch(err => {
+        console.log("실패");
+    })
+}
+const goUserPage = (searchId) => {
+    location.href = "/member/myPage1/"+searchId;
+}
+const searchList = () => {
+    const searchMemberResult = document.getElementById('searchMemberResult');
+    axios({
+        method: "post",
+        url: "/member/searchList"
+    }).then(res => {
+        let iinput = "";
+        iinput += '<div class="nav-search-b-m-s-l-i">\n' +
+            '                                                                        <span class="nav-search-b-m-s-l-i-">최근 검색 항목</span>\n' +
+            '                                                                        <div class="nav-search-b-m-s-l-i-1" onclick="deleteAll()">모두 지우기</div>\n' +
+            '                                                                    </div>\n' +
+        '                                                                    <ul class="_abo1">\n'
+        for (let i = 0; i < res.data.length; i++) {
+            iinput +=
+                '                                                                        <div class="margin-list-">\n' +
+                '                                                                            <div class="search-m">\n' +
+                '                                                                                <div class="search-m-">\n' +
+                '                                                                                    <div class="search-m-1">\n' +
+                '                                                                                        <div class="search-m-2">\n' +
+                '                                                                                            <div class="search-m-i" onclick="goUserPage('+res.data[i].id+')">\n' +
+                '                                                                                                <div class="search-m-i-">\n' +
+                '                                                                                                    <div class="search-m-i-1">\n' +
+                '                                                                                                        <canvas class="search-m-i-canvas" height="54" width="54"></canvas>\n' +
+                '                                                                                                        <span class="search-m-i-2">\n' +
+                '\n' +
+                '                                                                                                            <!--검색 기록 이미지-->\n' +
+                '                                                                                                            <img src="/upload/' + res.data[i].memberProfile + '" class="search-m-i-img">\n' +
+                '                                                                                                        </span>\n' +
+                '                                                                                                    </div>\n' +
+                '                                                                                                </div>\n' +
+                '                                                                                            </div>\n' +
+                '                                                                                            <div class="search-m-it" onclick="goUserPage('+res.data[i].id+')">\n' +
+                '                                                                                                <div class="search-m-it-">\n' +
+                '                                                                                                    <div class="search-m-it-1">\n' +
+                '                                                                                                        <div class="search-m-it-2">\n' +
+                '\n' +
+                '                                                                                                            <!--검색 기록 사용자 닉네임-->\n' +
+                '                                                                                                            <span class="search-m-it-3">' + res.data[i].memberNickName + '</span>\n' +
+                '                                                                                                        </div>\n' +
+                '                                                                                                        <span class="search-m-it-4">\n' +
+                '                                                                                                            <span class="search-m-it-5">' + res.data[i].memberName + '</span>\n' +
+                '                                                                                                        </span>\n' +
+                '                                                                                                    </div>\n' +
+                '                                                                                                </div>\n' +
+                '                                                                                            </div>\n' +
+                '                                                                                            <div class="search-m-ite">\n' +
+                '                                                                                                <div class="search-m-ite-">\n' +
+                '                                                                                                    <div class="search-m-ite-1" onclick="searchListDelete('+res.data[i].id+')">\n' +
+                '                                                                                                        <div class="search-m-ite-2">\n' +
+                '                                                                                                            <svg aria-label="닫기" class="close-icon" color="rgb(115, 115, 115)" fill="rgb(115, 115, 115)" height="16" role="img" viewBox="0 0 24 24" width="16">\n' +
+                '                                                                                                                <title>닫기</title>\n' +
+                '                                                                                                                <polyline fill="none" points="20.643 3.357 12 12 3.353 20.647" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></polyline>\n' +
+                '                                                                                                                <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" x1="20.649" x2="3.354" y1="20.649" y2="3.354"></line>\n' +
+                '                                                                                                            </svg>\n' +
+                '                                                                                                        </div>\n' +
+                '                                                                                                    </div>\n' +
+                '                                                                                                </div>\n' +
+                '                                                                                            </div>\n' +
+                '                                                                                        </div>\n' +
+                '                                                                                    </div>\n' +
+                '                                                                                </div>\n' +
+                '                                                                            </div>\n' +
+                '                                                                        </div>\n'
+        }
+        iinput += '                                                                    </ul>'
+            searchMemberResult.innerHTML = iinput;
+        console.log("성공");
+    }).catch(err => {
+        console.log("실패");
+    })
 }

@@ -310,4 +310,20 @@ public class MemberController {
         List<MemberDTO> memberDTOList = memberSerivce.searchMember(q);
         return new ResponseEntity<>(memberDTOList, HttpStatus.OK);
     }
+    @PostMapping("/searchList")
+    public ResponseEntity<?> memberSearchList(HttpSession session) {
+        List<MemberDTO> memberDTOList = memberSerivce.searchFindAll((Long) session.getAttribute("memberId"));
+        return new ResponseEntity<>(memberDTOList, HttpStatus.OK);
+    }
+    @PostMapping("/searchDelete")
+    public ResponseEntity<?> searchDelete(@RequestBody Map<String, Long> requestBody, HttpSession session) {
+        Long searchId = requestBody.get("searchId");
+        memberSerivce.searchDelete(searchId, (Long) session.getAttribute("memberId"));
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @PostMapping("/searchDeleteAll")
+    public ResponseEntity<?> searchDeleteAll(HttpSession session) {
+        memberSerivce.searchDeleteAll((Long) session.getAttribute("memberId"));
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

@@ -19,10 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -212,5 +209,39 @@ public class MemberSerivce {
         MemberEntity searchEntity = memberRepository.findById(searchId).orElseThrow(() -> new NoSuchElementException());
         MemberSearchEntity searchMemberEntity = MemberSearchEntity.toSaveEntity(loginEntity, searchEntity);
         searchRepository.save(searchMemberEntity);
+    }
+
+    public List<MemberDTO> searchFindAll(Long memberId) {
+        MemberEntity memberEntity = memberRepository.findById(memberId).orElseThrow(NoSuchElementException::new);
+        List<MemberSearchEntity> memberSearchEntityList = searchRepository.findAllBySearchMember(memberEntity);
+
+        List<MemberDTO> memberDTOList = new ArrayList<>();
+        Set<Long> processedMemberIds = new HashSet<>();
+
+        for (MemberSearchEntity memberSearchEntity : memberSearchEntityList) {
+            Long memberSearchId = memberSearchEntity.getMemberSearch().getId();
+            if (!processedMemberIds.contains(memberSearchId)) {
+                Optional<MemberEntity> optionalMemberEntity = memberRepository.findById(memberSearchId);
+                if (optionalMemberEntity.isPresent()) {
+                    MemberEntity foundMemberEntity = optionalMemberEntity.get();
+                    memberDTOList.add(MemberDTO.toDTO(foundMemberEntity));
+                    processedMemberIds.add(memberSearchId);
+                }
+            }
+        }
+        return memberDTOList;
+    }
+
+    @Transactional
+    public void searchDelete(Long searchId, Long memberId) {
+        System.out.println("searchId = " + searchId);
+        MemberEntity searchUserEntity = memberRepository.findById(searchId).orElseThrow(() -> new NoSuchElementException());
+        MemberEntity MemberEntity = memberRepository.findById(memberId).orElseThrow(() -> new NoSuchElementException());
+        searchRepository.deleteBySearchUserEntityAndMemberEntity(searchUserEntity, MemberEntity);
+    }
+
+    public void searchDeleteAll(Long memberId) {
+        MemberEntity memberEntity = memberRepository.findById(memberId).orElseThrow(() -> new NoSuchElementException());
+        searchRepository.deleteBySearchMember(memberEntity);
     }
 }
