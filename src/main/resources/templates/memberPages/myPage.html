@@ -73,7 +73,7 @@
 
                                                                                 <!--프로필 편집 이동-->
                                                                                 <a href="#"
-                                                                                   class="myPage-user-profile-edit-link" onclick="popop()">프로필
+                                                                                   class="myPage-user-profile-edit-link" th:if="${pageMemberDTO.id == session.memberId}" onclick="popop()">프로필
                                                                                     편집</a>
                                                                             </div>
                                                                         </div>
@@ -1277,7 +1277,7 @@
                     "                                                                                                                            <!--게시글 상세 댓글에 답글 디스플레이 on / off-->\n" +
                     "                                                                                                                            <button type=\"button\"\n" +
                     "                                                                                                                                    class=\"_a9ze\">\n" +
-                    "                                                                                                                                <span class=\"aksemfRKrhalswnd\">답글 달기</span>\n" +
+                    "                                                                                                                                <span class=\"aksemfRKrhalswnd\"></span>\n" +
                     "                                                                                                                            </button>\n" +
                     "\n";
                 if (boardCommentList[c].memberId == loginId || boardDTO.memberId == loginId) {
