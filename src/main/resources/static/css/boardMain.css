@@ -2095,8 +2095,16 @@ dlalwlfkqslek:after {
     width: 100%;
     user-select: none;
     height: 100%;
-    top: 0;
     position: absolute;
+    top: 0;
+    border: 0;
+}
+detail-re-img-size1{
+    object-fit: cover;
+    left: 0;
+    user-select: none;
+    height: 100%;
+    top: 0;
     border: 0;
 }
 

@@ -699,6 +699,7 @@ const mainBoardDetailOff = (boardId) => {
     i = 0;
     mainDetail.style.display = "none";
     mainDetail.innerHTML = "";
+    location.reload();
 
 }
 

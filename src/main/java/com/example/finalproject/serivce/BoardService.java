@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.EntityNotFoundException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -159,13 +160,29 @@ public class BoardService {
         boardRepository.deleteById(id);
     }
 
-    public void update(BoardDTO boardDTO) {
-        // 로그인한 아이디의 memberDTO 가져오기
-        MemberEntity memberEntity = memberRepository.findById(boardDTO.getMemberId()).orElseThrow(() -> new NoSuchElementException());
-        // 1. Board 테이블에 데이터를 먼저 저장
-        BoardEntity boardEntity = BoardEntity.toUpdateEntity(boardDTO, memberEntity);
-        boardRepository.save(boardEntity);
-    }
+//    public void update(BoardDTO boardDTO) {
+//        // 로그인한 아이디의 memberDTO 가져오기
+//        MemberEntity memberEntity = memberRepository.findById(boardDTO.getMemberId()).orElseThrow(() -> new NoSuchElementException());
+//        // 1. Board 테이블에 데이터를 먼저 저장
+//        BoardEntity boardEntity = BoardEntity.toUpdateEntity(boardDTO, memberEntity);
+//        boardRepository.save(boardEntity);
+//    }
+public void update(BoardDTO boardDTO) {
+    // 로그인한 회원 ID로 MemberEntity를 조회합니다.
+    MemberEntity memberEntity = memberRepository.findById(boardDTO.getMemberId())
+            .orElseThrow(() -> new NoSuchElementException("해당하는 회원을 찾을 수 없습니다."));
+
+    // BoardDTO와 MemberEntity를 사용하여 BoardEntity를 생성합니다.
+    BoardEntity boardEntity = BoardEntity.toUpdateEntity(boardDTO, memberEntity);
+
+    // BoardEntity를 저장하거나 업데이트합니다.
+    boardRepository.save(boardEntity);
 }
+}
+
+
+
+
+
 
 

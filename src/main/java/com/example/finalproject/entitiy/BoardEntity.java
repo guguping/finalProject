@@ -59,8 +59,7 @@ public class BoardEntity extends BaseEntity {
         boardEntity.setId(boardDTO.getId());
         boardEntity.setMemberEntity(memberEntity);
         boardEntity.setBoardContents(boardDTO.getBoardContents());
-        boardEntity.setBoardBlind(1);
-        boardEntity.setBoardUpdate(1);
+
         return boardEntity;
     }
 }
